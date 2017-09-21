@@ -19,25 +19,27 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.core.unit;
+package org.etri.slice.core;
 
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import junit.framework.TestCase;
+public class SliceImplTest {
 
-public class SliceImplTest extends TestCase {
-
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 	}
 
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	@Test
 	public void getRuleEngine() {
-		assertEquals(true, true);
+		assertEquals("xxx", true, true);
 	}
 	
 }

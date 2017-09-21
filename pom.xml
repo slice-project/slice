@@ -25,6 +25,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<felix.ipojo.version>1.12.1</felix.ipojo.version>
 		<junit.version>4.12</junit.version>
+		<jmockit.version>1.34</jmockit.version>
 		<project.inceptionYear>2017</project.inceptionYear>
 	</properties>
 
@@ -72,6 +73,18 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-core</artifactId>
+				<version>1.3</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jmockit</groupId>
+				<artifactId>jmockit</artifactId>
+				<version>${jmockit.version}</version>
+				<scope>test</scope>
+			</dependency>		
 	</dependencies>
 
 	<build>
@@ -223,10 +236,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-			</plugin>	
 		</plugins>
 	</build>
 
