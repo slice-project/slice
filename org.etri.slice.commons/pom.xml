@@ -12,7 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>	
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<jackson.version>2.5.3</jackson.version>
 		<drools.version>6.5.0.Final</drools.version>
 		<junit.version>4.11</junit.version>
@@ -98,17 +98,24 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.ipojo.handler.eventadmin</artifactId>
+			<version>1.8.0</version>
+		</dependency>		
+<!-- 	<dependency>
+			<groupId>org.apache.felix</groupId>
 			<artifactId>org.osgi.core</artifactId>
 			<version>1.4.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+-->		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-
-		<!-- <dependency> <groupId>org.apache.felix</groupId> <artifactId>org.osgi.compendium</artifactId> 
-			<version>1.4.0</version> </dependency> -->
 	</dependencies>
 
 	<build>

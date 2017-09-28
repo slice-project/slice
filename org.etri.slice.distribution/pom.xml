@@ -22,6 +22,17 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.ipojo.handler.eventadmin</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.eventadmin</artifactId>
+			<version>1.4.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
 			<artifactId>org.apache.felix.main</artifactId>
 			<version>5.6.8</version>
 		</dependency>
@@ -65,6 +76,17 @@
 							<outputDirectory>${project.build.directory}/tmp</outputDirectory>
 						</configuration>
 					</execution>
+					<execution>
+						<id>copy-felix</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeArtifactIds>org.apache.felix.ipojo.handler.eventadmin,org.apache.felix.eventadmin</includeArtifactIds>
+							<outputDirectory>${project.build.directory}/bundle</outputDirectory>
+						</configuration>
+					</execution>					
 					<execution>
 						<id>copy-bundles</id>
 						<phase>package</phase>

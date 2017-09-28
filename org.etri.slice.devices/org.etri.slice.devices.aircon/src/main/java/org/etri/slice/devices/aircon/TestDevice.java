@@ -31,7 +31,7 @@ import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.commons.eshop.TransactionEvent;
 
 @Component
-@Instantiate
+//@Instantiate
 public class TestDevice implements Runnable {
 
 
