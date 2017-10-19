@@ -19,8 +19,12 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.event;
+package org.etri.slice.commons.car.service;
 
-public class ObjectRecognized {
+import org.etri.slice.commons.SliceException;
+import org.etri.slice.commons.Startable;
 
+public interface FullBodyDetector extends Startable {
+	
+	public void detect() throws SliceException;
 }
