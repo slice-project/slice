@@ -19,9 +19,12 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car;
+package org.etri.slice.commons.car.event;
 
-import org.etri.slice.commons.car.BodyPartLength.BodyPartLengthBuilder;
+import java.io.Serializable;
+
+import org.etri.slice.commons.car.SeatPosture;
+import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,9 +33,10 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class SeatPosture {
-	
-	private double height;
-	private double position;
-	private double tilt;
+
+@Role(Role.Type.EVENT)
+public class SeatPostureChanged implements Serializable {
+	private static final long serialVersionUID = -3709125277135630330L;
+
+	private SeatPosture posture;
 }

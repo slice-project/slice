@@ -30,7 +30,6 @@
 			<artifactId>org.apache.felix.eventadmin</artifactId>
 			<version>1.4.10</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.apache.felix.main</artifactId>
@@ -53,7 +52,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
-			<artifactId>org.etri.slice.devices.aircon</artifactId>
+			<artifactId>org.etri.slice.devices.carseat</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 	</dependencies>

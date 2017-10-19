@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 	<name>The SLICE rules</name>
 	<modules>
-		<module>org.etri.slice.rules.aircon</module>
+		<module>org.etri.slice.rules.carseat</module>
 	</modules>
 
 	<repositories>

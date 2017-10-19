@@ -21,8 +21,6 @@
  */
 package org.etri.slice.commons.car;
 
-import org.etri.slice.commons.car.BodyPartLength.BodyPartLengthBuilder;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,9 +28,10 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class SeatPosture {
-	
-	private double height;
-	private double position;
-	private double tilt;
+public class BodyPartLength {
+
+	private double head;
+	private double torso;
+	private double arms;
+	private double legs;	
 }

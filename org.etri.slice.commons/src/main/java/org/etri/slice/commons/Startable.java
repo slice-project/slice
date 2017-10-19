@@ -19,20 +19,11 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car;
+package org.etri.slice.commons;
 
-import org.etri.slice.commons.car.BodyPartLength.BodyPartLengthBuilder;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-
-@Data
-@Builder
-@AllArgsConstructor
-public class SeatPosture {
+public interface Startable {
 	
-	private double height;
-	private double position;
-	private double tilt;
+	public void start() throws SliceException;
+	
+	public void stop();
 }

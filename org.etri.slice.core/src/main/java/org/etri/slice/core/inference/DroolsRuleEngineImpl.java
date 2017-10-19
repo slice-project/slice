@@ -42,7 +42,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 	@Property(name="groupId", value="org.etri.slice")
 	private String m_groupId;
 	
-	@Property(name="artifiactId", value="org.etri.slice.rules.aircon")
+	@Property(name="artifiactId", value="org.etri.slice.rules.carseat")
 	public String m_artifactId;	
 	
 	@Property(name="version", value="0.0.1")
