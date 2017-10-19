@@ -21,8 +21,6 @@
  */
 package org.etri.slice.commons.car;
 
-import org.etri.slice.commons.car.BodyPartLength.BodyPartLengthBuilder;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
