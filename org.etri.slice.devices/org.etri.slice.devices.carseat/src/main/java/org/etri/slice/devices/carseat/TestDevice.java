@@ -22,19 +22,24 @@
 package org.etri.slice.devices.carseat;
 
 import org.apache.felix.ipojo.annotations.Component;
+import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.eshop.TransactionEvent;
+import org.etri.slice.commons.car.BodyPartLength;
+import org.etri.slice.commons.car.SeatPosture;
+import org.etri.slice.commons.car.UserInfo;
+import org.etri.slice.commons.car.event.SeatPostureChanged;
+import org.etri.slice.commons.car.event.UserSeated;
 
 @Component
-//@Instantiate
+@Instantiate
 public class TestDevice implements Runnable {
 
 
-    private static final int DELAY = 1000;
+    private static final int DELAY = 5000;
     
     @Requires
     private WorkingMemory m_wm;
@@ -59,9 +64,16 @@ public class TestDevice implements Runnable {
      * Invoke hello services
      */
     public void perform() {
-    	TransactionEvent event = new TransactionEvent(Long.valueOf(1), Double.valueOf(1000));
-    	Class cls = event.getClass();
-    	m_wm.insert(event);
+//    	TransactionEvent event = new TransactionEvent(Long.valueOf(1), Double.valueOf(1000));
+	    	m_wm.addServiceAdaptor("seatControl", new SeatControlAdaptor());
+	    	m_wm.addServiceAdaptor("seat_posture_changed", new SeatPostureChangedAdaptor());
+	    	UserInfo info = new UserInfo("owner", new BodyPartLength(10.0, 20.0, 20.0, 10.0));
+	    	UserSeated event = new UserSeated(info);
+	    	m_wm.insert(event);
+	    	
+	    	SeatPostureChanged evt = 
+	    			SeatPostureChanged.builder().posture(new SeatPosture(12.0, 10.0, 10.0)).build();
+	    	m_wm.insert(evt);
     }
 
     /**

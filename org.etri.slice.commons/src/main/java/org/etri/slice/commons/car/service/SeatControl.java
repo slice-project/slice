@@ -23,6 +23,7 @@ package org.etri.slice.commons.car.service;
 
 import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.SeatPosture;
+import org.etri.slice.commons.car.UserInfo;
 
 public interface SeatControl {
 
@@ -31,4 +32,6 @@ public interface SeatControl {
 	public void setPosture(double height, double position, double tilt);
 	
 	public void setPosture(BodyPartLength bodyLength);
+	
+	public void setPosture(UserInfo info);
 }

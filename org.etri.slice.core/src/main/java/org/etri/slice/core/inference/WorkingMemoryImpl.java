@@ -30,6 +30,7 @@ import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.inference.WorkingMemory;
+import org.kie.api.runtime.Channel;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.ObjectFilter;
 import org.kie.api.runtime.rule.FactHandle;
@@ -83,6 +84,16 @@ public class WorkingMemoryImpl implements WorkingMemory {
 		return m_session.getObjects(filter);
 	}
 
+	@Override
+	public synchronized void addServiceAdaptor(String id, Object adaptor) {
+		m_session.setGlobal(id, adaptor);		
+	}	
+
+	@Override
+	public synchronized void addServiceAdaptor(String id, Channel adaptor) {
+		m_session.registerChannel(id, adaptor);
+	}
+	
 	@Validate
 	public void start() {
 		logger.info("SLICE Working Memory is started");

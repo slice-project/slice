@@ -27,11 +27,12 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
+import org.osgi.service.event.EventAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component
-@Instantiate
+//@Instantiate
 public class EventPublisher implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(EventPublisher.class);	
@@ -48,11 +49,12 @@ public class EventPublisher implements Runnable {
 	@Invalidate
 	public void stop() {
 		s_logger.info("EventPublihser stoppted");
+		
 	}
 
 	@Override
 	public void run() {
-		
+		EventAdmin admain;
 		int i = 0;
 		while ( true ) {
 			m_publisher.sendData("data - " + String.valueOf(i++));

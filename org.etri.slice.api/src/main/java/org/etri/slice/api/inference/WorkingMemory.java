@@ -23,6 +23,7 @@ package org.etri.slice.api.inference;
 
 import java.util.Collection;
 
+import org.kie.api.runtime.Channel;
 import org.kie.api.runtime.ObjectFilter;
 
 public interface WorkingMemory {
@@ -34,4 +35,7 @@ public interface WorkingMemory {
 	long getFactCount();
 	Collection<? extends Object> getObjects();
 	Collection<? extends Object> getObjects(ObjectFilter filter);
+	
+	void addServiceAdaptor(String id, Object adaptor);
+	void addServiceAdaptor(String id, Channel adaptor);
 }
