@@ -172,7 +172,7 @@
 						</excludes>
 						<includes>
 							<include>**/org.etri.slice.api/**</include>
-							<include>**/org.etri.slice.commons/**</include>
+							<include>**/org.etri.slice.commons/src/**</include>
 							<include>**/org.etri.slice.core/**</include>
 							<include>**/org.etri.slice.devices/**</include>
 							<include>**/org.etri.slice.rules/**</include>

@@ -32,7 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component
-//@Instantiate
+@Instantiate
 public class EventPublisher implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(EventPublisher.class);	
@@ -54,7 +54,7 @@ public class EventPublisher implements Runnable {
 
 	@Override
 	public void run() {
-		EventAdmin admain;
+		EventAdmin admin;
 		int i = 0;
 		while ( true ) {
 			m_publisher.sendData("data - " + String.valueOf(i++));

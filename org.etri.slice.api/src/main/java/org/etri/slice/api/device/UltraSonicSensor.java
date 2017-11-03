@@ -21,7 +21,8 @@
  */
 package org.etri.slice.api.device;
 
-public interface UltraSonicSensor {
-	
-	public float getDistance();
+import org.etri.slice.api.perception.Source;
+
+public interface UltraSonicSensor extends Source<Double>{
+
 }

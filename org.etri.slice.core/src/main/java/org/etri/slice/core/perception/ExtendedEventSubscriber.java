@@ -28,4 +28,7 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 @Instantiate
 public class ExtendedEventSubscriber extends EventSubscriber {
 
+	public ExtendedEventSubscriber() {
+		super();
+	}
 }

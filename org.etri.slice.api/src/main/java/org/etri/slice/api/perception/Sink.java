@@ -23,6 +23,9 @@ package org.etri.slice.api.perception;
 
 import org.apache.edgent.function.Consumer;
 
+@FunctionalInterface
 public interface Sink<T> extends Consumer<T> {
+
+	void accept(T tuple);
 
 }

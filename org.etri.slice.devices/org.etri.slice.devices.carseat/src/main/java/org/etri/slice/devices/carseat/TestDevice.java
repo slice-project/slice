@@ -35,7 +35,7 @@ import org.etri.slice.commons.car.event.SeatPostureChanged;
 import org.etri.slice.commons.car.event.UserSeated;
 
 @Component
-@Instantiate
+//@Instantiate
 public class TestDevice implements Runnable {
 
 

@@ -21,6 +21,7 @@
  */
 package org.etri.slice.devices.carseat;
 
+import org.apache.felix.ipojo.annotations.Requires;
 import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.SeatPosture;
 import org.etri.slice.commons.car.UserInfo;
@@ -28,28 +29,27 @@ import org.etri.slice.commons.car.service.SeatControl;
 
 public class SeatControlAdaptor implements SeatControl {
 
+	@Requires
+	private SeatControl m_deivce;
+	
 	@Override
 	public SeatPosture getPosture() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setPosture(double height, double position, double tilt) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setPosture(BodyPartLength bodyLength) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setPosture(UserInfo info) {
 		System.out.println("SetPosture w.r.t =>" + info);
-
 	}
 
 }
