@@ -21,55 +21,41 @@
  */
 package org.etri.slice.core.perception;
 
-import org.apache.edgent.connectors.mqtt.MqttStreams;
 import org.apache.edgent.function.Consumer;
-import org.apache.edgent.providers.direct.DirectProvider;
 import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
-import org.apache.felix.ipojo.annotations.Component;
-import org.apache.felix.ipojo.annotations.Instantiate;
-import org.apache.felix.ipojo.annotations.Invalidate;
-import org.apache.felix.ipojo.annotations.Validate;
-import org.apache.felix.ipojo.handlers.event.Subscriber;
+import org.etri.slice.api.device.Device;
+import org.etri.slice.api.inference.WorkingMemory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(publicFactory=false)
-@Instantiate
-public class EventSubscriber implements Consumer<Consumer<String>>, AutoCloseable {
 
-	private static final long serialVersionUID = -9073017330777438626L;
+public abstract class EventSubscriber<T> implements Consumer<Consumer<T>>, AutoCloseable {
+
+	private static final long serialVersionUID = 4637974626058983539L;
+
 	private static Logger s_logger = LoggerFactory.getLogger(EventSubscriber.class);	
 	
-	private Consumer<String> m_eventSubmitter;
-	private final DirectProvider m_provider;
-	private MqttStreams m_mqtt;
+	private Consumer<T> m_eventSubmitter;
 	private Topology m_topology;
-	private TStream<String> m_events;	
+	private TStream<T> m_events;	
 	
-	public EventSubscriber() {
-		m_provider = new DirectProvider();
-	}
+	protected abstract Device getDevice();
+	protected abstract String getTopicName();
 	
-	@Validate
-	public void start() {	
-		m_topology = m_provider.newTopology("xxx");
+	public void start(Consumer<T> consumer) {	
+		m_topology = getDevice().newTopology(getTopicName());
 		m_events = m_topology.events(this);
-
-		m_mqtt = new MqttStreams(m_topology, "tcp://localhost:1883", null);
-		m_mqtt.publish(m_events, "xxx", 0, false);	
-		m_provider.submit(m_topology);
-		
-		s_logger.info("EventSubscriber started");
+		getDevice().submit(m_topology);
+		m_events.sink(consumer);
+		s_logger.info("EventSubscriber[" + getTopicName() + "] started.");
 	}
 	
-	@Invalidate
 	public void stop() { 
-		s_logger.info("EventSubscriber stopped");
+		s_logger.info("EventSubscriber[" + getTopicName() + "] stopped.");
 	}
 	
-	@Subscriber(name="sub", topics="xxx", dataKey="aircon.data", dataType="java.lang.String")
-	public synchronized void subscribe(String value) {
+	public synchronized void subscribe(T value) {
 		if ( m_eventSubmitter != null ) {
 			m_eventSubmitter.accept(value);
 			s_logger.info("Event: " + value);
@@ -77,7 +63,7 @@ public class EventSubscriber implements Consumer<Consumer<String>>, AutoCloseabl
 	}	
 	
 	@Override
-	public synchronized void accept(Consumer<String> eventSubmitter) {
+	public synchronized void accept(Consumer<T> eventSubmitter) {
 		m_eventSubmitter = eventSubmitter;
 	}
 

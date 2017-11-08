@@ -21,28 +21,28 @@
  */
 package org.etri.slice.devices.carseat;
 
+import org.apache.edgent.function.Consumer;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
+import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
+import org.etri.slice.commons.car.SeatPosture;
 import org.etri.slice.commons.car.event.SeatPostureChanged;
-import org.etri.slice.core.perception.MqttEventSubscriber;
+import org.etri.slice.core.perception.EventSubscriber;
 
 @Component
 @Instantiate
-public class SeatPostureChangedAdaptor extends MqttEventSubscriber {
+public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 
-	private static final long serialVersionUID = -3399284708049171647L;
+	private static final long serialVersionUID = 870371290384307371L;
 
-	@Property(name="topic", value="seat_posture_changed")
+	@Property(name="topic", value="seat_posture")
 	private String m_topic;
-	
-	@Property(name="url", value="tcp://localhost:1883")
-	private String m_url;
 	
 	@Requires
 	protected WorkingMemory m_wm;
@@ -54,10 +54,6 @@ public class SeatPostureChangedAdaptor extends MqttEventSubscriber {
 		return m_topic;
 	}
 	
-	protected String getMqttURL() {
-		return m_url;
-	}
-	
 	protected WorkingMemory getWorkingMemory() {
 		return m_wm;
 	}
@@ -65,14 +61,18 @@ public class SeatPostureChangedAdaptor extends MqttEventSubscriber {
 	protected Device getDevice() {
 		return m_device;
 	}
-	
-	protected Class<?> getEventClass() {
-		return SeatPostureChanged.class;
-	}
 		
+	@Subscriber(name="sub", topics="seat_posture", 
+			dataKey="seat.posture", dataType="org.etri.slice.commons.car.SeatPosture")
+	public void receive(SeatPosture posture) {
+		super.subscribe(posture);
+	}
+	
 	@Validate
 	public void start() {
-		super.start();
+		super.start(posture -> {
+			m_wm.insert(SeatPostureChanged.builder().posture(posture).build()); 
+		});
 	}
 	
 	@Invalidate

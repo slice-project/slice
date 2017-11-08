@@ -21,8 +21,13 @@
  */
 package org.etri.slice.api.device;
 
-import org.etri.slice.api.perception.Source;
+import org.apache.edgent.function.BiConsumer;
 
-public interface UltraSonicSensor extends Source<Double>{
-
+public interface ServiceContainer {
+	
+	void addCleaner(BiConsumer<String, String> cleaner);
+	<T> T addService(Class<T> serviceClass, T service);
+	void cleanOplet(String jobId, String elementId);
+	<T> T getService(Class<T> serviceClass);
+	<T> T removeService(Class<T> serviceClass);
 }

@@ -19,10 +19,10 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.api.device;
+package org.etri.slice.api.things;
 
 import org.etri.slice.api.perception.Source;
 
-public interface PressureSensor extends Source<Double>{
+public interface UltraSonicSensor extends Source<Double> {
 
 }

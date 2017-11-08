@@ -19,51 +19,59 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.core.perception;
+package org.etri.slice.devices.carseat;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
+import org.apache.felix.ipojo.annotations.Property;
+import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
-import org.apache.felix.ipojo.handlers.event.Publishes;
-import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.SeatPosture;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.etri.slice.api.device.Device;
+import org.etri.slice.api.inference.WorkingMemory;
+import org.etri.slice.core.perception.MqttEventPublisher;
 
 @Component
 @Instantiate
-public class EventPublisher implements Runnable {
-	
-	private static Logger s_logger = LoggerFactory.getLogger(EventPublisher.class);	
+public class SeatPostureChangedChannel extends MqttEventPublisher {
 
-	@Publishes(name="pub", topics="seat_posture", dataKey="seat.posture")
-	private Publisher m_publisher;
+	private static final long serialVersionUID = -2363568331278938609L;
+
+	@Property(name="topic", value="seat_posture_changed")
+	private String m_topic;
 	
+	@Property(name="url", value="tcp://localhost:1883")
+	private String m_url;
+	
+	@Requires
+	protected WorkingMemory m_wm;
+
+	@Requires
+	private Device m_device;
+	
+	protected  String getTopicName() {
+		return m_topic;
+	}
+	
+	protected String getMqttURL() {
+		return m_url;
+	}	
+	
+	protected WorkingMemory getWorkingMemory() {
+		return m_wm;
+	}
+	
+	protected Device getDevice() {
+		return m_device;
+	}
+		
 	@Validate
 	public void start() {
-		new Thread(this).start();
-		s_logger.info("EventPublisher started.");
+		super.start();
 	}
 	
 	@Invalidate
 	public void stop() {
-		s_logger.info("EventPublihser stoppted");
-		
+		super.stop();
 	}
-
-	@Override
-	public void run() {
-		int i = 0;
-		while ( true ) {
-			m_publisher.sendData(SeatPosture.builder().height(i++).position(i++).tilt(i++).build());
-			
-			try {
-				Thread.sleep(15000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
 }

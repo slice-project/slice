@@ -19,16 +19,10 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.core.perception;
+package org.etri.slice.api.things;
 
-import org.apache.felix.ipojo.annotations.Component;
-import org.apache.felix.ipojo.annotations.Instantiate;
+import org.etri.slice.api.perception.Source;
 
-@Component
-@Instantiate
-public class ExtendedEventSubscriber extends EventSubscriber {
+public interface PressureSensor extends Source<Double> {
 
-	public ExtendedEventSubscriber() {
-		super();
-	}
 }

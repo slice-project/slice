@@ -24,10 +24,12 @@ package org.etri.slice.commons.car;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class BodyPartLength {
 
 	private double head;

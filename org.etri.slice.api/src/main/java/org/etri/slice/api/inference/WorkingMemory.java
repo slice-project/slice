@@ -37,5 +37,5 @@ public interface WorkingMemory {
 	Collection<? extends Object> getObjects(ObjectFilter filter);
 	
 	void addServiceAdaptor(String id, Object adaptor);
-	void addServiceAdaptor(String id, Channel adaptor);
+	void addEventAdaptor(String id, Channel adaptor);
 }

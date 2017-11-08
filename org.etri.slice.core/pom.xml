@@ -32,7 +32,8 @@
 				<configuration>
 					<instructions>
 						<Private-Package>${private.packages}</Private-Package>
-					</instructions>
+<!-- 					<Export-Package>${export.packages}</Export-Package>
+-->					</instructions>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -66,7 +66,7 @@ public class TestDevice implements Runnable {
     public void perform() {
 //    	TransactionEvent event = new TransactionEvent(Long.valueOf(1), Double.valueOf(1000));
 	    	m_wm.addServiceAdaptor("seatControl", new SeatControlAdaptor());
-	    	m_wm.addServiceAdaptor("seat_posture_changed", new SeatPostureChangedAdaptor());
+	    	m_wm.addEventAdaptor("seat_posture_changed", new SeatPostureChangedChannel());
 	    	UserInfo info = new UserInfo("owner", new BodyPartLength(10.0, 20.0, 20.0, 10.0));
 	    	UserSeated event = new UserSeated(info);
 	    	m_wm.insert(event);

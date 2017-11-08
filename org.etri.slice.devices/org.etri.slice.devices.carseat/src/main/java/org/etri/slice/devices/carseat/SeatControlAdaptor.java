@@ -22,6 +22,7 @@
 package org.etri.slice.devices.carseat;
 
 import org.apache.felix.ipojo.annotations.Requires;
+import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.SeatPosture;
 import org.etri.slice.commons.car.UserInfo;
@@ -30,25 +31,33 @@ import org.etri.slice.commons.car.service.SeatControl;
 public class SeatControlAdaptor implements SeatControl {
 
 	@Requires
-	private SeatControl m_deivce;
+	private SeatControl m_control;
+	
+	@Requires
+	protected WorkingMemory m_wm;
+	
+	public SeatControlAdaptor() {
+		m_wm.addServiceAdaptor(SeatControl.class.getName(), this);
+	}
 	
 	@Override
 	public SeatPosture getPosture() {
-		return null;
+		return m_control.getPosture();
 	}
 
 	@Override
 	public void setPosture(double height, double position, double tilt) {
-
+		m_control.setPosture(height, position, tilt);
 	}
 
 	@Override
 	public void setPosture(BodyPartLength bodyLength) {
-
+		m_control.setPosture(bodyLength);
 	}
 
 	@Override
 	public void setPosture(UserInfo info) {
+//		m_control.setPosture(info);
 		System.out.println("SetPosture w.r.t =>" + info);
 	}
 

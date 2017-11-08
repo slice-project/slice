@@ -19,11 +19,13 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.api.perception;
+package org.etri.slice.api.device;
 
-import org.apache.edgent.function.Supplier;
+import org.apache.edgent.execution.Job;
+import org.apache.edgent.execution.Submitter;
+import org.apache.edgent.topology.Topology;
+import org.apache.edgent.topology.TopologyProvider;
 
-@FunctionalInterface
-public interface Source<T> extends Supplier<T> {
+public interface Device extends Submitter<Topology, Job>, TopologyProvider, ServiceContainer {
 
 }

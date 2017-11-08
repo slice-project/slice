@@ -29,59 +29,48 @@ import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.commons.SliceEvent;
 import org.etri.slice.commons.SliceException;
-import org.kie.api.runtime.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class MqttEventPublisher implements Consumer<Consumer<String>>, Channel {
-	private static final long serialVersionUID = -9073017330777438626L;
-	private static Logger s_logger = LoggerFactory.getLogger(MqttEventPublisher.class);	
+public abstract class MqttEventSubscriber implements Consumer<String> {
+	private static final long serialVersionUID = 3346078185684269469L;
+	private static Logger s_logger = LoggerFactory.getLogger(MqttEventSubscriber.class);	
 	
 	private MqttStreams m_mqtt;
 	private Topology m_topology;
 	private TStream<String> m_events;
-	private Consumer<String> m_eventSubmitter;
 	
 	protected abstract WorkingMemory getWorkingMemory();
 	protected abstract Device getDevice();
 	protected abstract String getTopicName();
-	protected abstract String getMqttURL();	
+	protected abstract String getMqttURL();
+	protected abstract Class<?> getEventClass();
 	
 	public void start() {	
 		String topicName = getTopicName();
-		getWorkingMemory().addEventAdaptor(topicName, this);		
 		
 		m_topology = getDevice().newTopology(topicName);
-		m_events = m_topology.events(this);
 
 		m_mqtt = new MqttStreams(m_topology, getMqttURL(), null);
-		m_mqtt.publish(m_events, topicName, 0, false);	
+		m_events = m_mqtt.subscribe(topicName, 0);
+		m_events.sink(this);
 		getDevice().submit(m_topology);
 		
-		s_logger.info("MqttEventPublisher[" + topicName + "] started.");
+		s_logger.info("MqttEventSubscriber[" + topicName + "] started.");
 	}
 	
 	public void stop() { 
-		s_logger.info("MqttEventPublisher[" + getTopicName() + "] stopped.");
+		s_logger.info("MqttEventSubscriber[" + getTopicName() + "] stopped.");
 	}
 
 	@Override
-	public synchronized void accept(Consumer<String> eventSubmitter) {
-		m_eventSubmitter = eventSubmitter;
-	}
-
-	@Override
-	public void send(Object object) {
-		if ( m_eventSubmitter != null ) {
-			String jsonMsg = null;
-			try {
-				jsonMsg = ((SliceEvent)object).toJSON();
-				m_eventSubmitter.accept(jsonMsg);
-				s_logger.info("MQTT Event published: " + jsonMsg);				
-			}
-			catch ( SliceException e ) {
-				s_logger.error(e.getDetails());
-			}
+	public synchronized void accept(String event) {
+		try {
+			s_logger.info("MQTT Event received: " + event);				
+			Object fact = SliceEvent.fromJSON(getEventClass(), event);
+			getWorkingMemory().insert(fact);
+		} catch (SliceException e) {
+			e.printStackTrace();
 		}
-	}	
+	}
 }

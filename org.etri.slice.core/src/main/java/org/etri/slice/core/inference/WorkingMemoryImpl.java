@@ -90,7 +90,7 @@ public class WorkingMemoryImpl implements WorkingMemory {
 	}	
 
 	@Override
-	public synchronized void addServiceAdaptor(String id, Channel adaptor) {
+	public synchronized void addEventAdaptor(String id, Channel adaptor) {
 		m_session.registerChannel(id, adaptor);
 	}
 	

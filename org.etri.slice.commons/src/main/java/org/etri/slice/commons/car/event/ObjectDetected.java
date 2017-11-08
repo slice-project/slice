@@ -21,20 +21,21 @@
  */
 package org.etri.slice.commons.car.event;
 
-import java.io.Serializable;
-
+import org.etri.slice.commons.SliceEvent;
 import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Builder
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 
 @Role(Role.Type.EVENT)
-public class ObjectDetected implements Serializable {
+public class ObjectDetected extends SliceEvent {
 	private static final long serialVersionUID = 7486118320696795796L;
 	
 	private Double distance;

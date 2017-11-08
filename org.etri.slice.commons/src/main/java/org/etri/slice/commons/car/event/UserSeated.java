@@ -21,21 +21,22 @@
  */
 package org.etri.slice.commons.car.event;
 
-import java.io.Serializable;
-
+import org.etri.slice.commons.SliceEvent;
 import org.etri.slice.commons.car.UserInfo;
 import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Builder
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 
 @Role(Role.Type.EVENT)
-public class UserSeated implements Serializable {
+public class UserSeated extends SliceEvent {
 	
 	private static final long serialVersionUID = 5119075579871472757L;
 	
