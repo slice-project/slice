@@ -44,7 +44,7 @@ public abstract class MqttEventSubscriber implements Consumer<String> {
 	protected abstract Device getDevice();
 	protected abstract String getTopicName();
 	protected abstract String getMqttURL();
-	protected abstract Class<?> getEventClass();
+	protected abstract Class<?> getEventType();
 	
 	public void start() {	
 		String topicName = getTopicName();
@@ -67,7 +67,7 @@ public abstract class MqttEventSubscriber implements Consumer<String> {
 	public synchronized void accept(String event) {
 		try {
 			s_logger.info("MQTT Event received: " + event);				
-			Object fact = SliceEvent.fromJSON(getEventClass(), event);
+			Object fact = SliceEvent.fromJSON(getEventType(), event);
 			getWorkingMemory().insert(fact);
 		} catch (SliceException e) {
 			e.printStackTrace();

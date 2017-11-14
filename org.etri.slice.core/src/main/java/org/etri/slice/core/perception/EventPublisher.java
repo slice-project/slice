@@ -27,6 +27,7 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
+import org.etri.slice.commons.car.Pressure;
 import org.etri.slice.commons.car.SeatPosture;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ public class EventPublisher implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(EventPublisher.class);	
 
-	@Publishes(name="pub", topics="seat_posture", dataKey="seat.posture")
+	@Publishes(name="pub", topics="seat_pressure", dataKey="seat.pressure")
 	private Publisher m_publisher;
 	
 	@Validate
@@ -56,7 +57,7 @@ public class EventPublisher implements Runnable {
 	public void run() {
 		int i = 0;
 		while ( true ) {
-			m_publisher.sendData(SeatPosture.builder().height(i++).position(i++).tilt(i++).build());
+			m_publisher.sendData(Pressure.builder().value(i++).build());
 			
 			try {
 				Thread.sleep(15000);

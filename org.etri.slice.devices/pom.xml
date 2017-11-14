@@ -16,5 +16,6 @@
 	
 	<modules>
 		<module>org.etri.slice.devices.carseat</module>
+		<module>org.etri.slice.devices.pressuresensor</module>
 	</modules>
 </project>

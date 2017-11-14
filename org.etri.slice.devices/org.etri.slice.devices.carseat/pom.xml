@@ -35,8 +35,7 @@
 				<configuration>
 					<instructions>
 						<Private-Package>${private.packages}</Private-Package>
-<!-- 					<Import-Package>${import.packages}</Import-Package>
--->					</instructions>
+					</instructions>
 				</configuration>
 			</plugin>
 			<plugin>

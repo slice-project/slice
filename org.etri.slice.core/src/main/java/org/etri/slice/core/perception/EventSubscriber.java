@@ -25,7 +25,6 @@ import org.apache.edgent.function.Consumer;
 import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
 import org.etri.slice.api.device.Device;
-import org.etri.slice.api.inference.WorkingMemory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

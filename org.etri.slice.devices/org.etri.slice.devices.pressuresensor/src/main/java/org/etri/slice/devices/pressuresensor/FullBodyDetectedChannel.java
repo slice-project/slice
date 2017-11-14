@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.carseat;
+package org.etri.slice.devices.pressuresensor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -29,16 +29,15 @@ import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.event.SeatPostureChanged;
-import org.etri.slice.core.perception.MqttEventSubscriber;
+import org.etri.slice.core.perception.MqttEventPublisher;
 
 @Component
 @Instantiate
-public class SeatPostureChangedAdaptor extends MqttEventSubscriber {
+public class FullBodyDetectedChannel extends MqttEventPublisher {
+	
+	private static final long serialVersionUID = 2804355916299781075L;
 
-	private static final long serialVersionUID = -3399284708049171647L;
-
-	@Property(name="topic", value="seat_posture_changed")
+	@Property(name="topic", value="full_body_detected")
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://localhost:1883")
@@ -56,7 +55,7 @@ public class SeatPostureChangedAdaptor extends MqttEventSubscriber {
 	
 	protected String getMqttURL() {
 		return m_url;
-	}
+	}	
 	
 	protected WorkingMemory getWorkingMemory() {
 		return m_wm;
@@ -64,10 +63,6 @@ public class SeatPostureChangedAdaptor extends MqttEventSubscriber {
 	
 	protected Device getDevice() {
 		return m_device;
-	}
-	
-	protected Class<?> getEventClass() {
-		return SeatPostureChanged.class;
 	}
 		
 	@Validate

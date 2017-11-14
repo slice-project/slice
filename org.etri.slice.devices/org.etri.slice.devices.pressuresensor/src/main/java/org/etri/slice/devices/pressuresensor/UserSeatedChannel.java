@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.carseat;
+package org.etri.slice.devices.pressuresensor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -27,20 +27,21 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
-import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.SeatPosture;
-import org.etri.slice.core.perception.EventSubscriber;
+import org.etri.slice.core.perception.MqttEventPublisher;
 
 @Component
 @Instantiate
-public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
+public class UserSeatedChannel extends MqttEventPublisher {
+	
+	private static final long serialVersionUID = -7123113855608104237L;
 
-	private static final long serialVersionUID = 870371290384307371L;
-
-	@Property(name="topic", value="seat_posture")
+	@Property(name="topic", value="user_seated")
 	private String m_topic;
+	
+	@Property(name="url", value="tcp://localhost:1883")
+	private String m_url;
 	
 	@Requires
 	protected WorkingMemory m_wm;
@@ -52,6 +53,10 @@ public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 		return m_topic;
 	}
 	
+	protected String getMqttURL() {
+		return m_url;
+	}	
+	
 	protected WorkingMemory getWorkingMemory() {
 		return m_wm;
 	}
@@ -60,17 +65,9 @@ public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 		return m_device;
 	}
 		
-	@Subscriber(name="sub", topics="seat_posture", 
-			dataKey="seat.posture", dataType="org.etri.slice.commons.car.SeatPosture")
-	public void receive(SeatPosture posture) {
-		super.subscribe(posture);
-	}
-	
 	@Validate
 	public void start() {
-		super.start(posture -> {
-			m_wm.insert(posture); 
-		});
+		super.start();
 	}
 	
 	@Invalidate

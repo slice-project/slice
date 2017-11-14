@@ -38,7 +38,7 @@ public class UserSeatedAdaptor extends MqttEventSubscriber {
 
 	private static final long serialVersionUID = -4554813753815100581L;
 
-	@Property(name="topic", value="driver_seated")
+	@Property(name="topic", value="user_seated")
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://localhost:1883")
@@ -66,7 +66,7 @@ public class UserSeatedAdaptor extends MqttEventSubscriber {
 		return m_device;
 	}
 	
-	protected Class<?> getEventClass() {
+	protected Class<?> getEventType() {
 		return UserSeated.class;
 	}
 		

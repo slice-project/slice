@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.carseat;
+package org.etri.slice.devices.pressuresensor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -30,16 +30,16 @@ import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.SeatPosture;
+import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.core.perception.EventSubscriber;
 
 @Component
 @Instantiate
-public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
+public class BodyPartLengthAdaptor extends EventSubscriber<BodyPartLength> {
+	
+	private static final long serialVersionUID = -8022799918758850247L;
 
-	private static final long serialVersionUID = 870371290384307371L;
-
-	@Property(name="topic", value="seat_posture")
+	@Property(name="topic", value="body_part_length")
 	private String m_topic;
 	
 	@Requires
@@ -60,16 +60,16 @@ public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 		return m_device;
 	}
 		
-	@Subscriber(name="sub", topics="seat_posture", 
-			dataKey="seat.posture", dataType="org.etri.slice.commons.car.SeatPosture")
-	public void receive(SeatPosture posture) {
-		super.subscribe(posture);
+	@Subscriber(name="sub", topics="body_part_length",
+			dataKey="body.part.length", dataType="org.etri.slice.commons.car.BodyPartLength")
+	public void receive(BodyPartLength data) {
+		super.subscribe(data);
 	}
 	
 	@Validate
 	public void start() {
-		super.start(posture -> {
-			m_wm.insert(posture); 
+		super.start(data -> {
+			m_wm.insert(data); 
 		});
 	}
 	

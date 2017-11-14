@@ -1,7 +1,11 @@
 package org.etri.slice.rules.carseat;
 
-import org.etri.slice.commons.car.event.UserSeated;
+
+import org.etri.slice.commons.car.Pressure;
+import org.etri.slice.commons.car.UserInfo;
+import org.etri.slice.commons.car.event.FullBodyDetected;
 import org.etri.slice.commons.car.event.SeatPostureChanged;
+import org.etri.slice.commons.car.event.UserSeated;
 
 global org.etri.slice.commons.car.service.SeatControl seatControl;
 
@@ -14,7 +18,22 @@ end
 
 rule "SeatPosture Change Notification"
 	when
-		$e: SeatPostureChanged()
+		$e: SeatPosture()
 	then
-		channels["seat_posture_changed"].send($e);
+		channels["seat_posture_changed"].send(new SeatPostureChanged($e));
+end
+
+rule "UserSeated Notification"
+	when
+		$e1: FullBodyDetected($body: bodyLength)
+		$e2: Pressure(value > 30, this meets[10s] $e1
+	then
+		channels["user_seated"].send(new UserSeated(new UserInfo("user", $body)));
+end
+
+rule "FullBody Detection Notification"
+	when
+		$e: BodyPartLength()
+	then
+		channels["full_body_detected"].send(new FullBodyDetected($e));
 end

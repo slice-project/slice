@@ -30,12 +30,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BodyPartLength {	
+public class Pressure {
 	public static final String topic = "body_part_length";
-	public static final String dataKey = "body.part.length";
+	public static final String dataKey = "body.part.length";	
 	
-	private double head;
-	private double torso;
-	private double arms;
-	private double legs;	
+	private double value;
 }
