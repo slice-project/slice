@@ -10,6 +10,9 @@
 	<name>The SLICE rules</name>
 	<modules>
 		<module>org.etri.slice.rules.carseat</module>
+		<module>org.etri.slice.rules.fullbodydetector</module>
+		<module>org.etri.slice.rules.objectdetector</module>
+		<module>org.etri.slice.rules.pressuresensor</module>
 	</modules>
 
 	<repositories>
@@ -44,29 +47,7 @@
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.0.1</version>
-<!-- 		<exclusions>
-				<exclusion>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.ipojo.distribution.quickstart</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.ipojo</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.ipojo.gogo</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.ipojo.annotations</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.etri.slice</groupId>
-					<artifactId>org.etri.slice.lib</artifactId>
-				</exclusion>
-			</exclusions>
--->		</dependency>
+		</dependency>
 	</dependencies>
 
 </project>

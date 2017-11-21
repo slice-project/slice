@@ -30,14 +30,14 @@ import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.Pressure;
+import org.etri.slice.commons.car.event.Pressure;
 import org.etri.slice.core.perception.EventSubscriber;
 
 @Component
 @Instantiate
 public class PressureAdaptor extends EventSubscriber<Pressure> {
 	
-	private static final long serialVersionUID = -7346623248891025805L;
+	private static final long serialVersionUID = 1376928655849005615L;
 
 	@Property(name="topic", value="seat_pressure")
 	private String m_topic;
@@ -61,7 +61,7 @@ public class PressureAdaptor extends EventSubscriber<Pressure> {
 	}
 		
 	@Subscriber(name="sub", topics="seat_pressure",
-			dataKey="seat.pressure", dataType="org.etri.slice.commons.car.Pressure")
+			dataKey="seat.pressure", dataType="org.etri.slice.commons.car.event.Pressure")
 	public void receive(Pressure pressure) {
 		super.subscribe(pressure);
 	}

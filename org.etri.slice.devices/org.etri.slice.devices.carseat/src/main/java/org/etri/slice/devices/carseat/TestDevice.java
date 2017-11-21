@@ -29,8 +29,8 @@ import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.commons.car.BodyPartLength;
-import org.etri.slice.commons.car.SeatPosture;
 import org.etri.slice.commons.car.UserInfo;
+import org.etri.slice.commons.car.event.SeatPosture;
 import org.etri.slice.commons.car.event.SeatPostureChanged;
 import org.etri.slice.commons.car.event.UserSeated;
 

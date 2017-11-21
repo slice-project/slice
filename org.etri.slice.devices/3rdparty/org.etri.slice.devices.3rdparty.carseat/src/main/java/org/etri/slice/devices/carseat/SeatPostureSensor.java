@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.pressuresensor;
+package org.etri.slice.devices.carseat;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -27,51 +27,56 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
-import org.etri.slice.api.device.Device;
-import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.core.perception.MqttEventPublisher;
+import org.apache.felix.ipojo.handlers.event.Publishes;
+import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
+import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.service.SeatControl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 @Instantiate
-public class FullBodyDetectedChannel extends MqttEventPublisher {
+public class SeatPostureSensor implements Runnable {
 	
-	private static final long serialVersionUID = 2804355916299781075L;
+	private static Logger s_logger = LoggerFactory.getLogger(SeatPostureSensor.class);	
 
-	@Property(name="topic", value="full_body_detected")
-	private String m_topic;
+	@Property(name="interval", value="15000")
+	public long m_interval;	
 	
-	@Property(name="url", value="tcp://localhost:1883")
-	private String m_url;
+	@Publishes(name="pub:seat_posture", topics="seat_posture", dataKey="seat.posture")
+	private Publisher m_publisher;
 	
 	@Requires
-	protected WorkingMemory m_wm;
-
-	@Requires
-	private Device m_device;
+	private SeatControl m_posture;
 	
-	protected  String getTopicName() {
-		return m_topic;
-	}
-	
-	protected String getMqttURL() {
-		return m_url;
-	}	
-	
-	protected WorkingMemory getWorkingMemory() {
-		return m_wm;
-	}
-	
-	protected Device getDevice() {
-		return m_device;
-	}
-		
 	@Validate
 	public void start() {
-		super.start();
+		new Thread(this).start();
+		s_logger.info("SeatPostureSensor started.");
 	}
 	
 	@Invalidate
 	public void stop() {
-		super.stop();
+		s_logger.info("SeatPostureSensor stoppted");
+		
 	}
+
+	@Override
+	public void run() {
+		while ( true ) {
+			sleep();
+			
+			SeatPosture posture = m_posture.getPosture();
+			m_publisher.sendData(posture);
+			s_logger.info("PUB: " + posture);
+		}
+	}
+	
+	private void sleep() {
+		try {
+			Thread.sleep(m_interval);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}		
+	}	
 }

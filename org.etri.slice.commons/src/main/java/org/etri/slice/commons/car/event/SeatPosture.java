@@ -19,7 +19,9 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car;
+package org.etri.slice.commons.car.event;
+
+import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,9 +32,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pressure {
-	public static final String topic = "body_part_length";
-	public static final String dataKey = "body.part.length";	
+
+@Role(Role.Type.EVENT)
+public class SeatPosture {
 	
-	private double value;
+	private double height;
+	private double position;
+	private double tilt;
 }

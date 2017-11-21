@@ -30,7 +30,7 @@ import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.SeatPosture;
+import org.etri.slice.commons.car.event.SeatPosture;
 import org.etri.slice.core.perception.EventSubscriber;
 
 @Component
@@ -60,8 +60,8 @@ public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 		return m_device;
 	}
 		
-	@Subscriber(name="sub", topics="seat_posture", 
-			dataKey="seat.posture", dataType="org.etri.slice.commons.car.SeatPosture")
+	@Subscriber(name="SeatPostureAdaptor", topics="seat_posture", 
+			dataKey="seat.posture", dataType="org.etri.slice.commons.car.event.SeatPosture")
 	public void receive(SeatPosture posture) {
 		super.subscribe(posture);
 	}

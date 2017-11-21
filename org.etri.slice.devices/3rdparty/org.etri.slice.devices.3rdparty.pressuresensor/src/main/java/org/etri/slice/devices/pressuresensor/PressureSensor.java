@@ -19,52 +19,60 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.core.perception;
+package org.etri.slice.devices.pressuresensor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
+import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.Pressure;
-import org.etri.slice.commons.car.SeatPosture;
+import org.etri.slice.commons.car.event.Pressure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component
 @Instantiate
-public class EventPublisher implements Runnable {
+public class PressureSensor implements Runnable {
 	
-	private static Logger s_logger = LoggerFactory.getLogger(EventPublisher.class);	
+	private static Logger s_logger = LoggerFactory.getLogger(PressureSensor.class);	
 
-	@Publishes(name="pub", topics="seat_pressure", dataKey="seat.pressure")
+	@Property(name="interval", value="7000")
+	public long m_interval;	
+	
+	@Publishes(name="pub:seat_pressure", topics="seat_pressure", dataKey="seat.pressure")
 	private Publisher m_publisher;
 	
 	@Validate
 	public void start() {
 		new Thread(this).start();
-		s_logger.info("EventPublisher started.");
+		s_logger.info("PressureSensor started.");
 	}
 	
 	@Invalidate
 	public void stop() {
-		s_logger.info("EventPublihser stoppted");
+		s_logger.info("PressureSensor stoppted");
 		
 	}
 
 	@Override
 	public void run() {
-		int i = 0;
 		while ( true ) {
-			m_publisher.sendData(Pressure.builder().value(i++).build());
+			sleep();
 			
-			try {
-				Thread.sleep(15000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			Pressure pressure = Pressure.builder().value(45).build();
+			m_publisher.sendData(pressure);
+			
+			s_logger.info("PUB: " + pressure);
 		}
 	}
-	
+
+	private void sleep() {
+		try {
+			Thread.sleep(m_interval);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}		
+	}	
 }

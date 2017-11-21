@@ -35,8 +35,8 @@ import org.etri.slice.core.perception.MqttEventSubscriber;
 @Component
 @Instantiate
 public class FullBodyDetectedAdaptor extends MqttEventSubscriber {
-
-	private static final long serialVersionUID = -3399284708049171647L;
+	
+	private static final long serialVersionUID = 3605095190247075160L;
 
 	@Property(name="topic", value="full_body_detected")
 	private String m_topic;

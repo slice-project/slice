@@ -34,7 +34,7 @@ import org.etri.slice.core.perception.MqttEventPublisher;
 @Component
 @Instantiate
 public class UserSeatedChannel extends MqttEventPublisher {
-	
+
 	private static final long serialVersionUID = -7123113855608104237L;
 
 	@Property(name="topic", value="user_seated")

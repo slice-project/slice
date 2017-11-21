@@ -22,8 +22,8 @@
 package org.etri.slice.commons.car.service;
 
 import org.etri.slice.commons.car.BodyPartLength;
-import org.etri.slice.commons.car.SeatPosture;
 import org.etri.slice.commons.car.UserInfo;
+import org.etri.slice.commons.car.event.SeatPosture;
 
 public interface SeatControl {
 

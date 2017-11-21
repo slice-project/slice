@@ -17,5 +17,8 @@
 	<modules>
 		<module>org.etri.slice.devices.carseat</module>
 		<module>org.etri.slice.devices.pressuresensor</module>
+		<module>org.etri.slice.devices.fullbodydetector</module>
+		<module>org.etri.slice.devices.objectdetector</module>
+		<module>3rdparty</module>				
 	</modules>
 </project>

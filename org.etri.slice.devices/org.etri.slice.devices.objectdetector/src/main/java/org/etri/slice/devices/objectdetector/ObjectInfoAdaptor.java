@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.pressuresensor;
+package org.etri.slice.devices.objectdetector;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -30,16 +30,16 @@ import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.BodyPartLength;
+import org.etri.slice.commons.car.ObjectInfo;
 import org.etri.slice.core.perception.EventSubscriber;
 
 @Component
 @Instantiate
-public class BodyPartLengthAdaptor extends EventSubscriber<BodyPartLength> {
+public class ObjectInfoAdaptor extends EventSubscriber<ObjectInfo> {
 	
-	private static final long serialVersionUID = -8022799918758850247L;
+	private static final long serialVersionUID = 3600697679325960166L;
 
-	@Property(name="topic", value="body_part_length")
+	@Property(name="topic", value="object_distance")
 	private String m_topic;
 	
 	@Requires
@@ -60,9 +60,9 @@ public class BodyPartLengthAdaptor extends EventSubscriber<BodyPartLength> {
 		return m_device;
 	}
 		
-	@Subscriber(name="sub", topics="body_part_length",
-			dataKey="body.part.length", dataType="org.etri.slice.commons.car.BodyPartLength")
-	public void receive(BodyPartLength data) {
+	@Subscriber(name="sub:object_distance", topics="object_distance",
+			dataKey="object.distance", dataType="org.etri.slice.commons.car.ObjectInfo")
+	public void receive(ObjectInfo data) {
 		super.subscribe(data);
 	}
 	
