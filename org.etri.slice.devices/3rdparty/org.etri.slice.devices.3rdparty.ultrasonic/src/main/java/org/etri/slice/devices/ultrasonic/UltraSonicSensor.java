@@ -33,7 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component
-@Instantiate
+//@Instantiate
 public class UltraSonicSensor implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(UltraSonicSensor.class);	

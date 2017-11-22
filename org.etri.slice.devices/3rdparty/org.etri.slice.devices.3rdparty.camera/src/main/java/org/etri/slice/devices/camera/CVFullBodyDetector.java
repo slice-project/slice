@@ -21,6 +21,8 @@
  */
 package org.etri.slice.devices.camera;
 
+import javax.swing.JDialog;
+
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
@@ -54,10 +56,13 @@ public class CVFullBodyDetector implements FullBodyDetector {
 
 	@Override
 	public void detect() throws SliceException {
-		BodyPartLength bodyLength = BodyPartLength.builder().head(30).torso(60).arms(60).legs(80).build();
-		m_publisher.sendData(bodyLength);
-		
-		s_logger.info("PUB: " + bodyLength);
-	}
 	
+		try {
+			FullBodyDetectorGUI dialog = new FullBodyDetectorGUI(m_publisher);
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
 }

@@ -19,64 +19,49 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.carseat;
+package org.etri.slice.devices.pressuresensor;
+
+import java.awt.EventQueue;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
-import org.apache.felix.ipojo.annotations.Property;
-import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.event.SeatPosture;
-import org.etri.slice.commons.car.service.SeatControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component
-//@Instantiate
-public class SeatPostureSensor implements Runnable {
-	
-	private static Logger s_logger = LoggerFactory.getLogger(SeatPostureSensor.class);	
 
-	@Property(name="interval", value="15000")
-	public long m_interval;	
+@Component
+@Instantiate
+public class PressureSensorEmulator implements Runnable {
 	
-	@Publishes(name="pub:seat_posture", topics="seat_posture", dataKey="seat.posture")
+	private static Logger s_logger = LoggerFactory.getLogger(PressureSensorEmulator.class);	
+
+	@Publishes(name="pub:seat_pressure", topics="seat_pressure", dataKey="seat.pressure")
 	private Publisher m_publisher;
-	
-	@Requires
-	private SeatControl m_posture;
 	
 	@Validate
 	public void start() {
-		new Thread(this).start();
-		s_logger.info("SeatPostureSensor started.");
+		EventQueue.invokeLater(this);
+		s_logger.info("UltraSonicSensor started.");
 	}
 	
 	@Invalidate
 	public void stop() {
-		s_logger.info("SeatPostureSensor stoppted");
+		s_logger.info("UltraSonicSensor stoppted");
 		
 	}
 
 	@Override
 	public void run() {
-		while ( true ) {
-			sleep();
-			
-			SeatPosture posture = m_posture.getPosture();
-			m_publisher.sendData(posture);
-			s_logger.info("PUB: " + posture);
+		try {
+			PressureSensorGUI window = new PressureSensorGUI(m_publisher);
+			window.m_frame.setVisible(true);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
-	private void sleep() {
-		try {
-			Thread.sleep(m_interval);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}		
-	}	
 }
