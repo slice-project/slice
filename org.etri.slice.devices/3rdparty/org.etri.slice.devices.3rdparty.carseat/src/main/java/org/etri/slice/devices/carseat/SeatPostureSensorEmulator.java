@@ -19,46 +19,55 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.pressuresensor;
+package org.etri.slice.devices.carseat;
 
 import java.awt.EventQueue;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
+import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
-import org.apache.felix.ipojo.handlers.event.Publishes;
-import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
+import org.apache.felix.ipojo.handlers.event.Subscriber;
+import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.service.SeatControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 @Component
 @Instantiate
-public class PressureSensorEmulator implements Runnable {
+public class SeatPostureSensorEmulator implements Runnable {
 	
-	private static Logger s_logger = LoggerFactory.getLogger(PressureSensorEmulator.class);	
+	private static Logger s_logger = LoggerFactory.getLogger(SeatPostureSensorEmulator.class);	
 
-	@Publishes(name="pub:seat_pressure", topics="seat_pressure", dataKey="seat.pressure")
-	private Publisher m_publisher;
+	@Requires
+	private SeatControl m_posture;
+	private SeatPostureSensorGUI m_window;
 	
 	@Validate
 	public void start() {
 		EventQueue.invokeLater(this);
-		s_logger.info("PressureSensor started.");
+		s_logger.info("SeatPostureSensor started.");
 	}
 	
 	@Invalidate
 	public void stop() {
-		s_logger.info("PressureSensor stoppted");
+		s_logger.info("SeatPostureSensor stoppted");
 		
 	}
+	
+	@Subscriber(name="SeatPostureAdaptor", topics="seat_posture", 
+			dataKey="seat.posture", dataType="org.etri.slice.commons.car.event.SeatPosture")
+	public void receive(SeatPosture posture) {
+		m_window.setCurrentSeatPosture(posture);
+	}	
 
 	@Override
 	public void run() {
 		try {
-			PressureSensorGUI window = new PressureSensorGUI(m_publisher);
-			window.m_frame.setVisible(true);
+			m_window = new SeatPostureSensorGUI(m_posture);
+			m_window.m_frame.setVisible(true);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

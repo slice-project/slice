@@ -24,6 +24,8 @@ package org.etri.slice.devices.carseat;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
+import org.apache.felix.ipojo.handlers.event.Publishes;
+import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.UserInfo;
 import org.etri.slice.commons.car.event.SeatPosture;
@@ -38,6 +40,8 @@ public class SeatController implements SeatControl {
 
 	private static Logger s_logger = LoggerFactory.getLogger(SeatController.class);	
 	
+	@Publishes(name="pub:seat_posture", topics="seat_posture", dataKey="seat.posture")
+	private Publisher m_publisher;	
 	private SeatPosture m_posture = new SeatPosture(30, 30, 30);
 	
 	@Override
@@ -49,9 +53,10 @@ public class SeatController implements SeatControl {
 	public synchronized void setPosture(BodyPartLength bodyLength) {
 		m_posture.setHeight(30);
 		m_posture.setPosition(50);
-		m_posture.setTilt(12);
-		
+		m_posture.setTilt(12);		
 		s_logger.info("SET : " + m_posture);
+		
+		publish();
 	}
 
 	@Override
@@ -59,17 +64,24 @@ public class SeatController implements SeatControl {
 		m_posture.setHeight(50);
 		m_posture.setPosition(20);
 		m_posture.setTilt(30);
-
 		s_logger.info("SET : " + m_posture);
+		
+		publish();
 	}
 
 	@Override
 	public synchronized void setPosture(double height, double position, double tilt) {
 		m_posture.setHeight(height);
 		m_posture.setPosition(position);
-		m_posture.setTilt(tilt);
+		m_posture.setTilt(tilt);		
+		s_logger.info("SET : " + m_posture);	
 		
-		s_logger.info("SET : " + m_posture);		
+		publish();
+	}
+	
+	private void publish() {
+		m_publisher.sendData(m_posture);				
+		s_logger.info("PUB: " + m_posture);			
 	}
 
 }

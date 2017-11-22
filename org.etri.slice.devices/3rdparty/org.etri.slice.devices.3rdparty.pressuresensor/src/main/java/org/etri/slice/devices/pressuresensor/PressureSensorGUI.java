@@ -55,9 +55,9 @@ public class PressureSensorGUI {
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		m_frame.getContentPane().setLayout(null);
 		
-		JLabel lblDistance = new JLabel("pressure");
-		lblDistance.setBounds(48, 23, 57, 15);
-		m_frame.getContentPane().add(lblDistance);
+		JLabel lblPressure = new JLabel("pressure");
+		lblPressure.setBounds(48, 23, 57, 15);
+		m_frame.getContentPane().add(lblPressure);
 		
 		m_pressure = new JTextField();
 		m_pressure.setBounds(112, 20, 44, 21);
