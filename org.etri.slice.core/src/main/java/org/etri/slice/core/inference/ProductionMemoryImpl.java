@@ -76,8 +76,8 @@ public class ProductionMemoryImpl implements ProductionMemory {
 
 	@Validate
 	public void start() {
-		logger.info("SLICE ProductionMemory is started");
 		m_container = m_drools.getKieContainer();
+		logger.info("SLICE ProductionMemory is started");
 	}
 	
 	@Invalidate

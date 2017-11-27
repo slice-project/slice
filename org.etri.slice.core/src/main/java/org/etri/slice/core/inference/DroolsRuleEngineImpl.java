@@ -33,12 +33,16 @@ import org.kie.api.builder.ReleaseId;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.scanner.MavenRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
 @Instantiate
 public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 
+	private static Logger logger = LoggerFactory.getLogger(DroolsRuleEngineImpl.class);
+	
 	@Property(name="groupId", value="org.etri.slice")
 	private String m_groupId;
 	

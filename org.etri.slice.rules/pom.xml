@@ -20,6 +20,20 @@
 			<id>jboss-repo</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
+		<repository>
+			<id>edgent-repp</id>
+			<url>file:${project.basedir}/lib</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>		
 	</repositories>
 
 	<build>
@@ -47,6 +61,16 @@
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.edgent</groupId>
+					<artifactId>edgent-core</artifactId>				
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.edgent</groupId>
+					<artifactId>edgent-connectors</artifactId>				
+				</exclusion>				
+			</exclusions>
 		</dependency>
 	</dependencies>
 

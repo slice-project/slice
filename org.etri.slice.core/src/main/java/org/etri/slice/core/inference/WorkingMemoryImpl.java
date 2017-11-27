@@ -96,8 +96,8 @@ public class WorkingMemoryImpl implements WorkingMemory {
 	
 	@Validate
 	public void start() {
-		logger.info("SLICE Working Memory is started");
 		m_session = m_drools.getKieSession();
+		logger.info("SLICE Working Memory is started");
 	}
 	
 	@Invalidate
