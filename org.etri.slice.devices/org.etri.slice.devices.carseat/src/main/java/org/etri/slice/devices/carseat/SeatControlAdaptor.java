@@ -21,9 +21,11 @@
  */
 package org.etri.slice.devices.carseat;
 
+import org.apache.edgent.execution.services.ControlService;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
+import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.UserInfo;
@@ -40,28 +42,39 @@ public class SeatControlAdaptor implements SeatControl {
 	@Requires
 	protected WorkingMemory m_wm;
 	
+	@Requires
+	protected Device m_device;
+	
+	
 	public SeatControlAdaptor() {
 		m_wm.addServiceAdaptor("seatControl", this);
+		
+		ControlService control = m_device.getService(ControlService.class);
+		control.registerControl("SeatControlAdaptor", "seatControl", null, SeatControl.class, this);	
 	}
-	
+
 	@Override
 	public SeatPosture getPosture() {
 		return m_control.getPosture();
 	}
 
 	@Override
-	public void setPosture(double height, double position, double tilt) {
-		m_control.setPosture(height, position, tilt);
+	public void setPosture(SeatPosture posture) {
+		m_control.setPosture(posture);
+	}
+	
+	@Override
+	public void control(double height, double position, double tilt) {
+		m_control.control(height, position, tilt);
 	}
 
 	@Override
-	public void setPosture(BodyPartLength bodyLength) {
-		m_control.setPosture(bodyLength);
+	public void adjustTo(BodyPartLength bodyLength) {
+		m_control.adjustTo(bodyLength);
 	}
 
 	@Override
-	public void setPosture(UserInfo info) {
-		m_control.setPosture(info);
+	public void adjustTo(UserInfo info) {
+		m_control.adjustTo(info);
 	}
-
 }

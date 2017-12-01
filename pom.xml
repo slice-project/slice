@@ -217,7 +217,7 @@
 					<artifactId>maven-eclipse-plugin</artifactId>
 					<version>2.10</version>
 					<configuration>
-						<downloadSources>false</downloadSources>
+						<downloadSources>true</downloadSources>
 					</configuration>
 				</plugin>
 				<plugin>

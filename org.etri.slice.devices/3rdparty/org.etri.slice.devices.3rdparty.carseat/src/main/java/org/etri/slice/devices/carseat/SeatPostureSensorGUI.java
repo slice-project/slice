@@ -98,7 +98,7 @@ public class SeatPostureSensorGUI {
 				double position = Double.parseDouble((String)m_position.getText().trim());
 				double tilt = Double.parseDouble((String)m_tilt.getText().trim());
 				
-				m_controller.setPosture(height, position, tilt);			
+				m_controller.control(height, position, tilt);			
 			}
 		});
 		btnDetect.setBounds(73, 137, 114, 23);

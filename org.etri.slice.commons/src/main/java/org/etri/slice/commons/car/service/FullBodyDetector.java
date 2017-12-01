@@ -21,9 +21,12 @@
  */
 package org.etri.slice.commons.car.service;
 
+import javax.management.MXBean;
+
 import org.etri.slice.commons.SliceException;
 import org.etri.slice.commons.Startable;
 
+@MXBean 
 public interface FullBodyDetector extends Startable {
 	
 	public void detect() throws SliceException;

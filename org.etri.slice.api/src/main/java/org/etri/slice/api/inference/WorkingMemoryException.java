@@ -19,32 +19,14 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car.event;
+package org.etri.slice.api.inference;
 
-import java.beans.ConstructorProperties;
+import org.etri.slice.commons.SliceException;
 
-import org.kie.api.definition.type.Role;
+public class WorkingMemoryException extends SliceException {
+	private static final long serialVersionUID = -8532227133280152245L;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-//@AllArgsConstructor
-@NoArgsConstructor
-
-@Role(Role.Type.EVENT)
-public class SeatPosture {
-	
-	private double height;
-	private double position;
-	private double tilt;
-	
-	@ConstructorProperties({"height", "position", "tilt"}) 
-	public SeatPosture(double height, double position, double tilt) {
-		this.height = height;
-		this.position = position;
-		this.tilt = tilt;
+	public WorkingMemoryException(String msg) {
+		super(msg);
 	}
 }

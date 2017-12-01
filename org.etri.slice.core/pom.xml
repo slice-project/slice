@@ -22,6 +22,11 @@
 			<artifactId>org.etri.slice.api</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>weka-stable</artifactId>
+			<version>3.8.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -29,9 +34,16 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.3.0</version>
+				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Private-Package>${private.packages}</Private-Package>
+						<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
+						<Embed-Transitive>true</Embed-Transitive>
+						<Embed-Dependency>${embed.dependency}</Embed-Dependency>
+						<Embed-Directory>${embed.directory}</Embed-Directory>
+						<_exportcontents>${export.packages}</_exportcontents>
+						<Import-Package>${import.packages}</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>

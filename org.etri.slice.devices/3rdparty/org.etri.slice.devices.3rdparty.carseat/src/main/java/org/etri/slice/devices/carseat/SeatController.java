@@ -50,7 +50,12 @@ public class SeatController implements SeatControl {
 	}
 
 	@Override
-	public synchronized void setPosture(BodyPartLength bodyLength) {
+	public void setPosture(SeatPosture posture) {
+		m_posture = posture;
+	}	
+	
+	@Override
+	public synchronized void adjustTo(BodyPartLength bodyLength) {
 		m_posture.setHeight(30);
 		m_posture.setPosition(50);
 		m_posture.setTilt(12);		
@@ -60,7 +65,7 @@ public class SeatController implements SeatControl {
 	}
 
 	@Override
-	public synchronized void setPosture(UserInfo userInfo) {
+	public synchronized void adjustTo(UserInfo userInfo) {
 		m_posture.setHeight(50);
 		m_posture.setPosition(20);
 		m_posture.setTilt(30);
@@ -70,7 +75,7 @@ public class SeatController implements SeatControl {
 	}
 
 	@Override
-	public synchronized void setPosture(double height, double position, double tilt) {
+	public synchronized void control(double height, double position, double tilt) {
 		m_posture.setHeight(height);
 		m_posture.setPosition(position);
 		m_posture.setTilt(tilt);		
@@ -83,5 +88,4 @@ public class SeatController implements SeatControl {
 		m_publisher.sendData(m_posture);				
 		s_logger.info("PUB: " + m_posture);			
 	}
-
 }

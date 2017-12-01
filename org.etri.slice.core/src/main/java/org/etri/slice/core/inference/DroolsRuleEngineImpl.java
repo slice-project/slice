@@ -26,7 +26,9 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
+import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
+import org.etri.slice.api.device.Device;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieScanner;
 import org.kie.api.builder.ReleaseId;
@@ -43,18 +45,14 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 
 	private static Logger logger = LoggerFactory.getLogger(DroolsRuleEngineImpl.class);
 	
-	@Property(name="groupId", value="org.etri.slice")
-	private String m_groupId;
-	
-	@Property(name="artifiactId", value="org.etri.slice.rules.carseat")
-	public String m_artifactId;	
-	
-	@Property(name="version", value="0.0.1")
-	public String m_version;
-	
 	@Property(name="scan", value="1000")
 	public long m_scanInterval;
 
+	@Requires
+	private Device m_device;
+	private String m_groupId;
+	private String m_artifactId;	
+	private String m_version;	
 	private ReleaseId m_releaseId;
 	private KieContainer m_container;
 	private KieSession m_session;
@@ -69,7 +67,8 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 
 	@Override
 	public synchronized ReleaseId newReleaseId(String version) {
-		return m_services.newReleaseId(m_groupId, m_artifactId, version);
+		m_releaseId= m_services.newReleaseId(m_groupId, m_artifactId, version);
+		return m_releaseId;
 	}	
 	
 	@Override
@@ -99,6 +98,9 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 	
 	@Validate
 	public void start() {
+		m_groupId = m_device.getGroupId();
+		m_artifactId = m_device.getArtifactId();
+		m_version = m_device.getVersion();
 		m_repository = MavenRepository.getMavenRepository();		
 		m_services = KieServices.Factory.get();
 		m_releaseId = m_services.newReleaseId(m_groupId, m_artifactId, m_version);

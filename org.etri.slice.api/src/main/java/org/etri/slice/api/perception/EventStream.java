@@ -19,32 +19,20 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car.event;
+package org.etri.slice.api.perception;
 
-import java.beans.ConstructorProperties;
+import org.apache.edgent.topology.TStream;
 
-import org.kie.api.definition.type.Role;
-
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
-
-@Role(Role.Type.EVENT)
-public class SeatPosture {
-	
-	private double height;
-	private double position;
-	private double tilt;
-	
-	@ConstructorProperties({"height", "position", "tilt"}) 
-	public SeatPosture(double height, double position, double tilt) {
-		this.height = height;
-		this.position = position;
-		this.tilt = tilt;
-	}
+public class EventStream {
+	private String topic;
+	private TStream<?> stream;
 }

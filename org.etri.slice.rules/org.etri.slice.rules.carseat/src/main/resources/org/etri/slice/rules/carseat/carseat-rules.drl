@@ -49,7 +49,7 @@ rule "SeatPosture Control"
 	when 
 		$e: UserSeated($driver: userInfo)
 	then		
-		seatControl.setPosture($driver);
+		seatControl.adjustTo($driver);
 end
 
 rule "SeatPosture Change Notification"

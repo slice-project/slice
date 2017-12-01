@@ -56,15 +56,30 @@
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
+			<groupId>org.etri.slice.devices.3rdparty</groupId>
+			<artifactId>org.etri.slice.devices.3rdparty.carseat</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
+<!-- 	<dependency>
 			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.objectdetector</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
+			<groupId>org.etri.slice.devices.3rdparty</groupId>
+			<artifactId>org.etri.slice.devices.3rdparty.ultrasonic</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
+		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.fullbodydetector</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.etri.slice.devices.3rdparty</groupId>
+			<artifactId>org.etri.slice.devices.3rdparty.camera</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.pressuresensor</artifactId>
@@ -72,25 +87,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice.devices.3rdparty</groupId>
-			<artifactId>org.etri.slice.devices.3rdparty.camera</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice.devices.3rdparty</groupId>
-			<artifactId>org.etri.slice.devices.3rdparty.carseat</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice.devices.3rdparty</groupId>
 			<artifactId>org.etri.slice.devices.3rdparty.pressuresensor</artifactId>
 			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice.devices.3rdparty</groupId>
-			<artifactId>org.etri.slice.devices.3rdparty.ultrasonic</artifactId>
-			<version>0.0.1</version>
-		</dependency>												
-	</dependencies>
+		</dependency>											
+-->	</dependencies>
 
 	<build>
 		<plugins>
