@@ -111,7 +111,8 @@ public class ActionLoggerImpl implements ActionLogger {
 				m_writer.write(cv.toString());
 				m_writer.write(", ");
 			}
-			m_writer.write(action.getValue());			
+			m_writer.write(action.getValue());
+			m_writer.close();
 		}
 		
 		public void prePareHeader(Action action) throws IOException {
