@@ -21,36 +21,30 @@
  */
 package org.etri.slice.devices.carseat;
 
-import org.apache.edgent.execution.services.ControlService;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.BodyPartLength;
-import org.etri.slice.commons.car.UserInfo;
 import org.etri.slice.commons.car.event.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 
 @Component
-@Instantiate
+//@Instantiate
 public class SeatControlAdaptor implements SeatControl {
 
 	@Requires
 	private SeatControl m_control;
 	
 	@Requires
-	protected WorkingMemory m_wm;
+	private WorkingMemory m_wm;
 	
 	@Requires
-	protected Device m_device;
+	private Device m_device;
 	
 	
 	public SeatControlAdaptor() {
-		m_wm.addServiceAdaptor("seatControl", this);
-		
-		ControlService control = m_device.getService(ControlService.class);
-		control.registerControl("SeatControlAdaptor", "seatControl", null, SeatControl.class, this);	
+		m_wm.addServiceAdaptor(SeatControl.id, this);
 	}
 
 	@Override
@@ -62,19 +56,36 @@ public class SeatControlAdaptor implements SeatControl {
 	public void setPosture(SeatPosture posture) {
 		m_control.setPosture(posture);
 	}
+
+	@Override
+	public double getHeight() {
+		return m_control.getHeight();
+	}
+
+	@Override
+	public void setHeight(double height) {
+		m_control.setHeight(height);
+	}
+
+	@Override
+	public double getPosition() {
+		return m_control.getPosition();
+	}
+
+	@Override
+	public void setPosition(double position) {
+		m_control.setPosition(position);
+	}
+
+	@Override
+	public double getTilt() {
+		return m_control.getTilt();
+	}
+
+	@Override
+	public void setTilt(double tilt) {		
+		m_control.setTilt(tilt);
+	}
 	
-	@Override
-	public void control(double height, double position, double tilt) {
-		m_control.control(height, position, tilt);
-	}
 
-	@Override
-	public void adjustTo(BodyPartLength bodyLength) {
-		m_control.adjustTo(bodyLength);
-	}
-
-	@Override
-	public void adjustTo(UserInfo info) {
-		m_control.adjustTo(info);
-	}
 }

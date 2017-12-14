@@ -15,6 +15,7 @@ import org.etri.slice.commons.car.service.SeatControl;
 global FullBodyDetector fullBodyDetector;
 global SeatControl seatControl;
 
+/*
 rule "Object Detection Notification"
 	when 
 	   ObjectInfo($dist: distance < 3.0)
@@ -52,11 +53,18 @@ rule "SeatPosture Control"
 		seatControl.adjustTo($driver);
 end
 
+
 rule "SeatPosture Change Notification"
 	when
 		$e: SeatPosture()
 	then
 		channels["seat_posture_changed"].send(new SeatPostureChanged($e));
 end
+*/
 
-
+rule "SeatPosture Change Notification"
+	when
+		$e: SeatPosture($h: height)
+	then
+		seatControl.setHeight($h);
+end

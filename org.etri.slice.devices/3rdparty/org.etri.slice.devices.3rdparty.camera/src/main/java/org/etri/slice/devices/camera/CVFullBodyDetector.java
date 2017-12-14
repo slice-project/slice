@@ -29,7 +29,6 @@ import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 import org.etri.slice.commons.SliceException;
-import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.service.FullBodyDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

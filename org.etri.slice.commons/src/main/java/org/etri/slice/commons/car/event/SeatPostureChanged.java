@@ -21,6 +21,7 @@
  */
 package org.etri.slice.commons.car.event;
 
+import org.etri.slice.commons.SliceContext;
 import org.etri.slice.commons.SliceEvent;
 import org.kie.api.definition.type.Role;
 
@@ -38,6 +39,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 
 @Role(Role.Type.EVENT)
+@SliceContext
 public class SeatPostureChanged extends SliceEvent {
 	private static final long serialVersionUID = -3709125277135630330L;
 

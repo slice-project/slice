@@ -28,6 +28,7 @@ import org.etri.slice.commons.Startable;
 
 @MXBean 
 public interface FullBodyDetector extends Startable {
+	static final String id = "fullBodyDetector";
 	
 	public void detect() throws SliceException;
 }

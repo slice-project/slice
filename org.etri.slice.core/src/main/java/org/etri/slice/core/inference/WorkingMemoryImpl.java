@@ -86,7 +86,7 @@ public class WorkingMemoryImpl implements WorkingMemory {
 
 	@Override
 	public synchronized void addServiceAdaptor(String id, Object adaptor) {
-		m_session.setGlobal(id, adaptor);		
+		m_session.setGlobal(id, adaptor);
 	}	
 
 	@Override

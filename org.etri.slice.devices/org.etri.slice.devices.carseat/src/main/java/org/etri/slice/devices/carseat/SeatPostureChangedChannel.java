@@ -44,7 +44,7 @@ public class SeatPostureChangedChannel extends MqttEventPublisher {
 	private String m_url;
 	
 	@Requires
-	protected WorkingMemory m_wm;
+	private WorkingMemory m_wm;
 
 	@Requires
 	private Device m_device;

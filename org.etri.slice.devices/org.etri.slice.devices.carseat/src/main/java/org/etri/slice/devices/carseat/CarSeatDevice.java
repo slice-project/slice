@@ -40,7 +40,7 @@ public class CarSeatDevice extends AbstractDevice implements Device {
 	@Property(name="groupId", value="org.etri.slice")
 	public String groupId;
 	
-	@Property(name="artifiactId", value="org.etri.slice.rules.carseat")
+	@Property(name="artifactId", value="org.etri.slice.rules.carseat")
 	public String artifactId;	
 	
 	@Property(name="version", value="0.0.1")
@@ -63,10 +63,10 @@ public class CarSeatDevice extends AbstractDevice implements Device {
 	
 	@Validate
 	public void setUp() {
-		TStream<SeatPosture> seatPostures = (TStream<SeatPosture>) getTStream("seat_posture");
-		seatPostures.filter(posture -> posture.getHeight() > 10.0 );
-		seatPostures.filter(posture -> posture.getPosition() > 20.0 );
-		seatPostures.filter(posture -> posture.getTilt() > 30.0 );
+//		TStream<SeatPosture> seatPostures = (TStream<SeatPosture>) getTStream("seat_posture");
+//		seatPostures.filter(posture -> posture.getHeight() > 10.0 );
+//		seatPostures.filter(posture -> posture.getPosition() > 20.0 );
+//		seatPostures.filter(posture -> posture.getTilt() > 30.0 );
 	}
 	
 	@Invalidate

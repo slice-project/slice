@@ -3,6 +3,7 @@ package org.etri.slice.rules.pressuresensor;
 import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.UserInfo;
 import org.etri.slice.commons.car.event.FullBodyDetected;
+import org.etri.slice.commons.car.event.Pressure;
 import org.etri.slice.commons.car.event.UserSeated;
 
 

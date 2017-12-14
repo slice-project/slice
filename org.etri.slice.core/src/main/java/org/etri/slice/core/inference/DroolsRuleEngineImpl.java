@@ -29,6 +29,7 @@ import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.device.Device;
+import org.etri.slice.api.perception.ContextMemory;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieScanner;
 import org.kie.api.builder.ReleaseId;
@@ -50,6 +51,8 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 
 	@Requires
 	private Device m_device;
+	@Requires
+	private ContextMemory m_cm;
 	private String m_groupId;
 	private String m_artifactId;	
 	private String m_version;	
@@ -109,7 +112,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 		m_session = m_container.newKieSession();
 		
 		m_session.addEventListener(new AgendaEventListenerImpl());
-		m_session.addEventListener(new RuleRuntimeEventListenerImpl());
+		m_session.addEventListener(new RuleRuntimeEventListenerImpl(m_cm));
 		
 		m_scanner.start(m_scanInterval);
 		new Thread(this).start();		

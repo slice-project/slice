@@ -23,20 +23,29 @@ package org.etri.slice.commons.car.service;
 
 import javax.management.MXBean;
 
-import org.etri.slice.commons.car.BodyPartLength;
-import org.etri.slice.commons.car.UserInfo;
 import org.etri.slice.commons.car.event.SeatPosture;
 
 @MXBean 
 public interface SeatControl {
+	
+	static final String id = "seatControl";
+	static final String setHeight = "seatControl.setHeight";
+	static final String setPosition = "seatControl.setPosition";
+	static final String setTilt = "seatControl.setTilt";
 
-	public SeatPosture getPosture();
+	double getHeight();
 	
-	public void setPosture(SeatPosture posture);
+	void setHeight(double height);
 	
-	public void control(double height, double position, double tilt);
+	double getPosition();
 	
-	public void adjustTo(BodyPartLength bodyLength);
+	void setPosition(double position);
 	
-	public void adjustTo(UserInfo info);
+	double getTilt();
+	
+	void setTilt(double tilt);
+	
+	SeatPosture getPosture();
+	
+	void setPosture(SeatPosture posture);
 }

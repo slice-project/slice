@@ -3,7 +3,8 @@
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			# Pattern of log message for console appender
-			<Pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n</Pattern>
+			<Pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n
+			</Pattern>
 		</layout>
 	</appender>
 
@@ -14,7 +15,8 @@
 		<append>false</append>
 		<encoder>
 			# Pattern of log message for file appender
-			<pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n
+			</pattern>
 		</encoder>
 	</appender>
 
@@ -49,7 +51,8 @@
 			<totalSizeCap>1MB</totalSizeCap>
 		</rollingPolicy>
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n
+			</pattern>
 		</encoder>
 	</appender>
 
@@ -65,19 +68,23 @@
 			<totalSizeCap>1MB</totalSizeCap>
 		</rollingPolicy>
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} |-%-5level in %logger{32} - %msg%n
+			</pattern>
 		</encoder>
 	</appender>
 
 	# Override log level for specified package
-	<!--<logger name="org.etri.slice" level="TRACE"> <appender-ref ref="roll-by-size"/> 
-		<appender-ref ref="roll-by-time"/> <appender-ref ref="roll-by-time-and-size"/> 
-		</logger> -->
-	
-	<logger name="org.drools" level="info"/>
+<!-- 	
+	<logger name="org.etri.slice" level="TRACE">
+		<appender-ref ref="roll-by-size" />
+		<appender-ref ref="roll-by-time" />
+		<appender-ref ref="roll-by-time-and-size" />
+	</logger>
+-->
+	<logger name="org.drools" level="info" />
 
-	<logger name="org.etri.slice" level="debug"/>
-	
+	<logger name="org.etri.slice" level="debug" />
+
 	<root level="info">
 		<appender-ref ref="stdout" />
 	</root>

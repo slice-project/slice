@@ -40,7 +40,6 @@ import java.util.jar.JarOutputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.felix.ipojo.annotations.Component;
-import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
@@ -49,6 +48,7 @@ import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.inference.ProductionMemory;
 import org.etri.slice.api.learning.ActionRuleLearner;
 import org.etri.slice.api.learning.ActionRuleLearnerException;
+import org.etri.slice.api.rule.RuleModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +62,7 @@ import weka.filters.Filter;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate
+//@Instantiate
 public class ActionRuleLearnerImpl implements ActionRuleLearner {
 
 	private static Logger logger = LoggerFactory.getLogger(ActionRuleLearnerImpl.class);		
@@ -72,6 +72,8 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	
 	@Requires
 	private ProductionMemory m_pm;
+	private RuleModule m_rules;
+	
 	
 	private String classifierName;
 	private String[] classifierOptions;
@@ -81,6 +83,9 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	
 	@Validate
 	public void initialize() throws Exception {
+		
+		m_rules = m_pm.getRuleModule();
+		
 		classifierName = "weka.classifiers.trees.REPTree";
 		classifierOptions = weka.core.Utils.splitOptions("-M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0");
 

@@ -21,6 +21,7 @@
  */
 package org.etri.slice.core.inference;
 
+import org.etri.slice.api.perception.ContextMemory;
 import org.kie.api.event.rule.ObjectDeletedEvent;
 import org.kie.api.event.rule.ObjectInsertedEvent;
 import org.kie.api.event.rule.ObjectUpdatedEvent;
@@ -32,25 +33,36 @@ public class RuleRuntimeEventListenerImpl implements RuleRuntimeEventListener {
 
 	private static Logger logger = LoggerFactory.getLogger(RuleRuntimeEventListenerImpl.class);
 	
+	private final ContextMemory m_cm;
     private int numberOfFacts;
     private int numberOfModifiedFacts;
+    
+    public RuleRuntimeEventListenerImpl(ContextMemory cm) {
+    	m_cm = cm;
+    }
     
     @Override
     public void objectInserted(ObjectInsertedEvent event) {
         numberOfFacts++;
-        logger.info("object inserted: " + event.getObject());
+        Object fact = event.getObject();
+        m_cm.addContext(fact);
+        logger.info("object inserted: " + fact);
     }
 
     @Override
     public void objectUpdated(ObjectUpdatedEvent event) {
         numberOfModifiedFacts++;
-        logger.info("object updated: " + event.getObject());
+        Object fact = event.getObject();
+        m_cm.addContext(fact);
+        logger.info("object updated: " + fact);
     }
 
     @Override
     public void objectDeleted(ObjectDeletedEvent event) {
         numberOfFacts--;
-        logger.info("object inserted: " + event.getOldObject());
+        Object fact = event.getOldObject();
+        m_cm.removeContext(fact.getClass());        
+        logger.info("object inserted: " + fact);
     }
 
     public int getNumberOfFacts() {

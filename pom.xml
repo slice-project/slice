@@ -173,6 +173,7 @@
 							<exclude>**/*.PNG</exclude>
 							<exclude>**/*.options</exclude>
 							<exclude>**/*.txt</exclude>
+							<exclude>**/*.drl</exclude>
 						</excludes>
 						<includes>
 							<include>**/org.etri.slice.api/**</include>
@@ -239,7 +240,6 @@
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>3.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

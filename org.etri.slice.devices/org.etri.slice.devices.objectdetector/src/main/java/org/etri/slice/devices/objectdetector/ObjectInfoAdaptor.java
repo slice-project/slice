@@ -43,7 +43,7 @@ public class ObjectInfoAdaptor extends EventSubscriber<ObjectInfo> {
 	private String m_topic;
 	
 	@Requires
-	protected WorkingMemory m_wm;
+	private WorkingMemory m_wm;
 
 	@Requires
 	private Device m_device;

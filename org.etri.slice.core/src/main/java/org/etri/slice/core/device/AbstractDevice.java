@@ -51,6 +51,8 @@ public abstract class AbstractDevice implements Device {
 	                new JMXControlService(JMX_DOMAIN, new Hashtable<>()));
 	}
 
+	
+	
 	@Override
 	public void addTStream(String topic, TStream<?> stream) {
 		m_streams.put(topic, stream);

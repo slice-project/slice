@@ -23,15 +23,15 @@ package org.etri.slice.api.inference;
 
 import java.io.File;
 
+import org.etri.slice.api.rule.RuleModule;
+
 public interface ProductionMemory {
 
 	String getCurrentVersion();
 	
+	RuleModule getRuleModule();
+	
 	void install(String version, byte[] jarContent, byte[] pomContent) throws ProductionMemoryException;
 	
 	void install(String version, File jar, File pomFile) throws ProductionMemoryException;
-	
-	void update(String... rules) throws ProductionMemoryException;
-	
-	void update(String version, String... rules) throws ProductionMemoryException;
 }

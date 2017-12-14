@@ -21,6 +21,8 @@
  */
 package org.etri.slice.commons.car;
 
+import org.etri.slice.commons.SliceContext;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +32,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@SliceContext
 public class UserInfo {
 
 	private String userId;

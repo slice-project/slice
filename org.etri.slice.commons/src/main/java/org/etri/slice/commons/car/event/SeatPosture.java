@@ -23,6 +23,7 @@ package org.etri.slice.commons.car.event;
 
 import java.beans.ConstructorProperties;
 
+import org.etri.slice.commons.SliceContext;
 import org.kie.api.definition.type.Role;
 
 import lombok.Builder;
@@ -31,10 +32,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-//@AllArgsConstructor
 @NoArgsConstructor
 
 @Role(Role.Type.EVENT)
+@SliceContext
 public class SeatPosture {
 	
 	private double height;

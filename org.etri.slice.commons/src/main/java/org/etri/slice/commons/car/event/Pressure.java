@@ -21,6 +21,7 @@
  */
 package org.etri.slice.commons.car.event;
 
+import org.etri.slice.commons.SliceContext;
 import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +35,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Role(Role.Type.EVENT)
+@SliceContext
 public class Pressure {
 	public static final String topic = "body_part_length";
 	public static final String dataKey = "body.part.length";	

@@ -45,6 +45,47 @@ public class SeatController implements SeatControl {
 	private SeatPosture m_posture = new SeatPosture(30, 30, 30);
 	
 	@Override
+	public double getHeight() {
+		return m_posture.getHeight();
+	}
+
+	@Override
+	public void setHeight(double height) {
+		m_posture.setHeight(height);
+		s_logger.info("SET : " + m_posture);
+		publish();		
+	}
+
+	@Override
+	public double getPosition() {
+		return m_posture.getPosition();
+	}
+
+	@Override
+	public void setPosition(double position) {
+		m_posture.setPosition(position);
+		s_logger.info("SET : " + m_posture);
+		publish();		
+	}
+
+	@Override
+	public double getTilt() {
+		return m_posture.getTilt();
+	}
+
+	@Override
+	public void setTilt(double tilt) {
+		m_posture.setTilt(tilt);
+		s_logger.info("SET : " + m_posture);
+		publish();		
+	}	
+	
+	private void publish() {
+		m_publisher.sendData(m_posture);				
+		s_logger.info("PUB: " + m_posture);			
+	}
+
+	@Override
 	public SeatPosture getPosture() {
 		return m_posture;
 	}
@@ -52,40 +93,7 @@ public class SeatController implements SeatControl {
 	@Override
 	public void setPosture(SeatPosture posture) {
 		m_posture = posture;
-	}	
-	
-	@Override
-	public synchronized void adjustTo(BodyPartLength bodyLength) {
-		m_posture.setHeight(30);
-		m_posture.setPosition(50);
-		m_posture.setTilt(12);		
 		s_logger.info("SET : " + m_posture);
-		
-		publish();
-	}
-
-	@Override
-	public synchronized void adjustTo(UserInfo userInfo) {
-		m_posture.setHeight(50);
-		m_posture.setPosition(20);
-		m_posture.setTilt(30);
-		s_logger.info("SET : " + m_posture);
-		
-		publish();
-	}
-
-	@Override
-	public synchronized void control(double height, double position, double tilt) {
-		m_posture.setHeight(height);
-		m_posture.setPosition(position);
-		m_posture.setTilt(tilt);		
-		s_logger.info("SET : " + m_posture);	
-		
-		publish();
-	}
-	
-	private void publish() {
-		m_publisher.sendData(m_posture);				
-		s_logger.info("PUB: " + m_posture);			
+		publish();		
 	}
 }

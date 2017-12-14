@@ -43,7 +43,7 @@ public class BodyPartLengthAdaptor extends EventSubscriber<BodyPartLength> {
 	private String m_topic;
 	
 	@Requires
-	protected WorkingMemory m_wm;
+	private WorkingMemory m_wm;
 
 	@Requires
 	private Device m_device;

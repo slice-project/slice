@@ -1,0 +1,8 @@
+package org.etri.slice.rules.carseat;
+
+import org.etri.slice.commons.car.BodyPartLength;
+import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.UserInfo;
+import org.etri.slice.commons.car.service.SeatControl;
+
+global SeatControl seatControl;

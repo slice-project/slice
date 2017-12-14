@@ -25,54 +25,46 @@ import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
+import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
-import org.apache.felix.ipojo.handlers.event.Publishes;
-import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.event.Pressure;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.etri.slice.api.device.Device;
+import org.etri.slice.core.device.AbstractDevice;
 
-@Component
-//@Instantiate
-public class PressureSensor implements Runnable {
-	
-	private static Logger s_logger = LoggerFactory.getLogger(PressureSensor.class);	
+@Component(publicFactory=false, immediate=true)
+@Provides
+@Instantiate
+public class PressureSensor extends AbstractDevice implements Device {
 
-	@Property(name="interval", value="7000")
-	public long m_interval;	
+	@Property(name="groupId", value="org.etri.slice")
+	public String groupId;
 	
-	@Publishes(name="pub:seat_pressure", topics="seat_pressure", dataKey="seat.pressure")
-	private Publisher m_publisher;
+	@Property(name="artifactId", value="org.etri.slice.rules.pressuresensor")
+	public String artifactId;	
 	
-	@Validate
-	public void start() {
-		new Thread(this).start();
-		s_logger.info("PressureSensor started.");
-	}
-	
-	@Invalidate
-	public void stop() {
-		s_logger.info("PressureSensor stoppted");
-		
+	@Property(name="version", value="0.0.1")
+	public String version;
+
+	@Override
+	public String getGroupId() {
+		return groupId;
 	}
 
 	@Override
-	public void run() {
-		while ( true ) {
-			sleep();
-			
-			Pressure pressure = Pressure.builder().value(45).build();
-			m_publisher.sendData(pressure);
-			
-			s_logger.info("PUB: " + pressure);
-		}
+	public String getArtifactId() {
+		return artifactId;
 	}
 
-	private void sleep() {
-		try {
-			Thread.sleep(m_interval);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}		
-	}	
+	@Override
+	public String getVersion() {
+		return version;
+	}
+	
+	@Validate
+	public void setUp() {
+	}
+	
+	@Invalidate
+	public void tearDown() {
+		
+	}
 }
