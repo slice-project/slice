@@ -60,7 +60,7 @@ public class ActionLoggerImpl implements ActionLogger {
 		File logs[] = root.listFiles((dir, name) -> name.endsWith(".arff"));
 		for ( File log : logs ) {
 			String fileName = log.getName();
-			m_loggers.put(fileName.substring(0, fileName.length() - ".arff".length()), new ActionLog(log, m_cm));
+			m_loggers.put(fileName.substring(0, fileName.length() - ".ar1ff".length()), new ActionLog(log, m_cm));
 		}
 	}
 	
@@ -112,6 +112,7 @@ public class ActionLoggerImpl implements ActionLogger {
 				m_writer.write(", ");
 			}
 			m_writer.write(action.getValue());
+			m_writer.newLine();
 			m_writer.close();
 		}
 		
@@ -133,7 +134,6 @@ public class ActionLoggerImpl implements ActionLogger {
 			
 			m_writer.newLine();
 			m_writer.write("@data\n");
-			m_writer.newLine();
 			m_writer.close();
 		}
 	}		

@@ -52,7 +52,7 @@ rule "SeatPosture Control"
 	then		
 		seatControl.adjustTo($driver);
 end
-
+*/
 
 rule "SeatPosture Change Notification"
 	when
@@ -60,11 +60,6 @@ rule "SeatPosture Change Notification"
 	then
 		channels["seat_posture_changed"].send(new SeatPostureChanged($e));
 end
-*/
 
-rule "SeatPosture Change Notification"
-	when
-		$e: SeatPosture($h: height)
-	then
-		seatControl.setHeight($h);
-end
+
+

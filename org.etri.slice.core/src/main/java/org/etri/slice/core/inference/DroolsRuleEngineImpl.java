@@ -111,7 +111,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 		m_scanner = m_services.newKieScanner(m_container);		
 		m_session = m_container.newKieSession();
 		
-		m_session.addEventListener(new AgendaEventListenerImpl());
+		m_session.addEventListener(new AgendaEventListenerImpl(m_session));
 		m_session.addEventListener(new RuleRuntimeEventListenerImpl(m_cm));
 		
 		m_scanner.start(m_scanInterval);

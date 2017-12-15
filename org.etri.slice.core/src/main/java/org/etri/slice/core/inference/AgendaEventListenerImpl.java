@@ -30,6 +30,7 @@ import org.kie.api.event.rule.MatchCancelledEvent;
 import org.kie.api.event.rule.MatchCreatedEvent;
 import org.kie.api.event.rule.RuleFlowGroupActivatedEvent;
 import org.kie.api.event.rule.RuleFlowGroupDeactivatedEvent;
+import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,8 +39,13 @@ public class AgendaEventListenerImpl implements AgendaEventListener{
 
 	private static Logger logger = LoggerFactory.getLogger(AgendaEventListenerImpl.class);
 	
+	private final KieSession m_session;
 	private int numberOfMatches;
     private int numberOfFiredMatches;
+    
+    public AgendaEventListenerImpl(KieSession session) {
+    	m_session = session;
+    }
     
     @Override
     public void matchCreated(MatchCreatedEvent event) {

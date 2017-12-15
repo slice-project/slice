@@ -30,7 +30,7 @@ import org.etri.slice.commons.car.event.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 
 @Component
-//@Instantiate
+@Instantiate
 public class SeatControlAdaptor implements SeatControl {
 
 	@Requires

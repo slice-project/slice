@@ -26,8 +26,6 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.BodyPartLength;
-import org.etri.slice.commons.car.UserInfo;
 import org.etri.slice.commons.car.event.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 import org.slf4j.Logger;
@@ -79,11 +77,6 @@ public class SeatController implements SeatControl {
 		s_logger.info("SET : " + m_posture);
 		publish();		
 	}	
-	
-	private void publish() {
-		m_publisher.sendData(m_posture);				
-		s_logger.info("PUB: " + m_posture);			
-	}
 
 	@Override
 	public SeatPosture getPosture() {
@@ -96,4 +89,14 @@ public class SeatController implements SeatControl {
 		s_logger.info("SET : " + m_posture);
 		publish();		
 	}
+	
+	private void publish() {
+		SeatPosture.SeatPostureBuilder builder = SeatPosture.builder();
+		SeatPosture posture = builder.height(m_posture.getHeight())
+									.position(m_posture.getPosition())
+									.tilt(m_posture.getTilt()).build();
+		m_publisher.sendData(posture);				
+		s_logger.info("PUB: " + posture);			
+	}
+	
 }

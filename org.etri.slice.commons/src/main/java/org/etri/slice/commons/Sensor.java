@@ -21,9 +21,6 @@
  */
 package org.etri.slice.commons;
 
-public interface Startable {
-	
-	void start() throws SliceException;
-	
-	void stop();
+public interface Sensor extends Startable {
+
 }

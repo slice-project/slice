@@ -21,8 +21,6 @@
  */
 package org.etri.slice.devices.carseat;
 
-import java.io.IOException;
-
 import org.apache.edgent.execution.services.ControlService;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -56,7 +54,6 @@ public class SeatControlCommander implements SeatControl {
 	private WorkingMemory m_wm;
 		
 	public SeatControlCommander() {
-		m_wm.addServiceAdaptor(SeatControl.id, this);
 		ControlService control = m_device.getService(ControlService.class);
 		control.registerControl(this.getClass().getSimpleName(), SeatControl.id, null, SeatControl.class, this);		
 	}
@@ -82,7 +79,7 @@ public class SeatControlCommander implements SeatControl {
 		
 		ActionBuilder builder = Action.builder();
 		builder.setRelation("carseat_height");
-		builder.addContext(BodyPartLength.Field.head);
+		builder.addContext(BodyPartLength.Field.height);
 		builder.setAction(SeatControl.setHeight, height);
 		logAction(builder.build());
 	}
@@ -98,7 +95,7 @@ public class SeatControlCommander implements SeatControl {
 		
 		ActionBuilder builder = Action.builder();
 		builder.setRelation("carseat_position");
-		builder.addContext(BodyPartLength.Field.head);
+		builder.addContext(BodyPartLength.Field.height);
 		builder.setAction(SeatControl.setPosition, position);
 		logAction(builder.build());
 	}
@@ -114,7 +111,7 @@ public class SeatControlCommander implements SeatControl {
 		
 		ActionBuilder builder = Action.builder();
 		builder.setRelation("carseat_tilt");
-		builder.addContext(BodyPartLength.Field.head);
+		builder.addContext(BodyPartLength.Field.height);
 		builder.setAction(SeatControl.setTilt, tilt);
 		logAction(builder.build());
 	}

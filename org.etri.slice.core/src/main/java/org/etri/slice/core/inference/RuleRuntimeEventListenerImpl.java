@@ -61,7 +61,7 @@ public class RuleRuntimeEventListenerImpl implements RuleRuntimeEventListener {
     public void objectDeleted(ObjectDeletedEvent event) {
         numberOfFacts--;
         Object fact = event.getOldObject();
-        m_cm.removeContext(fact.getClass());        
+        m_cm.removeContext(fact);        
         logger.info("object inserted: " + fact);
     }
 

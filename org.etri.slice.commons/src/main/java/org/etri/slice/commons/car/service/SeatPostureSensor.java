@@ -19,11 +19,10 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons;
+package org.etri.slice.commons.car.service;
 
-public interface Startable {
-	
-	void start() throws SliceException;
-	
-	void stop();
+import org.etri.slice.commons.Sensor;
+
+public interface SeatPostureSensor extends Sensor {
+
 }

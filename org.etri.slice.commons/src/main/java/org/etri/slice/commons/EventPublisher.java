@@ -21,9 +21,7 @@
  */
 package org.etri.slice.commons;
 
-public interface Startable {
+public interface EventPublisher {
 	
-	void start() throws SliceException;
-	
-	void stop();
+	void publish();
 }

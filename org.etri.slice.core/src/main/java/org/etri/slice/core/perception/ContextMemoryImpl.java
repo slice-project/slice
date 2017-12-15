@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
 @Provides
 @Instantiate
 public class ContextMemoryImpl implements ContextMemory {
-	private static Logger s_logger = LoggerFactory.getLogger(EventSubscriber.class);	
+	private static Logger s_logger = LoggerFactory.getLogger(ContextMemoryImpl.class);	
 	
 	private ConcurrentMap<String,Object> m_contexts = new ConcurrentHashMap<String,Object>(); 
 	
