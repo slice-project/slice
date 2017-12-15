@@ -40,12 +40,18 @@ import org.etri.slice.api.learning.ActionLogger;
 import org.etri.slice.api.learning.ActionLoggerException;
 import org.etri.slice.api.perception.ContextMemory;
 import org.etri.slice.api.perception.ContextNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Component(publicFactory=false, immediate=true)
 @Provides
 @Instantiate
 public class ActionLoggerImpl implements ActionLogger {
+	
+	private static Logger s_logger = LoggerFactory.getLogger(ActionLoggerImpl.class);		
+	private static final String ARFF = ".arff";
+	private static final String NILL = "NILL";
 	
 	@Property(name="logging.root", value="log")
 	private String m_root;
@@ -57,10 +63,10 @@ public class ActionLoggerImpl implements ActionLogger {
 	@Validate
 	public void init() throws IOException {
 		File root = new File(m_root);
-		File logs[] = root.listFiles((dir, name) -> name.endsWith(".arff"));
+		File logs[] = root.listFiles((dir, name) -> name.endsWith(ARFF));
 		for ( File log : logs ) {
 			String fileName = log.getName();
-			m_loggers.put(fileName.substring(0, fileName.length() - ".ar1ff".length()), new ActionLog(log, m_cm));
+			m_loggers.put(fileName.substring(0, fileName.length() - ARFF.length()), new ActionLog(log, m_cm));
 		}
 	}
 	
@@ -76,7 +82,7 @@ public class ActionLoggerImpl implements ActionLogger {
 		
 		try {
 			if ( logger == null ) {
-				logger = new ActionLog(new File(m_root, relation + ".arff"), m_cm);
+				logger = new ActionLog(new File(m_root, relation + ARFF), m_cm);
 				logger.prePareHeader(action);
 				m_loggers.put(relation, logger);
 			}
@@ -106,7 +112,7 @@ public class ActionLoggerImpl implements ActionLogger {
 					cv = m_cm.getContext(context);
 				} 
 				catch ( ContextNotFoundException e ) {
-					cv = new String("NILL");
+					cv = NILL;
 				}
 				m_writer.write(cv.toString());
 				m_writer.write(", ");
