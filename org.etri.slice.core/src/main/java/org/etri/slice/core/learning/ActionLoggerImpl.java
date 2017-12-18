@@ -124,7 +124,7 @@ public class ActionLoggerImpl implements ActionLogger {
 			return m_file;
 		}
 		
-		public void log(Action action) throws IOException {			
+		public synchronized void log(Action action) throws IOException {			
 			m_writer = new BufferedWriter(new FileWriter(m_file, true));
 			for ( String context : action.getContext() ) {
 				Object cv = null;

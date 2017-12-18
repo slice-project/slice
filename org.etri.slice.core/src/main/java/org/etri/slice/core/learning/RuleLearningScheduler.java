@@ -29,6 +29,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.annotation.concurrent.GuardedBy;
+
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
@@ -49,7 +51,7 @@ public class RuleLearningScheduler implements Runnable {
 	@Property(name="loggig.scan.interval", value="10")
 	public long m_interval;
 	
-	@Property(name="minimum.logging.count", value="20")
+	@Property(name="minimum.logging.count", value="0")
 	public long m_minimumLogCount;
 	
 	@Requires
@@ -58,8 +60,8 @@ public class RuleLearningScheduler implements Runnable {
 	private ActionRuleLearner m_learner;
 	private int m_loggingCount;
 	private Lock m_lock = new ReentrantLock();
-	private Condition m_stopCondition = m_lock.newCondition();
-	private volatile boolean m_stopRequested = false;
+	@GuardedBy("m_lock") private Condition m_stopCondition = m_lock.newCondition();
+	@GuardedBy("m_lock") private volatile boolean m_stopRequested = false;
 	
 	@Validate
 	public void init() throws Exception {

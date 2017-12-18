@@ -36,6 +36,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.annotation.concurrent.GuardedBy;
+
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
@@ -83,8 +85,8 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	private ActionLogger m_actionLogger;
 	private RuleModule m_ruleModule;
 	
-	private Classifier m_classifier;
-	private Filter m_filter;
+	@GuardedBy("m_lock") private Classifier m_classifier;
+	@GuardedBy("m_lock") private Filter m_filter;
 	private Lock m_lock = new ReentrantLock();
 	
 	
