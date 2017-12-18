@@ -23,5 +23,5 @@ package org.etri.slice.api.learning;
 
 public interface ActionRuleLearner {
 
-	public void learnActionRules(String dataFilePath) throws ActionRuleLearnerException;
+	public boolean learnActionRules() throws ActionRuleLearnerException;
 }

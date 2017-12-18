@@ -76,9 +76,19 @@ public class RuleModuleImpl implements RuleModule {
 	
 	public void tearDown() {
 	}	
+	
+	@Override
+	public synchronized String getVersion() {
+		return m_pom.getVersion();
+	}		
 
 	@Override
-	public RuleSet getRuleSet(String id) throws RuleSetNotFoundException {
+	public synchronized void setVersion(String version) {
+		m_pom.setVersion(version);
+	}	
+
+	@Override
+	public synchronized RuleSet getRuleSet(String id) throws RuleSetNotFoundException {
 		if ( !m_ruleSets.containsKey(id) ) {
 			throw new RuleSetNotFoundException("RuleSet[id = " + id + "]" );
 		}
@@ -87,12 +97,12 @@ public class RuleModuleImpl implements RuleModule {
 	}	
 	
 	@Override
-	public Collection<RuleSet> getRuleSets() {		
+	public synchronized Collection<RuleSet> getRuleSets() {		
 		return m_ruleSets.values();
 	}
 
 	@Override
-	public void addRuleSet(RuleSet ruleSet) throws RuleSetExistsException {
+	public synchronized void addRuleSet(RuleSet ruleSet) throws RuleSetExistsException {
 		String id = ruleSet.getId();		
 		if ( m_ruleSets.containsKey(id) ) {
 			throw new RuleSetExistsException("RuleSet[id = " + id + "]" );
@@ -107,12 +117,12 @@ public class RuleModuleImpl implements RuleModule {
 	}
 
 	@Override
-	public RulePOM getRulePOM() {
+	public synchronized RulePOM getRulePOM() {
 		return m_pom;
 	}
 	
 	@Override
-	public File getRuleJarFile() throws IOException {
+	public synchronized File getRuleJarFile() throws IOException {
 		m_pom.exportPOM(m_pomFile);
 		saveRuleModule();
 		
@@ -120,7 +130,7 @@ public class RuleModuleImpl implements RuleModule {
 	}
 
 	@Override
-	public File getRulePOMFile() throws IOException{
+	public synchronized File getRulePOMFile() throws IOException{
 		m_pom.exportPOM(m_pomFile);
 		
 		return m_pomFile;
@@ -163,7 +173,7 @@ public class RuleModuleImpl implements RuleModule {
 				loadRuleSet(destFile);
 			}
 			
-			if ( entry.getName().endsWith(".pom") ) {
+			if ( entry.getName().endsWith("pom.xml") ) {
 				m_pomFile = destFile;
 				m_pom.importPOM(m_pomFile);
 			}

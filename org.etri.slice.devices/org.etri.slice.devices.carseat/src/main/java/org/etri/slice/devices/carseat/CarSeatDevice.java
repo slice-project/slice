@@ -43,7 +43,7 @@ public class CarSeatDevice extends AbstractDevice implements Device {
 	@Property(name="artifactId", value="org.etri.slice.rules.carseat")
 	public String artifactId;	
 	
-	@Property(name="version", value="0.0.1")
+//	@Property(name="version", value="0.0.1")
 	public String version;
 
 	@Override

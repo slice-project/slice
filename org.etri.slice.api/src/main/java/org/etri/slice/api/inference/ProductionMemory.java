@@ -27,9 +27,13 @@ import org.etri.slice.api.rule.RuleModule;
 
 public interface ProductionMemory {
 
-	String getCurrentVersion();
+	String getVersion();
+	
+	String getNewVersion();
 	
 	RuleModule getRuleModule();
+	
+	void install(RuleModule ruleModule) throws ProductionMemoryException;
 	
 	void install(String version, byte[] jarContent, byte[] pomContent) throws ProductionMemoryException;
 	

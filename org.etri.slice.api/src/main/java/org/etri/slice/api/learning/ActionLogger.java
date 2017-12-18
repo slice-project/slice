@@ -21,7 +21,14 @@
  */
 package org.etri.slice.api.learning;
 
+import java.io.File;
+import java.util.Collection;
+
 public interface ActionLogger {
 	
 	void log(Action action) throws ActionLoggerException;
+	
+	File getActionLogFile(String id) throws ActionLogNotFoundException;
+	
+	Collection<String> getActionLogIdsAll();
 }

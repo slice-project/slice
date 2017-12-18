@@ -28,6 +28,10 @@ import org.kie.scanner.MavenRepository;
 
 public interface DroolsRuleEngine {
 	
+	void startRuleFiring();
+	
+	void stopRuleFiring();
+	
 	ReleaseId getReleaseId();
 	
 	ReleaseId newReleaseId(String version);

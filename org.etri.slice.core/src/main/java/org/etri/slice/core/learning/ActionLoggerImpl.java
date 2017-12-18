@@ -25,8 +25,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collection;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -36,6 +37,7 @@ import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.learning.Action;
+import org.etri.slice.api.learning.ActionLogNotFoundException;
 import org.etri.slice.api.learning.ActionLogger;
 import org.etri.slice.api.learning.ActionLoggerException;
 import org.etri.slice.api.perception.ContextMemory;
@@ -58,7 +60,7 @@ public class ActionLoggerImpl implements ActionLogger {
 
 	@Requires
 	private ContextMemory m_cm;
-	private Map<String, ActionLog> m_loggers = new HashMap<String, ActionLog>();
+	private ConcurrentMap<String, ActionLog> m_loggers = new ConcurrentHashMap<String, ActionLog>();
 	
 	@Validate
 	public void init() throws IOException {
@@ -93,6 +95,20 @@ public class ActionLoggerImpl implements ActionLogger {
 			throw new ActionLoggerException(e.getMessage());
 		}
 	}
+
+	@Override
+	public File getActionLogFile(String id) throws ActionLogNotFoundException {
+		if ( !m_loggers.containsKey(id) ) {
+			throw new ActionLogNotFoundException("ActionLog[id=" + id + "]");
+		}
+		
+		return m_loggers.get(id).getLogFile();
+	}
+
+	@Override
+	public Collection<String> getActionLogIdsAll() {		
+		return m_loggers.keySet();
+	}		
 	
 	static class ActionLog {
 		private final File m_file;
@@ -102,6 +118,10 @@ public class ActionLoggerImpl implements ActionLogger {
 		public ActionLog(File logFile, ContextMemory cm) {
 			m_file = logFile;
 			m_cm = cm;
+		}
+		
+		public File getLogFile() {
+			return m_file;
 		}
 		
 		public void log(Action action) throws IOException {			
@@ -142,5 +162,5 @@ public class ActionLoggerImpl implements ActionLogger {
 			m_writer.write("@data\n");
 			m_writer.close();
 		}
-	}		
+	}
 }

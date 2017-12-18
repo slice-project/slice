@@ -38,18 +38,26 @@ public class RuleVersionManager {
 	private String m_middle;
 	private String m_suffix;
 	private Properties m_props = new Properties();
-	private final String m_propsPath;
+	private String m_propsPath;
+	volatile boolean m_isPropFileEnabled = false;
 	
 	public RuleVersionManager(String propFile) throws IOException {
 		m_propsPath = propFile;
 		loadProperties();
+		m_isPropFileEnabled = true;
 	}
+	
+	public RuleVersionManager(String prefix, String middle, String suffix) {
+		m_prefix = prefix;
+		m_middle = middle;
+		m_suffix = suffix;
+	}	
 	
 	public synchronized String getCurrentVersion() {
 		return m_prefix + "." + m_middle + "." + m_suffix;
 	}
 	
-	private static int max_value = 10;
+	private static int max_value = 100;
 	public synchronized String getNewVersion() {
 		int suffix = Integer.parseInt(m_suffix);
 		int middle = Integer.parseInt(m_middle);
@@ -67,7 +75,9 @@ public class RuleVersionManager {
 			m_props.setProperty(PREFIX, m_prefix);
 		}
 		
-		saveProperties();
+		if ( m_isPropFileEnabled ) {
+			saveProperties();
+		}
 		return m_prefix + "." + m_middle + "." + m_suffix;
 	}
 	

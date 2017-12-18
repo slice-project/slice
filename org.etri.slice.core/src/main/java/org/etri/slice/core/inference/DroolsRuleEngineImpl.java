@@ -28,6 +28,7 @@ import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
+import org.eclipse.aether.version.Version;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.perception.ContextMemory;
 import org.kie.api.KieServices;
@@ -42,11 +43,11 @@ import org.slf4j.LoggerFactory;
 @Component(publicFactory=false, immediate=true)
 @Provides
 @Instantiate
-public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
+public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 
-	private static Logger logger = LoggerFactory.getLogger(DroolsRuleEngineImpl.class);
+	private static Logger s_logger = LoggerFactory.getLogger(DroolsRuleEngineImpl.class);
 	
-	@Property(name="scan", value="1000")
+	@Property(name="scan", value="10000")
 	public long m_scanInterval;
 
 	@Requires
@@ -90,13 +91,13 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 	}
 
 	@Override
-	public void run() {
-		try {
-			m_session.fireUntilHalt();
-		}
-		catch ( IllegalStateException e ) {
-			
-		}
+	public void startRuleFiring() {
+		new Thread(new FireUntilHalt()).start();		
+	}
+	
+	@Override
+	public void stopRuleFiring() {
+		m_session.halt();
 	}
 	
 	@Validate
@@ -106,6 +107,11 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 		m_version = m_device.getVersion();
 		m_repository = MavenRepository.getMavenRepository();		
 		m_services = KieServices.Factory.get();
+		
+		if ( m_version == null ) {
+			Version version = m_repository.resolveVersion(m_groupId + ":" + m_artifactId + ":[0,1)");
+			m_version = version.toString();
+		}
 		m_releaseId = m_services.newReleaseId(m_groupId, m_artifactId, m_version);
 		m_container = m_services.newKieContainer(m_releaseId);
 		m_scanner = m_services.newKieScanner(m_container);		
@@ -115,13 +121,30 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine, Runnable {
 		m_session.addEventListener(new RuleRuntimeEventListenerImpl(m_cm));
 		
 		m_scanner.start(m_scanInterval);
-		new Thread(this).start();		
+		new Thread(new FireUntilHalt()).start();		
 	}
 	
 	@Invalidate
 	public void stop() {
 		m_scanner.stop();
 		m_session.halt();
+	}
+
+	class FireUntilHalt implements Runnable {
+
+		@Override
+		public void run() {
+			try {
+				s_logger.info("[RULE SESSION] is started!");
+				m_session.fireUntilHalt();
+			}
+			catch ( IllegalStateException e ) {
+				s_logger.error("ERR: " + e.getMessage());
+			}
+			finally {
+				s_logger.info("[RULE SESSION] is stopped!");
+			}
+		}
 	}
 }	
 

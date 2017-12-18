@@ -27,6 +27,10 @@ import java.util.Collection;
 
 public interface RuleModule {
 	
+	String getVersion();
+	
+	void setVersion(String version);
+	
 	RuleSet getRuleSet(String id) throws RuleSetNotFoundException;
 	
 	Collection<RuleSet> getRuleSets();

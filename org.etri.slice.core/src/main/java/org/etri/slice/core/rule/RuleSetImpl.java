@@ -56,27 +56,27 @@ public class RuleSetImpl implements RuleSet{
 	}
 	
 	@Override
-	public void setRuleSetHeaer(RuleSetHeader header) {
+	public synchronized void setRuleSetHeaer(RuleSetHeader header) {
 		m_header = header;
 	}
 	
 	@Override
-	public RuleSetHeader getRuleSetHeader() {
+	public synchronized RuleSetHeader getRuleSetHeader() {
 		return m_header;
 	}
 	
 	@Override
-	public List<Declare> getDeclares() {
+	public synchronized List<Declare> getDeclares() {
 		return m_declares;
 	}
 	
 	@Override
-	public void addDeclare(Declare dclr) {
+	public synchronized void addDeclare(Declare dclr) {
 		m_declares.add(dclr);
 	}
 	
 	@Override
-	public Rule getRule(String id) throws RuleNotFoundException {
+	public synchronized Rule getRule(String id) throws RuleNotFoundException {
 		if ( !m_rules.containsKey(id) ) {
 			throw new RuleNotFoundException("Rule[id = " + id + "]");
 		}
@@ -85,12 +85,12 @@ public class RuleSetImpl implements RuleSet{
 	}
 	
 	@Override
-	public Collection<Rule> getRules() {
+	public synchronized Collection<Rule> getRules() {
 		return m_rules.values();
 	}
 	
 	@Override
-	public Rule replaceRule(Rule newRule) throws RuleNotFoundException {
+	public synchronized Rule replaceRule(Rule newRule) throws RuleNotFoundException {
 		String id = newRule.getId();
 		
 		if ( !m_rules.containsKey(id) ) {
@@ -101,7 +101,7 @@ public class RuleSetImpl implements RuleSet{
 	}
 	
 	@Override
-	public Rule removeRule(String id) throws RuleNotFoundException {
+	public synchronized Rule removeRule(String id) throws RuleNotFoundException {
 		if ( !m_rules.containsKey(id) ) {
 			throw new RuleNotFoundException("Rule[id = " + id + "]");
 		}		
@@ -110,7 +110,7 @@ public class RuleSetImpl implements RuleSet{
 	}
 	
 	@Override
-	public void addRule(Rule newRule) throws RuleExistsException {
+	public synchronized void addRule(Rule newRule) throws RuleExistsException {
 		String id = newRule.getId();
 		if ( m_rules.containsKey(id) ) {
 			throw new RuleExistsException("Rule[id = " + id + "]");
@@ -120,7 +120,7 @@ public class RuleSetImpl implements RuleSet{
 	}
 	
 	@Override
-	public void saveToFile() throws IOException {
+	public synchronized void saveToFile() throws IOException {
 		String packageName = m_header.getPackage();
 		packageName = packageName.substring(("pakcage").length(), packageName.length() - 1);
 		packageName = packageName.replaceAll("\\.", "/");
