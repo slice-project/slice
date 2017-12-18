@@ -57,17 +57,19 @@ public class RuleModuleImpl implements RuleModule {
 	private Map<String, RuleSet> m_ruleSets = new HashMap<String, RuleSet>();
 	
 	private ReleaseId m_releaseId;
-	private final File m_root = new File("rule");
-	private final File m_tempJar = new File("temp.jar");
+	private final File m_root;
+	private final File m_tempJar;
 	private File m_pomFile;
 
-	public RuleModuleImpl(ReleaseId releaseId) throws Exception {
+	public RuleModuleImpl(String root, ReleaseId releaseId) throws Exception {
+		m_root = new File(root);
+		m_tempJar = new File(m_root, "temp.jar");
 		m_releaseId = releaseId;
 		
 		if ( m_root.exists() ) {
 			FileUtils.deleteDirectory(m_root);
 		}		
-		m_root.mkdir();
+		m_root.mkdirs();
 	}
 	
 	public void setUp() throws Exception {

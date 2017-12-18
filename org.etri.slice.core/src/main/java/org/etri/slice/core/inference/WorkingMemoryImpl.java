@@ -51,19 +51,25 @@ public class WorkingMemoryImpl implements WorkingMemory {
 
 	@Override
 	public synchronized void insert(Object fact) {
+		m_drools.getSessionLock().lock();
 		m_session.insert(fact);
+		m_drools.getSessionLock().unlock();
 	}
 
 	@Override
 	public synchronized void delete(Object fact) {
+		m_drools.getSessionLock().lock();
 		FactHandle handle = m_session.getFactHandle(fact);
 		m_session.delete(handle);
+		m_drools.getSessionLock().unlock();
 	}
 
 	@Override
 	public synchronized void update(Object before, Object after) {
+		m_drools.getSessionLock().lock();
 		FactHandle handle = m_session.getFactHandle(before);
 		m_session.update(handle, after);
+		m_drools.getSessionLock().unlock();
 	}
 
 	@Override

@@ -21,6 +21,9 @@
  */
 package org.etri.slice.core.inference;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
@@ -63,6 +66,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 	private KieScanner m_scanner;
 	private KieServices m_services;
 	private MavenRepository m_repository;
+	private final Lock m_sessionLock = new ReentrantLock();
 	
 	@Override
 	public synchronized ReleaseId getReleaseId() {
@@ -91,14 +95,23 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 	}
 
 	@Override
-	public void startRuleFiring() {
-		new Thread(new FireUntilHalt()).start();		
+	public void fireUntilHalt() {
+		new Thread(new FireUntilHalt()).start();
+		try {
+			Thread.sleep(10);
+		} 
+		catch ( InterruptedException ignored ) { }
 	}
 	
 	@Override
-	public void stopRuleFiring() {
+	public void halt() {
 		m_session.halt();
 	}
+	
+	@Override
+	public Lock getSessionLock() {
+		return m_sessionLock;
+	}	
 	
 	@Validate
 	public void start() {
@@ -121,7 +134,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 		m_session.addEventListener(new RuleRuntimeEventListenerImpl(m_cm));
 		
 		m_scanner.start(m_scanInterval);
-		new Thread(new FireUntilHalt()).start();		
+		fireUntilHalt();
 	}
 	
 	@Invalidate
@@ -131,18 +144,18 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 	}
 
 	class FireUntilHalt implements Runnable {
-
+		
 		@Override
 		public void run() {
 			try {
-				s_logger.info("[RULE SESSION] is started!");
+				s_logger.info("STARTED:  fireUntilHalt");
 				m_session.fireUntilHalt();
 			}
 			catch ( IllegalStateException e ) {
 				s_logger.error("ERR: " + e.getMessage());
 			}
 			finally {
-				s_logger.info("[RULE SESSION] is stopped!");
+				s_logger.info("STOPPED:  fireUntilHalt");
 			}
 		}
 	}

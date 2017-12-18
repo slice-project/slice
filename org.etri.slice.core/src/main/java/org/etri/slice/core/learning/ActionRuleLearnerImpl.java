@@ -93,14 +93,14 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	public void init() throws Exception {
 		m_ruleModule = m_pm.getRuleModule();
 		
-		String classifierName = "weka.classifiers.trees.REPTree";
+//		String classifierName = "weka.classifiers.trees.REPTree";
 		String[] classifierOptions = weka.core.Utils.splitOptions("-M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0");
 //		classifier = AbstractClassifier.forName(classifierName, classifierOptions);
 		REPTree repTree = new REPTree();
 		repTree.setOptions(classifierOptions);
 		m_classifier = repTree;
 		
-		String filterName = "weka.filters.unsupervised.instance.Randomize";
+//		String filterName = "weka.filters.unsupervised.instance.Randomize";
 //		filterOptions = weka.core.Utils.splitOptions("-S 42");
 		String[] filterOptions = new String[0];
 //		filter = (Filter)Class.forName(filterName).newInstance();
@@ -121,6 +121,8 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	public boolean learnActionRules() throws ActionRuleLearnerException {
 		try {
 			Collection<String> logIds = m_actionLogger.getActionLogIdsAll();
+			if ( logIds.isEmpty() ) return false;
+			
 			ExecutorService executor = Executors.newFixedThreadPool(logIds.size()); 
 			List<Future<Integer>> futures = new ArrayList<Future<Integer>>();
 			
@@ -134,7 +136,7 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 			}
 			if ( learnedRulesCount >= MIN_NUM_OF_RULES ) {
 				m_ruleModule.setVersion(m_pm.getNewVersion());
-				m_pm.install(m_ruleModule);
+				m_pm.update(m_ruleModule);
 				
 				return true;
 			}

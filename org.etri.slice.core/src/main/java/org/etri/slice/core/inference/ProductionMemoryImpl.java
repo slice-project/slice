@@ -46,7 +46,9 @@ import org.slf4j.LoggerFactory;
 @Instantiate
 public class ProductionMemoryImpl implements ProductionMemory {
 
-	private static Logger s_logger = LoggerFactory.getLogger(ProductionMemoryImpl.class);	
+	private static Logger s_logger = LoggerFactory.getLogger(ProductionMemoryImpl.class);
+	
+	private static final String RULE_ROOT = "rule";
 	
 	@Requires
 	private DroolsRuleEngine m_drools;	
@@ -61,9 +63,9 @@ public class ProductionMemoryImpl implements ProductionMemory {
 		m_container = m_drools.getKieContainer();
 		m_repository = m_drools.getMavenRepository();
 		ReleaseId releaseId = m_drools.getReleaseId();
-		RuleModuleImpl module = new RuleModuleImpl(releaseId);
+		RuleModuleImpl module = new RuleModuleImpl(RULE_ROOT, releaseId);
 		module.setUp();
-		m_module = module;		
+		m_module = module;
 
 		StringTokenizer token = new StringTokenizer(releaseId.getVersion(), ".");
 		String prefix = token.nextToken();
@@ -87,8 +89,7 @@ public class ProductionMemoryImpl implements ProductionMemory {
 	
 	@Override
 	public synchronized String getNewVersion() {
-		ReleaseId releaseId = m_drools.newReleaseId(m_verMgr.getNewVersion());
-		return releaseId.getVersion();
+		return m_verMgr.getNewVersion();
 	}
 	
 	@Override
@@ -97,33 +98,25 @@ public class ProductionMemoryImpl implements ProductionMemory {
 	}
 
 	@Override
-	public synchronized void install(RuleModule ruleModule) throws ProductionMemoryException {
+	public synchronized void update(RuleModule ruleModule) throws ProductionMemoryException {
 		try {
-			m_drools.stopRuleFiring();
-			ReleaseId releaseId = m_drools.newReleaseId(ruleModule.getVersion());
+			m_drools.getSessionLock().lock();
+			m_drools.halt();
+			ReleaseId currentRelease = m_drools.getReleaseId();
+			ReleaseId newRelease = m_drools.newReleaseId(ruleModule.getVersion());
 			File jarFile = m_module.getRuleJarFile();
 			File pomFile = m_module.getRulePOMFile();
-			m_repository.installArtifact(releaseId, jarFile, pomFile);
-			m_container.updateToVersion(releaseId);
-			m_drools.startRuleFiring();
-			s_logger.info("INSTALLED: " + releaseId);
+			m_repository.installArtifact(currentRelease, jarFile, pomFile);
+			m_container.updateToVersion(currentRelease);
+			
+			s_logger.info("UPDATED: " + newRelease);
+			m_drools.fireUntilHalt();
+			m_drools.getSessionLock().unlock();
+
+			m_repository.installArtifact(newRelease, jarFile, pomFile);
 		}
 		catch ( Exception e ) {
 			throw new ProductionMemoryException(e.getMessage());
 		}		
 	}	
-	
-	@Override
-	public synchronized void install(String version, byte[] jarContent, byte[] pomContent) throws ProductionMemoryException {
-		ReleaseId releaseId = m_drools.newReleaseId(version);
-		m_repository.installArtifact(releaseId, jarContent, pomContent);
-//		m_container.updateToVersion(releaseId);
-	}
-
-	@Override
-	public synchronized void install(String version, File jar, File pomFile) throws ProductionMemoryException {
-		ReleaseId releaseId = m_drools.newReleaseId(version);
-		m_repository.installArtifact(releaseId, jar, pomFile);
-		m_container.updateToVersion(releaseId);
-	}
 }

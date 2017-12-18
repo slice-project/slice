@@ -24,6 +24,10 @@ package org.etri.slice.core.learning;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -45,7 +49,7 @@ public class RuleLearningScheduler implements Runnable {
 	@Property(name="loggig.scan.interval", value="10")
 	public long m_interval;
 	
-	@Property(name="minimum.logging.count", value="0")
+	@Property(name="minimum.logging.count", value="20")
 	public long m_minimumLogCount;
 	
 	@Requires
@@ -53,6 +57,8 @@ public class RuleLearningScheduler implements Runnable {
 	@Requires 
 	private ActionRuleLearner m_learner;
 	private int m_loggingCount;
+	private Lock m_lock = new ReentrantLock();
+	private Condition m_stopCondition = m_lock.newCondition();
 	private volatile boolean m_stopRequested = false;
 	
 	@Validate
@@ -63,25 +69,37 @@ public class RuleLearningScheduler implements Runnable {
 	
 	@Invalidate
 	public void fini() {
+		m_lock.lock();
 		m_stopRequested = true;
+		m_stopCondition.signal();
+		m_lock.unlock();
 	}
 	
 	@Override
 	public void run() {
-		while ( !m_stopRequested ) {
-			try {
-				Thread.sleep(m_interval * 1000);
-				int loggingCount = scanLoggingCount();
-				if ( (loggingCount - m_loggingCount) >= m_minimumLogCount ) {
-					if ( m_learner.learnActionRules() ) {
-						m_loggingCount = loggingCount;
+		s_logger.info("STARTED: RuleLearningScheduler.run()");		
+		m_lock.lock();
+		try {
+			while ( !m_stopRequested ) {
+				try {
+					int loggingCount = scanLoggingCount();
+					if ( (loggingCount - m_loggingCount) >= m_minimumLogCount ) {
+						if ( m_learner.learnActionRules() ) {
+							m_loggingCount = loggingCount;
+						}
 					}
+					
+					m_stopCondition.await(m_interval, TimeUnit.SECONDS);
+				} 
+				catch (Exception e) {
+					s_logger.error("ERR: " + e.getMessage());
 				}
-			} 
-			catch (Exception e) {
-				s_logger.error("ERR: " + e.getMessage());
 			}
 		}
+		finally {
+			m_lock.unlock();
+		}
+		s_logger.info("STOPPED: RuleLearningScheduler.run()");		
 	}
 	
 	private int scanLoggingCount() throws Exception {

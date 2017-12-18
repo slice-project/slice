@@ -21,6 +21,8 @@
  */
 package org.etri.slice.core.inference;
 
+import java.util.concurrent.locks.Lock;
+
 import org.kie.api.builder.ReleaseId;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -28,9 +30,11 @@ import org.kie.scanner.MavenRepository;
 
 public interface DroolsRuleEngine {
 	
-	void startRuleFiring();
+	void fireUntilHalt();
 	
-	void stopRuleFiring();
+	void halt();
+	
+	Lock getSessionLock();
 	
 	ReleaseId getReleaseId();
 	

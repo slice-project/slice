@@ -54,6 +54,13 @@ rule "SeatPosture Control"
 end
 */
 
+rule "Insert BodyPartLength"
+	when 
+		$e: UserSeated($driver: userInfo)
+	then		
+		insert($driver.getBodyLength());
+end
+
 rule "SeatPosture Change Notification"
 	when
 		$e: SeatPosture()
