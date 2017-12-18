@@ -9,6 +9,7 @@
 	</parent>
 
 	<artifactId>org.etri.slice.rules.fullbodydetector</artifactId>
+	<version>0.0.1</version>
 	<name>... rules for a full-body detector device </name>
 
 </project>
