@@ -60,7 +60,10 @@ public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Ch
 		TStream<String> jsonStream = m_events.map(event -> {
 			try {
 				return ((SliceEvent)event).toJSON();
-			} catch ( SliceException e ) {	}
+			} 
+			catch ( SliceException e ) {
+				s_logger.error("ERROR: " + e.getDetails());
+			}
 			return null;
 		});
 		jsonStream.filter(event -> event != null);

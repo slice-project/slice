@@ -57,7 +57,10 @@ public abstract class MqttEventSubscriber<T> implements Consumer<T> {
 		TStream<T> events = jsonStream.map(jsonEvent -> {
 			try {
 				return SliceEvent.<T> fromJSON(getEventType(), jsonEvent);
-			} catch ( SliceException e ) {}
+			} 
+			catch ( SliceException e ) {
+				s_logger.error("ERROR: " + e.getDetails());
+			}
 			return null;
 		});
 		events.filter(event -> event != null);
