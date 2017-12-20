@@ -167,6 +167,7 @@
 									<directory>${project.basedir}</directory>
 									<includes>
 										<include>run_slice.bat</include>
+										<include>run_slice.sh</include>
 									</includes>
 								</resource>
 							</resources>
