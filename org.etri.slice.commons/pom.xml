@@ -22,10 +22,6 @@
 
 	<repositories>
 		<repository>
-			<id>jboss-repo</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-		<repository>
 			<id>central</id>
 			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
@@ -39,6 +35,10 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>jboss-repo</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>		
 		<repository>
 			<id>edgent-repp</id>
 			<url>file:${project.basedir}/lib</url>
