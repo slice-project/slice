@@ -27,61 +27,65 @@ import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
+import org.etri.slice.api.perception.EventStream;
 import org.etri.slice.commons.SliceEvent;
 import org.etri.slice.commons.SliceException;
 import org.kie.api.runtime.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class MqttEventPublisher implements Consumer<Consumer<String>>, Channel {
+public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Channel {	
 	private static final long serialVersionUID = -9073017330777438626L;
 	private static Logger s_logger = LoggerFactory.getLogger(MqttEventPublisher.class);	
 	
 	private MqttStreams m_mqtt;
 	private Topology m_topology;
-	private TStream<String> m_events;
-	private Consumer<String> m_eventSubmitter;
+	private TStream<T> m_events;
+	private Consumer<T> m_eventSubmitter;
 	
 	protected abstract WorkingMemory getWorkingMemory();
 	protected abstract Device getDevice();
 	protected abstract String getTopicName();
-	protected abstract String getMqttURL();	
+	protected abstract String getMqttURL();
+	protected abstract EventStream<T> getEventStream();
 	
 	public void start() {	
 		String topicName = getTopicName();
 		getWorkingMemory().addEventAdaptor(topicName, this);		
 		
 		m_topology = getDevice().newTopology(topicName);
-		m_events = m_topology.events(this);
-
-		m_mqtt = new MqttStreams(m_topology, getMqttURL(), null);
-		m_mqtt.publish(m_events, topicName, 0, false);	
-		getDevice().submit(m_topology);
+		TStream<T> events = m_topology.events(this);
+		m_events = getEventStream().process(events);		
 		
-		s_logger.info("MqttEventPublisher[" + topicName + "] started.");
+		TStream<String> jsonStream = m_events.map(event -> {
+			try {
+				return ((SliceEvent)event).toJSON();
+			} catch ( SliceException e ) {	}
+			return null;
+		});
+		jsonStream.filter(event -> event != null);
+		m_mqtt = new MqttStreams(m_topology, getMqttURL(), null);
+		m_mqtt.publish(jsonStream, topicName, 0, false);
+		
+		getDevice().submit(m_topology);		
+		s_logger.info("STARTED: MqttEventPublisher[" + topicName + "]");
 	}
 	
 	public void stop() { 
-		s_logger.info("MqttEventPublisher[" + getTopicName() + "] stopped.");
+		s_logger.info("STOPPED: MqttEventPublisher[" + getTopicName() + "]");
 	}
 
 	@Override
-	public synchronized void accept(Consumer<String> eventSubmitter) {
+	public synchronized void accept(Consumer<T> eventSubmitter) {
 		m_eventSubmitter = eventSubmitter;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void send(Object object) {
 		if ( m_eventSubmitter != null ) {
-			String jsonMsg = null;
-			try {
-				jsonMsg = ((SliceEvent)object).toJSON();
-				m_eventSubmitter.accept(jsonMsg);
-				s_logger.info("MQTT Event published: " + jsonMsg);				
-			}
-			catch ( SliceException e ) {
-				s_logger.error(e.getDetails());
-			}
+			m_eventSubmitter.accept((T)object);
+			s_logger.info("PUBLISHED(MQTT Event): " + object);	
 		}
 	}	
 }

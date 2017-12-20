@@ -19,42 +19,68 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.fullbodydetector;
+package org.etri.slice.devices.carseat.adaptor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.SliceException;
-import org.etri.slice.commons.car.service.FullBodyDetector;
+import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.service.SeatControl;
 
 @Component
 @Instantiate
-public class FullBodyDetectorAdaptor implements FullBodyDetector {
+public class SeatControlAdaptor implements SeatControl {
 
 	@Requires
-	private FullBodyDetector m_detector;
+	private SeatControl m_control;
 	
 	@Requires
 	private WorkingMemory m_wm;
 	
-	public FullBodyDetectorAdaptor() {
-		m_wm.addServiceAdaptor(FullBodyDetector.id, this);
+	public SeatControlAdaptor() {
+		m_wm.addServiceAdaptor(SeatControl.id, this);
 	}
 
 	@Override
-	public void start() throws SliceException {
-		m_detector.start();
+	public SeatPosture getPosture() {
+		return m_control.getPosture();
 	}
 
 	@Override
-	public void stop() {
-		m_detector.stop();
+	public void setPosture(SeatPosture posture) {
+		m_control.setPosture(posture);
 	}
 
 	@Override
-	public void detect() throws SliceException {
-		m_detector.detect();
+	public double getHeight() {
+		return m_control.getHeight();
+	}
+
+	@Override
+	public void setHeight(double height) {
+		m_control.setHeight(height);
+	}
+
+	@Override
+	public double getPosition() {
+		return m_control.getPosition();
+	}
+
+	@Override
+	public void setPosition(double position) {
+		m_control.setPosition(position);
+	}
+
+	@Override
+	public double getTilt() {
+		return m_control.getTilt();
+	}
+
+	@Override
+	public void setTilt(double tilt) {		
+		m_control.setTilt(tilt);
 	}
 	
+
 }

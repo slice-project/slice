@@ -68,7 +68,9 @@ public class ActionLoggerImpl implements ActionLogger {
 		File logs[] = root.listFiles((dir, name) -> name.endsWith(ARFF));
 		for ( File log : logs ) {
 			String fileName = log.getName();
-			m_loggers.put(fileName.substring(0, fileName.length() - ARFF.length()), new ActionLog(log, m_cm));
+			String loggerId = fileName.substring(0, fileName.length() - ARFF.length());
+			m_loggers.put(loggerId, new ActionLog(log, m_cm));
+			s_logger.info("READY: Action Logger[id=" + loggerId + "]");
 		}
 	}
 	
@@ -140,6 +142,7 @@ public class ActionLoggerImpl implements ActionLogger {
 			m_writer.write(action.getValue());
 			m_writer.newLine();
 			m_writer.close();
+			s_logger.info("LOGGED: " + action);
 		}
 		
 		public void prePareHeader(Action action) throws IOException {

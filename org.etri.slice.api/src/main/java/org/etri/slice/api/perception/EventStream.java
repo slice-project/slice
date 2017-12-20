@@ -23,16 +23,8 @@ package org.etri.slice.api.perception;
 
 import org.apache.edgent.topology.TStream;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class EventStream {
-	private String topic;
-	private TStream<?> stream;
+@FunctionalInterface
+public interface EventStream<T> {
+	
+	TStream<T> process(TStream<T> stream);
 }

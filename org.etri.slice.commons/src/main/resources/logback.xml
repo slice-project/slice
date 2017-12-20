@@ -81,6 +81,8 @@
 		<appender-ref ref="roll-by-time-and-size" />
 	</logger>
 -->
+	<logger name="ch.qos.logback" level="warn" />
+	<logger name="org.apache" level="warn" />
 	<logger name="org.drools" level="info" />
 
 	<logger name="org.etri.slice" level="debug" />

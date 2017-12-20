@@ -19,73 +19,42 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.carseat;
+package org.etri.slice.devices.fullbodydetector.adaptor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
-import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.event.SeatPosture;
-import org.etri.slice.commons.car.service.SeatControl;
+import org.etri.slice.commons.SliceException;
+import org.etri.slice.commons.car.service.FullBodyDetector;
 
 @Component
 @Instantiate
-public class SeatControlAdaptor implements SeatControl {
+public class FullBodyDetectorAdaptor implements FullBodyDetector {
 
 	@Requires
-	private SeatControl m_control;
+	private FullBodyDetector m_detector;
 	
 	@Requires
 	private WorkingMemory m_wm;
 	
-	@Requires
-	private Device m_device;
-	
-	
-	public SeatControlAdaptor() {
-		m_wm.addServiceAdaptor(SeatControl.id, this);
+	public FullBodyDetectorAdaptor() {
+		m_wm.addServiceAdaptor(FullBodyDetector.id, this);
 	}
 
 	@Override
-	public SeatPosture getPosture() {
-		return m_control.getPosture();
+	public void start() throws SliceException {
+		m_detector.start();
 	}
 
 	@Override
-	public void setPosture(SeatPosture posture) {
-		m_control.setPosture(posture);
+	public void stop() {
+		m_detector.stop();
 	}
 
 	@Override
-	public double getHeight() {
-		return m_control.getHeight();
-	}
-
-	@Override
-	public void setHeight(double height) {
-		m_control.setHeight(height);
-	}
-
-	@Override
-	public double getPosition() {
-		return m_control.getPosition();
-	}
-
-	@Override
-	public void setPosition(double position) {
-		m_control.setPosition(position);
-	}
-
-	@Override
-	public double getTilt() {
-		return m_control.getTilt();
-	}
-
-	@Override
-	public void setTilt(double tilt) {		
-		m_control.setTilt(tilt);
+	public void detect() throws SliceException {
+		m_detector.detect();
 	}
 	
-
 }

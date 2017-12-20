@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.pressuresensor;
+package org.etri.slice.devices.objectdetector.adpator;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -27,21 +27,22 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
+import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.core.perception.MqttEventPublisher;
+import org.etri.slice.api.perception.EventStream;
+import org.etri.slice.commons.car.ObjectInfo;
+import org.etri.slice.core.perception.EventSubscriber;
+import org.etri.slice.devices.objectdetector.stream.ObjectInfoStream;
 
 @Component
 @Instantiate
-public class UserSeatedChannel extends MqttEventPublisher {
-
-	private static final long serialVersionUID = -7123113855608104237L;
-
-	@Property(name="topic", value="user_seated")
-	private String m_topic;
+public class ObjectInfoAdaptor extends EventSubscriber<ObjectInfo> {
 	
-	@Property(name="url", value="tcp://localhost:1883")
-	private String m_url;
+	private static final long serialVersionUID = 3600697679325960166L;
+
+	@Property(name="topic", value="object_distance")
+	private String m_topic;
 	
 	@Requires
 	private WorkingMemory m_wm;
@@ -49,13 +50,12 @@ public class UserSeatedChannel extends MqttEventPublisher {
 	@Requires
 	private Device m_device;
 	
+	@Requires(from=ObjectInfoStream.SERVICE_NAME)
+	private EventStream<ObjectInfo> m_streaming;	
+	
 	protected  String getTopicName() {
 		return m_topic;
 	}
-	
-	protected String getMqttURL() {
-		return m_url;
-	}	
 	
 	protected WorkingMemory getWorkingMemory() {
 		return m_wm;
@@ -65,9 +65,19 @@ public class UserSeatedChannel extends MqttEventPublisher {
 		return m_device;
 	}
 		
+	protected EventStream<ObjectInfo> getEventStream() {
+		return m_streaming;
+	}		
+	
+	@Subscriber(name="sub:object_distance", topics="object_distance",
+			dataKey="object.distance", dataType="org.etri.slice.commons.car.ObjectInfo")
+	public void receive(ObjectInfo event) {
+		super.subscribe(event);
+	}
+	
 	@Validate
 	public void start() {
-		super.start();
+		super.start(event -> m_wm.insert(event));
 	}
 	
 	@Invalidate

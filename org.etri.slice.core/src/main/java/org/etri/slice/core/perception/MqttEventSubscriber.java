@@ -27,50 +27,55 @@ import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
+import org.etri.slice.api.perception.EventStream;
 import org.etri.slice.commons.SliceEvent;
 import org.etri.slice.commons.SliceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class MqttEventSubscriber implements Consumer<String> {
+public abstract class MqttEventSubscriber<T> implements Consumer<T> {	
 	private static final long serialVersionUID = 3346078185684269469L;
 	private static Logger s_logger = LoggerFactory.getLogger(MqttEventSubscriber.class);	
 	
 	private MqttStreams m_mqtt;
 	private Topology m_topology;
-	private TStream<String> m_events;
+	private TStream<T> m_events;
 	
 	protected abstract WorkingMemory getWorkingMemory();
 	protected abstract Device getDevice();
 	protected abstract String getTopicName();
 	protected abstract String getMqttURL();
 	protected abstract Class<?> getEventType();
+	protected abstract EventStream<T> getEventStream();	
 	
-	public void start() {	
-		String topicName = getTopicName();
-		
+	public void start() {
+		String topicName = getTopicName();		
 		m_topology = getDevice().newTopology(topicName);
 
 		m_mqtt = new MqttStreams(m_topology, getMqttURL(), null);
-		m_events = m_mqtt.subscribe(topicName, 0);
-		m_events.sink(this);
-		getDevice().submit(m_topology);
+		TStream<String> jsonStream = m_mqtt.subscribe(topicName, 0);
+		TStream<T> events = jsonStream.map(jsonEvent -> {
+			try {
+				return SliceEvent.<T> fromJSON(getEventType(), jsonEvent);
+			} catch ( SliceException e ) {}
+			return null;
+		});
+		events.filter(event -> event != null);
 		
-		s_logger.info("MqttEventSubscriber[" + topicName + "] started.");
+		m_events = getEventStream().process(events);
+		m_events.sink(this);
+		
+		getDevice().submit(m_topology);
+		s_logger.info("STARTED: MqttEventSubscriber[" + topicName + "]");
 	}
 	
 	public void stop() { 
-		s_logger.info("MqttEventSubscriber[" + getTopicName() + "] stopped.");
+		s_logger.info("STOPPED: MqttEventSubscriber[" + getTopicName() + "]");
 	}
 
 	@Override
-	public synchronized void accept(String event) {
-		try {
-			s_logger.info("MQTT Event received: " + event);				
-			Object fact = SliceEvent.fromJSON(getEventType(), event);
-			getWorkingMemory().insert(fact);
-		} catch (SliceException e) {
-			e.printStackTrace();
-		}
+	public synchronized void accept(T event) {
+		s_logger.info("RECEIVED(MQTT Event): " + event);		
+		getWorkingMemory().insert(event);
 	}
 }

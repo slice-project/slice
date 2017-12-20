@@ -44,12 +44,17 @@ import org.etri.slice.api.rule.RulePOM;
 import org.etri.slice.api.rule.RuleSet;
 import org.etri.slice.api.rule.RuleSetExistsException;
 import org.etri.slice.api.rule.RuleSetNotFoundException;
+import org.etri.slice.core.learning.ActionLoggerImpl;
 import org.kie.api.builder.ReleaseId;
 import org.kie.scanner.MavenRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RuleModuleImpl implements RuleModule {
 	
+	private static Logger s_logger = LoggerFactory.getLogger(ActionLoggerImpl.class);		
 	private static final int BUFFER_SIZE = 2156;
+	
 	private byte[] mBuffer = new byte[BUFFER_SIZE];
 	private int mByteCount = 0;
 	private String mDestJarName = "";
@@ -111,6 +116,7 @@ public class RuleModuleImpl implements RuleModule {
 		}
 		
 		m_ruleSets.put(id, ruleSet);
+		s_logger.info("ADDED: RuleSet[id = " + id + "]");
 	}
 
 	@Override
@@ -253,6 +259,7 @@ public class RuleModuleImpl implements RuleModule {
 		in.close();
 		
 		RuleSetImpl ruleSet = handler.getRuleSet();
-		m_ruleSets.put(ruleSet.getId(), ruleSet);		
+		m_ruleSets.put(ruleSet.getId(), ruleSet);	
+		s_logger.info("LOADED: RuleSet[id = " + ruleSet.getId() + "]");	
 	}
 }

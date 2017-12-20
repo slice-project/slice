@@ -25,14 +25,12 @@ import org.apache.edgent.function.Consumer;
 import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
 import org.etri.slice.api.device.Device;
+import org.etri.slice.api.perception.EventStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public abstract class EventSubscriber<T> implements Consumer<Consumer<T>>, AutoCloseable {
-
 	private static final long serialVersionUID = 4637974626058983539L;
-
 	private static Logger s_logger = LoggerFactory.getLogger(EventSubscriber.class);	
 	
 	private Consumer<T> m_eventSubmitter;
@@ -41,23 +39,27 @@ public abstract class EventSubscriber<T> implements Consumer<Consumer<T>>, AutoC
 	
 	protected abstract Device getDevice();
 	protected abstract String getTopicName();
+	protected abstract EventStream<T> getEventStream();
 	
 	public void start(Consumer<T> consumer) {	
 		m_topology = getDevice().newTopology(getTopicName());
-		m_events = m_topology.events(this);
-		getDevice().submit(m_topology);
+		TStream<T> events = m_topology.events(this);
+		
+		m_events = getEventStream().process(events);		
 		m_events.sink(consumer);
-		s_logger.info("EventSubscriber[" + getTopicName() + "] started.");
+		
+		getDevice().submit(m_topology);
+		s_logger.info("STARTED: EventSubscriber[" + getTopicName() + "]");
 	}
 	
 	public void stop() { 
-		s_logger.info("EventSubscriber[" + getTopicName() + "] stopped.");
+		s_logger.info("STOPPED: EventSubscriber[" + getTopicName() + "]");
 	}
 	
 	public synchronized void subscribe(T value) {
 		if ( m_eventSubmitter != null ) {
 			m_eventSubmitter.accept(value);
-			s_logger.info("Event: " + value);
+			s_logger.info("RECEIVED(SLICE Event): " + value);
 		}
 	}	
 	

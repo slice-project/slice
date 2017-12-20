@@ -21,11 +21,8 @@
  */
 package org.etri.slice.api.device;
 
-import java.util.List;
-
 import org.apache.edgent.execution.Job;
 import org.apache.edgent.execution.Submitter;
-import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
 import org.apache.edgent.topology.TopologyProvider;
 
@@ -34,8 +31,4 @@ public interface Device extends Submitter<Topology, Job>, TopologyProvider, Serv
 	String getGroupId();
 	String getArtifactId();
 	String getVersion();
-	
-	void addTStream(String topic, TStream<?> stream);
-	TStream<?> getTStream(String topic);
-	List<TStream<?>> getTStreamAll();	
 }

@@ -46,7 +46,7 @@ public class RuleRuntimeEventListenerImpl implements RuleRuntimeEventListener {
         numberOfFacts++;
         Object fact = event.getObject();
         m_cm.addContext(fact);
-        logger.info("object inserted: " + fact);
+        logger.info("INSERTED: " + fact);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class RuleRuntimeEventListenerImpl implements RuleRuntimeEventListener {
         numberOfModifiedFacts++;
         Object fact = event.getObject();
         m_cm.addContext(fact);
-        logger.info("object updated: " + fact);
+        logger.info("UPDATED: " + fact);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class RuleRuntimeEventListenerImpl implements RuleRuntimeEventListener {
         numberOfFacts--;
         Object fact = event.getOldObject();
         m_cm.removeContext(fact);        
-        logger.info("object inserted: " + fact);
+        logger.info("DELETED: " + fact);
     }
 
     public int getNumberOfFacts() {

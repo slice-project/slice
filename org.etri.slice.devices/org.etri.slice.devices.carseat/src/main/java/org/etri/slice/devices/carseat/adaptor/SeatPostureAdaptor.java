@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.pressuresensor;
+package org.etri.slice.devices.carseat.adaptor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -27,22 +27,22 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
+import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.event.FullBodyDetected;
-import org.etri.slice.core.perception.MqttEventSubscriber;
+import org.etri.slice.api.perception.EventStream;
+import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.core.perception.EventSubscriber;
+import org.etri.slice.devices.carseat.stream.SeatPostureStream;
 
 @Component
 @Instantiate
-public class FullBodyDetectedAdaptor extends MqttEventSubscriber {
-	
-	private static final long serialVersionUID = 3605095190247075160L;
+public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 
-	@Property(name="topic", value="full_body_detected")
+	private static final long serialVersionUID = 870371290384307371L;
+
+	@Property(name="topic", value="seat_posture")
 	private String m_topic;
-	
-	@Property(name="url", value="tcp://localhost:1883")
-	private String m_url;
 	
 	@Requires
 	private WorkingMemory m_wm;
@@ -50,29 +50,34 @@ public class FullBodyDetectedAdaptor extends MqttEventSubscriber {
 	@Requires
 	private Device m_device;
 	
+	@Requires(from=SeatPostureStream.SERVICE_NAME)
+	private EventStream<SeatPosture> m_stream;
+	
 	protected  String getTopicName() {
 		return m_topic;
-	}
-	
-	protected String getMqttURL() {
-		return m_url;
 	}
 	
 	protected WorkingMemory getWorkingMemory() {
 		return m_wm;
 	}
 	
+	protected EventStream<SeatPosture> getEventStream() {
+		return m_stream;
+	}
+	
 	protected Device getDevice() {
 		return m_device;
 	}
-	
-	protected Class<?> getEventType() {
-		return FullBodyDetected.class;
-	}
 		
+	@Subscriber(name="SeatPostureAdaptor", topics="seat_posture", 
+			dataKey="seat.posture", dataType="org.etri.slice.commons.car.event.SeatPosture")
+	public void receive(SeatPosture event) {
+		super.subscribe(event);
+	}
+	
 	@Validate
 	public void start() {
-		super.start();
+		super.start(event -> m_wm.insert(event));
 	}
 	
 	@Invalidate

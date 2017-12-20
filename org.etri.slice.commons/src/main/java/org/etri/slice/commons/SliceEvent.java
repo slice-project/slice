@@ -57,7 +57,7 @@ public abstract class SliceEvent implements Serializable {
 		}
 	}
 	
-	public static Object fromJSON(Class<?> cls, String msg) throws SliceException {
+	public static <T> T fromJSON(Class<?> cls, String msg) throws SliceException {
 		try {
 			return s_jasonMapper.reader(cls).readValue(msg);
 		}
@@ -66,7 +66,7 @@ public abstract class SliceEvent implements Serializable {
 		}
 	}
 	
-	public static Object fromJSON(String className, String msg) throws SliceException {
+	public static <T> T fromJSON(String className, String msg) throws SliceException {
 		try {
 			return s_jasonMapper.reader(Class.forName(className)).readValue(msg);
 		}

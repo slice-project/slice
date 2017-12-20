@@ -21,10 +21,7 @@
  */
 package org.etri.slice.core.device;
 
-import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Future;
 
 import org.apache.edgent.execution.Job;
@@ -32,41 +29,20 @@ import org.apache.edgent.execution.services.ControlService;
 import org.apache.edgent.function.BiConsumer;
 import org.apache.edgent.providers.direct.DirectProvider;
 import org.apache.edgent.runtime.jmxcontrol.JMXControlService;
-import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
 import org.etri.slice.api.device.Device;
 
-import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
-
 
 public abstract class AbstractDevice implements Device {
 
 	public static final String JMX_DOMAIN = "org.etri.slice.device";
 	private final DirectProvider m_provider = new DirectProvider();
-	private Map<String, TStream<?>> m_streams = new HashMap<String, TStream<?>>();
 	
 	public AbstractDevice() {
 		m_provider.getServices().addService(ControlService.class,
 	                new JMXControlService(JMX_DOMAIN, new Hashtable<>()));
 	}
-
-	
-	
-	@Override
-	public void addTStream(String topic, TStream<?> stream) {
-		m_streams.put(topic, stream);
-	}
-
-	@Override
-	public TStream<?> getTStream(String topic) {
-		return m_streams.get(topic);
-	}
-
-	@Override
-	public List<TStream<?>> getTStreamAll() {
-		return Lists.newArrayList(m_streams.values());
-	}	
 	
 	@Override
 	public Future<Job> submit(Topology topology) {

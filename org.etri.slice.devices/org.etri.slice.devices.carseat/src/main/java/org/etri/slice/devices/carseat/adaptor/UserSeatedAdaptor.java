@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.fullbodydetector;
+package org.etri.slice.devices.carseat.adaptor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -29,25 +29,31 @@ import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.core.perception.MqttEventPublisher;
+import org.etri.slice.api.perception.EventStream;
+import org.etri.slice.commons.car.event.UserSeated;
+import org.etri.slice.core.perception.MqttEventSubscriber;
+import org.etri.slice.devices.carseat.stream.UserSeatedStream;
 
 @Component
 @Instantiate
-public class FullBodyDetectedChannel extends MqttEventPublisher {
+public class UserSeatedAdaptor extends MqttEventSubscriber<UserSeated> {
 
-	private static final long serialVersionUID = -7279948705267205081L;
+	private static final long serialVersionUID = -4554813753815100581L;
 
-	@Property(name="topic", value="full_body_detected")
+	@Property(name="topic", value="user_seated")
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://localhost:1883")
-	private String m_url;
+	private String m_url;	
 	
 	@Requires
 	private WorkingMemory m_wm;
 
 	@Requires
 	private Device m_device;
+	
+	@Requires(from=UserSeatedStream.SERVICE_NAME)
+	private EventStream<UserSeated> m_streaming;
 	
 	protected  String getTopicName() {
 		return m_topic;
@@ -63,6 +69,14 @@ public class FullBodyDetectedChannel extends MqttEventPublisher {
 	
 	protected Device getDevice() {
 		return m_device;
+	}
+	
+	protected Class<?> getEventType() {
+		return UserSeated.class;
+	}
+	
+	protected EventStream<UserSeated> getEventStream() {
+		return m_streaming;
 	}
 		
 	@Validate

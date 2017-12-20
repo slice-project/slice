@@ -45,7 +45,7 @@ public class UltraSonicSensorEmulator implements Runnable {
 	@Validate
 	public void start() {
 		EventQueue.invokeLater(this);
-		s_logger.info("UltraSonicSensor started.");
+		s_logger.info("UltraSonicSensor started");
 	}
 	
 	@Invalidate

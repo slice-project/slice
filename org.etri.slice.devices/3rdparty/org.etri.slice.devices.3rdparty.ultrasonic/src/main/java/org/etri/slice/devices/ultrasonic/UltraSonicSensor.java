@@ -61,7 +61,7 @@ public class UltraSonicSensor implements Runnable {
 		while ( true ) {
 			sleep();
 			
-			ObjectInfo distance = ObjectInfo.builder().distance(2).build();
+			ObjectInfo distance = ObjectInfo.builder().objectId("obj").distance(2).build();
 			m_publisher.sendData(distance);
 			
 			s_logger.info("PUB: " + distance);

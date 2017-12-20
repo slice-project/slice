@@ -27,6 +27,7 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.Slice;
+import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.RuleEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,5 +52,11 @@ public class SliceImpl implements Slice {
 	@Invalidate
 	public void stop() {
 		
+	}
+
+	@Override
+	public Device getDevice() {
+		
+		return null;
 	}		
 }

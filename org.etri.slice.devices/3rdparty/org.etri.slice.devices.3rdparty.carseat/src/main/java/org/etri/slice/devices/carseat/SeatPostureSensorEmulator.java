@@ -48,12 +48,12 @@ public class SeatPostureSensorEmulator implements Runnable {
 	@Validate
 	public void start() {
 		EventQueue.invokeLater(this);
-		s_logger.info("SeatPostureSensor started.");
+		s_logger.info("STARTED: SeatPostureSensorEmulator");
 	}
 	
 	@Invalidate
 	public void stop() {
-		s_logger.info("SeatPostureSensor stoppted");
+		s_logger.info("STOPPED: SeatPostureSensorEmulator");
 		
 	}
 	

@@ -72,7 +72,6 @@ public class RuleEngineImpl implements RuleEngine {
 
 	@Validate
 	public void start() {
-		logger.info("RuleEngine is started");
 	}
 	
 	@Invalidate

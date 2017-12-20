@@ -19,41 +19,23 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.carseat;
+package org.etri.slice.devices.pressuresensor.stream;
 
+import org.apache.edgent.topology.TStream;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
-import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
-import org.etri.slice.api.device.Device;
-import org.etri.slice.core.device.AbstractDevice;
+import org.etri.slice.api.perception.EventStream;
+import org.etri.slice.commons.car.event.UserSeated;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate
-public class CarSeatDevice extends AbstractDevice implements Device {
-
-	@Property(name="groupId", value="org.etri.slice")
-	public String groupId;
+@Instantiate(name=UserSeatedStream.SERVICE_NAME)
+public class UserSeatedStream implements EventStream<UserSeated> {	
+	public static final String SERVICE_NAME = "UserSeatedStream";
 	
-	@Property(name="artifactId", value="org.etri.slice.rules.carseat")
-	public String artifactId;	
-	
-//	@Property(name="version", value="0.0.1")
-	public String version;
-
 	@Override
-	public String getGroupId() {
-		return groupId;
-	}
-
-	@Override
-	public String getArtifactId() {
-		return artifactId;
-	}
-
-	@Override
-	public String getVersion() {
-		return version;
+	public TStream<UserSeated> process(TStream<UserSeated> stream) {
+		return stream;
 	}
 }

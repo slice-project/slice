@@ -23,10 +23,8 @@ package org.etri.slice.devices.pressuresensor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
-import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
-import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.core.device.AbstractDevice;
 
@@ -41,7 +39,7 @@ public class PressureSensor extends AbstractDevice implements Device {
 	@Property(name="artifactId", value="org.etri.slice.rules.pressuresensor")
 	public String artifactId;	
 	
-	@Property(name="version", value="0.0.1")
+//	@Property(name="version", value="0.0.1")
 	public String version;
 
 	@Override
@@ -57,14 +55,5 @@ public class PressureSensor extends AbstractDevice implements Device {
 	@Override
 	public String getVersion() {
 		return version;
-	}
-	
-	@Validate
-	public void setUp() {
-	}
-	
-	@Invalidate
-	public void tearDown() {
-		
 	}
 }

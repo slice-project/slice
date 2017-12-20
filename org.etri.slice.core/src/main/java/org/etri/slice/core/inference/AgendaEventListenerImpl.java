@@ -39,18 +39,16 @@ public class AgendaEventListenerImpl implements AgendaEventListener{
 
 	private static Logger logger = LoggerFactory.getLogger(AgendaEventListenerImpl.class);
 	
-	private final KieSession m_session;
 	private int numberOfMatches;
     private int numberOfFiredMatches;
     
-    public AgendaEventListenerImpl(KieSession session) {
-    	m_session = session;
+    public AgendaEventListenerImpl() {
     }
     
     @Override
     public void matchCreated(MatchCreatedEvent event) {
         numberOfMatches++;
-        logger.info("rule matched[count=" + numberOfMatches + "] => " + event.getMatch().getRule());
+        logger.info("MATCHED: [count=" + numberOfMatches + ", rule=" + event.getMatch().getRule() + "]");
     }
 
     @Override
@@ -65,7 +63,7 @@ public class AgendaEventListenerImpl implements AgendaEventListener{
     @Override
     public void afterMatchFired(AfterMatchFiredEvent event) {
         numberOfFiredMatches++;
-        logger.info("rule fired: " + event.getMatch().getRule());
+        logger.info("FIRED: [count=" + numberOfMatches + ", rule=" + event.getMatch().getRule() + "]");
     }
 
     @Override

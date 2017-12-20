@@ -73,12 +73,12 @@ public class ProductionMemoryImpl implements ProductionMemory {
 		String suffix = token.nextToken();
 		m_verMgr = new RuleVersionManager(prefix, middle, suffix);
 		
-		s_logger.info("SLICE ProductionMemory is started");
+		s_logger.info("STARTED: SLICE ProductionMemory");
 	}
 	
 	@Invalidate
 	public void stop() {
-		m_container.dispose();
+		s_logger.info("STOPPED: SLICE ProductionMemory");
 	}
 	
 	@Override
@@ -99,6 +99,7 @@ public class ProductionMemoryImpl implements ProductionMemory {
 
 	@Override
 	public synchronized void update(RuleModule ruleModule) throws ProductionMemoryException {
+	System.out.println("1111");	
 		try {
 			m_drools.getSessionLock().lock();
 			m_drools.halt();

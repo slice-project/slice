@@ -51,7 +51,7 @@ public class RuleLearningScheduler implements Runnable {
 	@Property(name="loggig.scan.interval", value="10")
 	public long m_interval;
 	
-	@Property(name="minimum.logging.count", value="0")
+	@Property(name="minimum.logging.count", value="20")
 	public long m_minimumLogCount;
 	
 	@Requires
@@ -85,12 +85,13 @@ public class RuleLearningScheduler implements Runnable {
 			while ( !m_stopRequested ) {
 				try {
 					int loggingCount = scanLoggingCount();
+					s_logger.info("SCANNED: new logging count = " + loggingCount);	
+					
 					if ( (loggingCount - m_loggingCount) >= m_minimumLogCount ) {
 						if ( m_learner.learnActionRules() ) {
 							m_loggingCount = loggingCount;
 						}
 					}
-					
 					m_stopCondition.await(m_interval, TimeUnit.SECONDS);
 				} 
 				catch (Exception e) {

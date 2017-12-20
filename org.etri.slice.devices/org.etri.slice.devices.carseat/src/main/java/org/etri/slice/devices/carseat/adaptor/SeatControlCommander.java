@@ -19,14 +19,13 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.carseat;
+package org.etri.slice.devices.carseat.adaptor;
 
 import org.apache.edgent.execution.services.ControlService;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.etri.slice.api.device.Device;
-import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.api.learning.Action;
 import org.etri.slice.api.learning.Action.ActionBuilder;
 import org.etri.slice.api.learning.ActionLogger;
@@ -49,9 +48,6 @@ public class SeatControlCommander implements SeatControl {
 	
 	@Requires
 	private Device m_device;
-	
-	@Requires
-	private WorkingMemory m_wm;
 		
 	public SeatControlCommander() {
 		ControlService control = m_device.getService(ControlService.class);
@@ -70,7 +66,7 @@ public class SeatControlCommander implements SeatControl {
 
 	@Override
 	public double getHeight() {
-		return m_control.getPosture().getHeight();
+		return m_control.getHeight();
 	}
 
 	@Override
@@ -86,7 +82,7 @@ public class SeatControlCommander implements SeatControl {
 
 	@Override
 	public double getPosition() {
-		return m_control.getPosture().getPosition();
+		return m_control.getPosition();
 	}
 
 	@Override
@@ -102,7 +98,7 @@ public class SeatControlCommander implements SeatControl {
 
 	@Override
 	public double getTilt() {
-		return m_control.getPosture().getTilt();
+		return m_control.getTilt();
 	}
 
 	@Override

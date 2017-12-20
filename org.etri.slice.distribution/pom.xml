@@ -59,7 +59,7 @@
 			<groupId>org.etri.slice.devices.3rdparty</groupId>
 			<artifactId>org.etri.slice.devices.3rdparty.carseat</artifactId>
 			<version>0.0.1</version>
-		</dependency>												
+		</dependency>				
 <!--	
 		<dependency>
 			<groupId>org.etri.slice.devices</groupId>

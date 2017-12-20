@@ -130,7 +130,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 		m_scanner = m_services.newKieScanner(m_container);		
 		m_session = m_container.newKieSession();
 		
-		m_session.addEventListener(new AgendaEventListenerImpl(m_session));
+		m_session.addEventListener(new AgendaEventListenerImpl());
 		m_session.addEventListener(new RuleRuntimeEventListenerImpl(m_cm));
 		
 		m_scanner.start(m_scanInterval);
@@ -141,6 +141,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 	public void stop() {
 		m_scanner.stop();
 		m_session.halt();
+		s_logger.info("STOPPED: DroolsRuleEngine");
 	}
 
 	class FireUntilHalt implements Runnable {
@@ -148,14 +149,14 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 		@Override
 		public void run() {
 			try {
-				s_logger.info("STARTED:  fireUntilHalt");
+				s_logger.info("STARTED: fireUntilHalt");
 				m_session.fireUntilHalt();
 			}
 			catch ( IllegalStateException e ) {
 				s_logger.error("ERR: " + e.getMessage());
 			}
 			finally {
-				s_logger.info("STOPPED:  fireUntilHalt");
+				s_logger.info("STOPPED: fireUntilHalt");
 			}
 		}
 	}

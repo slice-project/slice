@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.objectdetector;
+package org.etri.slice.devices.pressuresensor.adaptor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -29,15 +29,18 @@ import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.core.perception.MqttEventPublisher;
+import org.etri.slice.api.perception.EventStream;
+import org.etri.slice.commons.car.event.FullBodyDetected;
+import org.etri.slice.core.perception.MqttEventSubscriber;
+import org.etri.slice.devices.pressuresensor.stream.FullBodyDetectedStream;
 
 @Component
 @Instantiate
-public class ObjectDetectedChannel extends MqttEventPublisher {
+public class FullBodyDetectedAdaptor extends MqttEventSubscriber<FullBodyDetected> {
 	
-	private static final long serialVersionUID = 700290130916030218L;
+	private static final long serialVersionUID = 3605095190247075160L;
 
-	@Property(name="topic", value="object_detected")
+	@Property(name="topic", value="full_body_detected")
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://localhost:1883")
@@ -49,13 +52,16 @@ public class ObjectDetectedChannel extends MqttEventPublisher {
 	@Requires
 	private Device m_device;
 	
+	@Requires(from=FullBodyDetectedStream.SERVICE_NAME)
+	private EventStream<FullBodyDetected> m_streaming;	
+	
 	protected  String getTopicName() {
 		return m_topic;
 	}
 	
 	protected String getMqttURL() {
 		return m_url;
-	}	
+	}
 	
 	protected WorkingMemory getWorkingMemory() {
 		return m_wm;
@@ -64,7 +70,15 @@ public class ObjectDetectedChannel extends MqttEventPublisher {
 	protected Device getDevice() {
 		return m_device;
 	}
-		
+	
+	protected Class<?> getEventType() {
+		return FullBodyDetected.class;
+	}
+	
+	protected EventStream<FullBodyDetected> getEventStream() {
+		return m_streaming;
+	}	
+	
 	@Validate
 	public void start() {
 		super.start();

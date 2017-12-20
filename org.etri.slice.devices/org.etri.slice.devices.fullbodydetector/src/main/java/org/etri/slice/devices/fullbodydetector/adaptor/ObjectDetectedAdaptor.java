@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.devices.fullbodydetector;
+package org.etri.slice.devices.fullbodydetector.adaptor;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -29,12 +29,14 @@ import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
+import org.etri.slice.api.perception.EventStream;
 import org.etri.slice.commons.car.event.ObjectDetected;
 import org.etri.slice.core.perception.MqttEventSubscriber;
+import org.etri.slice.devices.fullbodydetector.stream.ObjectDetectedStream;
 
 @Component
 @Instantiate
-public class ObjectDetectedAdaptor extends MqttEventSubscriber {
+public class ObjectDetectedAdaptor extends MqttEventSubscriber<ObjectDetected> {
 	
 	private static final long serialVersionUID = -6055719384862857396L;
 
@@ -49,6 +51,9 @@ public class ObjectDetectedAdaptor extends MqttEventSubscriber {
 
 	@Requires
 	private Device m_device;
+	
+	@Requires(from=ObjectDetectedStream.SERVICE_NAME)
+	private EventStream<ObjectDetected> m_streaming;	
 	
 	protected  String getTopicName() {
 		return m_topic;
@@ -69,6 +74,10 @@ public class ObjectDetectedAdaptor extends MqttEventSubscriber {
 	protected Class<?> getEventType() {
 		return ObjectDetected.class;
 	}
+	
+	protected EventStream<ObjectDetected> getEventStream() {
+		return m_streaming;
+	}	
 		
 	@Validate
 	public void start() {

@@ -68,7 +68,7 @@ public class UltraSonicSensorGUI {
 		btnDetect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double distance = Double.parseDouble((String)m_distance.getText().trim());
-				ObjectInfo objInfo = ObjectInfo.builder().distance(distance).build();
+				ObjectInfo objInfo = ObjectInfo.builder().objectId("obj").distance(distance).build();
 				m_publisher.sendData(objInfo);
 				
 				s_logger.info("PUB: " + objInfo);				
