@@ -38,7 +38,7 @@
 		<repository>
 			<id>jboss-repo</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>		
+		</repository>	
 		<repository>
 			<id>edgent-repp</id>
 			<url>file:${project.basedir}/lib</url>
@@ -120,7 +120,7 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
-		</dependency>				
+		</dependency>	
 	</dependencies>
 
 	<build>

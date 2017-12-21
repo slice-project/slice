@@ -22,11 +22,18 @@
 			<artifactId>org.etri.slice.api</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-		<dependency>
+<!--   	<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
 			<artifactId>weka-stable</artifactId>
 			<version>3.8.0</version>
 		</dependency>
+--> 	<dependency>
+		    <groupId>weka</groupId>
+		    <artifactId>weka</artifactId>
+		    <version>3.8.1</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/lib/weka.jar</systemPath>
+		</dependency>		
 	</dependencies>
 
 	<build>
@@ -38,12 +45,15 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
-						<Embed-Transitive>true</Embed-Transitive>
+	 					<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
+<!-- 					<Embed-Transitive>true</Embed-Transitive>
 						<Embed-Dependency>${embed.dependency}</Embed-Dependency>
 						<Embed-Directory>${embed.directory}</Embed-Directory>
 						<_exportcontents>${export.packages}</_exportcontents>
+-->						<Embed-Dependency>${embed.dependency}</Embed-Dependency>
+						<Embed-Directory>${embed.directory}</Embed-Directory>
 						<Import-Package>${import.packages}</Import-Package>
+	 					<Private-Package>${private.packages}</Private-Package>						
 					</instructions>
 				</configuration>
 			</plugin>
