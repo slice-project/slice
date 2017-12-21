@@ -23,24 +23,14 @@
 	<repositories>
 		<repository>
 			<id>central</id>
-			<url>http://repo1.maven.org/maven2/</url>
-		</repository>
-		<repository>
-			<id>gradle-artifactory-repo</id>
-			<url>http://gradle.artifactoryonline.com/gradle/libs/</url>		
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<url>https://repo.maven.apache.org/maven2/</url>
 		</repository>
 		<repository>
 			<id>jboss-repo</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>	
+			<url>https://repository.jboss.org/</url>
+		</repository>
 		<repository>
-			<id>edgent-repp</id>
+			<id>local-repp</id>
 			<url>file:${project.basedir}/lib</url>
 			<releases>
 				<enabled>true</enabled>
@@ -52,10 +42,15 @@
 				<checksumPolicy>ignore</checksumPolicy>
 				<updatePolicy>always</updatePolicy>
 			</snapshots>
-		</repository>
+		</repository>				
 	</repositories>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.etri.slice</groupId>
+			<artifactId>dependencies</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.edgent</groupId>
 			<artifactId>edgent-core</artifactId>
@@ -87,16 +82,6 @@
 			<version>${drools.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.kie</groupId>
-			<artifactId>kie-internal</artifactId>
-			<version>${drools.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.apache.felix.ipojo.handler.eventadmin</artifactId>
-			<version>1.8.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.18</version>
@@ -120,7 +105,7 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
-		</dependency>	
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -133,7 +118,6 @@
 				<configuration>
 					<instructions>
 						<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
-						<Embed-Transitive>true</Embed-Transitive>
 						<Embed-Dependency>${embed.dependency}</Embed-Dependency>
 						<Embed-Directory>${embed.directory}</Embed-Directory>
 						<_exportcontents>${export.packages}</_exportcontents>

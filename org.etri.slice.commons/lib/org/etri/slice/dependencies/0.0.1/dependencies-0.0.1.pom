@@ -1,0 +1,52 @@
+<!--
+
+
+    Copyright (c) 2017-2017 SLICE project team
+    http://slice.etri.re.kr
+
+    This file is part of The SLICE components
+
+    This Program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+
+    This Program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with The SLICE components; see the file COPYING.  If not, see
+    <http://www.gnu.org/licenses/>.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.etri.slice</groupId>
+  <artifactId>dependencies</artifactId>
+  <version>0.0.1</version>
+   
+  <repositories>
+    <repository>
+    	<id>lib</id>
+    	<url>file:${project.basedir}/lib</url>
+    </repository>
+  </repositories>
+  
+  <build>
+  	<finalName>event</finalName>
+  		<plugins>
+  			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-compiler-plugin</artifactId>
+  				<version>3.1</version>
+  				<configuration>
+  					<source>1.8</source>
+  					<target>1.8</target>
+  					<encoding>utf-8</encoding>
+  				</configuration>
+  			</plugin>
+  		</plugins>
+  </build>   
+</project>

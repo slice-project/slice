@@ -31,22 +31,8 @@
 
 	<repositories>
 		<repository>
-			<id>jboss-repo</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>	
-		<repository>
 			<id>central</id>
-			<url>http://repo1.maven.org/maven2/</url>
-		</repository>
-		<repository>
-			<id>gradle-artifactory-repo</id>
-			<url>http://gradle.artifactoryonline.com/gradle/libs/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<url>https://repo.maven.apache.org/maven2/</url>
 		</repository>
 	</repositories>
 
