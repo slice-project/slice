@@ -18,7 +18,7 @@
 
 	<repositories>
 		<repository>
-			<id>local-repp</id>
+			<id>local-repo</id>
 			<url>file:${project.basedir}/lib</url>
 			<releases>
 				<enabled>true</enabled>
