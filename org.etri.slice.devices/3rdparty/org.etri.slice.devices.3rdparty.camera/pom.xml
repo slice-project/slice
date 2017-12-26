@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.etri.slice.devices.3rdparty</groupId>
 		<artifactId>org.etri.slice.devices.3rdparty</artifactId>
-		<version>0.0.1</version>
+		<version>0.9.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	
