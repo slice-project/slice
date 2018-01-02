@@ -141,6 +141,7 @@
 						</goals>
 						<configuration>
 							<includeGroupIds>${project.groupId}</includeGroupIds>
+							<excludeArtifactIds>dependencies</excludeArtifactIds>
 							<outputDirectory>${project.build.directory}/bundle</outputDirectory>
 						</configuration>
 					</execution>
