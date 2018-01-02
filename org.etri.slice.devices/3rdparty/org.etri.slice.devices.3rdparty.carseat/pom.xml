@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
-			<version>0.0.1</version>
+			<version>0.9.1</version>
 		</dependency>
 	</dependencies>
 
