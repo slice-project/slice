@@ -21,9 +21,6 @@
  */
 package org.etri.slice.core.learning;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

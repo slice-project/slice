@@ -55,7 +55,6 @@ public class ActionLoggerImpl implements ActionLogger {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(ActionLoggerImpl.class);		
 	private static final String ARFF = ".arff";
-	private static final String NILL = "NILL";
 	
 	@Property(name="logging.root", value="log")
 	private String m_root;
