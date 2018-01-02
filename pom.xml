@@ -109,8 +109,8 @@
 					<version>3.1</version>
 					<configuration>
 						<fork>true</fork>
-						<meminitial>256m</meminitial>
-						<maxmem>512m</maxmem>
+						<meminitial>512m</meminitial>
+						<maxmem>1024m</maxmem>
 						<source>1.8</source>
 						<target>1.8</target>
 						<encoding>UTF-8</encoding>
