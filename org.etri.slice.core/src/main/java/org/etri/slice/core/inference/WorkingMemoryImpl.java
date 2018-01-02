@@ -37,12 +37,6 @@ import org.kie.api.runtime.rule.FactHandle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * 
- * @author Young-Ho Suh (ETRI)
- *
- */
-
 @Component(publicFactory=false, immediate=true)
 @Provides
 @Instantiate
