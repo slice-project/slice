@@ -24,6 +24,7 @@ package org.etri.slice.commons.car.event;
 import org.etri.slice.commons.SliceContext;
 import org.etri.slice.commons.SliceEvent;
 import org.etri.slice.commons.car.BodyPartLength;
+import org.etri.slice.commons.car.UserInfo;
 import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;

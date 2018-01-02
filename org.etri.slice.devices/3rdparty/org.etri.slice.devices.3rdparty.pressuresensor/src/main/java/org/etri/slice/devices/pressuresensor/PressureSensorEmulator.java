@@ -29,6 +29,7 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
+import org.etri.slice.commons.car.event.Pressure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ public class PressureSensorEmulator implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(PressureSensorEmulator.class);	
 
-	@Publishes(name="pub:seat_pressure", topics="seat_pressure", dataKey="seat.pressure")
+	@Publishes(name="PressureSensorEmulator", topics=Pressure.topic, dataKey=Pressure.dataKey)
 	private Publisher m_publisher;
 	
 	@Validate

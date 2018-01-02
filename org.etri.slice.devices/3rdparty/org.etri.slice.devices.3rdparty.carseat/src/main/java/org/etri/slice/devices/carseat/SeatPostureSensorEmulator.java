@@ -57,8 +57,8 @@ public class SeatPostureSensorEmulator implements Runnable {
 		
 	}
 	
-	@Subscriber(name="SeatPostureAdaptor", topics="seat_posture", 
-			dataKey="seat.posture", dataType="org.etri.slice.commons.car.event.SeatPosture")
+	@Subscriber(name="SeatPostureAdaptor", topics=SeatPosture.topic, 
+			dataKey=SeatPosture.dataKey, dataType=SeatPosture.dataType)
 	public void receive(SeatPosture posture) {
 		m_window.setCurrentSeatPosture(posture);
 	}	

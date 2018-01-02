@@ -41,7 +41,7 @@ public class UltraSonicSensor implements Runnable {
 	@Property(name="interval", value="10000")
 	public long m_interval;	
 	
-	@Publishes(name="pub:object_distance", topics="object_distance", dataKey="object.distance")
+	@Publishes(name="UltraSonicSensor", topics=ObjectInfo.topic, dataKey=ObjectInfo.dataKey)
 	private Publisher m_publisher;
 	
 	@Validate

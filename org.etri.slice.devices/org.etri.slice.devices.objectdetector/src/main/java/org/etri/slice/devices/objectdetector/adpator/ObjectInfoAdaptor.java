@@ -41,7 +41,7 @@ public class ObjectInfoAdaptor extends EventSubscriber<ObjectInfo> {
 	
 	private static final long serialVersionUID = 3600697679325960166L;
 
-	@Property(name="topic", value="object_distance")
+	@Property(name="topic", value=ObjectInfo.topic)
 	private String m_topic;
 	
 	@Requires
@@ -69,8 +69,8 @@ public class ObjectInfoAdaptor extends EventSubscriber<ObjectInfo> {
 		return m_streaming;
 	}		
 	
-	@Subscriber(name="sub:object_distance", topics="object_distance",
-			dataKey="object.distance", dataType="org.etri.slice.commons.car.ObjectInfo")
+	@Subscriber(name="ObjectInfoAdaptor", topics=ObjectInfo.topic,
+			dataKey=ObjectInfo.dataKey, dataType=ObjectInfo.dataType)
 	public void receive(ObjectInfo event) {
 		super.subscribe(event);
 	}

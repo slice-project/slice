@@ -29,6 +29,7 @@ import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 import org.etri.slice.commons.SliceException;
+import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.service.FullBodyDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,7 @@ public class CVFullBodyDetector implements FullBodyDetector {
 
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);	
 	
-	@Publishes(name="pub:body_part_length", topics="body_part_length", dataKey="body.part.length")
+	@Publishes(name="CVFullBodyDetector", topics=BodyPartLength.topic, dataKey=BodyPartLength.dataKey)
 	private Publisher m_publisher;	
 
 	@Override

@@ -41,7 +41,7 @@ public class BodyPartLengthAdaptor extends EventSubscriber<BodyPartLength> {
 	
 	private static final long serialVersionUID = -3025688723718385870L;
 
-	@Property(name="topic", value="body_part_length")
+	@Property(name="topic", value=BodyPartLength.topic)
 	private String m_topic;
 	
 	@Requires
@@ -69,8 +69,8 @@ public class BodyPartLengthAdaptor extends EventSubscriber<BodyPartLength> {
 		return m_streaming;
 	}
 		
-	@Subscriber(name="sub:body_part_length", topics="body_part_length",
-			dataKey="body.part.length", dataType="org.etri.slice.commons.car.BodyPartLength")
+	@Subscriber(name="BodyPartLengthAdaptor", topics=BodyPartLength.topic,
+			dataKey=BodyPartLength.dataKey, dataType=BodyPartLength.dataType)
 	public void receive(BodyPartLength event) {
 		super.subscribe(event);
 	}

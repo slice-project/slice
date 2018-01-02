@@ -35,6 +35,15 @@ import lombok.NoArgsConstructor;
 @SliceContext
 public class ObjectInfo {
 
+	public static class Field {
+		public static final String objectId = "ObjectInfo.objectId";
+		public static final String distance = "ObjectInfo.distance";
+	}
+	
+	public static final String dataType = "org.etri.slice.commons.car.ObjectInfo";
+	public static final String topic = "object_info";
+	public static final String dataKey = "dataKey:" + dataType;
+	
 	private String objectId;
 	private double distance;
 }

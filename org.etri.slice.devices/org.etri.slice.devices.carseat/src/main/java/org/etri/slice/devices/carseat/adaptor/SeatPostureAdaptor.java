@@ -41,7 +41,7 @@ public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 
 	private static final long serialVersionUID = 870371290384307371L;
 
-	@Property(name="topic", value="seat_posture")
+	@Property(name="topic", value=SeatPosture.topic)
 	private String m_topic;
 	
 	@Requires
@@ -69,8 +69,8 @@ public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 		return m_device;
 	}
 		
-	@Subscriber(name="SeatPostureAdaptor", topics="seat_posture", 
-			dataKey="seat.posture", dataType="org.etri.slice.commons.car.event.SeatPosture")
+	@Subscriber(name="SeatPostureAdaptor", topics=SeatPosture.topic, 
+			dataKey=SeatPosture.dataKey, dataType=SeatPosture.dataType)
 	public void receive(SeatPosture event) {
 		super.subscribe(event);
 	}

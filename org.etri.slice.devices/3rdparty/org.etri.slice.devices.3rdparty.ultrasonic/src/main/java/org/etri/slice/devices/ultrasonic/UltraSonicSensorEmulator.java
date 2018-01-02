@@ -29,6 +29,7 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
+import org.etri.slice.commons.car.ObjectInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ public class UltraSonicSensorEmulator implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(UltraSonicSensorEmulator.class);	
 
-	@Publishes(name="pub:object_distance", topics="object_distance", dataKey="object.distance")
+	@Publishes(name="UltraSonicSensorEmulator", topics=ObjectInfo.topic, dataKey=ObjectInfo.dataKey)
 	private Publisher m_publisher;
 	
 	@Validate

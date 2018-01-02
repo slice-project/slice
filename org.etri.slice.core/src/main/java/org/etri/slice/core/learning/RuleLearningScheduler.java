@@ -90,7 +90,7 @@ public class RuleLearningScheduler implements Runnable {
 							m_loggingCount = loggingCount;
 						}
 					}
-					m_stopCondition.await(m_interval, TimeUnit.SECONDS);
+					m_stopCondition.await(m_interval, TimeUnit.MINUTES);
 				} 
 				catch (Exception e) {
 					s_logger.error("ERR: " + e.getMessage());

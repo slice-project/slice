@@ -41,7 +41,7 @@ public class PressureAdaptor extends EventSubscriber<Pressure> {
 	
 	private static final long serialVersionUID = 1376928655849005615L;
 
-	@Property(name="topic", value="seat_pressure")
+	@Property(name="topic", value=Pressure.topic)
 	private String m_topic;
 	
 	@Requires
@@ -69,8 +69,8 @@ public class PressureAdaptor extends EventSubscriber<Pressure> {
 		return m_streaming;
 	}	
 		
-	@Subscriber(name="sub", topics="seat_pressure",
-			dataKey="seat.pressure", dataType="org.etri.slice.commons.car.event.Pressure")
+	@Subscriber(name="PressureAdaptor", topics=Pressure.topic,
+			dataKey=Pressure.dataKey, dataType=Pressure.dataType)
 	public void receive(Pressure event) {
 		super.subscribe(event);
 	}
