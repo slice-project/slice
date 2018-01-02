@@ -31,4 +31,6 @@ public interface ActionLogger {
 	File getActionLogFile(String id) throws ActionLogNotFoundException;
 	
 	Collection<String> getActionLogIdsAll();
+	
+	int getLogCount();
 }

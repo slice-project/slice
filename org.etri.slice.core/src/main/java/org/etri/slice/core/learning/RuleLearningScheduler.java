@@ -65,7 +65,7 @@ public class RuleLearningScheduler implements Runnable {
 	
 	@Validate
 	public void init() throws Exception {
-		m_loggingCount = scanLoggingCount();
+		m_loggingCount = m_logger.getLogCount();
 		new Thread(this).start();
 	}
 	
@@ -84,10 +84,11 @@ public class RuleLearningScheduler implements Runnable {
 		try {
 			while ( !m_stopRequested ) {
 				try {
-					int loggingCount = scanLoggingCount();
-					s_logger.info("SCANNED: new logging count = " + loggingCount);	
+					int loggingCount = m_logger.getLogCount();
+					int newLoggingCount = loggingCount - m_loggingCount;
+					s_logger.info("SCANNED: new logging count = " + newLoggingCount);	
 					
-					if ( (loggingCount - m_loggingCount) >= m_minimumLogCount ) {
+					if ( newLoggingCount >= m_minimumLogCount ) {
 						if ( m_learner.learnActionRules() ) {
 							m_loggingCount = loggingCount;
 						}
@@ -103,18 +104,5 @@ public class RuleLearningScheduler implements Runnable {
 			m_lock.unlock();
 		}
 		s_logger.info("STOPPED: RuleLearningScheduler.run()");		
-	}
-	
-	private int scanLoggingCount() throws Exception {
-		Collection<String> logIds = m_logger.getActionLogIdsAll();
-		int loggingCount = 0;
-		for ( String logId : logIds ) {
-			FileReader reader = new FileReader(m_logger.getActionLogFile(logId));
-			BufferedReader buffered = new BufferedReader(reader);
-			loggingCount += buffered.lines().count();
-			buffered.close();
-		}
-		
-		return loggingCount;
 	}
 }

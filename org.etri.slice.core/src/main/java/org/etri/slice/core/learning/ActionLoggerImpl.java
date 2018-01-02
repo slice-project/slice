@@ -21,8 +21,10 @@
  */
 package org.etri.slice.core.learning;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
@@ -80,7 +82,7 @@ public class ActionLoggerImpl implements ActionLogger {
 	}
 	
 	@Override
-	public void log(Action action) throws ActionLoggerException {
+	public synchronized void log(Action action) throws ActionLoggerException {
 		String relation = action.getRelation();
 		ActionLog logger = m_loggers.get(relation);
 		
@@ -99,7 +101,7 @@ public class ActionLoggerImpl implements ActionLogger {
 	}
 
 	@Override
-	public File getActionLogFile(String id) throws ActionLogNotFoundException {
+	public synchronized File getActionLogFile(String id) throws ActionLogNotFoundException {
 		if ( !m_loggers.containsKey(id) ) {
 			throw new ActionLogNotFoundException("ActionLog[id=" + id + "]");
 		}
@@ -108,14 +110,33 @@ public class ActionLoggerImpl implements ActionLogger {
 	}
 
 	@Override
-	public Collection<String> getActionLogIdsAll() {		
+	public synchronized Collection<String> getActionLogIdsAll() {		
 		return m_loggers.keySet();
-	}		
+	}
+	
+	@Override
+	public synchronized int getLogCount() {		
+		Collection<String> logIds = m_loggers.keySet();
+		
+		int loggingCount = 0;
+		for ( String logId : logIds ) {
+			try {
+				FileReader reader = new FileReader(m_loggers.get(logId).getLogFile());
+				BufferedReader buffered = new BufferedReader(reader);
+				loggingCount += buffered.lines().skip(m_loggers.get(logId).getDataIndex()).count();
+				buffered.close();
+			}
+			catch ( Throwable ignored ) {}
+		}
+		
+		return loggingCount;
+	}
 	
 	static class ActionLog {
 		private final File m_file;
 		private final ContextMemory m_cm;
 		private BufferedWriter m_writer;
+		private int m_dataIndex = 0;
 		
 		public ActionLog(File logFile, ContextMemory cm) {
 			m_file = logFile;
@@ -126,6 +147,10 @@ public class ActionLoggerImpl implements ActionLogger {
 			return m_file;
 		}
 		
+		public int getDataIndex() {
+			return m_dataIndex;
+		}
+		
 		public synchronized void log(Action action) throws IOException {			
 			m_writer = new BufferedWriter(new FileWriter(m_file, true));
 			for ( String context : action.getContext() ) {
@@ -134,7 +159,9 @@ public class ActionLoggerImpl implements ActionLogger {
 					cv = m_cm.getContext(context);
 				} 
 				catch ( ContextNotFoundException e ) {
-					cv = NILL;
+					m_writer.close();
+					s_logger.info("SKIPPED LOGGING: context[id=" + context + "] not found");
+					return;
 				}
 				m_writer.write(cv.toString());
 				m_writer.write(", ");
@@ -147,7 +174,7 @@ public class ActionLoggerImpl implements ActionLogger {
 		
 		public void prePareHeader(Action action) throws IOException {
 			m_writer = new BufferedWriter(new FileWriter(m_file, true));
-			m_writer.write("@relation ");
+			m_writer.write("@relation "); 
 			m_writer.write(action.getRelation());
 			m_writer.newLine();
 			m_writer.newLine();
@@ -156,6 +183,7 @@ public class ActionLoggerImpl implements ActionLogger {
 				m_writer.write("@attribute ");
 				m_writer.write(context);
 				m_writer.write("\tnumeric\n");
+				m_dataIndex++;
 			}
 			m_writer.write("@attribute ");
 			m_writer.write(action.getAction());
@@ -164,6 +192,7 @@ public class ActionLoggerImpl implements ActionLogger {
 			m_writer.newLine();
 			m_writer.write("@data\n");
 			m_writer.close();
+			m_dataIndex += 5;
 		}
 	}
 }
