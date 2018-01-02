@@ -43,7 +43,7 @@ public class ObjectDetectedAdaptor extends MqttEventSubscriber<ObjectDetected> {
 	@Property(name="topic", value="object_detected")
 	private String m_topic;
 	
-	@Property(name="url", value="tcp://localhost:1883")
+	@Property(name="url", value="tcp://129.254.88.176:1883")
 	private String m_url;
 	
 	@Requires

@@ -43,7 +43,7 @@ public class FullBodyDetectedChannel extends MqttEventPublisher<FullBodyDetected
 	@Property(name="topic", value="full_body_detected")
 	private String m_topic;
 	
-	@Property(name="url", value="tcp://localhost:1883")
+	@Property(name="url", value="tcp://129.254.88.176:1883")
 	private String m_url;
 	
 	@Requires
