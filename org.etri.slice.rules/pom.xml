@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.etri.slice</groupId>
 	<artifactId>org.etri.slice.rules</artifactId>
-	<version>0.0.1</version>
+	<version>0.9.1</version>
 
 	<packaging>pom</packaging>
 	<name>The SLICE rules</name>
@@ -14,32 +14,7 @@
 		<module>org.etri.slice.rules.objectdetector</module>
 		<module>org.etri.slice.rules.pressuresensor</module>
 	</modules>
-
-	<repositories>
-		<repository>
-			<id>central</id>
-			<url>https://repo.maven.apache.org/maven2/</url>
-		</repository>	
-		<repository>
-			<id>jboss-repo</id>
-			<url>https://repository.jboss.org/</url>
-		</repository>
-		<repository>
-			<id>local-repp</id>
-			<url>file:${project.basedir}/lib</url>
-			<releases>
-				<enabled>true</enabled>
-				<checksumPolicy>ignore</checksumPolicy>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<checksumPolicy>ignore</checksumPolicy>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>		
-	</repositories>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -54,28 +29,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-core</artifactId>
-			<version>6.5.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.commons</artifactId>
-			<version>0.0.1</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.edgent</groupId>
-					<artifactId>edgent-core</artifactId>				
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.edgent</groupId>
-					<artifactId>edgent-connectors</artifactId>				
-				</exclusion>	
-			</exclusions>
-		</dependency>
-	</dependencies>
-
+	
 </project>

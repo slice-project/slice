@@ -1,31 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.apache.edgent</groupId>
-  <artifactId>edgent-connectors</artifactId>
+  <groupId>org.etri.slice</groupId>
+  <artifactId>dependencies</artifactId>
   <version>1.1.0</version>
-  
+   
   <repositories>
-	<repository>
-		<id>central</id>
-		<url>https://repo.maven.apache.org/maven2/</url>
-	</repository>
-	<repository>
-		<id>jboss-repo</id>
-		<url>https://repository.jboss.org/</url>
-	</repository>
     <repository>
     	<id>lib</id>
     	<url>file:${project.basedir}/lib</url>
     </repository>
   </repositories>
-  
-  <dependencies>
-	 <dependency>
-		<groupId>org.eclipse.paho</groupId>
-		<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-		<version>1.1.1</version>
-	  </dependency>
-  </dependencies> 
   
   <build>
   	<finalName>event</finalName>

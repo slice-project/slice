@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.etri.slice</groupId>
 	<artifactId>org.etri.slice</artifactId>
-	<version>0.0.1</version>
+	<version>0.9.1</version>
 
 	<packaging>pom</packaging>
 	<name>The SLICE components</name>
@@ -108,6 +108,9 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.1</version>
 					<configuration>
+						<fork>true</fork>
+						<meminitial>256m</meminitial>
+						<maxmem>512m</maxmem>
 						<source>1.8</source>
 						<target>1.8</target>
 						<encoding>UTF-8</encoding>

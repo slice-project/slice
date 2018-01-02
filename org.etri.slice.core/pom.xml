@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.etri.slice</groupId>
 		<artifactId>org.etri.slice</artifactId>
-		<version>0.0.1</version>
+		<version>0.9.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -18,7 +18,7 @@
 
 	<repositories>
 		<repository>
-			<id>local-repp</id>
+			<id>local-repo</id>
 			<url>file:${project.basedir}/lib</url>
 			<releases>
 				<enabled>true</enabled>
@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.api</artifactId>
-			<version>0.0.1</version>
+			<version>0.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>

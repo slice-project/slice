@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>org.etri.slice</groupId>
 		<artifactId>org.etri.slice.rules</artifactId>
-		<version>0.0.1</version>
+		<version>0.9.1</version>
 	</parent>
 
 	<artifactId>org.etri.slice.rules.objectdetector</artifactId>
-	<version>0.0.1</version>
+	<version>0.9.1</version>
 	<name>... rules for a object detector device </name>
 
 </project>
