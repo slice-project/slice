@@ -45,7 +45,7 @@ public class RuleLearningScheduler implements Runnable {
 
 	private static Logger s_logger = LoggerFactory.getLogger(RuleLearningScheduler.class);	
 	
-	@Property(name="loggig.scan.interval", value="10")
+	@Property(name="loggig.scan.interval", value="3")
 	public long m_interval;
 	
 	@Property(name="minimum.logging.count", value="20")
