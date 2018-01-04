@@ -40,7 +40,6 @@ public class SeatController implements SeatControl {
 	
 	@Publishes(name="pub:seat_posture", topics=SeatPosture.topic, dataKey=SeatPosture.dataKey)
 	private Publisher m_publisher;
-
 	private SeatPosture m_posture = new SeatPosture(30, 30, 30);
 	
 	@Override
