@@ -34,6 +34,12 @@ import org.etri.slice.commons.car.service.FullBodyDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * @author Donghun Lee (ETRI)
+ *
+ */
+
 @Component(publicFactory=false, immediate=true)
 @Provides
 @Instantiate
