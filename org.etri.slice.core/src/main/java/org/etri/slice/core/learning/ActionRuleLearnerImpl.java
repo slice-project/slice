@@ -129,7 +129,7 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 			List<Future<Integer>> futures = new ArrayList<Future<Integer>>();
 			
 			for ( String logId : logIds ) {
-				futures.add(executor.submit(new ActionRuleLearner(logId)));
+				futures.add(executor.submit(new ActionLogLearner(logId)));
 			}
 			
 			int learnedRulesCount = 0;
@@ -150,12 +150,12 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 		return false;
 	}
 	
-	class ActionRuleLearner implements Callable<Integer> {		
+	class ActionLogLearner implements Callable<Integer> {		
 		
 		private final String m_logId;
 		private RuleSet m_ruleSet;
 		
-		public ActionRuleLearner(String logId) {
+		public ActionLogLearner(String logId) {
 			m_logId = logId;
 			try {
 				m_ruleSet = m_ruleModule.getRuleSet(m_logId);
