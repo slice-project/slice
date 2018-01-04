@@ -38,11 +38,6 @@ import org.etri.slice.commons.car.BodyPartLength;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * 
- * @author yhsuh
- *
- */
 public class FullBodyDetectorGUI extends JDialog {
 	private static final long serialVersionUID = -6851989135154088890L;
 	private static Logger s_logger = LoggerFactory.getLogger(FullBodyDetectorGUI.class);
