@@ -43,7 +43,7 @@ public class SeatPostureChangedChannel extends MqttEventPublisher<SeatPostureCha
 	@Property(name="topic", value="seat_posture_changed")
 	private String m_topic;
 	
-	@Property(name="url", value="tcp://129.254.88.176:1883")
+	@Property(name="url", value="tcp://129.254.88.119:1883")
 	private String m_url;
 	
 	@Requires

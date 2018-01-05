@@ -88,9 +88,7 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	@GuardedBy("m_lock") private Classifier m_classifier;
 	@GuardedBy("m_lock") private Filter m_filter;
 	private Lock m_lock = new ReentrantLock();
-	
-	
-	
+		
 	@Validate
 	public void init() throws Exception {
 		m_ruleModule = m_pm.getRuleModule();
