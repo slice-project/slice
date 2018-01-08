@@ -9,7 +9,7 @@ global FullBodyDetector fullBodyDetector;
 
 rule "Initiate the Full-Body Detection"
 	when
-	   ObjectDetected(distance < 3.0)
+	   ObjectDetected(objInfo.distance < 3.0)
 	then
 	   fullBodyDetector.detect();
 end

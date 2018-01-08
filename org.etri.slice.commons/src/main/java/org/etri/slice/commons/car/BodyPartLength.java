@@ -22,6 +22,7 @@
 package org.etri.slice.commons.car;
 
 import org.etri.slice.commons.SliceContext;
+import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,8 +33,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
+@Role(Role.Type.EVENT)
 @SliceContext
-public class BodyPartLength {	
+public class BodyPartLength {
+	
 	public static class Field {
 		public static final String head = "BodyPartLength.head";
 		public static final String torso = "BodyPartLength.torso";

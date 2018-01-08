@@ -22,6 +22,7 @@
 package org.etri.slice.commons.car;
 
 import org.etri.slice.commons.SliceContext;
+import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,6 +33,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
+@Role(Role.Type.EVENT)
 @SliceContext
 public class UserInfo {
 	public static final String dataType = "org.etri.slice.commons.car.UserInfo";

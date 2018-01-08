@@ -52,14 +52,14 @@
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
-			<artifactId>org.etri.slice.devices.carseat</artifactId>
+			<artifactId>org.etri.slice.devices.fullbodydetector</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice.devices.3rdparty</groupId>
-			<artifactId>org.etri.slice.devices.3rdparty.carseat</artifactId>
+			<artifactId>org.etri.slice.devices.3rdparty.camera</artifactId>
 			<version>0.9.1</version>
-		</dependency>									
+		</dependency>		
 <!--	
 		<dependency>
 			<groupId>org.etri.slice.devices</groupId>

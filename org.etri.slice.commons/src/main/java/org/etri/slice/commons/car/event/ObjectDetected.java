@@ -23,6 +23,7 @@ package org.etri.slice.commons.car.event;
 
 import org.etri.slice.commons.SliceContext;
 import org.etri.slice.commons.SliceEvent;
+import org.etri.slice.commons.car.ObjectInfo;
 import org.kie.api.definition.type.Role;
 
 import lombok.AllArgsConstructor;
@@ -43,6 +44,6 @@ import lombok.NoArgsConstructor;
 public class ObjectDetected extends SliceEvent {
 	private static final long serialVersionUID = 7486118320696795796L;
 	
-	private Double distance;
+	private ObjectInfo objInfo;
 }
 
