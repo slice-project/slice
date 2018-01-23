@@ -20,6 +20,11 @@
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.9.1</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.pi4j</groupId>
+		    <artifactId>pi4j-core</artifactId>
+		    <version>1.1</version>
+		</dependency>		
 	</dependencies>
 
 	<build>

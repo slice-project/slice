@@ -36,6 +36,6 @@ public class PressureStream implements EventStream<Pressure> {
 	
 	@Override
 	public TStream<Pressure> process(TStream<Pressure> stream) {
-		return stream;
+		return stream.filter(pressure -> pressure.getValue() > 30);
 	}
 }

@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 
 
 @Component
-@Instantiate
+//@Instantiate
 public class PressureSensorEmulator implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(PressureSensorEmulator.class);	
