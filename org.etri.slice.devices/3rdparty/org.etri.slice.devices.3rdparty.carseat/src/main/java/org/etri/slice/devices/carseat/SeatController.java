@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-//@Instantiate
+@Instantiate
 public class SeatController implements SeatControl {
 
 	private static Logger s_logger = LoggerFactory.getLogger(SeatController.class);	
