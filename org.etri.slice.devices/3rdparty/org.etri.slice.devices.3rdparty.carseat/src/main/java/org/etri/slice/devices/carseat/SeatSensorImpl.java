@@ -55,7 +55,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 public class SeatSensorImpl implements Sensor{
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatSensorImpl.class);	
-	private static final String s_filePath = "/workspace/save_position.txt";
+	private static final String s_filePath = "workspace/save_position.txt";
 	
 	@Publishes(name="pub:seat_posture", topics=SeatPosture.topic, dataKey=SeatPosture.dataKey)
 	private Publisher m_publisher;
