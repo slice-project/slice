@@ -25,10 +25,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.felix.ipojo.annotations.Invalidate;
+import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 import org.etri.slice.commons.Sensor;
+import org.etri.slice.commons.SliceException;
 import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.service.SeatControl;
+import org.etri.slice.commons.util.JmxClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,15 +49,28 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 public class SeatSensorImpl implements Sensor{
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatSensorImpl.class);	
-	private static final String fileName = "/workspace/save_position.txt";
+	private static final String s_filePath = "/workspace/save_position.txt";
 	
 	@Publishes(name="pub:seat_posture", topics=SeatPosture.topic, dataKey=SeatPosture.dataKey)
 	private Publisher m_publisher;
+	private JmxClient m_client;
+	private SeatControl m_control;
+	
 	private GpioController m_gpio;	
 	private GpioPinDigitalInput m_SCCGP;
 	
+	
 	@Override
-	public void start() {
+	@Validate
+	public void start() throws SliceException {
+		try {
+			m_client = new JmxClient(3403);
+			m_control = m_client.getProxy(SeatControl.class);
+		}
+		catch ( Exception e ) {
+			throw new SliceException(e);
+		}
+		
 		m_gpio = GpioFactory.getInstance();		
 		m_SCCGP = m_gpio.provisionDigitalInputPin(RaspiPin.GPIO_06, PinPullResistance.PULL_UP); //Static Control Check Gpio Pin, GPIO_25
 		
@@ -70,6 +88,10 @@ public class SeatSensorImpl implements Sensor{
 						SeatPosture seatPosture = loadPosition();
 						m_publisher.sendData(seatPosture);
 						s_logger.info("PUB: " + seatPosture);	
+						
+						m_control.setHeight(seatPosture.getHeight());
+						m_control.setPosition(seatPosture.getPosition());
+						m_control.setTilt(seatPosture.getTilt());
 					}
 				} 
 				catch (InterruptedException e) {
@@ -82,6 +104,7 @@ public class SeatSensorImpl implements Sensor{
 	}
 
 	@Override
+	@Invalidate
 	public void stop() {
 		m_gpio.shutdown();
 		s_logger.info("STOPPED: " + "SeatSensor");
@@ -91,7 +114,7 @@ public class SeatSensorImpl implements Sensor{
 		SeatPosture seatPosture = new SeatPosture(0,0,0);
 		
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(fileName));
+			BufferedReader in = new BufferedReader(new FileReader(s_filePath));
 			String str;
 			if((str = in.readLine()) !=null) {
 				seatPosture.setHeight(Double.parseDouble(str));

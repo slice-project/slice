@@ -23,13 +23,15 @@ package org.etri.slice.devices.carseat;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.felix.ipojo.annotations.Component;
-import org.apache.felix.ipojo.annotations.Instantiate;
+import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Provides;
+import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.commons.car.event.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 import org.slf4j.Logger;
@@ -51,7 +53,9 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 public class SeatControlImpl implements SeatControl {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatControlImpl.class);
-	private static final String fileName = "workspace/save_position.txt";
+	private static final String s_workspace = "workspace";
+	private static final String s_fileName = "save_position.txt";
+	private static final String s_filePath = s_workspace + "/" + s_fileName;
 	
 	private static final int MAX_HEIGHT = 44;
 	private static final int MAX_POSITION = 240;
@@ -124,8 +128,18 @@ public class SeatControlImpl implements SeatControl {
 	}
 	
 	public SeatControlImpl() {
-		s_logger.info("Gpio Init!!");
+
+	}
+	
+	@Validate
+	public void init() throws Exception {
 		gpioInit();
+		s_logger.info("Gpio Init!!");
+	}
+	
+	@Invalidate
+	public void fini() {
+		
 	}
 	
 	@Override
@@ -265,8 +279,12 @@ public class SeatControlImpl implements SeatControl {
 		setTilt(posture.getTilt());
 	}	
 	
-	private void gpioInit() {
-		
+	private void gpioInit() throws Exception {
+		File workspace = new File(s_workspace);
+		if ( !workspace.exists() ) {
+			workspace.mkdir();
+		}
+		new File(workspace, s_fileName).createNewFile();
 		loadPosition();
 		
 		static_remote_mode = STATIC_REMOTE_MODE.STATIC;
@@ -621,7 +639,7 @@ public class SeatControlImpl implements SeatControl {
 		}
 		
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter out = new BufferedWriter(new FileWriter(s_filePath));
 			
 			out.write(Double.toString(seatPosture.getHeight()));
 			out.newLine();
@@ -641,7 +659,7 @@ public class SeatControlImpl implements SeatControl {
 		seatPosture = new SeatPosture(0,0,0);
 		
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(fileName));
+			BufferedReader in = new BufferedReader(new FileReader(s_filePath));
 			String str;
 			if((str = in.readLine()) !=null) {
 				seatPosture.setHeight(Double.parseDouble(str));
