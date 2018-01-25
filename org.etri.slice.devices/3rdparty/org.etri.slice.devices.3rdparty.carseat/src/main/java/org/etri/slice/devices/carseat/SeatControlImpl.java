@@ -29,6 +29,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.felix.ipojo.annotations.Component;
+import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
@@ -49,7 +50,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-//@Instantiate
+@Instantiate
 public class SeatControlImpl implements SeatControl {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatControlImpl.class);
