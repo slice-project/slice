@@ -134,7 +134,7 @@ public class SeatControlImpl implements SeatControl {
 	
 	@Validate
 	public void init() throws Exception {
-		gpioInit();
+//		gpioInit();
 		s_logger.info("Gpio Init!!");
 	}
 	

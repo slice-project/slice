@@ -59,24 +59,12 @@ public class SeatSensorImpl implements Sensor{
 	
 	@Publishes(name="pub:seat_posture", topics=SeatPosture.topic, dataKey=SeatPosture.dataKey)
 	private Publisher m_publisher;
-	private JmxClient m_client;
-	private SeatControl m_control;
-	
 	private GpioController m_gpio;	
 	private GpioPinDigitalInput m_SCCGP;
-	
-	
+		
 	@Override
 	@Validate
 	public void start() throws SliceException {
-		try {
-			m_client = new JmxClient(3403);
-			m_control = m_client.getProxy(SeatControl.class);
-		}
-		catch ( Exception e ) {
-			throw new SliceException(e);
-		}
-		
 		m_gpio = GpioFactory.getInstance();		
 		m_SCCGP = m_gpio.provisionDigitalInputPin(RaspiPin.GPIO_06, PinPullResistance.PULL_UP); //Static Control Check Gpio Pin, GPIO_25
 		
@@ -95,12 +83,14 @@ public class SeatSensorImpl implements Sensor{
 						m_publisher.sendData(seatPosture);
 						s_logger.info("PUB: " + seatPosture);	
 						
-						m_control.setHeight(seatPosture.getHeight());
-						m_control.setPosition(seatPosture.getPosition());
-						m_control.setTilt(seatPosture.getTilt());
+						JmxClient client = new JmxClient(3403);
+						SeatControl control = client.getProxy(SeatControl.class);
+						control.setHeight(seatPosture.getHeight());
+						control.setPosition(seatPosture.getPosition());
+						control.setTilt(seatPosture.getTilt());
 					}
 				} 
-				catch (InterruptedException e) {
+				catch (Exception e) {
 					e.printStackTrace();
 				}
 			}

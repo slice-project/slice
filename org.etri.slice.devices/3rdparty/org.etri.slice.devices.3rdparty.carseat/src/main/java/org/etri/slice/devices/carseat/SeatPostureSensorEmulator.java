@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
 
 
 @Component
-@Instantiate
+//@Instantiate
 public class SeatPostureSensorEmulator implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatPostureSensorEmulator.class);	
