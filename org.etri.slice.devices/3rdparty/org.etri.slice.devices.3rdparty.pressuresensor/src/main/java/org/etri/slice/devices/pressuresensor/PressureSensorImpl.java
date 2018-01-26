@@ -80,6 +80,7 @@ public class PressureSensorImpl implements Sensor, Runnable {
 	public void start() {
 		m_gpio = GpioFactory.getInstance();		
 		m_PGP = m_gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, PinPullResistance.PULL_UP); //Press, Gpio, Pin, GPIO_09
+		m_PGP.isLow();
 		
 		new Thread(this).start();
 		s_logger.info("PressSensor started.");

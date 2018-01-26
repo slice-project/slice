@@ -30,5 +30,5 @@ import org.etri.slice.commons.Startable;
 public interface FullBodyDetector extends Startable {
 	static final String id = "fullBodyDetector";
 	
-	public void detect() throws SliceException;
+	public void detect(double distance) throws SliceException;
 }

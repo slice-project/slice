@@ -9,9 +9,9 @@ global FullBodyDetector fullBodyDetector;
 
 rule "Initiate the Full-Body Detection"
 	when
-	   ObjectDetected(objInfo.distance < 3.0)
+	   ObjectDetected($d: objInfo.distance < 3.0)
 	then
-	   fullBodyDetector.detect();
+	   fullBodyDetector.detect($d);
 end
 
 rule "FullBody Detection Notification"

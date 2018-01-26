@@ -55,7 +55,7 @@ public class CVFullBodyDetector implements FullBodyDetector {
 	}
 
 	@Override
-	public void detect() throws SliceException {
+	public void detect(double distance) throws SliceException {
 	
 		try {
 			FullBodyDetectorGUI dialog = new FullBodyDetectorGUI(m_publisher);

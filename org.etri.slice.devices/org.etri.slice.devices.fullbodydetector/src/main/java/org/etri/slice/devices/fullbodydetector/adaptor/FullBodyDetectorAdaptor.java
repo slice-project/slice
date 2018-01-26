@@ -53,8 +53,8 @@ public class FullBodyDetectorAdaptor implements FullBodyDetector {
 	}
 
 	@Override
-	public void detect() throws SliceException {
-		m_detector.detect();
+	public void detect(double distance) throws SliceException {
+		m_detector.detect(distance);
 	}
 	
 }
