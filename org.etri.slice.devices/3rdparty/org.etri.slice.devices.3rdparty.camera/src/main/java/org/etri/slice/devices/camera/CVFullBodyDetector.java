@@ -21,6 +21,9 @@
  */
 package org.etri.slice.devices.camera;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.swing.JDialog;
 
 import org.apache.felix.ipojo.annotations.Component;
@@ -43,6 +46,11 @@ public class CVFullBodyDetector implements FullBodyDetector {
 	
 	@Publishes(name="CVFullBodyDetector", topics=BodyPartLength.topic, dataKey=BodyPartLength.dataKey)
 	private Publisher m_publisher;	
+	private final ExecutorService m_executor;
+	
+	public CVFullBodyDetector() {
+		m_executor = Executors.newSingleThreadExecutor();
+	}
 
 	@Override
 	public void start() throws SliceException {
@@ -56,7 +64,6 @@ public class CVFullBodyDetector implements FullBodyDetector {
 
 	@Override
 	public void detect(double distance) throws SliceException {
-	
 		try {
 			FullBodyDetectorGUI dialog = new FullBodyDetectorGUI(m_publisher);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

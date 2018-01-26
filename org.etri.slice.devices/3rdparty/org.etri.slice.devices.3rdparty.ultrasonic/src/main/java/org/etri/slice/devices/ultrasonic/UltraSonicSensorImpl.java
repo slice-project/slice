@@ -70,7 +70,6 @@ public class UltraSonicSensorImpl implements Runnable {
 	
 	@Validate
 	public void start() {
-		System.out.println("Ultra Gpio Init");
 		gpio = GpioFactory.getInstance();
 		
 		TRIGER = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_24, PinState.LOW); //down, direct, A, Gpio, Pin, GPIO_19
@@ -100,7 +99,7 @@ public class UltraSonicSensorImpl implements Runnable {
 				m_stopCondition.await(m_interval, TimeUnit.MILLISECONDS);
 				
 				TRIGER.high();
-				m_stopCondition.await(1, TimeUnit.MICROSECONDS);
+				m_stopCondition.await(1, TimeUnit.MILLISECONDS);
 				TRIGER.low();
 				
 				while ( ECHO.getState() == PinState.LOW ) {
