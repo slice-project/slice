@@ -88,7 +88,7 @@ public class UltraSonicSensorImpl implements Runnable {
            			}
            			else if( event.getState() == false ) {
            				pulseEnd = System.nanoTime();
-           				distance = (pulseEnd - pulseStart) / 1000 / 100;
+           				distance = (pulseEnd - pulseStart) / 1000 / 1000;
            				if ( distance > 10 && distance <4000 ) {
 		   					ObjectInfo objInfo = ObjectInfo.builder().objectId("obj").distance(distance).build();
 		   					m_publisher.sendData(objInfo);			
