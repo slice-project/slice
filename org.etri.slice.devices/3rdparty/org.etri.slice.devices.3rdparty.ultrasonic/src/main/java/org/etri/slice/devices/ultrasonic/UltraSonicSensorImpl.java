@@ -91,13 +91,10 @@ public class UltraSonicSensorImpl implements Runnable {
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent arg0) {
 				if(ECHO.getState() == PinState.HIGH ) {
 					pulseStart = System.currentTimeMillis();
-					s_logger.info("DETECTED: high");
 				}
 				
 				if(ECHO.getState() == PinState.LOW ) {
-					pulseEnd = System.currentTimeMillis();
-					s_logger.info("DETECTED: low");;
-					
+					pulseEnd = System.currentTimeMillis();					
 					dist = pulseEnd - pulseStart;
 					
 					ObjectInfo distance = ObjectInfo.builder().objectId("obj").distance(dist).build();
