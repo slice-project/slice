@@ -38,15 +38,11 @@ import org.etri.slice.commons.car.ObjectInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalInput;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.PinPullResistance;
-import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.RaspiPin;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+import com.pi4j.wiringpi.Gpio;
+import com.pi4j.wiringpi.GpioInterrupt;
+import com.pi4j.wiringpi.GpioInterruptEvent;
+import com.pi4j.wiringpi.GpioInterruptListener;
+import com.pi4j.wiringpi.GpioUtil;
 
 @Component
 @Instantiate
@@ -64,45 +60,46 @@ public class UltraSonicSensorImpl implements Runnable {
 	@Publishes(name="UltraSonicSensor", topics=ObjectInfo.topic, dataKey=ObjectInfo.dataKey)
 	private Publisher m_publisher;
 	
-	GpioController gpio;
-	
-	GpioPinDigitalOutput LED_R;
-	GpioPinDigitalOutput LED_G;
-	GpioPinDigitalOutput POINTER;
-	//A0,B0,C0,PWM0
-	GpioPinDigitalOutput TRIGER;
-	GpioPinDigitalInput ECHO;
-	
 	@Validate
-	public void start() {
-		gpio = GpioFactory.getInstance();
+	public void start() {	
+        if (Gpio.wiringPiSetup() == -1) {            
+        		s_logger.error("FAILED: GPIO SETUP FAILED");
+            return;
+        }
 		
-		LED_R = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13, PinState.HIGH); //Red Led GPIO_9
-		LED_G = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, PinState.HIGH); //Green Led GPIO_10
-		POINTER = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_15, PinState.HIGH); //Pointer GPIO_14
+		GpioUtil.export(0, GpioUtil.DIRECTION_OUT);
+		Gpio.pinMode(0, Gpio.OUTPUT);
 		
-		TRIGER = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW); //Gpio, Pin, GPIO_17
+		GpioUtil.export(2, GpioUtil.DIRECTION_IN);
+		GpioUtil.setEdgeDetection(2, GpioUtil.EDGE_RISING);
+		Gpio.pinMode(2, Gpio.INPUT);
+        Gpio.pullUpDnControl(2, Gpio.PUD_UP);
+        GpioInterrupt.enablePinStateChangeCallback(2);       
+
+        // create and add GPIO listener
+        GpioInterrupt.addListener(new GpioInterruptListener() {        	
+        		long pulseStart, pulseEnd;
+        		double distance;
+            @Override
+            public void pinStateChange(GpioInterruptEvent event) {
+           		if( event.getPin() == 2 ) { 
+           			if( event.getState() == true ) {                	   
+           				pulseStart = System.nanoTime();
+           			}
+           			else if( event.getState() == false ) {
+           				pulseEnd = System.nanoTime();
+           				distance = (pulseEnd - pulseStart) / 1000 / 100;
+           				if ( distance > 10 && distance <4000 ) {
+		   					ObjectInfo objInfo = ObjectInfo.builder().objectId("obj").distance(distance).build();
+		   					m_publisher.sendData(objInfo);			
+		   					s_logger.info("PUB: " + objInfo);	   					   
+	   				   }
+                   }
+                }
+            }
+        });
+
 		
-		ECHO = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN); //Gpio, Pin, GPIO_27
-		ECHO.addListener(new GpioPinListenerDigital() {
-			long pulseStart, pulseEnd, dist;
-			
-			@Override
-			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent arg0) {
-				if(ECHO.getState() == PinState.HIGH ) {
-					pulseStart = System.currentTimeMillis();
-				}
-				
-				if(ECHO.getState() == PinState.LOW ) {
-					pulseEnd = System.currentTimeMillis();					
-					dist = pulseEnd - pulseStart;
-					
-					ObjectInfo distance = ObjectInfo.builder().objectId("obj").distance(dist).build();
-					m_publisher.sendData(distance);			
-					s_logger.info("PUB: " + distance);
-				}
-			}
-		});		
 		
 		new Thread(this).start();
 		s_logger.info("UltraSonicSensor started.");
@@ -114,7 +111,6 @@ public class UltraSonicSensorImpl implements Runnable {
 		m_stopRequested = true;
 		m_stopCondition.signal();
 		m_lock.unlock();
-		gpio.shutdown();
 		s_logger.info("UltraSonicSensor stoppted");		
 	}
 
@@ -122,18 +118,12 @@ public class UltraSonicSensorImpl implements Runnable {
 	public void run() {
 		m_lock.lock();
 		try {
-			while ( !m_stopRequested ) {
-				TRIGER.low();
-				try {
-					m_stopCondition.await(10,  TimeUnit.MICROSECONDS);
-				} catch (InterruptedException e) {
-				}
+			while ( !m_stopRequested ) {				
+				Gpio.digitalWrite(0, 0);
+				m_stopCondition.await(10,  TimeUnit.MILLISECONDS);
 				
-				TRIGER.high();
-				try {
-					m_stopCondition.await(100,  TimeUnit.MICROSECONDS);
-				} catch (InterruptedException e) {
-				}
+				Gpio.digitalWrite(0, 1);
+				m_stopCondition.await(100,  TimeUnit.MILLISECONDS);
 			}
 		}
 		catch ( Exception e ) {
