@@ -45,6 +45,8 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 @Component
 @Instantiate
@@ -64,16 +66,46 @@ public class UltraSonicSensorImpl implements Runnable {
 	
 	GpioController gpio;
 	
+	GpioPinDigitalOutput LED_R;
+	GpioPinDigitalOutput LED_G;
+	GpioPinDigitalOutput POINTER;
 	//A0,B0,C0,PWM0
 	GpioPinDigitalOutput TRIGER;
-	GpioPinDigitalInput ECHO;	
+	GpioPinDigitalInput ECHO;
 	
 	@Validate
 	public void start() {
 		gpio = GpioFactory.getInstance();
 		
-		TRIGER = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_24, PinState.LOW); //down, direct, A, Gpio, Pin, GPIO_19
-		ECHO = gpio.provisionDigitalInputPin(RaspiPin.GPIO_23, PinPullResistance.PULL_DOWN); //up, down, CS, Gpio, Pin, GPIO_13		
+		LED_R = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13, PinState.HIGH); //Red Led GPIO_9
+		LED_G = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, PinState.HIGH); //Green Led GPIO_10
+		POINTER = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_15, PinState.HIGH); //Pointer GPIO_14
+		
+		TRIGER = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW); //Gpio, Pin, GPIO_17
+		
+		ECHO = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN); //Gpio, Pin, GPIO_27
+		ECHO.addListener(new GpioPinListenerDigital() {
+			long pulseStart, pulseEnd, dist;
+			
+			@Override
+			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent arg0) {
+				if(ECHO.getState() == PinState.HIGH ) {
+					pulseStart = System.currentTimeMillis();
+					s_logger.info("DETECTED: high");
+				}
+				
+				if(ECHO.getState() == PinState.LOW ) {
+					pulseEnd = System.currentTimeMillis();
+					s_logger.info("DETECTED: low");;
+					
+					dist = pulseEnd - pulseStart;
+					
+					ObjectInfo distance = ObjectInfo.builder().objectId("obj").distance(dist).build();
+					m_publisher.sendData(distance);			
+					s_logger.info("PUB: " + distance);
+				}
+			}
+		});		
 		
 		new Thread(this).start();
 		s_logger.info("UltraSonicSensor started.");
@@ -91,31 +123,20 @@ public class UltraSonicSensorImpl implements Runnable {
 
 	@Override
 	public void run() {
-		long pulseStart = 0, pulseEnd = 0;
 		m_lock.lock();
 		try {
 			while ( !m_stopRequested ) {
 				TRIGER.low();
-				m_stopCondition.await(m_interval, TimeUnit.MILLISECONDS);
+				try {
+					m_stopCondition.await(10,  TimeUnit.MICROSECONDS);
+				} catch (InterruptedException e) {
+				}
 				
 				TRIGER.high();
-				m_stopCondition.await(1, TimeUnit.MILLISECONDS);
-				TRIGER.low();
-				
-				while ( ECHO.getState() == PinState.LOW ) {
-					pulseStart = System.currentTimeMillis();
+				try {
+					m_stopCondition.await(100,  TimeUnit.MICROSECONDS);
+				} catch (InterruptedException e) {
 				}
-				
-				while ( ECHO.getState() == PinState.HIGH ) {
-					pulseEnd = System.currentTimeMillis();
-				}
-				
-				long pulseDuration = pulseEnd - pulseStart;
-				long dist = pulseDuration * 17000 / 100;
-				
-				ObjectInfo distance = ObjectInfo.builder().objectId("obj").distance(dist).build();
-				m_publisher.sendData(distance);			
-				s_logger.info("PUB: " + distance);
 			}
 		}
 		catch ( Exception e ) {
@@ -123,7 +144,6 @@ public class UltraSonicSensorImpl implements Runnable {
 		}
 		finally {
 			m_lock.unlock();
-			gpio.shutdown();
 		}
 	}
 }
