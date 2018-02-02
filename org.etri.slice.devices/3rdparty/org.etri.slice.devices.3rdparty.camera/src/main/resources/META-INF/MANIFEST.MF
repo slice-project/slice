@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Built-By: pi
+Bundle-NativeCode: lib/amd64-linux.so; osname=linux;
