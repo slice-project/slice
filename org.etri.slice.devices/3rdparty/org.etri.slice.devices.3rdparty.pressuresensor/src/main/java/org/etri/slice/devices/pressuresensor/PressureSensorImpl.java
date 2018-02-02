@@ -105,6 +105,7 @@ public class PressureSensorImpl implements Sensor, Runnable {
 					if( press_mode == PRESS_MODE.NONE || press_mode == PRESS_MODE.DOWN ) {
 						press_mode = PRESS_MODE.UP;
 						Pressure detected = Pressure.builder().value(0).build();
+						m_publisher.sendData(detected);
 						s_logger.info("PUB: " + detected);
 					}
 				}
@@ -112,6 +113,7 @@ public class PressureSensorImpl implements Sensor, Runnable {
 					if( press_mode == PRESS_MODE.NONE || press_mode == PRESS_MODE.UP ) {
 						press_mode = PRESS_MODE.DOWN;
 						Pressure detected = Pressure.builder().value(50).build();
+						m_publisher.sendData(detected);
 						s_logger.info("PUB: " + detected);
 					}
 				}
