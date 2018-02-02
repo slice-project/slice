@@ -40,8 +40,9 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 	
 	@Override
 	public TStream<ObjectInfo> process(TStream<ObjectInfo> stream) {
-		TWindow<ObjectInfo,Integer> window = stream.last(10, TimeUnit.SECONDS, tuple -> 0);
+		TWindow<ObjectInfo,Double> window = stream.last(10, TimeUnit.SECONDS, tuple -> tuple.getDistance());
 		TStream<ObjectInfo> batched = window.batch((tuples, key) -> {
+			System.out.println("####### " + key);
 			Iterator<ObjectInfo> iter = tuples.iterator();
 			double sum = 0;
 			int count = 0;
@@ -49,7 +50,10 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 				sum += iter.next().getDistance();
 				count++;
 			}
-			double average = sum / count;	
+			double average = 0;
+			if ( count > 0 ) {
+				average = sum / count;
+			}
 			return ObjectInfo.builder().objectId("obj").distance(average).build();
 		});
 		
