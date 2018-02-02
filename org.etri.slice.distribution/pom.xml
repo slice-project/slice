@@ -50,17 +50,28 @@
 			<artifactId>org.etri.slice.core</artifactId>
 			<version>0.9.1</version>
 		</dependency>
- 		<dependency>
+		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
-			<artifactId>org.etri.slice.devices.objectdetector</artifactId>
+			<artifactId>org.etri.slice.devices.fullbodydetector</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice.devices.3rdparty</groupId>
-			<artifactId>org.etri.slice.devices.3rdparty.ultrasonic</artifactId>
+			<artifactId>org.etri.slice.devices.3rdparty.camera</artifactId>
 			<version>0.9.1</version>
-		</dependency>	
-<!--	
+		</dependency>		
+		
+		<!--  
+		<dependency>
+			<groupId>org.etri.slice.devices</groupId>
+			<artifactId>org.etri.slice.devices.carseat</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.etri.slice.devices.3rdparty</groupId>
+			<artifactId>org.etri.slice.devices.3rdparty.carseat</artifactId>
+			<version>0.9.1</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.carseat</artifactId>
@@ -79,16 +90,6 @@
 		<dependency>
 			<groupId>org.etri.slice.devices.3rdparty</groupId>
 			<artifactId>org.etri.slice.devices.3rdparty.ultrasonic</artifactId>
-			<version>0.9.1</version>
-		</dependency>		
-		<dependency>
-			<groupId>org.etri.slice.devices</groupId>
-			<artifactId>org.etri.slice.devices.fullbodydetector</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice.devices.3rdparty</groupId>
-			<artifactId>org.etri.slice.devices.3rdparty.camera</artifactId>
 			<version>0.9.1</version>
 		</dependency>		
 		<dependency>
@@ -169,6 +170,8 @@
 									<includes>
 										<include>run_slice.bat</include>
 										<include>run_slice.sh</include>
+										<include>MobileNetSSD_deploy.caffemodel</include>
+										<include>MobileNetSSD_deploy.prototxt</include>
 									</includes>
 								</resource>
 							</resources>

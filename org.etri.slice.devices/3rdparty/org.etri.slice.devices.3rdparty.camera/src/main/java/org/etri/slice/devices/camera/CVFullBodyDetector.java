@@ -24,16 +24,18 @@ package org.etri.slice.devices.camera;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.swing.JDialog;
-
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
+import org.apache.felix.ipojo.annotations.Instantiate;
+import org.apache.felix.ipojo.annotations.Invalidate;
+import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 import org.etri.slice.commons.SliceException;
 import org.etri.slice.commons.car.BodyPartLength;
 import org.etri.slice.commons.car.service.FullBodyDetector;
+import org.opencv.core.Core;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,20 +45,21 @@ import org.slf4j.LoggerFactory;
 public class CVFullBodyDetector implements FullBodyDetector {
 
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);	
+	private OpenCVDetect myOpenCV = OpenCVDetect.getInstance();
+    private final ExecutorService m_executor = Executors.newSingleThreadExecutor();
 	
 	@Publishes(name="CVFullBodyDetector", topics=BodyPartLength.topic, dataKey=BodyPartLength.dataKey)
 	private Publisher m_publisher;	
-	private final ExecutorService m_executor;
-	
-	public CVFullBodyDetector() {
-		m_executor = Executors.newSingleThreadExecutor();
-	}
 
+	@Validate
 	@Override
 	public void start() throws SliceException {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		myOpenCV.OpenCamera(3280, 2464);
 		s_logger.info("STARTED : " + this.getClass().getSimpleName());		
 	}
 
+	@Invalidate
 	@Override
 	public void stop() {
 		s_logger.info("STOPPED : " + this.getClass().getSimpleName());		
@@ -64,12 +67,28 @@ public class CVFullBodyDetector implements FullBodyDetector {
 
 	@Override
 	public void detect(double distance) throws SliceException {
-		try {
-			FullBodyDetectorGUI dialog = new FullBodyDetectorGUI(m_publisher);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
+		
+		
+		
+		Runnable aRunnable = new Runnable() {
+			public void run() {
+				
+			    double height = myOpenCV.analysisImage(distance);
+			    double head = 0;
+				double torso = 0;
+				double arms = 0;
+				double legs = 0;
+
+				BodyPartLength bodyLength = new BodyPartLength(head, torso, arms, legs, height);
+				m_publisher.sendData(bodyLength);
+
+				s_logger.info("PUB: " + bodyLength);
+				
+			}
+		};
+		
+		m_executor.execute(aRunnable);
+		
+		
 	}
 }

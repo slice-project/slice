@@ -20,9 +20,35 @@
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.9.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.opencv</groupId>
+			<artifactId>opencv</artifactId>
+			<version>331</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/resources/lib/opencv-331.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
+
+	<resources>
+		<resource>
+			<directory>src/main/resources</directory>
+		</resource>
+	</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -30,6 +56,9 @@
 				<configuration>
 					<instructions>
 						<Private-Package>${private.packages}</Private-Package>
+						<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
+						<Embed-Dependency>${embed.dependency}</Embed-Dependency>
+						<Embed-Directory>${embed.directory}</Embed-Directory>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -45,6 +74,19 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<archive>
+						<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>properties-maven-plugin</artifactId>
