@@ -40,8 +40,8 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 	
 	@Override
 	public TStream<ObjectInfo> process(TStream<ObjectInfo> stream) {
-		TWindow<ObjectInfo,Integer> window = stream.last(3, TimeUnit.SECONDS, tuple -> 0);
-		stream = window.batch((tuples, key) -> {
+		TWindow<ObjectInfo,Integer> window = stream.last(10, TimeUnit.SECONDS, tuple -> 0);
+		TStream<ObjectInfo> batched = window.batch((tuples, key) -> {
 			Iterator<ObjectInfo> iter = tuples.iterator();
 			double sum = 0;
 			int count = 0;
@@ -53,6 +53,6 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 			return ObjectInfo.builder().objectId("obj").distance(average).build();
 		});
 		
-		return stream;
+		return batched;
 	}
 }
