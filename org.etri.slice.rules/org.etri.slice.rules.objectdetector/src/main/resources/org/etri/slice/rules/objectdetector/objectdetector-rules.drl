@@ -6,7 +6,7 @@ import org.etri.slice.commons.car.event.ObjectDetected;
 
 rule "Object Detection Notification"
 	when 
-	   $info: ObjectInfo(distance < 3.0)
+	   $info: ObjectInfo
 	then 
 	   channels["object_detected"].send(new ObjectDetected($info));
 end

@@ -42,7 +42,6 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 	public TStream<ObjectInfo> process(TStream<ObjectInfo> stream) {
 		TWindow<ObjectInfo,Double> window = stream.last(10, TimeUnit.SECONDS, tuple -> tuple.getDistance());
 		TStream<ObjectInfo> batched = window.batch((tuples, key) -> {
-			System.out.println("####### " + key);
 			Iterator<ObjectInfo> iter = tuples.iterator();
 			double sum = 0;
 			int count = 0;
@@ -51,12 +50,12 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 				count++;
 			}
 			double average = 0;
-			if ( count > 0 ) {
+			if ( count > 8 ) {
 				average = sum / count;
 			}
 			return ObjectInfo.builder().objectId("obj").distance(average).build();
 		});
 		
-		return batched;
+		return batched.filter(tuple -> tuple.getDistance() > 0);
 	}
 }

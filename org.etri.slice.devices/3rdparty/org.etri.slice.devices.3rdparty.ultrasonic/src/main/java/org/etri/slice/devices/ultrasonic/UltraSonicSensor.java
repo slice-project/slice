@@ -38,7 +38,7 @@ public class UltraSonicSensor implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(UltraSonicSensor.class);	
 
-	@Property(name="interval", value="10000")
+	@Property(name="interval", value="1000")
 	public long m_interval;	
 	
 	@Publishes(name="UltraSonicSensor", topics=ObjectInfo.topic, dataKey=ObjectInfo.dataKey)

@@ -45,7 +45,7 @@ import com.pi4j.wiringpi.GpioInterruptListener;
 import com.pi4j.wiringpi.GpioUtil;
 
 @Component
-@Instantiate
+//@Instantiate
 public class UltraSonicSensorImpl implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(UltraSonicSensorImpl.class);	
