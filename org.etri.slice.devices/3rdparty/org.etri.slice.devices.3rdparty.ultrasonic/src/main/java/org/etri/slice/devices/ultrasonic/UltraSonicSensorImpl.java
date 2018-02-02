@@ -98,8 +98,6 @@ public class UltraSonicSensorImpl implements Runnable {
                 }
             }
         });
-
-		
 		
 		new Thread(this).start();
 		s_logger.info("UltraSonicSensor started.");

@@ -21,7 +21,11 @@
  */
 package org.etri.slice.devices.objectdetector.stream;
 
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.edgent.topology.TStream;
+import org.apache.edgent.topology.TWindow;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
@@ -36,6 +40,19 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 	
 	@Override
 	public TStream<ObjectInfo> process(TStream<ObjectInfo> stream) {
+		TWindow<ObjectInfo,Integer> window = stream.last(3, TimeUnit.SECONDS, tuple -> 0);
+		stream = window.batch((tuples, key) -> {
+			Iterator<ObjectInfo> iter = tuples.iterator();
+			double sum = 0;
+			int count = 0;
+			while ( iter.hasNext() ) {
+				sum += iter.next().getDistance();
+				count++;
+			}
+			double average = sum / count;	
+			return ObjectInfo.builder().objectId("obj").distance(average).build();
+		});
+		
 		return stream;
 	}
 }
