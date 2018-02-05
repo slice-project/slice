@@ -7,13 +7,13 @@
 		<version>0.9.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	
-	<packaging>bundle</packaging>	
-	
+
+	<packaging>bundle</packaging>
+
 	<artifactId>org.etri.slice.devices.3rdparty.camera</artifactId>
 	<name>... org.etri.slice.devices.3rdparty.camera</name>
 	<description>org.etri.slice.devices.3rdparty.camera :: camera</description>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
@@ -27,13 +27,11 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/src/main/resources/lib/opencv-331.jar</systemPath>
 		</dependency>
-
 		<dependency>
 			<groupId>net.java.dev.jna</groupId>
 			<artifactId>jna</artifactId>
 			<version>4.2.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -43,12 +41,11 @@
 	</dependencies>
 
 	<build>
-
-	<resources>
-		<resource>
-			<directory>src/main/resources</directory>
-		</resource>
-	</resources>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -74,24 +71,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.0.2</version>
-				<configuration>
-					<archive>
-						<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-					</archive>
-				</configuration>
-			</plugin>
-			
-			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>properties-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>	
-	
+	</build>
+
 </project>
