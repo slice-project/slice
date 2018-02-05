@@ -26,9 +26,8 @@ import java.util.concurrent.Executors;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
-import org.apache.felix.ipojo.annotations.Provides;
-import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
+import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
@@ -45,7 +44,7 @@ import org.slf4j.LoggerFactory;
 public class CVFullBodyDetector implements FullBodyDetector {
 
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);	
-	private OpenCVDetect myOpenCV = OpenCVDetect.getInstance();
+	private OpenCVDetect m_detector = OpenCVDetect.getInstance();
     private final ExecutorService m_executor = Executors.newSingleThreadExecutor();
 	
 	@Publishes(name="CVFullBodyDetector", topics=BodyPartLength.topic, dataKey=BodyPartLength.dataKey)
@@ -55,31 +54,31 @@ public class CVFullBodyDetector implements FullBodyDetector {
 	@Override
 	public void start() throws SliceException {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		myOpenCV.OpenCamera(3280, 2464);
-		s_logger.info("STARTED : " + this.getClass().getSimpleName());		
+		
+		if ( !m_detector.openCamera(3280, 2464) ) {
+			throw new SliceException("failed to open a camera");
+		}
+		s_logger.info("STARTED: " + this.getClass().getSimpleName());		
 	}
 
 	@Invalidate
 	@Override
 	public void stop() {
-		s_logger.info("STOPPED : " + this.getClass().getSimpleName());		
+		m_detector.closeCamera();
+		s_logger.info("STOPPED: " + this.getClass().getSimpleName());		
 	}
 
 	@Override
-	public void detect(double distance) throws SliceException {
-		
-		
+	public void detect(double distance) throws SliceException {	
 		
 		Runnable aRunnable = new Runnable() {
 			public void run() {
-				
-			    double height = myOpenCV.analysisImage(distance);
-			    double head = 0;
-				double torso = 0;
-				double arms = 0;
-				double legs = 0;
+				long before = System.currentTimeMillis();
+			    double height = m_detector.analysisImage(distance);
+			    long after = System.currentTimeMillis();
+			    s_logger.info("Elapsed time: " + (float)(after - before) / 1000f + "secs.");
 
-				BodyPartLength bodyLength = new BodyPartLength(head, torso, arms, legs, height);
+			    BodyPartLength bodyLength = BodyPartLength.builder().height(height).build();
 				m_publisher.sendData(bodyLength);
 
 				s_logger.info("PUB: " + bodyLength);
@@ -87,8 +86,6 @@ public class CVFullBodyDetector implements FullBodyDetector {
 			}
 		};
 		
-		m_executor.execute(aRunnable);
-		
-		
+		m_executor.execute(aRunnable);		
 	}
 }

@@ -30,103 +30,97 @@ import org.opencv.dnn.Net;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
 
-
 public class OpenCVDetect {
 
-   private static OpenCVDetect instance;
-   private Net net;
-   private VideoCapture camera;
+	private static OpenCVDetect s_instance;
+	private Net m_net;
+	private VideoCapture m_camera;
 
-   static {
-      System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-   }
+	static {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+	}
 
-   private OpenCVDetect() {
-      String proto = "MobileNetSSD_deploy.prototxt";
-      String model = "MobileNetSSD_deploy.caffemodel";
-      net = Dnn.readNetFromCaffe(proto, model);
-   }
+	private OpenCVDetect() {
+		String proto = "MobileNetSSD_deploy.prototxt";
+		String model = "MobileNetSSD_deploy.caffemodel";
+		m_net = Dnn.readNetFromCaffe(proto, model);
+	}
 
-   public static OpenCVDetect getInstance() {
-     if ( null == instance ) 
-        instance = new OpenCVDetect();
-     return instance;
-   }
-   
-   public void OpenCamera(int width, int height) {
-	   
-		  camera = new VideoCapture(0);
-		  camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH,width);
-		  camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT,height);
-		  
-		  try 
-	      {
-	          Thread.sleep(1000);
-	      } catch (Exception e) {
-	          e.printStackTrace();
-	      }
-	      if(!camera.isOpened()){
-	          System.out.println("Camera Error");
-	      }
-	      else{
-	          System.out.println("Camera OK?");
-	      }
-	   
-   }
+	public static OpenCVDetect getInstance() {
+		if (null == s_instance)
+			s_instance = new OpenCVDetect();
+		return s_instance;
+	}
 
-   public double analysisImage(double distance) {
-	   
+	public boolean openCamera(int width, int height) {
+		m_camera = new VideoCapture(0);
+		m_camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH, width);
+		m_camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT, height);
 
-      final int IN_WIDTH = 300;
-      final int IN_HEIGHT = 300;
-      final float WH_RATIO = (float)(IN_WIDTH / IN_HEIGHT);
-      final double IN_SCALE_FACTOR = 0.007843;
-      final double MEAN_VAL = 127.5;
-      final double THRESHOLD = 0.2;
-      final int PERSON_CLASSID = 15;
+		try {
+			Thread.sleep(1000);
+		} 
+		catch ( Exception ignored ) { }
+		
+		if ( !m_camera.isOpened() ) {
+			return false;
+		} 
+		return true;
+	}
+	
+	public void closeCamera() {
+		m_camera.release();
+	}
 
-      Mat image = new Mat();
-      camera.read(image);
-      
-      int cols = image.cols();
-      int rows = image.rows();
+	public double analysisImage(double distance) {
+		final int IN_WIDTH = 300;
+		final int IN_HEIGHT = 300;
+		final double IN_SCALE_FACTOR = 0.007843;
+		final double MEAN_VAL = 127.5;
+		final double THRESHOLD = 0.2;
+		final int PERSON_CLASSID = 15;
 
-      Mat blob = Dnn.blobFromImage(image, IN_SCALE_FACTOR, 
-    		  new Size(IN_WIDTH, IN_HEIGHT),
-    		  new Scalar(MEAN_VAL, MEAN_VAL, MEAN_VAL), false, false);
+		Mat image = new Mat();
+		m_camera.read(image);
 
-      net.setInput(blob);
+		int cols = image.cols();
+		int rows = image.rows();
 
-      Mat detections = net.forward();
+		Mat blob = Dnn.blobFromImage(image, IN_SCALE_FACTOR, new Size(IN_WIDTH, IN_HEIGHT),
+				new Scalar(MEAN_VAL, MEAN_VAL, MEAN_VAL), false, false);
 
-      detections = detections.reshape(1, (int)detections.total() / 7);
+		m_net.setInput(blob);
 
-      double maxHeightPixel = 0.0;
+		Mat detections = m_net.forward();
 
-      for ( int i = 0; i < detections.rows(); ++i) {
-        double confidence = detections.get(i, 2)[0];
-        if ( confidence <= THRESHOLD )
-          continue;
-        int classId = (int)detections.get(i, 1)[0];
-        if ( classId != PERSON_CLASSID )
-          continue;
+		detections = detections.reshape(1, (int) detections.total() / 7);
 
-        double xLeftBottom = (double)(detections.get(i, 3)[0] * cols);
-        double yLeftBottom = (double)(detections.get(i, 4)[0] * rows);
-        double xRightTop = (double)(detections.get(i, 5)[0] * cols);
-        double yRightTop = (double)(detections.get(i, 6)[0] * rows);
+		double maxHeightPixel = 0.0;
 
-        double heightPixel = yRightTop - yLeftBottom;
-	if ( heightPixel > maxHeightPixel ) 
-	   maxHeightPixel = heightPixel;
-      }
-      if ( maxHeightPixel <= 0.0 )
-         return 0.0;
-      
-      double result = 0.0000404 * (distance*100) *maxHeightPixel;
-      result = (result + (distance*100) * 0.0078) * 0.826;
-      result = result - 14.0;
+		for (int i = 0; i < detections.rows(); ++i) {
+			double confidence = detections.get(i, 2)[0];
+			if (confidence <= THRESHOLD)
+				continue;
+			int classId = (int) detections.get(i, 1)[0];
+			if (classId != PERSON_CLASSID)
+				continue;
 
-      return result;
-   }
+			double xLeftBottom = (double) (detections.get(i, 3)[0] * cols);
+			double yLeftBottom = (double) (detections.get(i, 4)[0] * rows);
+			double xRightTop = (double) (detections.get(i, 5)[0] * cols);
+			double yRightTop = (double) (detections.get(i, 6)[0] * rows);
+
+			double heightPixel = yRightTop - yLeftBottom;
+			if (heightPixel > maxHeightPixel)
+				maxHeightPixel = heightPixel;
+		}
+		if (maxHeightPixel <= 0.0)
+			return 0.0;
+
+		double result = 0.0000404 * (distance * 100) * maxHeightPixel;
+		result = (result + (distance * 100) * 0.0078) * 0.826;
+		result = result - 14.0;
+
+		return result;
+	}
 }
