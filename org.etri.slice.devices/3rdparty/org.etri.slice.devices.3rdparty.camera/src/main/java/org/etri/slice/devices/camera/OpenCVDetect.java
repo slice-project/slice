@@ -88,15 +88,12 @@ public class OpenCVDetect {
 
 		Mat blob = Dnn.blobFromImage(image, IN_SCALE_FACTOR, new Size(IN_WIDTH, IN_HEIGHT),
 				new Scalar(MEAN_VAL, MEAN_VAL, MEAN_VAL), false, false);
-
 		m_net.setInput(blob);
 
 		Mat detections = m_net.forward();
-
 		detections = detections.reshape(1, (int) detections.total() / 7);
 
 		double maxHeightPixel = 0.0;
-
 		for (int i = 0; i < detections.rows(); ++i) {
 			double confidence = detections.get(i, 2)[0];
 			if (confidence <= THRESHOLD)
