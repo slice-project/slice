@@ -27,6 +27,7 @@ import java.util.concurrent.Executors;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
+import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
@@ -44,6 +45,12 @@ import org.slf4j.LoggerFactory;
 public class CVFullBodyDetector implements FullBodyDetector {
 
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);
+	
+	@Property(name="frame_width", value="3280")
+	private int m_frameWidth;
+	@Property(name="frame_height", value="2464")
+	private int m_frameHeight;
+	
 	private OpenCVDetect m_detector = OpenCVDetect.getInstance();
 	private final ExecutorService m_executor = Executors.newSingleThreadExecutor();
 
@@ -55,7 +62,7 @@ public class CVFullBodyDetector implements FullBodyDetector {
 	public void start() throws SliceException {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
-		if (!m_detector.openCamera(3280, 2464)) {
+		if (!m_detector.openCamera(m_frameWidth, m_frameHeight)) {
 			throw new SliceException("failed to open a camera");
 		}
 		s_logger.info("STARTED: " + this.getClass().getSimpleName());
