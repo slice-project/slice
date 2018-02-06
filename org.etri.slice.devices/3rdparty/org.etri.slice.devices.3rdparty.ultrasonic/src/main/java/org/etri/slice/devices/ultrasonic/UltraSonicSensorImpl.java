@@ -50,6 +50,7 @@ public class UltraSonicSensorImpl implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(UltraSonicSensorImpl.class);	
 	private static final int GREEN_LED = 12; //BCM 10
+	private static final int POSITION_POINTER = 15; //BCM 14
 	
 	@Property(name="interval", value="500")
 	private long m_interval;
@@ -69,7 +70,10 @@ public class UltraSonicSensorImpl implements Runnable {
         }
 		
         GpioUtil.export(GREEN_LED, GpioUtil.DIRECTION_OUT);
-        Gpio.pinMode(GREEN_LED, Gpio.OUTPUT);        
+        GpioUtil.export(POSITION_POINTER, GpioUtil.DIRECTION_OUT);
+        
+        Gpio.pinMode(GREEN_LED, Gpio.OUTPUT);
+        Gpio.pinMode(POSITION_POINTER, Gpio.OUTPUT); 
         
 		GpioUtil.export(0, GpioUtil.DIRECTION_OUT);
 		Gpio.pinMode(0, Gpio.OUTPUT);
