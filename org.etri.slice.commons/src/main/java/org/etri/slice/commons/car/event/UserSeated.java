@@ -42,8 +42,8 @@ import lombok.NoArgsConstructor;
 @Role(Role.Type.EVENT)
 @SliceContext
 public class UserSeated extends SliceEvent {
+	public static final String TOPIC = "car/user_seated";	
 	
-	private static final long serialVersionUID = 5119075579871472757L;
-	
+	private static final long serialVersionUID = 5119075579871472757L;	
 	private UserInfo userInfo;
 }

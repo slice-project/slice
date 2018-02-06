@@ -40,7 +40,7 @@ public class ObjectDetectedChannel extends MqttEventPublisher<ObjectDetected> {
 	
 	private static final long serialVersionUID = 700290130916030218L;
 
-	@Property(name="topic", value="object_detected")
+	@Property(name="topic", value=ObjectDetected.TOPIC)
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://129.254.88.119:1883")

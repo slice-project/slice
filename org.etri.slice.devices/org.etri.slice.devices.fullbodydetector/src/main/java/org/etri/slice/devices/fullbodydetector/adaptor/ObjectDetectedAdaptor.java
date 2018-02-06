@@ -40,7 +40,7 @@ public class ObjectDetectedAdaptor extends MqttEventSubscriber<ObjectDetected> {
 	
 	private static final long serialVersionUID = -6055719384862857396L;
 
-	@Property(name="topic", value="object_detected")
+	@Property(name="topic", value=ObjectDetected.TOPIC)
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://129.254.88.119:1883")

@@ -42,7 +42,8 @@ import lombok.NoArgsConstructor;
 @Role(Role.Type.EVENT)
 @SliceContext
 public class FullBodyDetected extends SliceEvent {
-	private static final long serialVersionUID = 483052562807387451L;
+	public static final String TOPIC = "car/full_body_detected";	
 	
+	private static final long serialVersionUID = 483052562807387451L;	
 	private BodyPartLength bodyLength;
 }

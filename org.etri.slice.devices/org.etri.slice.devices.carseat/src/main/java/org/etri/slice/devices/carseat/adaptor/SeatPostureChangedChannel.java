@@ -40,7 +40,7 @@ public class SeatPostureChangedChannel extends MqttEventPublisher<SeatPostureCha
 
 	private static final long serialVersionUID = -2363568331278938609L;
 
-	@Property(name="topic", value="seat_posture_changed")
+	@Property(name="topic", value=SeatPostureChanged.TOPIC)
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://129.254.88.119:1883")

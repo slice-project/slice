@@ -40,7 +40,7 @@ public class UserSeatedChannel extends MqttEventPublisher<UserSeated> {
 
 	private static final long serialVersionUID = -7123113855608104237L;
 
-	@Property(name="topic", value="user_seated")
+	@Property(name="topic", value=UserSeated.TOPIC)
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://129.254.88.119:1883")

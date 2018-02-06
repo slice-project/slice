@@ -42,7 +42,8 @@ import lombok.NoArgsConstructor;
 @Role(Role.Type.EVENT)
 @SliceContext
 public class SeatPostureChanged extends SliceEvent {
+	public static final String TOPIC = "car/car/seat_posture_chagned";	
+	
 	private static final long serialVersionUID = -3709125277135630330L;
-
 	private SeatPosture posture;
 }

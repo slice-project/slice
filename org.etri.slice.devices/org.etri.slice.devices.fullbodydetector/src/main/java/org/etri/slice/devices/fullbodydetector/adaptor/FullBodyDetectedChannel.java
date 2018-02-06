@@ -40,7 +40,7 @@ public class FullBodyDetectedChannel extends MqttEventPublisher<FullBodyDetected
 
 	private static final long serialVersionUID = -7279948705267205081L;
 
-	@Property(name="topic", value="full_body_detected")
+	@Property(name="topic", value=FullBodyDetected.TOPIC)
 	private String m_topic;
 	
 	@Property(name="url", value="tcp://129.254.88.119:1883")
