@@ -49,6 +49,7 @@ public class CVFullBodyDetector implements FullBodyDetector {
 
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);
 	private static final int RED_LED = 13; //BCM 9
+	private static final int POSITION_POINTER = 15; //BCM 14
 	
 	@Property(name="frame_width", value="3280")
 	private int m_frameWidth;
@@ -76,8 +77,11 @@ public class CVFullBodyDetector implements FullBodyDetector {
         }
 	
 	    GpioUtil.export(RED_LED, GpioUtil.DIRECTION_OUT);
-	    Gpio.pinMode(RED_LED, Gpio.OUTPUT);  
-			s_logger.info("STARTED: " + this.getClass().getSimpleName());
+        GpioUtil.export(POSITION_POINTER, GpioUtil.DIRECTION_OUT);
+        
+	    Gpio.pinMode(RED_LED, Gpio.OUTPUT); 
+        Gpio.pinMode(POSITION_POINTER, Gpio.OUTPUT);
+		s_logger.info("STARTED: " + this.getClass().getSimpleName());
 	}
 
 	@Invalidate
