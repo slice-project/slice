@@ -45,10 +45,11 @@ import com.pi4j.wiringpi.GpioInterruptListener;
 import com.pi4j.wiringpi.GpioUtil;
 
 @Component
-//@Instantiate
+@Instantiate
 public class UltraSonicSensorImpl implements Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(UltraSonicSensorImpl.class);	
+	private static final int GREEN_LED = 12; //BCM 10
 	
 	@Property(name="interval", value="500")
 	private long m_interval;
@@ -67,6 +68,9 @@ public class UltraSonicSensorImpl implements Runnable {
             return;
         }
 		
+        GpioUtil.export(GREEN_LED, GpioUtil.DIRECTION_OUT);
+        Gpio.pinMode(GREEN_LED, Gpio.OUTPUT);        
+        
 		GpioUtil.export(0, GpioUtil.DIRECTION_OUT);
 		Gpio.pinMode(0, Gpio.OUTPUT);
 		
@@ -74,6 +78,7 @@ public class UltraSonicSensorImpl implements Runnable {
 		GpioUtil.setEdgeDetection(2, GpioUtil.EDGE_RISING);
 		Gpio.pinMode(2, Gpio.INPUT);
         Gpio.pullUpDnControl(2, Gpio.PUD_UP);
+        
         GpioInterrupt.enablePinStateChangeCallback(2);       
 
         // create and add GPIO listener
@@ -130,5 +135,13 @@ public class UltraSonicSensorImpl implements Runnable {
 		finally {
 			m_lock.unlock();
 		}
+	}
+	
+	private void turnOnLED() {
+		Gpio.digitalWrite(GREEN_LED, 1);
+	}
+	
+	private void turnOffLED() {
+		Gpio.digitalWrite(GREEN_LED, 0);
 	}
 }

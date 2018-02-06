@@ -39,12 +39,16 @@ import org.opencv.core.Core;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pi4j.wiringpi.Gpio;
+import com.pi4j.wiringpi.GpioUtil;
+
 @Component(publicFactory = false, immediate = true)
 @Provides
 @Instantiate
 public class CVFullBodyDetector implements FullBodyDetector {
 
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);
+	private static final int RED_LED = 13; //BCM 9
 	
 	@Property(name="frame_width", value="3280")
 	private int m_frameWidth;
@@ -65,7 +69,15 @@ public class CVFullBodyDetector implements FullBodyDetector {
 		if (!m_detector.openCamera(m_frameWidth, m_frameHeight)) {
 			throw new SliceException("failed to open a camera");
 		}
-		s_logger.info("STARTED: " + this.getClass().getSimpleName());
+		
+        if (Gpio.wiringPiSetup() == -1) {            
+	    		s_logger.error("FAILED: GPIO SETUP FAILED");
+	        return;
+        }
+	
+	    GpioUtil.export(RED_LED, GpioUtil.DIRECTION_OUT);
+	    Gpio.pinMode(RED_LED, Gpio.OUTPUT);  
+			s_logger.info("STARTED: " + this.getClass().getSimpleName());
 	}
 
 	@Invalidate
@@ -80,6 +92,7 @@ public class CVFullBodyDetector implements FullBodyDetector {
 
 		Runnable aRunnable = new Runnable() {
 			public void run() {
+				turnOnLED();
 				long before = System.currentTimeMillis();
 				double height = m_detector.analysisImage(distance);
 				long after = System.currentTimeMillis();
@@ -89,10 +102,18 @@ public class CVFullBodyDetector implements FullBodyDetector {
 				m_publisher.sendData(bodyLength);
 
 				s_logger.info("PUB: " + bodyLength);
-
+				turnOffLED();
 			}
 		};
 
 		m_executor.execute(aRunnable);
 	}
+	
+	private void turnOnLED() {
+		Gpio.digitalWrite(RED_LED, 1);
+	}
+	
+	private void turnOffLED() {
+		Gpio.digitalWrite(RED_LED, 0);
+	}	
 }
