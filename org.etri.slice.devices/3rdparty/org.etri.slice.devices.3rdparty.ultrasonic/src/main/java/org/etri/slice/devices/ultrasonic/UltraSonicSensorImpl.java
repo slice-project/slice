@@ -59,6 +59,8 @@ public class UltraSonicSensorImpl implements Runnable {
 	@GuardedBy("m_lock") private Condition m_stopCondition = m_lock.newCondition();
 	@GuardedBy("m_lock") private volatile boolean m_stopRequested = false;	
 	
+	private Object m_mutex = new Object();
+	
 	@Publishes(name="UltraSonicSensor", topics=ObjectInfo.topic, dataKey=ObjectInfo.dataKey)
 	private Publisher m_publisher;
 	
@@ -103,10 +105,12 @@ public class UltraSonicSensorImpl implements Runnable {
            				
 	   					ObjectInfo objInfo = ObjectInfo.builder().objectId("obj").distance(distance).build();
 	   					m_publisher.sendData(objInfo);			
-	   					s_logger.info("PUB: " + objInfo);
-	   					turnOffLED();
+	   					s_logger.info("PUB: " + objInfo);	   					
                    }
                 }
+           		else {
+           			turnOffLED();
+           		}
             }
         });
 		
@@ -128,10 +132,10 @@ public class UltraSonicSensorImpl implements Runnable {
 		m_lock.lock();
 		try {
 			while ( !m_stopRequested ) {				
-				Gpio.digitalWrite(0, 0);
+				digitalWriteInGuard(0, 0);
 				m_stopCondition.await(10,  TimeUnit.MILLISECONDS);
 				
-				Gpio.digitalWrite(0, 1);
+				digitalWriteInGuard(0, 1);
 				m_stopCondition.await(100,  TimeUnit.MILLISECONDS);
 			}
 		}
@@ -144,10 +148,16 @@ public class UltraSonicSensorImpl implements Runnable {
 	}
 	
 	private void turnOnLED() {
-		Gpio.digitalWrite(GREEN_LED, 1);
+		digitalWriteInGuard(GREEN_LED, 1);
 	}
 	
 	private void turnOffLED() {
-		Gpio.digitalWrite(GREEN_LED, 0);
+		digitalWriteInGuard(GREEN_LED, 0);
+	}
+	
+	private void digitalWriteInGuard(int pin, int value) {
+		synchronized ( m_mutex ) {
+			Gpio.digitalWrite(pin, value);
+		}
 	}
 }
