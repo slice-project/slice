@@ -34,7 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.BodyPartLength;
+import org.etri.slice.commons.car.context.BodyPartLength;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

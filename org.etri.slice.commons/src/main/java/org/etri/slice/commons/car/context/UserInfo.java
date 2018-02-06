@@ -19,36 +19,28 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car.event;
-
-import java.beans.ConstructorProperties;
+package org.etri.slice.commons.car.context;
 
 import org.etri.slice.commons.SliceContext;
 import org.kie.api.definition.type.Role;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
 @NoArgsConstructor
 
 @Role(Role.Type.EVENT)
 @SliceContext
-public class SeatPosture {
-	public static final String dataType = "org.etri.slice.commons.car.event.SeatPosture";
-	public static final String topic = "seat_posture";
-	public static final String dataKey = "dataKey:" + dataType;	
+public class UserInfo {
+	public static final String dataType = "org.etri.slice.commons.car.UserInfo";
+	public static final String topic = "user_info";
+	public static final String dataKey = "dataKey:" + dataType;
 	
-	private double height;
-	private double position;
-	private double tilt;
-	
-	@ConstructorProperties({"height", "position", "tilt"}) 
-	public SeatPosture(double height, double position, double tilt) {
-		this.height = height;
-		this.position = position;
-		this.tilt = tilt;
-	}
+	private String userId;
+	private BodyPartLength bodyLength;
 }

@@ -33,7 +33,7 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
-import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

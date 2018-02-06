@@ -26,7 +26,7 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

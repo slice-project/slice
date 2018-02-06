@@ -26,7 +26,7 @@ import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.etri.slice.api.perception.EventStream;
-import org.etri.slice.commons.car.BodyPartLength;
+import org.etri.slice.commons.car.context.BodyPartLength;
 
 @Component(publicFactory=false, immediate=true)
 @Provides

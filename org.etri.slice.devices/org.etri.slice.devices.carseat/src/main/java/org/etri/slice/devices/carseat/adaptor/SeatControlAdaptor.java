@@ -25,7 +25,7 @@ import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.etri.slice.api.inference.WorkingMemory;
-import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 
 @Component

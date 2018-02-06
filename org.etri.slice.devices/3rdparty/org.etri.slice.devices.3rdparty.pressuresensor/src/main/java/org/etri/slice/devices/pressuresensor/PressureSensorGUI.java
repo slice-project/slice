@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.event.Pressure;
+import org.etri.slice.commons.car.context.Pressure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

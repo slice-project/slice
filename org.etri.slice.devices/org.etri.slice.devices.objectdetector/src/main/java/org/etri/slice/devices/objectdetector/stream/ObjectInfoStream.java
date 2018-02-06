@@ -30,7 +30,7 @@ import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.etri.slice.api.perception.EventStream;
-import org.etri.slice.commons.car.ObjectInfo;
+import org.etri.slice.commons.car.context.ObjectInfo;
 
 @Component(publicFactory=false, immediate=true)
 @Provides

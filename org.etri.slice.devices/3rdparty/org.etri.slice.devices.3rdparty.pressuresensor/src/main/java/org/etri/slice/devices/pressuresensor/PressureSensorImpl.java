@@ -36,7 +36,7 @@ import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 import org.apache.http.annotation.GuardedBy;
 import org.etri.slice.commons.Sensor;
-import org.etri.slice.commons.car.event.Pressure;
+import org.etri.slice.commons.car.context.Pressure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

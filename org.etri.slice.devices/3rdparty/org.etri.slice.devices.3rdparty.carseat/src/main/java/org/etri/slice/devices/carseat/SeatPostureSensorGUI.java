@@ -30,7 +30,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 
 

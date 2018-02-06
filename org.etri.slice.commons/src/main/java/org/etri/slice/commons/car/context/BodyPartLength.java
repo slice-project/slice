@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car;
+package org.etri.slice.commons.car.context;
 
 import org.etri.slice.commons.SliceContext;
 import org.kie.api.definition.type.Role;

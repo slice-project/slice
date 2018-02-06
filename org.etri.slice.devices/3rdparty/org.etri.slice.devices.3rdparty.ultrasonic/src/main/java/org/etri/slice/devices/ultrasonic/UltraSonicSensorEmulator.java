@@ -29,7 +29,7 @@ import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
-import org.etri.slice.commons.car.ObjectInfo;
+import org.etri.slice.commons.car.context.ObjectInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

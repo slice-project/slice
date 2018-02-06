@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.car;
+package org.etri.slice.commons.car.context;
 
 import org.etri.slice.commons.SliceContext;
 import org.kie.api.definition.type.Role;
@@ -36,11 +36,17 @@ import lombok.NoArgsConstructor;
 
 @Role(Role.Type.EVENT)
 @SliceContext
-public class UserInfo {
-	public static final String dataType = "org.etri.slice.commons.car.UserInfo";
-	public static final String topic = "user_info";
+public class ObjectInfo {
+
+	public static class Field {
+		public static final String objectId = "ObjectInfo.objectId";
+		public static final String distance = "ObjectInfo.distance";
+	}
+	
+	public static final String dataType = "org.etri.slice.commons.car.ObjectInfo";
+	public static final String topic = "object_info";
 	public static final String dataKey = "dataKey:" + dataType;
 	
-	private String userId;
-	private BodyPartLength bodyLength;
+	private String objectId;
+	private double distance;
 }

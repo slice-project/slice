@@ -34,7 +34,7 @@ import org.apache.felix.ipojo.handlers.event.Publishes;
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 import org.etri.slice.commons.Sensor;
 import org.etri.slice.commons.SliceException;
-import org.etri.slice.commons.car.event.SeatPosture;
+import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 import org.etri.slice.commons.util.JmxClient;
 import org.slf4j.Logger;

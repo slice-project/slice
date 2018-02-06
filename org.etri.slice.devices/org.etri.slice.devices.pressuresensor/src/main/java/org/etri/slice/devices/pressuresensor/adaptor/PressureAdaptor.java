@@ -31,7 +31,7 @@ import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.etri.slice.api.device.Device;
 import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.api.perception.EventStream;
-import org.etri.slice.commons.car.event.Pressure;
+import org.etri.slice.commons.car.context.Pressure;
 import org.etri.slice.core.perception.EventSubscriber;
 import org.etri.slice.devices.pressuresensor.stream.PressureStream;
 
