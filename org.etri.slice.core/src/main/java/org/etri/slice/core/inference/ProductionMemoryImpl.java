@@ -99,7 +99,6 @@ public class ProductionMemoryImpl implements ProductionMemory {
 
 	@Override
 	public synchronized void update(RuleModule ruleModule) throws ProductionMemoryException {
-	System.out.println("1111");	
 		try {
 			m_drools.getSessionLock().lock();
 			m_drools.halt();
