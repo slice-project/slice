@@ -74,11 +74,11 @@ public class SeatSensorImpl implements Sensor{
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				try {
 					Thread.sleep(5);
 					if( m_SCCGP.getState() == PinState.LOW ) {
-						s_logger.info("Control Confirm OK!!");
+						s_logger.debug("Control Confirm OK!!");
 						SeatPosture seatPosture = loadPosition();
 						m_publisher.sendData(seatPosture);
 						s_logger.info("PUB: " + seatPosture);	
