@@ -158,7 +158,7 @@ public class SeatControlImpl implements SeatControl {
 			gapValue = height - seatPosture.getHeight();
 			gapValue = gapValue * (UP_CAL/0.4);
 //			up_down_mode = UP_DOWN_MODE.UP_REMOTE;
-			s_logger.info("Height calSleep : "+gapValue);
+			s_logger.debug("Height calSleep : "+gapValue);
 			directControl(1, 0, UDAGP, DDAGP);
 			try {
 				Thread.sleep((int)gapValue);
@@ -170,7 +170,7 @@ public class SeatControlImpl implements SeatControl {
 			gapValue = seatPosture.getHeight() - height;
 			gapValue = gapValue * (UP_CAL/0.4);
 //			up_down_mode = UP_DOWN_MODE.DOWN_REMOTE;
-			s_logger.info("Height calSleep : "+gapValue);
+			s_logger.debug("Height calSleep : "+gapValue);
 			directControl(2, 0, UDAGP, DDAGP);
 			try {
 				Thread.sleep((int)gapValue);
@@ -198,7 +198,7 @@ public class SeatControlImpl implements SeatControl {
 			gapValue = position - seatPosture.getPosition();
 			gapValue = gapValue * RIGHT_CAL;
 //			left_right_mode = LEFT_RIGHT_MODE.LEFT_REMOTE;
-			s_logger.info("Position calSleep : "+gapValue);
+			s_logger.debug("Position calSleep : "+gapValue);
 			directControl(1, 1, LDAGP, RDAGP);
 			try {
 				Thread.sleep((int)gapValue);
@@ -210,7 +210,7 @@ public class SeatControlImpl implements SeatControl {
 			gapValue = seatPosture.getPosition() - position;
 			gapValue = gapValue * LEFT_CAL;
 //			left_right_mode = LEFT_RIGHT_MODE.RIGHT_REMOTE;
-			s_logger.info("Position calSleep : "+gapValue);
+			s_logger.debug("Position calSleep : "+gapValue);
 			directControl(2, 1, LDAGP, RDAGP);
 			try {
 				Thread.sleep((int)gapValue);
@@ -239,7 +239,7 @@ public class SeatControlImpl implements SeatControl {
 			gapValue = tilt - seatPosture.getTilt();
 			gapValue = gapValue * (REAR_CAL / 0.35);
 //			front_rear_mode = FRONT_REAR_MODE.REAR_REMOTE;
-			s_logger.info("Tilt calSleep : "+gapValue);
+			s_logger.debug("Tilt calSleep : "+gapValue);
 			directControl(1, 2, BFDAGP, BRDAGP);
 			try {
 				Thread.sleep((int)gapValue);
@@ -251,7 +251,7 @@ public class SeatControlImpl implements SeatControl {
 			gapValue = seatPosture.getTilt() - tilt;
 			gapValue = gapValue * (FRONT_CAL / 0.35);
 //			front_rear_mode = FRONT_REAR_MODE.FRONT_REMOTE;
-			s_logger.info("Tilt calSleep : "+gapValue);
+			s_logger.debug("Tilt calSleep : "+gapValue);
 			directControl(2, 2, BFDAGP, BRDAGP);
 			try {
 				Thread.sleep((int)gapValue);
@@ -272,11 +272,11 @@ public class SeatControlImpl implements SeatControl {
 
 	@Override
 	public void setPosture(SeatPosture posture) {
-		s_logger.info("Set Height");
+		s_logger.debug("Set Height");
 		setHeight(posture.getHeight());
-		s_logger.info("Set Position");
+		s_logger.debug("Set Position");
 		setPosition(posture.getPosition());
-		s_logger.info("Set Tilt");
+		s_logger.debug("Set Tilt");
 		setTilt(posture.getTilt());
 	}	
 	
@@ -320,22 +320,22 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				try {
 					Thread.sleep(1000);
 					if(UDCGP.getState() == PinState.LOW) {
 						UDPGP.low();
 						if(up_down_mode == UP_DOWN_MODE.UP_REMOTE || up_down_mode == UP_DOWN_MODE.UP_STATIC) {
 							seatPosture.setHeight(MAX_HEIGHT);
-							s_logger.info("CS Pin UP_MODE");
+							s_logger.debug("CS Pin UP_MODE");
 						}else if (up_down_mode == UP_DOWN_MODE.DOWN_REMOTE || up_down_mode == UP_DOWN_MODE.DOWN_STATIC) {
 							seatPosture.setHeight(MIN_VALUE);
-							s_logger.info("CS Pin DOWN_MODE");
+							s_logger.debug("CS Pin DOWN_MODE");
 						}
 						savePosition();
 						up_down_mode = UP_DOWN_MODE.NONE;
 					}else{
-						s_logger.info("Up Down Fake CS!!");
+						s_logger.debug("Up Down Fake CS!!");
 					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -350,22 +350,22 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				try {
 					Thread.sleep(50);
 					if(LRCGP.getState() == PinState.LOW) {
 						LRPGP.low();
 						if(left_right_mode == LEFT_RIGHT_MODE.LEFT_REMOTE || left_right_mode == LEFT_RIGHT_MODE.LEFT_STATIC) {
 							seatPosture.setPosition(MAX_POSITION);
-							s_logger.info("CS Pin LEFT_MODE");
+							s_logger.debug("CS Pin LEFT_MODE");
 						}else if (left_right_mode == LEFT_RIGHT_MODE.RIGHT_REMOTE || left_right_mode == LEFT_RIGHT_MODE.RIGHT_STATIC) {
 							seatPosture.setPosition(MIN_VALUE);
-							s_logger.info("CS Pin RIGHT_MODE");
+							s_logger.debug("CS Pin RIGHT_MODE");
 						}
 						savePosition();
 						left_right_mode = LEFT_RIGHT_MODE.NONE;
 					}else{
-						s_logger.info("Left Right Fake CS!!");
+						s_logger.debug("Left Right Fake CS!!");
 					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -380,22 +380,22 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				try {
 					Thread.sleep(50);
 					if(BFRCGP.getState() == PinState.LOW) {
 						BFRPGP.low();
 						if(front_rear_mode == FRONT_REAR_MODE.FRONT_REMOTE || front_rear_mode == FRONT_REAR_MODE.FRONT_STATIC) {
 							seatPosture.setTilt(MIN_VALUE);
-							s_logger.info("CS Pin FRONT_MODE");
+							s_logger.debug("CS Pin FRONT_MODE");
 						}else if (front_rear_mode == FRONT_REAR_MODE.REAR_REMOTE || front_rear_mode == FRONT_REAR_MODE.REAR_STATIC) {
 							seatPosture.setTilt(MAX_TILT);
-							s_logger.info("CS Pin REAR_MODE");
+							s_logger.debug("CS Pin REAR_MODE");
 						}
 						savePosition();
 						front_rear_mode = FRONT_REAR_MODE.NONE;
 					}else{
-						s_logger.info("Front Rear Fake CS!!");
+						s_logger.debug("Front Rear Fake CS!!");
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -409,13 +409,13 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				if(static_remote_mode == STATIC_REMOTE_MODE.STATIC) {
 					if(USGP.getState() == PinState.HIGH) {
-						s_logger.info("Detect UP pin Stop!!");
+						s_logger.debug("Detect UP pin Stop!!");
 						UDPGP.low();
 						currentTime = System.currentTimeMillis();
-						s_logger.info("Check Gap : " + (currentTime - oldTime));
+						s_logger.debug("Check Gap : " + (currentTime - oldTime));
 						if(up_down_mode == UP_DOWN_MODE.UP_STATIC) {
 							long gapValue = currentTime - oldTime;
 							seatPosture.setHeight(seatPosture.getHeight() + ((gapValue / UP_CAL) * 0.4));
@@ -424,14 +424,14 @@ public class SeatControlImpl implements SeatControl {
 						}
 					}else {
 						if(up_down_mode == UP_DOWN_MODE.NONE) {
-							s_logger.info("Detect UP pin Start!!");
+							s_logger.debug("Detect UP pin Start!!");
 							up_down_mode = UP_DOWN_MODE.UP_STATIC;
 							oldTime = System.currentTimeMillis();
 							directControl(1, 0, UDAGP, DDAGP);
 						}
 					}
 				}else if(static_remote_mode == STATIC_REMOTE_MODE.REMOTE) {
-					s_logger.info("REMOTE MODE !!");
+					s_logger.debug("REMOTE MODE !!");
 				}
 			}
 		});
@@ -442,13 +442,13 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				if(static_remote_mode == STATIC_REMOTE_MODE.STATIC) {
 					if(DSGP.getState() == PinState.HIGH) {
-						s_logger.info("Detect Down pin Stop!!");
+						s_logger.debug("Detect Down pin Stop!!");
 						UDPGP.low();
 						currentTime = System.currentTimeMillis();
-						s_logger.info("Check Gap : " + (currentTime - oldTime));
+						s_logger.debug("Check Gap : " + (currentTime - oldTime));
 						if(up_down_mode == UP_DOWN_MODE.DOWN_STATIC) {
 							long gapValue = currentTime - oldTime;
 							seatPosture.setHeight(seatPosture.getHeight() - ((gapValue / DOWN_CAL) * 0.4));
@@ -457,14 +457,14 @@ public class SeatControlImpl implements SeatControl {
 						}
 					}else {
 						if(up_down_mode == UP_DOWN_MODE.NONE ) {
-							s_logger.info("Detect Down pin Start!!");
+							s_logger.debug("Detect Down pin Start!!");
 							up_down_mode = UP_DOWN_MODE.DOWN_STATIC;
 							oldTime = System.currentTimeMillis();
 							directControl(2, 0, UDAGP, DDAGP);
 						}
 					}
 				}else if(static_remote_mode == STATIC_REMOTE_MODE.REMOTE) {
-					s_logger.info("REMOTE MODE !!");
+					s_logger.debug("REMOTE MODE !!");
 				}
 			}
 		});
@@ -475,13 +475,13 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				if(static_remote_mode == STATIC_REMOTE_MODE.STATIC) {
 					if(LSGP.getState() == PinState.HIGH) {
-						s_logger.info("Detect LEFT pin Stop!!");
+						s_logger.debug("Detect LEFT pin Stop!!");
 						LRPGP.low();
 						currentTime = System.currentTimeMillis();
-						s_logger.info("Check Gap : " + (currentTime - oldTime));
+						s_logger.debug("Check Gap : " + (currentTime - oldTime));
 						if(left_right_mode == LEFT_RIGHT_MODE.LEFT_STATIC) {
 							long gapValue = currentTime - oldTime;
 							seatPosture.setPosition(seatPosture.getPosition() + (gapValue / LEFT_CAL));
@@ -490,14 +490,14 @@ public class SeatControlImpl implements SeatControl {
 						}
 					}else {
 						if(left_right_mode == LEFT_RIGHT_MODE.NONE ) {
-							s_logger.info("Detect LEFT pin Start!!");
+							s_logger.debug("Detect LEFT pin Start!!");
 							left_right_mode = LEFT_RIGHT_MODE.LEFT_STATIC;
 							oldTime = System.currentTimeMillis();
 							directControl(1, 1, LDAGP, RDAGP);
 						}
 					}
 				}else if(static_remote_mode == STATIC_REMOTE_MODE.REMOTE) {
-					s_logger.info("REMOTE MODE !!");
+					s_logger.debug("REMOTE MODE !!");
 				}
 			}
 		});
@@ -508,13 +508,13 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				if(static_remote_mode == STATIC_REMOTE_MODE.STATIC) {
 					if(RSGP.getState() == PinState.HIGH) {
-						s_logger.info("Detect RIGHT pin Stop!!");
+						s_logger.debug("Detect RIGHT pin Stop!!");
 						LRPGP.low();
 						currentTime = System.currentTimeMillis();
-						s_logger.info("Check Gap : " + (currentTime - oldTime));
+						s_logger.debug("Check Gap : " + (currentTime - oldTime));
 						if(left_right_mode == LEFT_RIGHT_MODE.RIGHT_STATIC) {
 							long gapValue = currentTime - oldTime;
 							seatPosture.setPosition(seatPosture.getPosition() - (gapValue / RIGHT_CAL));
@@ -523,14 +523,14 @@ public class SeatControlImpl implements SeatControl {
 						}
 					}else {
 						if(left_right_mode == LEFT_RIGHT_MODE.NONE) {
-							s_logger.info("Detect RIGHT pin Start!!");
+							s_logger.debug("Detect RIGHT pin Start!!");
 							left_right_mode = LEFT_RIGHT_MODE.RIGHT_STATIC;
 							oldTime = System.currentTimeMillis();
 							directControl(2, 1, LDAGP, RDAGP);
 						}
 					}
 				}else if(static_remote_mode == STATIC_REMOTE_MODE.REMOTE) {
-					s_logger.info("REMOTE MODE !!");
+					s_logger.debug("REMOTE MODE !!");
 				}
 			}
 		});
@@ -541,13 +541,13 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				if(static_remote_mode == STATIC_REMOTE_MODE.STATIC) {
 					if(BFSGP.getState() == PinState.HIGH) {
-						s_logger.info("Detect FRONT pin Stop!!");
+						s_logger.debug("Detect FRONT pin Stop!!");
 						BFRPGP.low();
 						currentTime = System.currentTimeMillis();
-						s_logger.info("Check Gap : " + (currentTime - oldTime));
+						s_logger.debug("Check Gap : " + (currentTime - oldTime));
 						if(front_rear_mode == FRONT_REAR_MODE.FRONT_STATIC) {
 							long gapValue = currentTime - oldTime;
 							seatPosture.setTilt(seatPosture.getTilt() - ((gapValue / FRONT_CAL) * 0.35));
@@ -556,14 +556,14 @@ public class SeatControlImpl implements SeatControl {
 						}
 					}else {
 						if(front_rear_mode == FRONT_REAR_MODE.NONE) {
-							s_logger.info("Detect FRONT pin Start!!");
+							s_logger.debug("Detect FRONT pin Start!!");
 							front_rear_mode = FRONT_REAR_MODE.FRONT_STATIC;
 							oldTime = System.currentTimeMillis();
 							directControl(1, 2, BFDAGP, BRDAGP);
 						}
 					}
 				}else if(static_remote_mode == STATIC_REMOTE_MODE.REMOTE) {
-					s_logger.info("REMOTE MODE !!");
+					s_logger.debug("REMOTE MODE !!");
 				}
 			}
 		});
@@ -574,13 +574,13 @@ public class SeatControlImpl implements SeatControl {
 			
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				s_logger.info("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
+				s_logger.debug("----> GPIO PIN STATE CHANGE : " + event.getPin() + " = " + event.getState());
 				if(static_remote_mode == STATIC_REMOTE_MODE.STATIC) {
 					if(BRSGP.getState() == PinState.HIGH) {
-						s_logger.info("Detect REAR pin Stop!!");
+						s_logger.debug("Detect REAR pin Stop!!");
 						BFRPGP.low();
 						currentTime = System.currentTimeMillis();
-						s_logger.info("Check Gap : " + (currentTime - oldTime));
+						s_logger.debug("Check Gap : " + (currentTime - oldTime));
 						if(front_rear_mode == FRONT_REAR_MODE.REAR_STATIC) {
 							long gapValue = currentTime - oldTime;
 							seatPosture.setTilt(seatPosture.getTilt() + ((gapValue / REAR_CAL) * 0.35));
@@ -589,14 +589,14 @@ public class SeatControlImpl implements SeatControl {
 						}
 					}else {
 						if(front_rear_mode == FRONT_REAR_MODE.NONE) {
-							s_logger.info("Detect FRONT pin Start!!");
+							s_logger.debug("Detect FRONT pin Start!!");
 							front_rear_mode = FRONT_REAR_MODE.REAR_STATIC;
 							oldTime = System.currentTimeMillis();
 							directControl(2, 2, BFDAGP, BRDAGP);
 						}
 					}
 				}else if(static_remote_mode == STATIC_REMOTE_MODE.REMOTE) {
-					s_logger.info("REMOTE MODE !!");
+					s_logger.debug("REMOTE MODE !!");
 				}
 			}
 		});

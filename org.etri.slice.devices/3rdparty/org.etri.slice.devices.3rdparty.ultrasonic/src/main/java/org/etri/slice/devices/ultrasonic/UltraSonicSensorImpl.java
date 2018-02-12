@@ -51,6 +51,7 @@ public class UltraSonicSensorImpl implements Runnable {
 	private static Logger s_logger = LoggerFactory.getLogger(UltraSonicSensorImpl.class);	
 	private static final int GREEN_LED = 12; //BCM 10
 	private static final int POSITION_POINTER = 15; //BCM 14
+	private static final boolean LED_FLAG = false;
 	
 	@Property(name="interval", value="500")
 	private long m_interval;
@@ -72,9 +73,11 @@ public class UltraSonicSensorImpl implements Runnable {
         }
 		
         GpioUtil.export(GREEN_LED, GpioUtil.DIRECTION_OUT);
+        //GpioUtil.export(13, GpioUtil.DIRECTION_OUT);
         GpioUtil.export(POSITION_POINTER, GpioUtil.DIRECTION_OUT);
         
         Gpio.pinMode(GREEN_LED, Gpio.OUTPUT);
+        //Gpio.pinMode(13, Gpio.OUTPUT);
         Gpio.pinMode(POSITION_POINTER, Gpio.OUTPUT); 
         
 		GpioUtil.export(0, GpioUtil.DIRECTION_OUT);
@@ -98,19 +101,19 @@ public class UltraSonicSensorImpl implements Runnable {
            				pulseStart = System.nanoTime();
            			}
            			else if( event.getState() == false ) {
-           				turnOnLED();
+
+           				turnOffLED();
+
            				pulseEnd = System.nanoTime();
            				distance = (float)(pulseEnd - pulseStart) / 1000f / 1000f;
            				if ( distance < 1 || distance > 4 ) return;
            				
 	   					ObjectInfo objInfo = ObjectInfo.builder().objectId("obj").distance(distance).build();
 	   					m_publisher.sendData(objInfo);			
-	   					s_logger.info("PUB: " + objInfo);	   					
+	   					s_logger.info("PUB: " + objInfo);
+	   					turnOnLED();
                    }
                 }
-           		else {
-           			turnOffLED();
-           		}
             }
         });
 		
@@ -149,10 +152,12 @@ public class UltraSonicSensorImpl implements Runnable {
 	
 	private void turnOnLED() {
 		digitalWriteInGuard(GREEN_LED, 1);
+		//digitalWriteInGuard(13, 1);
 	}
 	
 	private void turnOffLED() {
 		digitalWriteInGuard(GREEN_LED, 0);
+		//digitalWriteInGuard(13, 0);
 	}
 	
 	private void digitalWriteInGuard(int pin, int value) {
