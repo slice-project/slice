@@ -47,7 +47,7 @@ import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.RaspiPin;
 
 @Component
-@Instantiate
+//@Instantiate
 public class PressureSensorImpl implements Sensor, Runnable {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(PressureSensorImpl.class);	

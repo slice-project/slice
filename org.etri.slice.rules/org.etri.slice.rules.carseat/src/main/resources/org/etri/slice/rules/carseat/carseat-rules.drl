@@ -1,9 +1,9 @@
 package org.etri.slice.rules.carseat;
 
-import org.etri.slice.commons.car.BodyPartLength;
-import org.etri.slice.commons.car.UserInfo;
+import org.etri.slice.commons.car.context.BodyPartLength;
+import org.etri.slice.commons.car.context.SeatPosture;
+import org.etri.slice.commons.car.context.UserInfo;
 import org.etri.slice.commons.car.event.SeatPostureChanged;
-import org.etri.slice.commons.car.event.SeatPosture;
 import org.etri.slice.commons.car.event.UserSeated;
 
 rule "Insert BodyPartLength"
@@ -17,5 +17,5 @@ rule "SeatPosture Change Notification"
 	when
 		$e: SeatPosture()
 	then
-		channels["seat_posture_changed"].send(new SeatPostureChanged($e));
+		channels["car/seat_posture_changed"].send(new SeatPostureChanged($e));
 end

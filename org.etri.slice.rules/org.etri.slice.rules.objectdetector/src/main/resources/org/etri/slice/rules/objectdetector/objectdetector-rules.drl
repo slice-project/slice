@@ -1,6 +1,6 @@
 package org.etri.slice.rules.objectdetector;
 
-import org.etri.slice.commons.car.ObjectInfo;
+import org.etri.slice.commons.car.context.ObjectInfo;
 import org.etri.slice.commons.car.event.ObjectDetected;
 
 
@@ -8,5 +8,5 @@ rule "Object Detection Notification"
 	when 
 	   $info: ObjectInfo()
 	then 
-	   channels["object_detected"].send(new ObjectDetected($info));
+	   channels["car/object_detected"].send(new ObjectDetected($info));
 end

@@ -1,6 +1,6 @@
 package org.etri.slice.rules.fullbodydetector;
 
-import org.etri.slice.commons.car.BodyPartLength;
+import org.etri.slice.commons.car.context.BodyPartLength;
 import org.etri.slice.commons.car.event.FullBodyDetected;
 import org.etri.slice.commons.car.event.ObjectDetected;
 import org.etri.slice.commons.car.service.FullBodyDetector;
@@ -18,5 +18,5 @@ rule "FullBody Detection Notification"
 	when
 		$e: BodyPartLength()
 	then
-		channels["full_body_detected"].send(new FullBodyDetected($e));
+		channels["car/full_body_detected"].send(new FullBodyDetected($e));
 end

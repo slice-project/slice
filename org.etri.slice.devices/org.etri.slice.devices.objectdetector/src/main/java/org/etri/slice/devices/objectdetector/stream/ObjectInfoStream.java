@@ -40,6 +40,7 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 	
 	@Override
 	public TStream<ObjectInfo> process(TStream<ObjectInfo> stream) {
+/*		
 		TWindow<ObjectInfo,Integer> window = stream.last(10, TimeUnit.SECONDS, tuple -> 0);
 		TStream<ObjectInfo> batched = window.batch((tuples, key) -> {
 			Iterator<ObjectInfo> iter = tuples.iterator();
@@ -57,5 +58,7 @@ public class ObjectInfoStream implements EventStream<ObjectInfo> {
 		});
 		
 		return batched.filter(tuple -> tuple.getDistance() > 0);
+*/
+		return stream;
 	}
 }

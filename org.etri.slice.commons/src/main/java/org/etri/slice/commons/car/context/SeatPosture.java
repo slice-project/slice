@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 @Role(Role.Type.EVENT)
 @SliceContext
 public class SeatPosture {
-	public static final String dataType = "org.etri.slice.commons.car.event.SeatPosture";
+	public static final String dataType = "org.etri.slice.commons.car.context.SeatPosture";
 	public static final String topic = "seat_posture";
 	public static final String dataKey = "dataKey:" + dataType;	
 	

@@ -1,9 +1,9 @@
 package org.etri.slice.rules.pressuresensor;
 
-import org.etri.slice.commons.car.BodyPartLength;
-import org.etri.slice.commons.car.UserInfo;
+import org.etri.slice.commons.car.context.BodyPartLength;
+import org.etri.slice.commons.car.context.Pressure;
+import org.etri.slice.commons.car.context.UserInfo;
 import org.etri.slice.commons.car.event.FullBodyDetected;
-import org.etri.slice.commons.car.event.Pressure;
 import org.etri.slice.commons.car.event.UserSeated;
 
 
@@ -12,5 +12,5 @@ rule "UserSeated Notification"
 		$e1: FullBodyDetected($body: bodyLength)
 		$e2: Pressure(value > 30, this meets[10s] $e1)
 	then
-		channels["user_seated"].send(new UserSeated(new UserInfo("user", $body)));
+		channels["car/user_seated"].send(new UserSeated(new UserInfo("user", $body)));
 end

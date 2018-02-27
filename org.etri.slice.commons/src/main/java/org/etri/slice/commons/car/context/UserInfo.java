@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 @Role(Role.Type.EVENT)
 @SliceContext
 public class UserInfo {
-	public static final String dataType = "org.etri.slice.commons.car.UserInfo";
+	public static final String dataType = "org.etri.slice.commons.car.context.UserInfo";
 	public static final String topic = "user_info";
 	public static final String dataKey = "dataKey:" + dataType;
 	

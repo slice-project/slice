@@ -44,7 +44,7 @@ import com.pi4j.wiringpi.GpioUtil;
 
 @Component(publicFactory = false, immediate = true)
 @Provides
-@Instantiate
+//@Instantiate
 public class CVFullBodyDetector implements FullBodyDetector {
 
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);

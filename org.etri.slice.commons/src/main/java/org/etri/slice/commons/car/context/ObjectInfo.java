@@ -43,7 +43,7 @@ public class ObjectInfo {
 		public static final String distance = "ObjectInfo.distance";
 	}
 	
-	public static final String dataType = "org.etri.slice.commons.car.ObjectInfo";
+	public static final String dataType = "org.etri.slice.commons.car.context.ObjectInfo";
 	public static final String topic = "object_info";
 	public static final String dataKey = "dataKey:" + dataType;
 	

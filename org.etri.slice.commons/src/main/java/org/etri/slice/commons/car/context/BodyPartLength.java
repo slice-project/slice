@@ -46,7 +46,7 @@ public class BodyPartLength {
 		public static final String height = "BodyPartLength.height";
 	}
 	
-	public static final String dataType = "org.etri.slice.commons.car.BodyPartLength";
+	public static final String dataType = "org.etri.slice.commons.car.context.BodyPartLength";
 	public static final String topic = "body_part_length";
 	public static final String dataKey = "dataKey:" + dataType;
 		

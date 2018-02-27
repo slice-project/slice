@@ -50,7 +50,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate
+//@Instantiate
 public class SeatControlImpl implements SeatControl {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatControlImpl.class);

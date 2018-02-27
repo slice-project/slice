@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-//@Instantiate
+@Instantiate
 public class FullBodyDetectorEmulator implements FullBodyDetector {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(CVFullBodyDetector.class);	

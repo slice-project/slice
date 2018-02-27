@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 @Role(Role.Type.EVENT)
 @SliceContext
 public class Pressure {
-	public static final String dataType = "org.etri.slice.commons.car.event.Pressure";
+	public static final String dataType = "org.etri.slice.commons.car.context.Pressure";
 	public static final String topic = "pressure";
 	public static final String dataKey = "dataKey:" + dataType;	
 	
