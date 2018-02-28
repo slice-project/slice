@@ -1,17 +1,7 @@
 package org.etri.slice.rules.carseat;
 
-import org.etri.slice.commons.car.context.BodyPartLength;
 import org.etri.slice.commons.car.context.SeatPosture;
-import org.etri.slice.commons.car.context.UserInfo;
 import org.etri.slice.commons.car.event.SeatPostureChanged;
-import org.etri.slice.commons.car.event.UserSeated;
-
-rule "Insert BodyPartLength"
-	when 
-		$e: UserSeated($driver: userInfo)
-	then		
-		insert($driver.getBodyLength());
-end
 
 rule "SeatPosture Change Notification"
 	when

@@ -2,7 +2,7 @@
 <kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://jboss.org/kie/6.0.0/kmodule">
 
-	<kbase name="org.etir.slice.rules.pressuresensor" default="true" eventProcessingMode="stream" packages="org.etri.slice.rules.pressuresensor">
+	<kbase name="org.etri.slice.rules.pressuresensor" default="true" eventProcessingMode="stream" packages="org.etri.slice.rules.pressuresensor">
 		<ksession name="org.etri.slice" type="stateful" default="true"/>
 	</kbase>
 </kmodule>
