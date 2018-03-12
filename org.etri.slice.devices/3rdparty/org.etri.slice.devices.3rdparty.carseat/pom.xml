@@ -21,6 +21,11 @@
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
+			<groupId>org.etri.slice</groupId>
+			<artifactId>org.etri.slice.commons.car</artifactId>
+			<version>0.9.1</version>
+		</dependency>		
+		<dependency>
 		    <groupId>com.pi4j</groupId>
 		    <artifactId>pi4j-core</artifactId>
 		    <version>1.1</version>
