@@ -9,9 +9,9 @@
 	<packaging>pom</packaging>
 	<name>The SLICE rules</name>
 	<modules>
+		<module>org.etri.slice.rules.objectdetector</module>
 		<module>org.etri.slice.rules.carseat</module>
 		<module>org.etri.slice.rules.fullbodydetector</module>
-		<module>org.etri.slice.rules.objectdetector</module>
 		<module>org.etri.slice.rules.pressuresensor</module>
 	</modules>
 

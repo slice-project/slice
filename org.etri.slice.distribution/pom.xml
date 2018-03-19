@@ -44,10 +44,10 @@
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.9.1</version>
-		</dependency>
+		</dependency>	
 		<dependency>
 			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.commons.car</artifactId>
+			<artifactId>org.etri.slice.commons.models</artifactId>
 			<version>0.9.1</version>
 		</dependency>	
 		<dependency>
@@ -55,16 +55,16 @@
 			<artifactId>org.etri.slice.core</artifactId>
 			<version>0.9.1</version>
 		</dependency>
- 		<dependency>
+		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
-			<artifactId>org.etri.slice.devices.objectdetector</artifactId>
+			<artifactId>org.etri.slice.devices.pressuresensor</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice.devices.3rdparty</groupId>
-			<artifactId>org.etri.slice.devices.3rdparty.ultrasonic</artifactId>
+			<artifactId>org.etri.slice.devices.3rdparty.pressuresensor</artifactId>
 			<version>0.9.1</version>
-		</dependency>				
+		</dependency>			
 		
 		<!--  
 		<dependency>

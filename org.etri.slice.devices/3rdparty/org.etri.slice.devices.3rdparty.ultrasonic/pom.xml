@@ -17,12 +17,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.commons</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.commons.car</artifactId>
+			<artifactId>org.etri.slice.commons.models</artifactId>
 			<version>0.9.1</version>
 		</dependency>	
 		<dependency>

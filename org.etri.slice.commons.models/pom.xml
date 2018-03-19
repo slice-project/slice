@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.etri.slice</groupId>
-	<artifactId>org.etri.slice.commons.car</artifactId>
+	<artifactId>org.etri.slice.commons.models</artifactId>
 	<version>0.9.1</version>
 	<name>The SLICE common models</name>
-	<description>The common models and the external libraries for the slice components</description>
+	<description>The common bundle have models for the slice components</description>
 
 	<packaging>bundle</packaging>
 
@@ -36,6 +36,71 @@
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.etri.slice</groupId>
+			<artifactId>org.etri.slice.commons.car</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.etri.slice</groupId>
+			<artifactId>dependencies</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.edgent</groupId>
+			<artifactId>edgent-core</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.edgent</groupId>
+			<artifactId>edgent-connectors</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-ci</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>	
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
 		</dependency>
 	</dependencies>
 

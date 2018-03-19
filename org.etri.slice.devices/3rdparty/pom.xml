@@ -17,7 +17,7 @@
 	<modules>
 		<module>org.etri.slice.devices.3rdparty.ultrasonic</module>
 		<module>org.etri.slice.devices.3rdparty.camera</module>
-		<module>org.etri.slice.devices.3rdparty.pressuresensor</module>
-		<module>org.etri.slice.devices.3rdparty.carseat</module>		
+		<module>org.etri.slice.devices.3rdparty.carseat</module>
+		<module>org.etri.slice.devices.3rdparty.pressuresensor</module>	
 	</modules>
 </project>
