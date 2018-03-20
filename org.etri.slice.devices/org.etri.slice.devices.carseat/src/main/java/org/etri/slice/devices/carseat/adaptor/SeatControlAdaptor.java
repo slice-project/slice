@@ -39,7 +39,7 @@ public class SeatControlAdaptor implements SeatControl {
 	private WorkingMemory m_wm;
 	
 	public SeatControlAdaptor() {
-		m_wm.addServiceAdaptor(SeatControl.id, this);
+		m_wm.addServiceWrapper(SeatControl.id, this);
 	}
 
 	@Override

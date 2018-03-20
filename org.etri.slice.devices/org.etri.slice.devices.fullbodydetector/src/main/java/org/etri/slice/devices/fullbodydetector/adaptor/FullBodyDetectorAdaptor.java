@@ -39,7 +39,7 @@ public class FullBodyDetectorAdaptor implements FullBodyDetector {
 	private WorkingMemory m_wm;
 	
 	public FullBodyDetectorAdaptor() {
-		m_wm.addServiceAdaptor(FullBodyDetector.id, this);
+		m_wm.addServiceWrapper(FullBodyDetector.id, this);
 	}
 
 	@Override
