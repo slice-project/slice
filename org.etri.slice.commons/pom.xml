@@ -5,7 +5,7 @@
 	<groupId>org.etri.slice</groupId>
 	<artifactId>org.etri.slice.commons</artifactId>
 	<version>0.9.1</version>
-	<name>The SLICE common models</name>
+	<name>The SLICE base modules for common models</name>
 	<description>The common models and the external libraries for the slice components</description>
 
 	<packaging>bundle</packaging>
@@ -120,7 +120,6 @@
 						<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
 						<Embed-Dependency>${embed.dependency}</Embed-Dependency>
 						<Embed-Directory>${embed.directory}</Embed-Directory>
-						<_exportcontents>${export.packages}</_exportcontents>
 						<Import-Package>${import.packages}</Import-Package>
 					</instructions>
 				</configuration>

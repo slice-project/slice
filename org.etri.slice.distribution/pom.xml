@@ -44,7 +44,7 @@
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.9.1</version>
-		</dependency>
+		</dependency>		
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons.car</artifactId>

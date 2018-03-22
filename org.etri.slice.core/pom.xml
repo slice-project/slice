@@ -40,11 +40,6 @@
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.commons.car</artifactId>
-			<version>0.9.1</version>
-		</dependency>	
-		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
 			<artifactId>weka-local</artifactId>
 			<version>3.8.1</version>
