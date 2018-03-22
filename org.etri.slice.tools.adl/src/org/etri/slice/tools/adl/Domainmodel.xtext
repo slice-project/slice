@@ -1,0 +1,110 @@
+grammar org.etri.slice.tools.adl.Domainmodel with org.eclipse.xtext.xbase.Xbase
+
+generate domainmodel "http://www.etri.org/slice/tools/adl/Domainmodel"
+
+DomainModel:
+	importSection=XImportSection?
+	elements+=AbstractElement*;
+	
+AbstractElement:
+	DomainDeclaration | Context | Event | Exception | Control | AgentDeclaration;
+
+DomainDeclaration:
+	'domain' name=QualifiedName '{'
+		elements+=AbstractElement*
+	'}';
+
+Context:
+	'context' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{'
+		properties+=Property*
+	'}';
+	
+Event:
+	topic=Topic
+	'event' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{'
+		properties+=Property*
+	'}';	
+	
+Exception:
+	'exception' name=ValidID ('extends' superType=JvmParameterizedTypeReference)?';';	
+	
+Control:
+	'control' name=ValidID ('extends' superType=[Control])? '{'
+		features+=Feature*	
+	'}';	
+	
+AgentDeclaration:
+	agency=Agency
+	'agent' name=ValidID '{' 
+		ruleSet=RuleSet
+		behaviorSet=BehaviorSet
+		commandSets+=CommandSet*
+	'}';
+
+RuleSet:
+	'hasRuleSet' name=ValidID '{'
+		'group-id' group_id=STRING
+		'artifact-id' artifact_id=STRING
+	'}';	
+	
+BehaviorSet:
+	'hasBehaviors' '{'
+		behaviors+=Behavior+
+	'}';
+
+Behavior:
+	'behavior' name=STRING
+		situation=Situation
+		action=Action
+	'end';
+	
+CommandSet:
+	'hasCommandsOf' control=[Control] '{'
+		commands+=Command+
+	'}';	
+	
+Command:
+	'command' name=ValidID '{'
+		contexts += CommandContext+
+		'action' action=[Control]'.'method=ValidID
+	'}';
+	
+CommandContext:
+	'context' context=[Context]'.'property=ValidID
+;	
+
+DataType:
+	Context | Event;
+
+Situation:
+	'on' types+=[DataType] (',' types+=[DataType])*;
+
+Action:
+	'do' (Publish | Call | NoOp);
+
+Publish:
+	action='publish' event=[Event];
+
+NoOp:
+	action='no-op';
+
+Call:
+	action='call' control=[Control]'.'method=ValidID;
+
+Feature:
+	Property | Operation;
+
+Property:
+	type=JvmTypeReference name=ValidID';'?;
+
+Operation:
+	'op' type=JvmTypeReference name=ValidID '('(params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)?')'
+		('throws' exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)?';'?;
+
+Topic:
+	'@topic('name=STRING')';		
+
+Agency:
+	'@agency(ip='ip=STRING',' 'port='port=INT')';
+	
+	
