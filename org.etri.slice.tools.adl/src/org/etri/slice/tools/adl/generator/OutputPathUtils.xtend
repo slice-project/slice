@@ -10,18 +10,28 @@ package org.etri.slice.tools.adl.generator
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
+import org.etri.slice.tools.adl.domainmodel.Context
 
 /**
  * @author yhsuh - Initial contribution and API
  */
 class OutputPathUtils {
 	
+	static val sliceCommons = "org.etri.slice.commons."
 	static val sliceDevice = "org.etri.slice.devices."
 	static val sliceRule = "org.etri.slice.rules."
 	@Inject extension IQualifiedNameProvider	
 	
+	def getCommonsFullyQualifiedName(Context it) {
+		sliceCommons + eContainer.fullyQualifiedName
+	}
+	
+	def getCommonsMavenSrcHome(Context it) {
+		commonsFullyQualifiedName + "/src/main/java/"
+	}
+	
 	def getDeviceFullyQualifiedName(AgentDeclaration it) {
-		return sliceDevice + eContainer.fullyQualifiedName + "." + name.toLowerCase
+		sliceDevice + eContainer.fullyQualifiedName + "." + name.toLowerCase
 	}
 	
 	def getDeviceMavenHome(AgentDeclaration it) {
@@ -37,7 +47,7 @@ class OutputPathUtils {
 	}
 	
 	def getRuleFullyQualifiedName(AgentDeclaration it) {
-		return sliceRule + eContainer.fullyQualifiedName + "." + name.toLowerCase
+		sliceRule + eContainer.fullyQualifiedName + "." + name.toLowerCase
 	}
 		
 	def getRuleMavenHome(AgentDeclaration it) {
