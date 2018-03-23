@@ -11,6 +11,8 @@ import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Context
+import org.etri.slice.tools.adl.domainmodel.Control
+import org.etri.slice.tools.adl.domainmodel.Event
 
 /**
  * @author yhsuh - Initial contribution and API
@@ -22,13 +24,29 @@ class OutputPathUtils {
 	static val sliceRule = "org.etri.slice.rules."
 	@Inject extension IQualifiedNameProvider	
 	
-	def getCommonsFullyQualifiedName(Context it) {
-		sliceCommons + eContainer.fullyQualifiedName
+	dispatch def getSliceFullyQualifiedName(Context it) {
+		sliceCommons + eContainer.fullyQualifiedName + ".context"
 	}
 	
-	def getCommonsMavenSrcHome(Context it) {
-		commonsFullyQualifiedName + "/src/main/java/"
+	dispatch def getSliceFullyQualifiedName(Event it) {
+		sliceCommons + eContainer.fullyQualifiedName + ".event"
 	}
+	
+	dispatch def getSliceFullyQualifiedName(Control it) {
+		sliceCommons + eContainer.fullyQualifiedName + ".service"
+	}		
+	
+	dispatch def getCommonsMavenSrcHome(Context it) {
+		sliceCommons + eContainer.fullyQualifiedName + "/src/main/java/"
+	}
+	
+	dispatch def getCommonsMavenSrcHome(Event it) {
+		sliceCommons + eContainer.fullyQualifiedName + "/src/main/java/"
+	}
+	
+	dispatch def getCommonsMavenSrcHome(Control it) {
+		sliceCommons + eContainer.fullyQualifiedName + "/src/main/java/"
+	}	
 	
 	def getDeviceFullyQualifiedName(AgentDeclaration it) {
 		sliceDevice + eContainer.fullyQualifiedName + "." + name.toLowerCase

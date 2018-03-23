@@ -17,10 +17,9 @@ class ContextGenerator implements IGenerator {
 	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(e: resource.allContents.toIterable.filter(typeof(Context))) {
-			val maven_src  = "org.etri.slice.commons." + e.eContainer.fullyQualifiedName + "/src/main/java/"
-			val package = maven_src + "org/etri/slice/commons/" + e.fullyQualifiedName.toString("/")
-			val path = package.substring(0, package.lastIndexOf("/") + 1) + "context/"
-			fsa.generateFile(path + e.name + ".java", e.compile)
+			val package = e.sliceFullyQualifiedName.replace(".", "/")
+			val file = e.commonsMavenSrcHome + package + "/" + e.name + ".java"
+			fsa.generateFile(file, e.compile)
 		}
 	}
 	
