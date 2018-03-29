@@ -20,7 +20,7 @@ public class ObjectInfoSensor implements Sensor {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(ObjectInfoSensor.class);	
 		
-	@Publishes(name="pub:objectinfo", topics=ObjectInfo.topic, dataKey=ObjectInfo.dataKey)
+	@Publishes(name="ObjectInfoSensor", topics=ObjectInfo.topic, dataKey=ObjectInfo.dataKey)
 	private Publisher m_publisher;
 	
 	@Override

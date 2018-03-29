@@ -17,7 +17,7 @@ import org.etri.slice.commons.car.event.UserSeated;
 @Instantiate
 public class UserSeatedAdaptor extends MqttEventSubscriber<UserSeated> {
 	
-	private static final long serialVersionUID = 4848431863307059892L;
+	private static final long serialVersionUID = 4888702256782265532L;
 
 	@Property(name="topic", value=UserSeated.TOPIC)
 	private String m_topic;

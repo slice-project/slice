@@ -24,7 +24,7 @@ import org.etri.slice.commons.car.context.ObjectInfo;
 public class ObjectDetected extends SliceEvent {
 
 	public static final String TOPIC = "object_detected";
-	private static final long serialVersionUID = -8497818376651257551L;
+	private static final long serialVersionUID = -7106004016313253180L;
 	
 	private ObjectInfo info;
 }

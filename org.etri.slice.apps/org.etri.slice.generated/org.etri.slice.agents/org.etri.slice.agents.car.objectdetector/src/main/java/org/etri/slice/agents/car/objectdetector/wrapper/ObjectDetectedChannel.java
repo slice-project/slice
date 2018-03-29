@@ -17,7 +17,7 @@ import org.etri.slice.commons.car.event.ObjectDetected;
 @Instantiate
 public class ObjectDetectedChannel extends MqttEventPublisher<ObjectDetected> {
 
-	private static final long serialVersionUID = -7631122967307334122L;
+	private static final long serialVersionUID = 4899353436028421381L;
 
 	@Property(name="topic", value=ObjectDetected.TOPIC)
 	private String m_topic;

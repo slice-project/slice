@@ -24,7 +24,7 @@ import org.etri.slice.commons.car.context.UserInfo;
 public class UserSeated extends SliceEvent {
 
 	public static final String TOPIC = "user_seated";
-	private static final long serialVersionUID = -4728844457894526849L;
+	private static final long serialVersionUID = 5468394952212433975L;
 	
 	private UserInfo info;
 }

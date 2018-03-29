@@ -17,7 +17,7 @@ import org.etri.slice.commons.car.event.SeatPostureChanged;
 @Instantiate
 public class SeatPostureChangedChannel extends MqttEventPublisher<SeatPostureChanged> {
 
-	private static final long serialVersionUID = 587523028448004397L;
+	private static final long serialVersionUID = -4676649509528908072L;
 
 	@Property(name="topic", value=SeatPostureChanged.TOPIC)
 	private String m_topic;

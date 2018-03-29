@@ -20,7 +20,7 @@ public class BodyPartLengthSensor implements Sensor {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(BodyPartLengthSensor.class);	
 		
-	@Publishes(name="pub:bodypartlength", topics=BodyPartLength.topic, dataKey=BodyPartLength.dataKey)
+	@Publishes(name="BodyPartLengthSensor", topics=BodyPartLength.topic, dataKey=BodyPartLength.dataKey)
 	private Publisher m_publisher;
 	
 	@Override

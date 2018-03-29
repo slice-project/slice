@@ -18,7 +18,7 @@ import org.etri.slice.commons.car.context.ObjectInfo;
 @Instantiate
 public class ObjectInfoAdaptor extends EventSubscriber<ObjectInfo> {
 	
-	private static final long serialVersionUID = -3430831554681025142L;
+	private static final long serialVersionUID = -6773782700452198262L;
 
 	@Property(name="topic", value=ObjectInfo.topic)
 	private String m_topic;

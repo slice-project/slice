@@ -24,7 +24,7 @@ import org.etri.slice.commons.car.context.SeatPosture;
 public class SeatPostureChanged extends SliceEvent {
 
 	public static final String TOPIC = "seat_posture_changed";
-	private static final long serialVersionUID = 4419464118934981991L;
+	private static final long serialVersionUID = -3602868651826265237L;
 	
 	private SeatPosture posture;
 }

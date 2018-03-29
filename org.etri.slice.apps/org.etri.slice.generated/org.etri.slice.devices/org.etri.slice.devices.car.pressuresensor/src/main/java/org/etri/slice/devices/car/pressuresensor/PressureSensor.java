@@ -20,7 +20,7 @@ public class PressureSensor implements Sensor {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(PressureSensor.class);	
 		
-	@Publishes(name="pub:pressure", topics=Pressure.topic, dataKey=Pressure.dataKey)
+	@Publishes(name="PressureSensor", topics=Pressure.topic, dataKey=Pressure.dataKey)
 	private Publisher m_publisher;
 	
 	@Override

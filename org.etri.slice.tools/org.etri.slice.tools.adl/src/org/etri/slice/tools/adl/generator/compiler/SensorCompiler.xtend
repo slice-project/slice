@@ -45,7 +45,7 @@ class SensorCompiler {
 			
 			private static Logger s_logger = LoggerFactory.getLogger(«name»Sensor.class);	
 				
-			@Publishes(name="pub:«name.toLowerCase»", topics=«name».topic, dataKey=«name».dataKey)
+			@Publishes(name="«name»Sensor", topics=«name».topic, dataKey=«name».dataKey)
 			private Publisher m_publisher;
 			
 			@Override

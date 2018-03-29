@@ -20,7 +20,7 @@ public class SeatPostureSensor implements Sensor {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatPostureSensor.class);	
 		
-	@Publishes(name="pub:seatposture", topics=SeatPosture.topic, dataKey=SeatPosture.dataKey)
+	@Publishes(name="SeatPostureSensor", topics=SeatPosture.topic, dataKey=SeatPosture.dataKey)
 	private Publisher m_publisher;
 	
 	@Override
