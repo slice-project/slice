@@ -18,7 +18,7 @@ class StreamCompiler {
 		«val importManager = new ImportManager(true)» 
 		«val body = body(importManager)»
 		«IF eContainer !== null»
-			package org.etri.slice.devices.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream;
+			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream;
 		«ENDIF»
 		
 		import org.apache.edgent.topology.TStream;

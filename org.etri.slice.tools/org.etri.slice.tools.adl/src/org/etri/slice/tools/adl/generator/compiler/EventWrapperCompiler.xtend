@@ -17,7 +17,7 @@ class EventWrapperCompiler {
 		«val importManager = new ImportManager(true)» 
 		«val body = body(agent, importManager)»
 		«IF eContainer !== null»
-			package org.etri.slice.devices.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
+			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
 		«ENDIF»
 		
 		import org.apache.felix.ipojo.annotations.Component;
@@ -26,11 +26,11 @@ class EventWrapperCompiler {
 		import org.apache.felix.ipojo.annotations.Property;
 		import org.apache.felix.ipojo.annotations.Requires;
 		import org.apache.felix.ipojo.annotations.Validate;
-		import org.etri.slice.api.device.Device;
+		import org.etri.slice.api.agent.Agent;
 		import org.etri.slice.api.inference.WorkingMemory;
 		import org.etri.slice.api.perception.EventStream;
 		import org.etri.slice.core.perception.MqttEventPublisher;
-		import org.etri.slice.devices.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«name»Stream;
+		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«name»Stream;
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
@@ -56,7 +56,7 @@ class EventWrapperCompiler {
 			private WorkingMemory m_wm;
 		
 			@Requires
-			private Device m_device;
+			private Agent m_agent;
 			
 			@Requires(from=«name»Stream.SERVICE_NAME)
 			private EventStream<«name»> m_streaming;		
@@ -73,8 +73,8 @@ class EventWrapperCompiler {
 				return m_wm;
 			}
 			
-			protected Device getDevice() {
-				return m_device;
+			protected Agent getAgent() {
+				return m_agent;
 			}
 			
 			protected EventStream<«name»> getEventStream() {

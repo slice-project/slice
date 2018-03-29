@@ -33,14 +33,14 @@ class CommandWrapperCompiler {
 		«val body = body(importManager)»
 		
 		«IF eContainer !== null»
-			package org.etri.slice.devices.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
+			package org.etri.slice.agents.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
 		«ENDIF»
 
 		import org.apache.edgent.execution.services.ControlService;
 		import org.apache.felix.ipojo.annotations.Component;
 		import org.apache.felix.ipojo.annotations.Instantiate;
 		import org.apache.felix.ipojo.annotations.Requires;
-		import org.etri.slice.api.device.Device;
+		import org.etri.slice.api.agent.Agent;
 		import org.etri.slice.api.learning.Action;
 		import org.etri.slice.api.learning.Action.ActionBuilder;
 		import org.etri.slice.api.learning.ActionLogger;
@@ -67,10 +67,10 @@ class CommandWrapperCompiler {
 			private ActionLogger m_logger;
 			
 			@Requires
-			private Device m_device;
+			private Agent m_agent;
 			
 			public «control.name»Commander() {
-				ControlService control = m_device.getService(ControlService.class);
+				ControlService control = m_agent.getService(ControlService.class);
 				control.registerControl(this.getClass().getSimpleName(), «control.name».id, null, «control.name».class, this);
 			}
 			

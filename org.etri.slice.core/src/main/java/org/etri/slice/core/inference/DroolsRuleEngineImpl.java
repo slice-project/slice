@@ -32,7 +32,7 @@ import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.eclipse.aether.version.Version;
-import org.etri.slice.api.device.Device;
+import org.etri.slice.api.agent.Agent;
 import org.etri.slice.api.perception.ContextMemory;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieScanner;
@@ -54,7 +54,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 	public long m_scanInterval;
 
 	@Requires
-	private Device m_device;
+	private Agent m_device;
 	@Requires
 	private ContextMemory m_cm;
 	private String m_groupId;

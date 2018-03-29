@@ -20,7 +20,7 @@ class ControlWrapperCompiler {
 		«val body = body(importManager)»
 		
 		«IF eContainer !== null»
-			package org.etri.slice.devices.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
+			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
 		«ENDIF»
 		
 		import org.apache.felix.ipojo.annotations.Component;

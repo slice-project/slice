@@ -13,66 +13,99 @@ import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.Event
+import org.etri.slice.tools.adl.domainmodel.Exception
 
 /**
  * @author yhsuh - Initial contribution and API
  */
 class OutputPathUtils {
 	
-	static val sliceCommons = "org.etri.slice.commons."
-	static val sliceDevice = "org.etri.slice.devices."
-	static val sliceRule = "org.etri.slice.rules."
+	public static val sliceAgents = "org.etri.slice.agents"
+	public static val sliceCommons = "org.etri.slice.commons"
+	public static val sliceDevices = "org.etri.slice.devices"
+	public static val sliceDistribution = "org.etri.slice.distribution"
+	public static val sliceModels = "org.etri.slice.models"
+	public static val sliceRules = "org.etri.slice.rules"
+	
 	@Inject extension IQualifiedNameProvider	
 	
 	dispatch def getSliceFullyQualifiedName(Context it) {
-		sliceCommons + eContainer.fullyQualifiedName + ".context"
+		sliceCommons + "." + eContainer.fullyQualifiedName + ".context"
 	}
 	
 	dispatch def getSliceFullyQualifiedName(Event it) {
-		sliceCommons + eContainer.fullyQualifiedName + ".event"
+		sliceCommons + "." + eContainer.fullyQualifiedName + ".event"
 	}
 	
+	dispatch def getSliceFullyQualifiedName( Exception it) {
+		sliceCommons + "." + eContainer.fullyQualifiedName
+	}	
+	
 	dispatch def getSliceFullyQualifiedName(Control it) {
-		sliceCommons + eContainer.fullyQualifiedName + ".service"
-	}		
+		sliceCommons + "." + eContainer.fullyQualifiedName + ".service"
+	}	
+	
+	def getCommonsMavenHome(AgentDeclaration it) {
+		sliceModels + "/" + sliceCommons + "." + eContainer.fullyQualifiedName + "/"
+	}	
 	
 	dispatch def getCommonsMavenSrcHome(Context it) {
-		sliceCommons + eContainer.fullyQualifiedName + "/src/main/java/"
+		sliceModels + "/" + sliceCommons + "." + eContainer.fullyQualifiedName + "/src/main/java/"
 	}
 	
 	dispatch def getCommonsMavenSrcHome(Event it) {
-		sliceCommons + eContainer.fullyQualifiedName + "/src/main/java/"
+		sliceModels + "/" + sliceCommons + "." + eContainer.fullyQualifiedName + "/src/main/java/"
 	}
 	
-	dispatch def getCommonsMavenSrcHome(Control it) {
-		sliceCommons + eContainer.fullyQualifiedName + "/src/main/java/"
+	dispatch def getCommonsMavenSrcHome(Exception it) {
+		sliceModels + "/" + sliceCommons + "." + eContainer.fullyQualifiedName + "/src/main/java/"
 	}	
 	
+	dispatch def getCommonsMavenSrcHome(Control it) {
+		sliceModels + "/" + sliceCommons + "." + eContainer.fullyQualifiedName + "/src/main/java/"
+	}	
+	
+	def getAgentFullyQualifiedName(AgentDeclaration it) {
+		sliceAgents + "." + eContainer.fullyQualifiedName + "." + name.toLowerCase
+	}
+	
+	def getAgentMavenHome(AgentDeclaration it) {
+		sliceAgents + "/" + agentFullyQualifiedName + "/"
+	}
+	
+	def getAgentMavenSrcHome(AgentDeclaration it) {
+		sliceAgents + "/" + agentFullyQualifiedName + "/src/main/java/"
+	}
+
+	def getAgentMavenResHome(AgentDeclaration it) {
+		sliceAgents + "/" + agentFullyQualifiedName + "/src/main/resources/"
+	}
+	
 	def getDeviceFullyQualifiedName(AgentDeclaration it) {
-		sliceDevice + eContainer.fullyQualifiedName + "." + name.toLowerCase
+		sliceDevices + "." + eContainer.fullyQualifiedName + "." + name.toLowerCase
 	}
 	
 	def getDeviceMavenHome(AgentDeclaration it) {
-		deviceFullyQualifiedName + "/"
+		sliceDevices + "/" + deviceFullyQualifiedName + "/"
 	}
 	
 	def getDeviceMavenSrcHome(AgentDeclaration it) {
-		deviceFullyQualifiedName + "/src/main/java/"
+		sliceDevices + "/" + deviceFullyQualifiedName + "/src/main/java/"
 	}
 
 	def getDeviceMavenResHome(AgentDeclaration it) {
-		deviceFullyQualifiedName + "/src/main/resources/"
-	}
+		sliceDevices + "/" + deviceFullyQualifiedName + "/src/main/resources/"
+	}	
 	
 	def getRuleFullyQualifiedName(AgentDeclaration it) {
-		sliceRule + eContainer.fullyQualifiedName + "." + name.toLowerCase
+		sliceRules + "." + eContainer.fullyQualifiedName + "." + name.toLowerCase
 	}
 		
 	def getRuleMavenHome(AgentDeclaration it) {
-		ruleFullyQualifiedName + "/"
+		sliceRules + "/" + ruleFullyQualifiedName + "/"
 	}
 	
 	def getRuleMavenResHome(AgentDeclaration it) {
-		it.ruleFullyQualifiedName + "/src/main/resources/"
+		sliceRules + "/" + ruleFullyQualifiedName + "/src/main/resources/"
 	}			
 }

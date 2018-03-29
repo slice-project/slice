@@ -1,0 +1,15 @@
+package org.etri.slice.rules.car;
+
+import org.etri.slice.commons.car.context.Pressure;
+import org.etri.slice.commons.car.event.FullBodyDetected;
+import org.etri.slice.commons.car.event.UserSeated;
+
+
+rule "UserSeated Notification"
+	when
+		$e1: FullBodyDetected(/* */)
+		$e2: Pressure(/* */)
+	then
+		channels["user_seated"].send(new UserSeated(/* */));
+end
+

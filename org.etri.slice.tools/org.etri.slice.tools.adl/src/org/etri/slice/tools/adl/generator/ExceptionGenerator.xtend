@@ -12,12 +12,13 @@ class ExceptionGenerator implements IGenerator {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils	
+	@Inject extension OutputPathUtils
 	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(e: resource.allContents.toIterable.filter(typeof(Exception))) {
-			val maven_src  = "org.etri.slice.commons." + e.eContainer.fullyQualifiedName + "/src/main/java/"
-			val filePath = maven_src + "org/etri/slice/commons/" + e.fullyQualifiedName.toString("/")
-			fsa.generateFile(filePath + ".java", e.compile)
+			val package = e.sliceFullyQualifiedName.replace(".", "/")
+			val file = e.commonsMavenSrcHome + package + "/" + e.name + ".java"			
+			fsa.generateFile(file, e.compile)
 		}
 	}
 	

@@ -14,8 +14,8 @@ class CommanderGenerator {
 	@Inject extension CommandWrapperCompiler
 	
 	def generateCommander(AgentDeclaration it, CommandSet commandSet, IFileSystemAccess fsa) {
-		var package = deviceFullyQualifiedName.replace(".", "/")
-		var file = deviceMavenSrcHome + package + "/wrapper/" + commandSet.control.name + "Commander.java"		
+		var package = agentFullyQualifiedName.replace(".", "/")
+		var file = agentMavenSrcHome + package + "/wrapper/" + commandSet.control.name + "Commander.java"		
 		fsa.generateFile(file, compileCommandWrapper(commandSet))
 		
 		package = ruleFullyQualifiedName.replace(".", "/")

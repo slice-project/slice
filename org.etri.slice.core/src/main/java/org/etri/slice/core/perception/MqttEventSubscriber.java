@@ -25,7 +25,7 @@ import org.apache.edgent.connectors.mqtt.MqttStreams;
 import org.apache.edgent.function.Consumer;
 import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
-import org.etri.slice.api.device.Device;
+import org.etri.slice.api.agent.Agent;
 import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.api.perception.EventStream;
 import org.etri.slice.commons.SliceEvent;
@@ -42,7 +42,7 @@ public abstract class MqttEventSubscriber<T> implements Consumer<T> {
 	private TStream<T> m_events;
 	
 	protected abstract WorkingMemory getWorkingMemory();
-	protected abstract Device getDevice();
+	protected abstract Agent getAgent();
 	protected abstract String getTopicName();
 	protected abstract String getMqttURL();
 	protected abstract Class<?> getEventType();
@@ -50,7 +50,7 @@ public abstract class MqttEventSubscriber<T> implements Consumer<T> {
 	
 	public void start() {
 		String topicName = getTopicName();		
-		m_topology = getDevice().newTopology(topicName);
+		m_topology = getAgent().newTopology(topicName);
 
 		m_mqtt = new MqttStreams(m_topology, getMqttURL(), null);
 		TStream<String> jsonStream = m_mqtt.subscribe(topicName, 0);
@@ -68,7 +68,7 @@ public abstract class MqttEventSubscriber<T> implements Consumer<T> {
 		m_events = getEventStream().process(events);
 		m_events.sink(this);
 		
-		getDevice().submit(m_topology);
+		getAgent().submit(m_topology);
 		s_logger.info("STARTED: MqttEventSubscriber[" + topicName + "]");
 	}
 	

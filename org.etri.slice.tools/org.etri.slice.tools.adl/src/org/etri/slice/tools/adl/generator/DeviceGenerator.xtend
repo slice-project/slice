@@ -6,50 +6,42 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.generator.compiler.DeviceCompiler
-import org.etri.slice.tools.adl.generator.compiler.LogbackCompiler
-import org.etri.slice.tools.adl.generator.compiler.MetaDataCompiler
-import org.etri.slice.tools.adl.generator.compiler.POMCompiler
 
-class DeviceGenerator implements IGenerator {
-	
-	@Inject extension IQualifiedNameProvider	
-	@Inject extension DeviceCompiler
-	@Inject extension MetaDataCompiler
-	@Inject extension POMCompiler
-	@Inject extension LogbackCompiler
-	@Inject extension OutputPathUtils
-	
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {		
+class DeviceGenerator implements IGenerator {	
+
+	@Inject DeviceProjectGenerator deviceProjectGenerator
+	@Inject extension IQualifiedNameProvider
+		
+	override doGenerate(Resource resource, IFileSystemAccess fsa) {
+		fsa.generateFile(OutputPathUtils.sliceDevices + "/pom.xml", compileDevicesPOM(resource))
+		
 		for (e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))) {
-			generateMavenProject(e, fsa)
-			generateDevice(e, fsa)
-			generateMetaData(e, fsa)
-			generateLogback(e, fsa)
+			deviceProjectGenerator.doGenerate(resource, fsa)
 		}
 	}
 	
-	def generateDevice(AgentDeclaration it, IFileSystemAccess fsa) {
-		val package = deviceFullyQualifiedName.replace(".", "/")
-		val file = deviceMavenSrcHome + package + "/" + name + ".java"
-		fsa.generateFile(file, deviceCompile)			
-	}
-	
-	def generateMavenProject(AgentDeclaration it, IFileSystemAccess fsa) {
-		fsa.generateFile(deviceMavenHome + "bundle.properties", compileBundleProperties)
-		fsa.generateFile(deviceMavenHome + "pom.xml", compileDevicePOM)				
-	}
-	
-	def generateMetaData(AgentDeclaration it, IFileSystemAccess fsa) {
-		fsa.generateFile(deviceMavenResHome + "metadata.xml", compileMetaData)
-	}
-	
-	def generateLogback(AgentDeclaration it, IFileSystemAccess fsa) {
-		fsa.generateFile(deviceMavenResHome + "logback.xml", compileLogback)
-	}		
-	
-	def compileBundleProperties(AgentDeclaration it) '''
-		# Configure the created bundle
-		private.packages=org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase».*
-	'''
+	def compileDevicesPOM(Resource resource) '''
+		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+			<modelVersion>4.0.0</modelVersion>
+			
+			<parent>
+				<groupId>org.etri.slice</groupId>
+				<artifactId>org.etri.slice</artifactId>
+				<version>0.9.1</version>
+				<relativePath>../pom.xml</relativePath>
+			</parent>
+			
+			<groupId>org.etri.slice.devices</groupId>
+			<artifactId>org.etri.slice.devices</artifactId>
+			<name>The 3rd party implementation for the SLICE devices</name>
+			<packaging>pom</packaging>
+			
+			<modules>
+				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»
+					<module>org.etri.slice.devices.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</module>
+				«ENDFOR»
+			</modules>
+		</project>
+	'''	
 }

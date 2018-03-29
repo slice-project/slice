@@ -1,10 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtext Domainmodel Example
-Bundle-Vendor: Eclipse Xtext
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 2.13.0.qualifier
 Bundle-SymbolicName: org.etri.slice.tools.adl;singleton:=true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
  org.eclipse.equinox.common;bundle-version="3.5.0",
@@ -18,13 +17,16 @@ Require-Bundle: org.eclipse.xtext,
  org.objectweb.asm;bundle-version="[5.0.1,7.0.0)";resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.etri.slice.tools.adl,
+ org.etri.slice.tools.adl.compiler.generator,
  org.etri.slice.tools.adl.domainmodel,
  org.etri.slice.tools.adl.domainmodel.impl,
  org.etri.slice.tools.adl.domainmodel.util,
  org.etri.slice.tools.adl.formatting2,
+ org.etri.slice.tools.adl.generator,
+ org.etri.slice.tools.adl.generator.compiler,
  org.etri.slice.tools.adl.jvmmodel,
  org.etri.slice.tools.adl.parser.antlr,
- org.etri.slice.tools.adl.parser.antlr.internal,
+ org.etri.slice.tools.adl.parser.antlr.internal;x-internal:=true,
  org.etri.slice.tools.adl.scoping,
  org.etri.slice.tools.adl.serializer,
  org.etri.slice.tools.adl.services,

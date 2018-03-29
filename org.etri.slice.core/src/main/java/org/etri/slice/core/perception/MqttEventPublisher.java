@@ -25,7 +25,7 @@ import org.apache.edgent.connectors.mqtt.MqttStreams;
 import org.apache.edgent.function.Consumer;
 import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
-import org.etri.slice.api.device.Device;
+import org.etri.slice.api.agent.Agent;
 import org.etri.slice.api.inference.WorkingMemory;
 import org.etri.slice.api.perception.EventStream;
 import org.etri.slice.commons.SliceEvent;
@@ -44,7 +44,7 @@ public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Ch
 	private Consumer<T> m_eventSubmitter;
 	
 	protected abstract WorkingMemory getWorkingMemory();
-	protected abstract Device getDevice();
+	protected abstract Agent getAgent();
 	protected abstract String getTopicName();
 	protected abstract String getMqttURL();
 	protected abstract EventStream<T> getEventStream();
@@ -53,7 +53,7 @@ public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Ch
 		String topicName = getTopicName();
 		getWorkingMemory().addEventAdaptor(topicName, this);		
 		
-		m_topology = getDevice().newTopology(topicName);
+		m_topology = getAgent().newTopology(topicName);
 		TStream<T> events = m_topology.events(this);
 		m_events = getEventStream().process(events);		
 		
@@ -70,7 +70,7 @@ public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Ch
 		m_mqtt = new MqttStreams(m_topology, getMqttURL(), null);
 		m_mqtt.publish(jsonStream, topicName, 0, false);
 		
-		getDevice().submit(m_topology);		
+		getAgent().submit(m_topology);		
 		s_logger.info("STARTED: MqttEventPublisher[" + topicName + "]");
 	}
 	

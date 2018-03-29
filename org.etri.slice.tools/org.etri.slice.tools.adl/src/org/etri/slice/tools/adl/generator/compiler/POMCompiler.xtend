@@ -13,11 +13,16 @@ class POMCompiler {
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
 		
-			<groupId>org.etri.slice</groupId>
+			<parent>
+				<groupId>org.etri.slice</groupId>
+				<artifactId>org.etri.slice.models</artifactId>
+				<version>0.9.1</version>
+				<relativePath>../pom.xml</relativePath>
+			</parent>
+			
+			<groupId>org.etri.slice.commons</groupId>
 			<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
-			<version>0.9.1</version>
-			<name>The SLICE common models for «eContainer.fullyQualifiedName» domain</name>
-			<description>The common models and the external libraries for the slice components</description>
+			<name>The SLICE common data models for «eContainer.fullyQualifiedName» domain</name>
 		
 			<packaging>bundle</packaging>
 		
@@ -34,7 +39,6 @@ class POMCompiler {
 					<plugin>
 						<groupId>org.apache.felix</groupId>
 						<artifactId>maven-bundle-plugin</artifactId>
-						<version>3.3.0</version>
 						<extensions>true</extensions>
 						<configuration>
 							<instructions>
@@ -50,7 +54,6 @@ class POMCompiler {
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-eclipse-plugin</artifactId>
-						<version>2.10</version>
 						<configuration>
 							<downloadSources>false</downloadSources>
 						</configuration>
@@ -58,7 +61,6 @@ class POMCompiler {
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
-						<version>3.1</version>
 						<configuration>
 							<source>1.8</source>
 							<target>1.8</target>
@@ -68,7 +70,6 @@ class POMCompiler {
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>properties-maven-plugin</artifactId>
-						<version>1.0.0</version>
 						<executions>
 							<execution>
 								<phase>initialize</phase>
@@ -89,22 +90,21 @@ class POMCompiler {
 		</project>		
 	'''
 	
-	def compileDevicePOM(AgentDeclaration it) '''
+	def compileAgentPOM(AgentDeclaration it) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
 			<parent>
-				<groupId>org.etri.slice.devices</groupId>
-				<artifactId>org.etri.slice.devices</artifactId>
+				<groupId>org.etri.slice</groupId>
+				<artifactId>org.etri.slice.agents</artifactId>
 				<version>0.9.1</version>
 				<relativePath>../pom.xml</relativePath>
 			</parent>
 			
 			<packaging>bundle</packaging>	
 			
-			<artifactId>org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase»</artifactId>
-			<name>... org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase»</name>
-			<description>org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase» :: «name.toLowerCase»</description>
+			<artifactId>org.etri.slice.agents.«eContainer.fullyQualifiedName».«name.toLowerCase»</artifactId>
+			<name>... org.etri.slice.agents.«eContainer.fullyQualifiedName».«name.toLowerCase»</name>
 			
 			<dependencies>
 				<dependency>
@@ -113,7 +113,7 @@ class POMCompiler {
 					<version>0.9.1</version>
 				</dependency>
 				<dependency>
-					<groupId>org.etri.slice</groupId>
+					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
 					<version>0.9.1</version>
 				</dependency>			
@@ -152,6 +152,72 @@ class POMCompiler {
 		</project>
 	'''	
 	
+	def compileDevicePOM(AgentDeclaration it) '''
+		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+			<modelVersion>4.0.0</modelVersion>
+			<parent>
+				<groupId>org.etri.slice.devices</groupId>
+				<artifactId>org.etri.slice.devices</artifactId>
+				<version>0.9.1</version>
+				<relativePath>../pom.xml</relativePath>
+			</parent>
+			
+			<packaging>bundle</packaging>	
+			
+			<artifactId>org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase»</artifactId>
+			<name>... org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase»</name>
+			
+			<dependencies>
+				<dependency>
+					<groupId>org.etri.slice.commons</groupId>
+					<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
+					<version>0.9.1</version>
+				</dependency>			
+			</dependencies>
+		
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.felix</groupId>
+						<artifactId>maven-bundle-plugin</artifactId>
+						<configuration>
+							<instructions>
+								<Private-Package>${private.packages}</Private-Package>
+								<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
+								<Embed-Dependency>${embed.dependency}</Embed-Dependency>
+								<Embed-Directory>${embed.directory}</Embed-Directory>
+								<Import-Package>${import.packages}</Import-Package>
+							</instructions>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.felix</groupId>
+						<artifactId>maven-ipojo-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-eclipse-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>properties-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+			
+		</project>
+	'''		
+	
 	def compileRulePOM(AgentDeclaration it) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -165,7 +231,7 @@ class POMCompiler {
 		
 			<artifactId>org.etri.slice.rules.«eContainer.fullyQualifiedName».«name.toLowerCase»</artifactId>
 			<version>0.9.1</version>
-			<name>... rules for a «eContainer.fullyQualifiedName».«name.toLowerCase» device </name>
+			<name>... rules for a «eContainer.fullyQualifiedName».«name.toLowerCase» agent </name>
 		
 		</project>
 	'''		

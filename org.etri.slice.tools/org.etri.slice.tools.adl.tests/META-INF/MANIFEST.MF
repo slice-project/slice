@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtext Domainmodel Example - Runtime Tests
-Bundle-Vendor: Eclipse Xtext
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 2.13.0.qualifier
 Bundle-SymbolicName: org.etri.slice.tools.adl.tests;singleton:=true
 Bundle-ActivationPolicy: lazy

@@ -24,7 +24,7 @@ package org.etri.slice.core.perception;
 import org.apache.edgent.function.Consumer;
 import org.apache.edgent.topology.TStream;
 import org.apache.edgent.topology.Topology;
-import org.etri.slice.api.device.Device;
+import org.etri.slice.api.agent.Agent;
 import org.etri.slice.api.perception.EventStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,18 +37,18 @@ public abstract class EventSubscriber<T> implements Consumer<Consumer<T>>, AutoC
 	private Topology m_topology;
 	private TStream<T> m_events;	
 	
-	protected abstract Device getDevice();
+	protected abstract Agent getAgent();
 	protected abstract String getTopicName();
 	protected abstract EventStream<T> getEventStream();
 	
 	public void start(Consumer<T> consumer) {	
-		m_topology = getDevice().newTopology(getTopicName());
+		m_topology = getAgent().newTopology(getTopicName());
 		TStream<T> events = m_topology.events(this);
 		
 		m_events = getEventStream().process(events);		
 		m_events.sink(consumer);
 		
-		getDevice().submit(m_topology);
+		getAgent().submit(m_topology);
 		s_logger.info("STARTED: EventSubscriber[" + getTopicName() + "]");
 	}
 	
