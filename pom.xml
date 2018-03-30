@@ -15,7 +15,6 @@
 		<module>org.etri.slice.api</module>
 		<module>org.etri.slice.commons</module>
 		<module>org.etri.slice.core</module>
-		<module>org.etri.slice.devices</module>
 	</modules>
 
 	<properties>
