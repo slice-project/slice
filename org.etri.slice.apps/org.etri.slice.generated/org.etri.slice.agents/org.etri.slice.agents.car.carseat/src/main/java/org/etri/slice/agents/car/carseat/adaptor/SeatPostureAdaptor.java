@@ -38,7 +38,7 @@ import org.etri.slice.commons.car.context.SeatPosture;
 @Instantiate
 public class SeatPostureAdaptor extends EventSubscriber<SeatPosture> {
 	
-	private static final long serialVersionUID = 3639445569529922093L;
+	private static final long serialVersionUID = -309981678505146128L;
 
 	@Property(name="topic", value=SeatPosture.topic)
 	private String m_topic;

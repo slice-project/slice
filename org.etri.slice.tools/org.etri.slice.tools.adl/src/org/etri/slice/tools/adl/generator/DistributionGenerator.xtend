@@ -78,6 +78,7 @@ class DistributionGenerator implements IGenerator {
 						<version>0.9.1</version>
 					</dependency>
 				«ENDFOR»
+		<!--				
 				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»	
 					<dependency>
 						<groupId>org.etri.slice</groupId>
@@ -89,7 +90,8 @@ class DistributionGenerator implements IGenerator {
 						<artifactId>org.etri.slice.devices.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</artifactId>
 						<version>0.9.1</version>
 					</dependency>										
-				«ENDFOR»				
+				«ENDFOR»	
+		-->							
 			</dependencies>
 		
 			<build>

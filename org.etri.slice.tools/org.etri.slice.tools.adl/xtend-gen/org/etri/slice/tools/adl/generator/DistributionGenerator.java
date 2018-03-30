@@ -205,6 +205,8 @@ public class DistributionGenerator implements IGenerator {
         _builder.newLine();
       }
     }
+    _builder.append("<!--\t\t\t\t");
+    _builder.newLine();
     {
       Iterable<AgentDeclaration> _filter_1 = Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class);
       for(final AgentDeclaration e_1 : _filter_1) {
@@ -258,6 +260,8 @@ public class DistributionGenerator implements IGenerator {
         _builder.newLine();
       }
     }
+    _builder.append("-->\t\t\t\t\t\t\t");
+    _builder.newLine();
     _builder.append("\t");
     _builder.append("</dependencies>");
     _builder.newLine();

@@ -38,7 +38,7 @@ import org.etri.slice.commons.car.context.BodyPartLength;
 @Instantiate
 public class BodyPartLengthAdaptor extends EventSubscriber<BodyPartLength> {
 	
-	private static final long serialVersionUID = -5079505998090975349L;
+	private static final long serialVersionUID = -7029939821819835737L;
 
 	@Property(name="topic", value=BodyPartLength.topic)
 	private String m_topic;

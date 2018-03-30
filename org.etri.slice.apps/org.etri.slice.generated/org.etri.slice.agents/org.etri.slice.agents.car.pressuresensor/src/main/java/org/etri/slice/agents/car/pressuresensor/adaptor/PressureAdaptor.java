@@ -38,7 +38,7 @@ import org.etri.slice.commons.car.context.Pressure;
 @Instantiate
 public class PressureAdaptor extends EventSubscriber<Pressure> {
 	
-	private static final long serialVersionUID = -2233942886505430319L;
+	private static final long serialVersionUID = 5610600738959213831L;
 
 	@Property(name="topic", value=Pressure.topic)
 	private String m_topic;

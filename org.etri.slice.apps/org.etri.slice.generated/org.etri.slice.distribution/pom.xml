@@ -57,6 +57,17 @@
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
+			<artifactId>org.etri.slice.agents.car.carseat</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.etri.slice.devices</groupId>
+			<artifactId>org.etri.slice.devices.car.carseat</artifactId>
+			<version>0.9.1</version>
+		</dependency>					
+<!-- 
+		<dependency>
+			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.agents.car.objectdetector</artifactId>
 			<version>0.9.1</version>
 		</dependency>
@@ -94,7 +105,8 @@
 			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.car.carseat</artifactId>
 			<version>0.9.1</version>
-		</dependency>										
+		</dependency>
+-->												
 	</dependencies>
 
 	<build>

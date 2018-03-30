@@ -37,7 +37,7 @@ import org.etri.slice.commons.car.event.UserSeated;
 @Instantiate
 public class UserSeatedChannel extends MqttEventPublisher<UserSeated> {
 
-	private static final long serialVersionUID = 6144696351587778808L;
+	private static final long serialVersionUID = 6947866336869240174L;
 
 	@Property(name="topic", value=UserSeated.TOPIC)
 	private String m_topic;

@@ -37,7 +37,7 @@ import org.etri.slice.commons.car.event.FullBodyDetected;
 @Instantiate
 public class FullBodyDetectedChannel extends MqttEventPublisher<FullBodyDetected> {
 
-	private static final long serialVersionUID = 2646573129026257664L;
+	private static final long serialVersionUID = -3139497025412119766L;
 
 	@Property(name="topic", value=FullBodyDetected.TOPIC)
 	private String m_topic;

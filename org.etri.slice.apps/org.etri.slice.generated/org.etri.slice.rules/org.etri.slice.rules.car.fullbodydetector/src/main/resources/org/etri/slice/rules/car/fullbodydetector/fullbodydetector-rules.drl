@@ -9,15 +9,15 @@ global FullBodyDetector fullBodyDetector;
 
 rule "Initiate full-body Detection"
 	when
-		$e: ObjectDetected(/* */)
+		$e: ObjectDetected($d: info.distance)
 	then
-		fullBodyDetector.detect(/* */);
+		fullBodyDetector.detect($d);
 end
 
 rule "FullBody Detection Notificiation"
 	when
-		$e: BodyPartLength(/* */)
+		$e: BodyPartLength()
 	then
-		channels["full_body_detected"].send(new FullBodyDetected(/* */));
+		channels["full_body_detected"].send(new FullBodyDetected($e));
 end
 

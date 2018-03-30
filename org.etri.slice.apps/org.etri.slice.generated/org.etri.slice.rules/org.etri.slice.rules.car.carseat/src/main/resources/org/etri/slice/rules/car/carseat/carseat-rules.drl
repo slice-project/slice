@@ -7,8 +7,8 @@ import org.etri.slice.commons.car.event.SeatPostureChanged;
 
 rule "SeatPosture Change Notification"
 	when
-		$e: SeatPosture(/* */)
+		$e: SeatPosture()
 	then
-		channels["seat_posture_changed"].send(new SeatPostureChanged(/* */));
+		channels["seat_posture_changed"].send(new SeatPostureChanged($e));
 end
 

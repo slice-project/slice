@@ -24,7 +24,7 @@ import org.etri.slice.commons.car.context.BodyPartLength;
 public class FullBodyDetected extends SliceEvent {
 
 	public static final String TOPIC = "full_body_detected";
-	private static final long serialVersionUID = 8757805155019344188L;
+	private static final long serialVersionUID = 7591088640078531334L;
 	
 	private BodyPartLength bodyLength;
 }

@@ -7,9 +7,9 @@ import org.etri.slice.commons.car.event.UserSeated;
 
 rule "UserSeated Notification"
 	when
-		$e1: FullBodyDetected(/* */)
-		$e2: Pressure(/* */)
+		$e1: FullBodyDetected($body: bodyLength)
+		$e2: Pressure(value > 30, this meets[10s] $e1)
 	then
-		channels["user_seated"].send(new UserSeated(/* */));
+		channels["user_seated"].send(new UserSeated(new UserInfo("user", $body)));
 end
 
