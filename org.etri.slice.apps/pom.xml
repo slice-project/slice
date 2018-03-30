@@ -9,6 +9,31 @@
 	
 	<name>The SLICE Agent</name>
 	<description>org.etri.slice.apps :: slice applications</description>
+	
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>jboss-repo</id>
+			<url>https://repository.jboss.org/</url>
+		</repository>
+		<repository>
+			<id>local-repo</id>
+			<url>file:${project.basedir}/lib</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>				
+	</repositories>	
 
 	<dependencies>
 		<dependency>

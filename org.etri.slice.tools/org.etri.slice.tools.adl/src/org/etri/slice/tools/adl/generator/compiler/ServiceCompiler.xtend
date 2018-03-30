@@ -43,7 +43,7 @@ class ServiceCompiler {
 	def compile(Control it, ImportManager importManager) '''
 		public class «shortName(importManager)»Service implements «name» {
 			
-			private static Logger s_logger = LoggerFactory.getLogger(«name»Servcie.class);	
+			private static Logger s_logger = LoggerFactory.getLogger(«name»Service.class);	
 			
 			private «name» m_service;	
 			

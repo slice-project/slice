@@ -61,7 +61,7 @@ class DeviceProjectGenerator implements IGenerator {
 	
 	def compileBundleProperties(AgentDeclaration it) '''
 		# Configure the created bundle
-		embed.dependency=,;scope=!provided|test
+		embed.dependency=;scope=!provided|test
 		embed.directory=lib
 		bundle.classpath=.,{maven-dependencies}		
 		private.packages=org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase».*

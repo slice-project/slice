@@ -42,14 +42,14 @@
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.commons</artifactId>
+			<artifactId>org.etri.slice.core</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.core</artifactId>
+			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.9.1</version>
-		</dependency>						
+		</dependency>										
 		<dependency>
 			<groupId>org.etri.slice.commons</groupId>
 			<artifactId>org.etri.slice.commons.car</artifactId>
@@ -61,7 +61,7 @@
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.etri.slice</groupId>
+			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.car.objectdetector</artifactId>
 			<version>0.9.1</version>
 		</dependency>										
@@ -71,7 +71,7 @@
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.etri.slice</groupId>
+			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.car.fullbodydetector</artifactId>
 			<version>0.9.1</version>
 		</dependency>										
@@ -81,7 +81,7 @@
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.etri.slice</groupId>
+			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.car.pressuresensor</artifactId>
 			<version>0.9.1</version>
 		</dependency>										
@@ -91,7 +91,7 @@
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.etri.slice</groupId>
+			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.car.carseat</artifactId>
 			<version>0.9.1</version>
 		</dependency>										

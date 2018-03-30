@@ -25,5 +25,5 @@ public interface Startable {
 	
 	void start() throws SliceException;
 	
-	void stop();
+	void stop() throws SliceException;
 }

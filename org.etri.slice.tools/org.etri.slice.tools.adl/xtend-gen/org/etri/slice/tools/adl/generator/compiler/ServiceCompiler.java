@@ -104,7 +104,7 @@ public class ServiceCompiler {
     _builder.append("private static Logger s_logger = LoggerFactory.getLogger(");
     String _name_1 = it.getName();
     _builder.append(_name_1, "\t");
-    _builder.append("Servcie.class);\t");
+    _builder.append("Service.class);\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();

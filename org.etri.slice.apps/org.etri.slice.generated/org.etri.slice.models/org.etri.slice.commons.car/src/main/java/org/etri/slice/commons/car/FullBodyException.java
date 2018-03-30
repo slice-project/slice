@@ -5,7 +5,7 @@ import org.etri.slice.commons.SliceException;
 
 public class FullBodyException extends SliceException {
 	
-	private static final long serialVersionUID = 5134623469358170462L;
+	private static final long serialVersionUID = -3692224409835060972L;
 	
 	public FullBodyException(String msg) {
 		super(msg);

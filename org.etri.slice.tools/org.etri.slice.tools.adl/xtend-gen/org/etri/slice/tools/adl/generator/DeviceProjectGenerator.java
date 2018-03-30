@@ -109,7 +109,7 @@ public class DeviceProjectGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("# Configure the created bundle");
     _builder.newLine();
-    _builder.append("embed.dependency=,;scope=!provided|test");
+    _builder.append("embed.dependency=;scope=!provided|test");
     _builder.newLine();
     _builder.append("embed.directory=lib");
     _builder.newLine();

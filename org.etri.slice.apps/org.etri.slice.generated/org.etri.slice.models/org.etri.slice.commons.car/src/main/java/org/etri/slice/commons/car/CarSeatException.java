@@ -5,7 +5,7 @@ import org.etri.slice.commons.SliceException;
 
 public class CarSeatException extends SliceException {
 	
-	private static final long serialVersionUID = 4572874619014760848L;
+	private static final long serialVersionUID = 546678230715615500L;
 	
 	public CarSeatException(String msg) {
 		super(msg);

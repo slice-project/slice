@@ -188,11 +188,10 @@ class POMCompiler {
 						<artifactId>maven-bundle-plugin</artifactId>
 						<configuration>
 							<instructions>
-								<Private-Package>${private.packages}</Private-Package>
 								<Bundle-ClassPath>${bundle.classpath}</Bundle-ClassPath>
 								<Embed-Dependency>${embed.dependency}</Embed-Dependency>
-								<Embed-Directory>${embed.directory}</Embed-Directory>
-								<Import-Package>${import.packages}</Import-Package>
+								<Embed-Directory>${embed.directory}</Embed-Directory>	
+								<Private-Package>${private.packages}</Private-Package>
 							</instructions>
 						</configuration>
 					</plugin>

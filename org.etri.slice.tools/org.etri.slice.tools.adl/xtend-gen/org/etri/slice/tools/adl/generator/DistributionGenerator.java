@@ -156,7 +156,7 @@ public class DistributionGenerator implements IGenerator {
     _builder.append("<groupId>org.etri.slice</groupId>");
     _builder.newLine();
     _builder.append("\t\t\t");
-    _builder.append("<artifactId>org.etri.slice.commons</artifactId>");
+    _builder.append("<artifactId>org.etri.slice.core</artifactId>");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("<version>0.9.1</version>");
@@ -171,13 +171,13 @@ public class DistributionGenerator implements IGenerator {
     _builder.append("<groupId>org.etri.slice</groupId>");
     _builder.newLine();
     _builder.append("\t\t\t");
-    _builder.append("<artifactId>org.etri.slice.core</artifactId>");
+    _builder.append("<artifactId>org.etri.slice.commons</artifactId>");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("<version>0.9.1</version>");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("</dependency>\t\t\t\t\t\t");
+    _builder.append("</dependency>\t\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
     {
       Iterable<DomainDeclaration> _filter = Iterables.<DomainDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), DomainDeclaration.class);
@@ -237,7 +237,7 @@ public class DistributionGenerator implements IGenerator {
         _builder.newLine();
         _builder.append("\t\t");
         _builder.append("\t");
-        _builder.append("<groupId>org.etri.slice</groupId>");
+        _builder.append("<groupId>org.etri.slice.devices</groupId>");
         _builder.newLine();
         _builder.append("\t\t");
         _builder.append("\t");

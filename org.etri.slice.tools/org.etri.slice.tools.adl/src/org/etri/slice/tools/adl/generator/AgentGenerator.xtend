@@ -86,7 +86,7 @@ class AgentGenerator implements IGenerator {
 	def compileBundleProperties(AgentDeclaration it) '''
 		# Configure the created bundle
 		export.packages=*
-		embed.dependency=*,;scope=!provided|test
+		embed.dependency=*,;scope=!provided|test;inline=true
 		embed.directory=lib
 		bundle.classpath=.,{maven-dependencies}
 		import.packages=*;resolution:=optional	

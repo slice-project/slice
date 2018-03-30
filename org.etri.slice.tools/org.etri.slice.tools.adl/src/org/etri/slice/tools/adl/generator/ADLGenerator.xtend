@@ -62,6 +62,7 @@ public class ADLGenerator implements IGenerator {
 		
 			<modules>
 				<module>org.etri.slice.agents</module>
+				<module>org.etri.slice.devices</module>
 				<module>org.etri.slice.models</module>
 				<module>org.etri.slice.rules</module>
 				<module>org.etri.slice.distribution</module>

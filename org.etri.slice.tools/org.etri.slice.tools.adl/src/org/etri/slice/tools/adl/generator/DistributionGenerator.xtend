@@ -63,14 +63,14 @@ class DistributionGenerator implements IGenerator {
 				</dependency>
 				<dependency>
 					<groupId>org.etri.slice</groupId>
-					<artifactId>org.etri.slice.commons</artifactId>
+					<artifactId>org.etri.slice.core</artifactId>
 					<version>0.9.1</version>
 				</dependency>
 				<dependency>
 					<groupId>org.etri.slice</groupId>
-					<artifactId>org.etri.slice.core</artifactId>
+					<artifactId>org.etri.slice.commons</artifactId>
 					<version>0.9.1</version>
-				</dependency>						
+				</dependency>										
 				«FOR e: resource.allContents.toIterable.filter(typeof(DomainDeclaration))»
 					<dependency>
 						<groupId>org.etri.slice.commons</groupId>
@@ -85,7 +85,7 @@ class DistributionGenerator implements IGenerator {
 						<version>0.9.1</version>
 					</dependency>
 					<dependency>
-						<groupId>org.etri.slice</groupId>
+						<groupId>org.etri.slice.devices</groupId>
 						<artifactId>org.etri.slice.devices.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</artifactId>
 						<version>0.9.1</version>
 					</dependency>										
