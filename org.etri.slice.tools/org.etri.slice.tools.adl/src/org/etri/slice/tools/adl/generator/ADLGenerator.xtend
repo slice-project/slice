@@ -73,13 +73,13 @@ public class ADLGenerator implements IGenerator {
 				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 				<felix.ipojo.version>1.12.1</felix.ipojo.version>
 				<project.inceptionYear>2017</project.inceptionYear>
-				<slice.app.dir>/Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps</slice.app.dir>
+				<slice.apps.dir>/Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps</slice.apps.dir>
 			</properties>
 		
 			<repositories>
 				<repository>
 					<id>local-repo</id>
-					<url>file://${slice.app.dir}/lib</url>
+					<url>file://${slice.apps.dir}/lib</url>
 					<releases>
 						<enabled>true</enabled>
 						<checksumPolicy>ignore</checksumPolicy>
