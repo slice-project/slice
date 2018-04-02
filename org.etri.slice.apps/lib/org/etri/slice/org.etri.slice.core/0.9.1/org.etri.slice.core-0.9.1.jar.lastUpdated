@@ -1,0 +1,16 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Apr 02 14:20:11 KST 2018
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.distribution/lib/.lastUpdated=1522646290250
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.pressuresensor/lib/.lastUpdated=1522646290400
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.fullbodydetector/lib/.lastUpdated=1522646290448
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.objectdetector/lib/.error=
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.carseat/lib/.lastUpdated=1522646290472
+file\://Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/lib/.error=Could not transfer artifact org.etri.slice\:org.etri.slice.core\:jar\:0.9.1 from/to local-repo (file\://Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/lib)\: Repository path /yhsuh/development/slice-project/git/slice/org.etri.slice.apps/lib does not exist, and cannot be created.
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.pressuresensor/lib/.error=
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.objectdetector/lib/.lastUpdated=1522646290423
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.distribution/lib/.error=
+https\://repo.maven.apache.org/maven2/.lastUpdated=1522645868294
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.carseat/lib/.error=
+file\:///Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/org.etri.slice.generated/org.etri.slice.agents/org.etri.slice.agents.car.fullbodydetector/lib/.error=
+https\://repo.maven.apache.org/maven2/.error=
+@default-local-repo-file\://Users/yhsuh/development/slice-project/git/slice/org.etri.slice.apps/lib/.lastUpdated=1522646411880

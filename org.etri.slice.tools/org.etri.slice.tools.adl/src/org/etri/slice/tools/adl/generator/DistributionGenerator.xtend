@@ -78,7 +78,19 @@ class DistributionGenerator implements IGenerator {
 						<version>0.9.1</version>
 					</dependency>
 				«ENDFOR»
-		<!--				
+				«val agent = resource.allContents.toIterable.filter(typeof(AgentDeclaration)).get(0)»
+				<dependency>
+					<groupId>org.etri.slice</groupId>
+					<artifactId>org.etri.slice.agents.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»</artifactId>
+					<version>0.9.1</version>
+				</dependency>
+				<dependency>
+					<groupId>org.etri.slice.devices</groupId>
+					<artifactId>org.etri.slice.devices.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»</artifactId>
+					<version>0.9.1</version>
+				</dependency>
+				«IF resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 1»
+		<!--	
 				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»	
 					<dependency>
 						<groupId>org.etri.slice</groupId>
@@ -91,7 +103,8 @@ class DistributionGenerator implements IGenerator {
 						<version>0.9.1</version>
 					</dependency>										
 				«ENDFOR»	
-		-->							
+		-->
+				«ENDIF»							
 			</dependencies>
 		
 			<build>

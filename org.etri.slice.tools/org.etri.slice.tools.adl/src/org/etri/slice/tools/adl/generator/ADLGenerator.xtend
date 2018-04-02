@@ -73,9 +73,24 @@ public class ADLGenerator implements IGenerator {
 				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 				<felix.ipojo.version>1.12.1</felix.ipojo.version>
 				<project.inceptionYear>2017</project.inceptionYear>
+				<local.repository>file://${project.basedir}/../lib</local.repository>
 			</properties>
 		
 			<repositories>
+				<repository>
+					<id>local-repo</id>
+					<url>${local.repository}</url>
+					<releases>
+						<enabled>true</enabled>
+						<checksumPolicy>ignore</checksumPolicy>
+						<updatePolicy>always</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<checksumPolicy>ignore</checksumPolicy>
+						<updatePolicy>always</updatePolicy>
+					</snapshots>
+				</repository>			
 				<repository>
 					<id>central</id>
 					<url>https://repo.maven.apache.org/maven2/</url>
