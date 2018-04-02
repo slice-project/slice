@@ -7,4 +7,16 @@
 			class = "org.etri.slice.tools.adl.domainmodel.DomainmodelPackage"
 			genModel = "model/generated/Domainmodel.genmodel" />
 	</extension>
+ <extension
+       id="adl"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.e4.ui.workbench.swt.E4Application"
+          name="org.etri.slice.adl.product">
+       <property
+             name="appName"
+             value="org.etri.slice.adl.product">
+       </property>
+    </product>
+ </extension>
 </plugin>
