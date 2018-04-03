@@ -78,6 +78,8 @@ class DistributionGenerator implements IGenerator {
 						<version>0.9.1</version>
 					</dependency>
 				«ENDFOR»
+				
+				«IF resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 0»
 				«val agent = resource.allContents.toIterable.filter(typeof(AgentDeclaration)).get(0)»
 				<dependency>
 					<groupId>org.etri.slice</groupId>
@@ -89,6 +91,7 @@ class DistributionGenerator implements IGenerator {
 					<artifactId>org.etri.slice.devices.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»</artifactId>
 					<version>0.9.1</version>
 				</dependency>
+				«ENDIF»
 				«IF resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 1»
 		<!--	
 				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»	

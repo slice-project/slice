@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 
 public class ADLGenerator implements IGenerator {
 	
@@ -13,16 +14,19 @@ public class ADLGenerator implements IGenerator {
 	@Inject DistributionGenerator distributionGenerator
   	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		generateMavenProject(fsa)
-		agentGenerator.doGenerate(resource, fsa)
-		deviceGenerator.doGenerate(resource, fsa)
-		domainGenerator.doGenerate(resource, fsa)
-		distributionGenerator.doGenerate(resource, fsa)
+		generateMavenProject(resource, fsa)
+		domainGenerator.doGenerate(resource, fsa)		
+
+		if ( resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 0 ) {	
+			agentGenerator.doGenerate(resource, fsa)
+			deviceGenerator.doGenerate(resource, fsa)
+			distributionGenerator.doGenerate(resource, fsa)			
+		} 
   	}
   	
- 	def generateMavenProject(IFileSystemAccess fsa) {		
+ 	def generateMavenProject(Resource resource, IFileSystemAccess fsa) {		
 		fsa.generateFile("license-header.txt", compileLicenseHeader)
-		fsa.generateFile("pom.xml", compilePOM)				
+		fsa.generateFile("pom.xml", compilePOM(resource))				
 	}
 	
 	def compileLicenseHeader() '''
@@ -46,7 +50,7 @@ public class ADLGenerator implements IGenerator {
 		<http://www.gnu.org/licenses/>.
 	''' 	
 	
-	def compilePOM() '''
+	def compilePOM(Resource resource) '''
 		<?xml version="1.0" encoding="UTF-8"?>
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -61,11 +65,15 @@ public class ADLGenerator implements IGenerator {
 			<description>org.etri.slice parent</description>
 		
 			<modules>
+				«IF resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 0»
 				<module>org.etri.slice.agents</module>
 				<module>org.etri.slice.devices</module>
+				«ENDIF»
 				<module>org.etri.slice.models</module>
+				«IF resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 0»
 				<module>org.etri.slice.rules</module>
 				<module>org.etri.slice.distribution</module>
+				«ENDIF»
 			</modules>
 		
 			<properties>
