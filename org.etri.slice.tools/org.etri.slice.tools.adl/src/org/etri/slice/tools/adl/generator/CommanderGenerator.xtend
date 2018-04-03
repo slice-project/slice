@@ -12,8 +12,12 @@ class CommanderGenerator {
 	@Inject extension OutputPathUtils
 	@Inject extension CommandSetCompiler
 	@Inject extension CommandWrapperCompiler
+	@Inject extension BehaviorGenerator
 	
 	def generateCommander(AgentDeclaration it, CommandSet commandSet, IFileSystemAccess fsa) {
+		
+		commandSet.control.generateControlWrapper(it, fsa)
+		
 		var package = agentFullyQualifiedName.replace(".", "/")
 		var file = agentMavenSrcHome + package + "/wrapper/" + commandSet.control.name + "Commander.java"		
 		fsa.generateFile(file, compileCommandWrapper(commandSet))
