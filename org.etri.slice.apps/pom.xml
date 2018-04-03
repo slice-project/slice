@@ -10,10 +10,15 @@
 	<name>The SLICE Agent</name>
 	<description>org.etri.slice.apps :: slice applications</description>
 	
+	<properties>
+		<slice.generated.directory>${project.basedir}/org.etri.slice.generated</slice.generated.directory>
+		<slice.repository>${project.basedir}/lib</slice.repository>
+	</properties>	
+	
 	<repositories>
 		<repository>
 			<id>local-repo</id>
-			<url>file://${project.basedir}/lib</url>
+			<url>file://${slice.repository}</url>
 			<releases>
 				<enabled>true</enabled>
 				<checksumPolicy>ignore</checksumPolicy>
@@ -43,4 +48,30 @@
 		    <version>2.13.0</version>
 		</dependency>				
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<phase>deploy</phase>
+						<id>copy-local-repository</id>
+						<configuration>
+							<outputDirectory>${slice.generated.directory}/lib</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/lib</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>					
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
