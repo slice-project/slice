@@ -6,7 +6,7 @@ import org.etri.slice.commons.car.^context.SeatPosture
 import org.etri.slice.commons.car.^context.UserInfo
 
 domain car {
-	
+		
 	context ObjectInfo {
 		String objectId;
 		double distance;		
@@ -157,5 +157,5 @@ domain car {
 				action SeatControl.setTilt
 			}
 		}
-	}																							
+	}																								
 }
