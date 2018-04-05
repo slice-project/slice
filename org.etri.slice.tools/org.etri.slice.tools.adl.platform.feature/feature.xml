@@ -17,10 +17,6 @@
       [Enter License Description here.]
    </license>
 
-   <includes
-         id="com.ianbrandt.tools.m2e.mdp.feature"
-         version="0.0.0"/>
-
    <plugin
          id="ch.qos.logback.core"
          download-size="0"
@@ -48,14 +44,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.google.inject.multibindings"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -150,13 +138,6 @@
 
    <plugin
          id="org.apache.commons.logging"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.commons.net"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -1729,13 +1710,6 @@
 
    <plugin
          id="org.eclipse.ui.ide.application"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.ianbrandt.tools.m2e.mdp.core"
          download-size="0"
          install-size="0"
          version="0.0.0"

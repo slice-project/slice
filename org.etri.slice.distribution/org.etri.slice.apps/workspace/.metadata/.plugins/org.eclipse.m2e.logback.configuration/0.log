@@ -1,0 +1,40 @@
+2018-04-05 13:53:51,402 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.etri.slice:org.etri.slice.car:0.9.1 @ /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/pom.xml.
+2018-04-05 13:53:52,701 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /org.etri.slice.car/src/main/java
+2018-04-05 13:53:52,701 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /org.etri.slice.car/src/test/java
+2018-04-05 13:53:52,881 [Worker-7] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 3 sec
+2018-04-05 13:53:58,053 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:53:58,055 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/main/resources
+2018-04-05 13:53:58,057 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:53:58,058 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/test/resources
+2018-04-05 13:53:58,061 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:53:58,067 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 35 resources
+2018-04-05 13:54:30,806 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:54:30,807 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/main/resources
+2018-04-05 13:54:30,808 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:54:30,808 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/test/resources
+2018-04-05 13:54:30,809 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:54:30,811 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-04-05 13:56:03,122 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:56:03,123 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/main/resources
+2018-04-05 13:56:03,124 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:56:03,124 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/test/resources
+2018-04-05 13:56:03,125 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:56:03,125 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-04-05 13:56:47,411 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:56:47,411 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/main/resources
+2018-04-05 13:56:47,412 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:56:47,412 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/test/resources
+2018-04-05 13:56:47,413 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:56:47,414 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 35 resources
+2018-04-05 13:57:49,934 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:57:49,935 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/main/resources
+2018-04-05 13:57:49,936 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:57:49,936 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/test/resources
+2018-04-05 13:57:49,937 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 13:57:49,937 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-04-05 14:01:44,342 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 14:01:44,363 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/main/resources
+2018-04-05 14:01:44,364 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 14:01:44,364 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/org.etri.slice.car/src/test/resources
+2018-04-05 14:01:44,365 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2018-04-05 14:01:44,365 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
