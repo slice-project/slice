@@ -36,7 +36,7 @@ import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
 public class JmxClient {
-	private static final String s_queryString = "org.etri.slice.device:*";
+	private static final String s_queryString = "org.etri.slice.agents:*";
 	
 	private JMXConnector m_jmxConnector;
 	private JMXServiceURL m_serviceUrl;
