@@ -1,7 +1,0 @@
-package org.etri.slice.rules.car;
-
-import org.etri.slice.commons.car.context.BodyPartLength;
-import org.etri.slice.commons.car.service.SeatControl;
-	
-global SeatControl seatControl;
-
