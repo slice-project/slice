@@ -1,5 +1,5 @@
 MAX_RECENT_WORKSPACES=10
-RECENT_WORKSPACES=/Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/workspace\n/Users/yhsuh/development/ADL/MacOS/workspace
+RECENT_WORKSPACES=/Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution/org.etri.slice.apps/workspace
 RECENT_WORKSPACES_PROTOCOL=3
 SHOW_RECENT_WORKSPACES=false
 SHOW_WORKSPACE_SELECTION_DIALOG=true
