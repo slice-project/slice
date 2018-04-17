@@ -167,7 +167,7 @@ public class ADLGenerator implements IGenerator {
     _builder.append("<project.inceptionYear>2017</project.inceptionYear>");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("<slice.repository>${project.basedir}/lib</slice.repository>");
+    _builder.append("<slice.home>/Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution</slice.home>");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("</properties>");
@@ -183,7 +183,7 @@ public class ADLGenerator implements IGenerator {
     _builder.append("<id>local-repo</id>");
     _builder.newLine();
     _builder.append("\t\t\t");
-    _builder.append("<url>file://${slice.repository}</url>");
+    _builder.append("<url>file://${slice.home}/repository</url>");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("<releases>");

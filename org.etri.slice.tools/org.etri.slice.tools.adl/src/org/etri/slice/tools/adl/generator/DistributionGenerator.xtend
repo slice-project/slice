@@ -78,6 +78,12 @@ class DistributionGenerator implements IGenerator {
 				</dependency>
 				<dependency>
 				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.webconsole</artifactId>
+				    <version>4.3.4-all</version>
+				    <scope>provided</scope>
+				</dependency>								
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
 				    <artifactId>org.apache.felix.webconsole.plugins.obr</artifactId>
 				    <version>1.0.4</version>
 				</dependency>			
@@ -171,7 +177,7 @@ class DistributionGenerator implements IGenerator {
 								</goals>
 								<configuration>
 									<includeArtifactIds>org.apache.felix.ipojo.handler.eventadmin,org.apache.felix.eventadmin,org.apache.felix.configadmin,
-									org.apache.felix.http.jetty,org.apache.felix.http.api,org.apache.felix.http.servlet-api,
+									org.apache.felix.http.jetty,org.apache.felix.http.api,org.apache.felix.http.servlet-api,org.apache.felix.webconsole,
 									org.apache.felix.webconsole.plugins.obr,org.apache.felix.webconsole.plugins.event,org.apache.felix.webconsole.plugins.memoryusage</includeArtifactIds>
 									<outputDirectory>${project.build.directory}/bundle</outputDirectory>
 								</configuration>

@@ -136,8 +136,8 @@ domain car {
 	         	do no-op
 	     	 end
 	     	 behavior "SeatPosture Change Notification"
-	        		 on SeatPosture
-	        		 do publish SeatPostureChanged
+	        	on SeatPosture
+	        	do publish SeatPostureChanged
 	     	 end
 	    }
 		
@@ -157,5 +157,5 @@ domain car {
 				action SeatControl.setTilt
 			}
 		}
-	}																									
+	}																											
 }
