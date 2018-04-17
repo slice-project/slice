@@ -18,7 +18,6 @@ import org.etri.slice.tools.adl.generator.AgentProjectGenerator;
 import org.etri.slice.tools.adl.generator.CommanderGenerator;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 import org.etri.slice.tools.adl.generator.RuleSetGenerator;
-import org.etri.slice.tools.adl.generator.compiler.POMCompiler;
 
 @SuppressWarnings("all")
 public class AgentGenerator implements IGenerator {
@@ -34,14 +33,6 @@ public class AgentGenerator implements IGenerator {
   
   @Inject
   @Extension
-  private POMCompiler _pOMCompiler;
-  
-  @Inject
-  @Extension
-  private OutputPathUtils _outputPathUtils;
-  
-  @Inject
-  @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
   
   @Override
@@ -51,7 +42,6 @@ public class AgentGenerator implements IGenerator {
     Iterable<AgentDeclaration> _filter = Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class);
     for (final AgentDeclaration e : _filter) {
       {
-        this.generateMavenProject(e, fsa);
         this.agentProjectGenerator.doGenerate(resource, fsa);
         this.ruleSetGenerator.doGenerate(resource, fsa);
         EList<CommandSet> _commandSets = e.getCommandSets();
@@ -184,32 +174,6 @@ public class AgentGenerator implements IGenerator {
     _builder.append("</modules>");
     _builder.newLine();
     _builder.append("</project>");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public void generateMavenProject(final AgentDeclaration it, final IFileSystemAccess fsa) {
-    String _commonsMavenHome = this._outputPathUtils.getCommonsMavenHome(it);
-    String _plus = (_commonsMavenHome + "bundle.properties");
-    fsa.generateFile(_plus, this.compileBundleProperties(it));
-    String _commonsMavenHome_1 = this._outputPathUtils.getCommonsMavenHome(it);
-    String _plus_1 = (_commonsMavenHome_1 + "pom.xml");
-    fsa.generateFile(_plus_1, this._pOMCompiler.compileModelPOM(it));
-  }
-  
-  public CharSequence compileBundleProperties(final AgentDeclaration it) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("# Configure the created bundle");
-    _builder.newLine();
-    _builder.append("export.packages=*");
-    _builder.newLine();
-    _builder.append("embed.dependency=*,;scope=!provided|test;inline=true");
-    _builder.newLine();
-    _builder.append("embed.directory=lib");
-    _builder.newLine();
-    _builder.append("bundle.classpath=.,{maven-dependencies}");
-    _builder.newLine();
-    _builder.append("import.packages=*;resolution:=optional\t");
     _builder.newLine();
     return _builder;
   }

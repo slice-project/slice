@@ -6,6 +6,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
+import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 
 @SuppressWarnings("all")
 public class POMCompiler {
@@ -13,7 +14,7 @@ public class POMCompiler {
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
   
-  public CharSequence compileModelPOM(final AgentDeclaration it) {
+  public CharSequence compileDomainPOM(final DomainDeclaration it) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
     _builder.newLine();
@@ -49,13 +50,13 @@ public class POMCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("<artifactId>org.etri.slice.commons.");
-    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
+    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(it);
     _builder.append(_fullyQualifiedName, "\t");
     _builder.append("</artifactId>");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("<name>The SLICE common data models for ");
-    QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
+    QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(it);
     _builder.append(_fullyQualifiedName_1, "\t");
     _builder.append(" domain</name>");
     _builder.newLineIfNotEmpty();

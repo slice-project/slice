@@ -12,6 +12,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.domainmodel.Control
+import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.domainmodel.Exception
 
@@ -45,8 +46,8 @@ class OutputPathUtils {
 		sliceCommons + "." + eContainer.fullyQualifiedName + ".service"
 	}	
 	
-	def getCommonsMavenHome(AgentDeclaration it) {
-		sliceModels + "/" + sliceCommons + "." + eContainer.fullyQualifiedName + "/"
+	def getCommonsMavenHome(DomainDeclaration it) {
+		sliceModels + "/" + sliceCommons + "." + fullyQualifiedName + "/"
 	}	
 	
 	dispatch def getCommonsMavenSrcHome(Context it) {

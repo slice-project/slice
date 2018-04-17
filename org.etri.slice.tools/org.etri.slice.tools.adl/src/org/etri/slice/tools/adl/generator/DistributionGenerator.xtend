@@ -49,12 +49,47 @@ class DistributionGenerator implements IGenerator {
 				<dependency>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>org.apache.felix.eventadmin</artifactId>
-					<version>1.4.10</version>
+					<version>1.4.2</version>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>org.apache.felix.main</artifactId>
 					<version>5.6.8</version>
+				</dependency>
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.configadmin</artifactId>
+				    <version>1.8.4</version>
+				</dependency>
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.http.api</artifactId>
+				    <version>2.3.2</version>
+				</dependency>				
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.http.jetty</artifactId>
+				    <version>3.0.2</version>
+				</dependency>
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.http.servlet-api</artifactId>
+				    <version>1.1.0</version>
+				</dependency>
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.webconsole.plugins.obr</artifactId>
+				    <version>1.0.4</version>
+				</dependency>			
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.webconsole.plugins.event</artifactId>
+				    <version>1.1.8</version>
+				</dependency>
+				<dependency>
+				    <groupId>org.apache.felix</groupId>
+				    <artifactId>org.apache.felix.webconsole.plugins.memoryusage</artifactId>
+				    <version>1.0.8</version>
 				</dependency>
 				<dependency>
 					<groupId>org.etri.slice</groupId>
@@ -135,7 +170,9 @@ class DistributionGenerator implements IGenerator {
 									<goal>copy-dependencies</goal>
 								</goals>
 								<configuration>
-									<includeArtifactIds>org.apache.felix.ipojo.handler.eventadmin,org.apache.felix.eventadmin</includeArtifactIds>
+									<includeArtifactIds>org.apache.felix.ipojo.handler.eventadmin,org.apache.felix.eventadmin,org.apache.felix.configadmin,
+									org.apache.felix.http.jetty,org.apache.felix.http.api,org.apache.felix.http.servlet-api,
+									org.apache.felix.webconsole.plugins.obr,org.apache.felix.webconsole.plugins.event,org.apache.felix.webconsole.plugins.memoryusage</includeArtifactIds>
 									<outputDirectory>${project.build.directory}/bundle</outputDirectory>
 								</configuration>
 							</execution>					

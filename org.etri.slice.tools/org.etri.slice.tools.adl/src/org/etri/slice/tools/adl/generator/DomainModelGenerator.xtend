@@ -11,6 +11,7 @@ class DomainModelGenerator implements IGenerator {
 	
 	@Inject ContextGenerator contextGenerator
 	@Inject ControlGenerator controlGenerator
+	@Inject DomainGenerator domainGenerator
 	@Inject EventGenerator eventGenerator
 	@Inject ExceptionGenerator exceptionGenerator
 	@Inject extension IQualifiedNameProvider	
@@ -18,6 +19,7 @@ class DomainModelGenerator implements IGenerator {
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		fsa.generateFile(OutputPathUtils.sliceModels + "/pom.xml", compileModelsPOM(resource))
 		
+		domainGenerator.doGenerate(resource, fsa)
 		contextGenerator.doGenerate(resource, fsa)
 		controlGenerator.doGenerate(resource, fsa)
 		eventGenerator.doGenerate(resource, fsa)
@@ -57,3 +59,5 @@ class DomainModelGenerator implements IGenerator {
 		</project>		
 	'''		
 }
+
+

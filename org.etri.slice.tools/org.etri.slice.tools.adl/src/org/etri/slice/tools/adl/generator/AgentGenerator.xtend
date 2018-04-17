@@ -6,15 +6,12 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.generator.compiler.POMCompiler
 
 class AgentGenerator implements IGenerator {	
 
 	@Inject AgentProjectGenerator agentProjectGenerator
 	@Inject RuleSetGenerator ruleSetGenerator
 	@Inject extension CommanderGenerator
-	@Inject extension POMCompiler
-	@Inject extension OutputPathUtils
 	@Inject extension IQualifiedNameProvider
 		
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
@@ -22,7 +19,6 @@ class AgentGenerator implements IGenerator {
 		fsa.generateFile(OutputPathUtils.sliceRules + "/pom.xml", compileRulesPOM(resource))
 		
 		for (e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))) {
-			generateMavenProject(e, fsa)
 			agentProjectGenerator.doGenerate(resource, fsa)
 			ruleSetGenerator.doGenerate(resource, fsa)
 			
@@ -77,18 +73,4 @@ class AgentGenerator implements IGenerator {
 				</modules>
 		</project>
 	'''		
-	
-	def generateMavenProject(AgentDeclaration it, IFileSystemAccess fsa) {		
-		fsa.generateFile(commonsMavenHome + "bundle.properties", compileBundleProperties)
-		fsa.generateFile(commonsMavenHome + "pom.xml", compileModelPOM)				
-	}
-	
-	def compileBundleProperties(AgentDeclaration it) '''
-		# Configure the created bundle
-		export.packages=*
-		embed.dependency=*,;scope=!provided|test;inline=true
-		embed.directory=lib
-		bundle.classpath=.,{maven-dependencies}
-		import.packages=*;resolution:=optional	
-	'''
 }

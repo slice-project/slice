@@ -3,12 +3,13 @@ package org.etri.slice.tools.adl.generator.compiler
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
+import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 
 class POMCompiler {	
 	
 	@Inject extension IQualifiedNameProvider	
 	
-	def compileModelPOM(AgentDeclaration it) '''
+	def compileDomainPOM(DomainDeclaration it) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
@@ -21,8 +22,8 @@ class POMCompiler {
 			</parent>
 			
 			<groupId>org.etri.slice.commons</groupId>
-			<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
-			<name>The SLICE common data models for «eContainer.fullyQualifiedName» domain</name>
+			<artifactId>org.etri.slice.commons.«fullyQualifiedName»</artifactId>
+			<name>The SLICE common data models for «fullyQualifiedName» domain</name>
 		
 			<packaging>bundle</packaging>
 		

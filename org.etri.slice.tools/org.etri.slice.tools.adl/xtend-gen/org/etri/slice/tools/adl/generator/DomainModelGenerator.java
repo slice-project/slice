@@ -14,6 +14,7 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 import org.etri.slice.tools.adl.generator.ContextGenerator;
 import org.etri.slice.tools.adl.generator.ControlGenerator;
+import org.etri.slice.tools.adl.generator.DomainGenerator;
 import org.etri.slice.tools.adl.generator.EventGenerator;
 import org.etri.slice.tools.adl.generator.ExceptionGenerator;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
@@ -25,6 +26,9 @@ public class DomainModelGenerator implements IGenerator {
   
   @Inject
   private ControlGenerator controlGenerator;
+  
+  @Inject
+  private DomainGenerator domainGenerator;
   
   @Inject
   private EventGenerator eventGenerator;
@@ -39,6 +43,7 @@ public class DomainModelGenerator implements IGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     fsa.generateFile((OutputPathUtils.sliceModels + "/pom.xml"), this.compileModelsPOM(resource));
+    this.domainGenerator.doGenerate(resource, fsa);
     this.contextGenerator.doGenerate(resource, fsa);
     this.controlGenerator.doGenerate(resource, fsa);
     this.eventGenerator.doGenerate(resource, fsa);

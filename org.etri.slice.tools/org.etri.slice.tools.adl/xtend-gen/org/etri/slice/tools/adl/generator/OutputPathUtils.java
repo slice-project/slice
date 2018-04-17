@@ -16,6 +16,7 @@ import org.etri.slice.tools.adl.domainmodel.AbstractElement;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Control;
+import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Event;
 
 /**
@@ -62,8 +63,8 @@ public class OutputPathUtils {
     return (_plus + ".service");
   }
   
-  public String getCommonsMavenHome(final AgentDeclaration it) {
-    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
+  public String getCommonsMavenHome(final DomainDeclaration it) {
+    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(it);
     String _plus = ((((OutputPathUtils.sliceModels + "/") + OutputPathUtils.sliceCommons) + ".") + _fullyQualifiedName);
     return (_plus + "/");
   }

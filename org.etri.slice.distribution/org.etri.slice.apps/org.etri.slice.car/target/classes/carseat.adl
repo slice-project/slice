@@ -157,5 +157,5 @@ domain car {
 				action SeatControl.setTilt
 			}
 		}
-	}																								
+	}																									
 }
