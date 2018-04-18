@@ -1,0 +1,34 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: EjK19+LsS/h2U9du1GhYIBtdqHdeh
+ ucl8JvWjgboxU8=
+SHA-256-Digest-Manifest: QncRsJu1xjRh5rnBKWmHfUSISlE80M/JjCHTXaXjZy4=
+Created-By: 1.8.0_40 (Oracle Corporation)
+
+Name: about.html
+SHA-256-Digest: IxzuD9Urw0IIDAz1/GlN/F/wC41OP/yVOa4nb8ZLf/A=
+
+Name: META-INF/plexus/components.xml
+SHA-256-Digest: erziMwnup4eKIRkT/x2F65de1DcRMfuxNHsIRFE3/VQ=
+
+Name: org/eclipse/m2e/workspace/MutableWorkspaceState.class
+SHA-256-Digest: xN7WBD4DdwZt7shv1fOHIcGrF/rGpfooft2edxgTMhw=
+
+Name: org/eclipse/m2e/workspace/WorkspaceState.class
+SHA-256-Digest: eBkfHVZ49H+f6dL2SuCOuoBpt2LbF3blNUHeZ+5oJYQ=
+
+Name: org/eclipse/m2e/workspace/internal/Maven31WorkspaceReader.class
+SHA-256-Digest: WjL9t0Ws1QyTtqcDfdnR42mW/01/eYD/2GxdYfMA5Gc=
+
+Name: org/eclipse/m2e/workspace/internal/Maven30WorkspaceReader.class
+SHA-256-Digest: a6iXWGwe+pqdTvhh/EBf83iHeSGELzF5fZEpr9ZBXZU=
+
+Name: META-INF/takari/export-package
+SHA-256-Digest: WF5yBxLIh7KlsI58nSLJQItjPwDauU0N5YiBOV22QKg=
+
+Name: META-INF/sisu/javax.inject.Named
+SHA-256-Digest: /G9NQIkzASllTpjdclhCVXFAnCEqUn6UlvXxg2e6gHM=
+
+Name: META-INF/maven/io.takari.m2e.workspace/org.eclipse.m2e.workspace
+ .cli/pom.properties
+SHA-256-Digest: NUcUmJ4VDzOnSrp4hcxe61DKQE9sOdppB7w0b+ve4HU=
+

@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+repositories/http\:__ianbrandt.github.io_m2e-maven-dependency-plugin_0.0.4/enabled=true
+repositories/http\:__ianbrandt.github.io_m2e-maven-dependency-plugin_0.0.4/isSystem=false
+repositories/http\:__ianbrandt.github.io_m2e-maven-dependency-plugin_0.0.4/name=m2e Connector for Maven Dependency Plugin Site
+repositories/http\:__ianbrandt.github.io_m2e-maven-dependency-plugin_0.0.4/suffix=content.xml
+repositories/http\:__ianbrandt.github.io_m2e-maven-dependency-plugin_0.0.4/type=org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository
+repositories/http\:__ianbrandt.github.io_m2e-maven-dependency-plugin_0.0.4/uri=http\://ianbrandt.github.io/m2e-maven-dependency-plugin/0.0.4/
+repositories/http\:__ianbrandt.github.io_m2e-maven-dependency-plugin_0.0.4/version=1.0.0

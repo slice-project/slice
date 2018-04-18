@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Bundle-Description: Workspace dependency resolver implementation for M
+ aven command line build.
+Bundle-License: http://www.eclipse.org/legal/epl-v10.html
+Bundle-SymbolicName: org.eclipse.m2e.workspace.cli;singleton:=false
+Built-By: igor
+Bnd-LastModified: 1430923701851
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7,JavaSE-1.8
+Bundle-DocURL: https://www.eclipse.org/m2e
+Bundle-Vendor: eclipse m2e
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-2.3.0.201405100607
+Export-Package: org.eclipse.m2e.workspace
+Bundle-Name: m2e-workspace
+Bundle-Version: 0.3.1
+Build-Jdk: 1.7.0_45
+Created-By: Apache Maven Bundle Plugin
+
+Name: about.html
+SHA-256-Digest: IG5M0mKsDiDT2+Ik7UaNnoPf2k0eiBU/JaU2OV4uTwk=
+
+Name: META-INF/plexus/components.xml
+SHA-256-Digest: VE6OVl11L1gKtl28FNh9Z5+vKBAKtHgH1dhgdBkOifc=
+
+Name: org/eclipse/m2e/workspace/MutableWorkspaceState.class
+SHA-256-Digest: Q/s6FURFLHmfZiWUm94uAXSnvcEtwiV64q/o+00by+Q=
+
+Name: org/eclipse/m2e/workspace/WorkspaceState.class
+SHA-256-Digest: UjMpRwCtUdMKBL64P5MYsq+rgRc2YANKl3Bu9MIL2ro=
+
+Name: org/eclipse/m2e/workspace/internal/Maven31WorkspaceReader.class
+SHA-256-Digest: bN/F9L+mVtO/fEG+8IRWzQi2C3tBonDKYE7hrP+C/X4=
+
+Name: org/eclipse/m2e/workspace/internal/Maven30WorkspaceReader.class
+SHA-256-Digest: bpflT28snJWk3CTiU4uDNli/tJC4xLkSX4TOUCj/CwA=
+
+Name: META-INF/takari/export-package
+SHA-256-Digest: mdosrLjBUD154VHg8YmVjB/DJYG4RLEaRTVs6imRMzw=
+
+Name: META-INF/sisu/javax.inject.Named
+SHA-256-Digest: m6rSuZ1hx4YidmuWkUSWHTTso2sZjG9LHyY/bC0YO4I=
+
+Name: META-INF/maven/io.takari.m2e.workspace/org.eclipse.m2e.workspace
+ .cli/pom.properties
+SHA-256-Digest: Cl18REFVHJH+d1obARuhfsLSnbslDWQkZwIleISO/Ic=
+

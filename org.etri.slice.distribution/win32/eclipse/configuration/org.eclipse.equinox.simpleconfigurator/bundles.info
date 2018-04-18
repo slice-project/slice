@@ -5,6 +5,7 @@ ch.qos.logback.core,1.0.7.v20121108-1250,plugins/ch.qos.logback.core_1.0.7.v2012
 ch.qos.logback.slf4j,1.0.7.v201505121915,plugins/ch.qos.logback.slf4j_1.0.7.v201505121915.jar,4,false
 com.google.guava,21.0.0.v20170206-1425,plugins/com.google.guava_21.0.0.v20170206-1425.jar,4,false
 com.google.inject,3.0.0.v201312141243,plugins/com.google.inject_3.0.0.v201312141243.jar,4,false
+com.ianbrandt.tools.m2e.mdp.core,0.0.4.201409291703,plugins/com.ianbrandt.tools.m2e.mdp.core_0.0.4.201409291703.jar,4,false
 com.ibm.icu,58.2.0.v20170418-1837,plugins/com.ibm.icu_58.2.0.v20170418-1837.jar,4,false
 com.jcraft.jsch,0.1.54.v20170116-1932,plugins/com.jcraft.jsch_0.1.54.v20170116-1932.jar,4,false
 javax.annotation,1.2.0.v201602091430,plugins/javax.annotation_1.2.0.v201602091430.jar,4,false
@@ -44,7 +45,6 @@ org.eclipse.core.expressions,3.6.0.v20170207-1037,plugins/org.eclipse.core.expre
 org.eclipse.core.externaltools,1.1.0.v20170113-2056,plugins/org.eclipse.core.externaltools_1.1.0.v20170113-2056.jar,4,false
 org.eclipse.core.filebuffers,3.6.100.v20170203-1130,plugins/org.eclipse.core.filebuffers_3.6.100.v20170203-1130.jar,4,false
 org.eclipse.core.filesystem,1.7.0.v20170406-1337,plugins/org.eclipse.core.filesystem_1.7.0.v20170406-1337.jar,4,false
-org.eclipse.core.filesystem.win32.x86_64,1.4.0.v20140124-1940,plugins/org.eclipse.core.filesystem.win32.x86_64_1.4.0.v20140124-1940.jar,4,false
 org.eclipse.core.jobs,3.9.3.v20180115-1757,plugins/org.eclipse.core.jobs_3.9.3.v20180115-1757.jar,4,false
 org.eclipse.core.net,1.3.100.v20170516-0820,plugins/org.eclipse.core.net_1.3.100.v20170516-0820.jar,4,false
 org.eclipse.core.resources,3.12.0.v20170417-1558,plugins/org.eclipse.core.resources_3.12.0.v20170417-1558.jar,4,false
@@ -130,7 +130,6 @@ org.eclipse.equinox.preferences,3.7.0.v20170126-2132,plugins/org.eclipse.equinox
 org.eclipse.equinox.registry,3.7.0.v20170222-1344,plugins/org.eclipse.equinox.registry_3.7.0.v20170222-1344.jar,4,false
 org.eclipse.equinox.security,1.2.300.v20170505-1235,plugins/org.eclipse.equinox.security_1.2.300.v20170505-1235.jar,4,false
 org.eclipse.equinox.security.ui,1.1.400.v20170505-1235,plugins/org.eclipse.equinox.security.ui_1.1.400.v20170505-1235.jar,4,false
-org.eclipse.equinox.security.win32.x86_64,1.0.100.v20130327-1442,plugins/org.eclipse.equinox.security.win32.x86_64_1.0.100.v20130327-1442.jar,4,false
 org.eclipse.equinox.simpleconfigurator,1.2.1.v20180131-1435,plugins/org.eclipse.equinox.simpleconfigurator_1.2.1.v20180131-1435.jar,1,true
 org.eclipse.equinox.simpleconfigurator.manipulator,2.0.300.v20170515-0721,plugins/org.eclipse.equinox.simpleconfigurator.manipulator_2.0.300.v20170515-0721.jar,4,false
 org.eclipse.help,3.8.1.v20170815-1448,plugins/org.eclipse.help_3.8.1.v20170815-1448.jar,4,false
@@ -211,7 +210,6 @@ org.eclipse.ui.trace,1.1.0.v20170201-2036,plugins/org.eclipse.ui.trace_1.1.0.v20
 org.eclipse.ui.views,3.9.0.v20170226-1833,plugins/org.eclipse.ui.views_3.9.0.v20170226-1833.jar,4,false
 org.eclipse.ui.views.log,1.2.100.v20170515-1458,plugins/org.eclipse.ui.views.log_1.2.100.v20170515-1458.jar,4,false
 org.eclipse.ui.views.properties.tabbed,3.8.1.v20170713-0803,plugins/org.eclipse.ui.views.properties.tabbed_3.8.1.v20170713-0803.jar,4,false
-org.eclipse.ui.win32,3.3.0.v20160505-1310,plugins/org.eclipse.ui.win32_3.3.0.v20160505-1310.jar,4,false
 org.eclipse.ui.workbench,3.110.1.v20170704-1208,plugins/org.eclipse.ui.workbench_3.110.1.v20170704-1208.jar,4,false
 org.eclipse.ui.workbench.texteditor,3.10.100.v20170426-2021,plugins/org.eclipse.ui.workbench.texteditor_3.10.100.v20170426-2021.jar,4,false
 org.eclipse.update.configurator,3.3.400.v20160506-0750,plugins/org.eclipse.update.configurator_3.3.400.v20160506-0750.jar,4,true
@@ -258,10 +256,10 @@ org.eclipse.xtext.xbase.ide,2.13.0.v20171020-0717,plugins/org.eclipse.xtext.xbas
 org.eclipse.xtext.xbase.lib,2.13.0.v20171020-0659,plugins/org.eclipse.xtext.xbase.lib_2.13.0.v20171020-0659.jar,4,false
 org.eclipse.xtext.xbase.ui,2.13.0.v20171020-0732,plugins/org.eclipse.xtext.xbase.ui_2.13.0.v20171020-0732.jar,4,false
 org.eclipse.xtext.xtext.generator,2.13.0.v20171020-0708,plugins/org.eclipse.xtext.xtext.generator_2.13.0.v20171020-0708.jar,4,false
-org.etri.slice.tools.adl,2.13.0.201804051638,plugins/org.etri.slice.tools.adl_2.13.0.201804051638.jar,4,false
-org.etri.slice.tools.adl.ide,2.13.0.201804051638,plugins/org.etri.slice.tools.adl.ide_2.13.0.201804051638.jar,4,false
-org.etri.slice.tools.adl.product,1.0.0.201804051638,plugins/org.etri.slice.tools.adl.product_1.0.0.201804051638.jar,4,false
-org.etri.slice.tools.adl.ui,2.13.0.201804051638,plugins/org.etri.slice.tools.adl.ui_2.13.0.201804051638.jar,4,false
+org.etri.slice.tools.adl,2.13.0.201804181434,plugins/org.etri.slice.tools.adl_2.13.0.201804181434.jar,4,false
+org.etri.slice.tools.adl.ide,2.13.0.201804181434,plugins/org.etri.slice.tools.adl.ide_2.13.0.201804181434.jar,4,false
+org.etri.slice.tools.adl.product,1.0.0.201804181434,plugins/org.etri.slice.tools.adl.product_1.0.0.201804181434.jar,4,false
+org.etri.slice.tools.adl.ui,2.13.0.201804181434,plugins/org.etri.slice.tools.adl.ui_2.13.0.201804181434.jar,4,false
 org.hamcrest.core,1.3.0.v201303031735,plugins/org.hamcrest.core_1.3.0.v201303031735.jar,4,false
 org.junit,4.12.0.v201504281640,plugins/org.junit_4.12.0.v201504281640/,4,false
 org.objectweb.asm,6.0.0.v20180116-1719,plugins/org.objectweb.asm_6.0.0.v20180116-1719.jar,4,false
