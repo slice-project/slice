@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config date="1524034039264" transient="false">
-	<site updateable="true" url="platform:/base/" enabled="true" policy="USER-EXCLUDE">
-		<feature id="com.ianbrandt.tools.m2e.mdp.feature" version="0.0.4.201409291703" url="features/com.ianbrandt.tools.m2e.mdp.feature_0.0.4.201409291703/" plugin-identifier="com.ianbrandt.tools.m2e.mdp.core">
-		</feature>
-		<feature id="org.etri.slice.tools.adl.platform.feature" version="1.0.0.201804181434" url="features/org.etri.slice.tools.adl.platform.feature_1.0.0.201804181434/">
-		</feature>
-		<feature id="org.etri.slice.tools.adl.feature" version="1.0.0.201804181434" url="features/org.etri.slice.tools.adl.feature_1.0.0.201804181434/">
-		</feature>
-	</site>
+<config date="1524558444622" transient="false" version="3.0">
+<site enabled="true" policy="USER-EXCLUDE" updateable="true" url="platform:/base/">
+<feature id="org.etri.slice.tools.adl.feature" url="features/org.etri.slice.tools.adl.feature_1.0.0.201804241724/" version="1.0.0.201804241724">
+</feature>
+<feature id="org.etri.slice.tools.adl.platform.feature" url="features/org.etri.slice.tools.adl.platform.feature_1.0.0.201804241724/" version="1.0.0.201804241724">
+</feature>
+</site>
 </config>
