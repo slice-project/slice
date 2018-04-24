@@ -32,6 +32,7 @@ public class CommanderGenerator {
   
   public void generateCommander(final AgentDeclaration it, final CommandSet commandSet, final IFileSystemAccess fsa) {
     this._behaviorGenerator.generateControlWrapper(commandSet.getControl(), it, fsa);
+    this._behaviorGenerator.generateService(commandSet.getControl(), it, fsa);
     String package_ = this._outputPathUtils.getAgentFullyQualifiedName(it).replace(".", "/");
     String _agentMavenSrcHome = this._outputPathUtils.getAgentMavenSrcHome(it);
     String _plus = (_agentMavenSrcHome + package_);

@@ -43,7 +43,7 @@ class DeviceProjectGenerator implements IGenerator {
 			if ( action instanceof Call ) {
 				generateService(action.control, it, fsa)
 			}
-		}	
+		}
 	}	
 	
 	def generateMavenProject(AgentDeclaration it, IFileSystemAccess fsa) {
