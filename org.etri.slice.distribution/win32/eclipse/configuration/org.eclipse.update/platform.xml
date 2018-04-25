@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config date="1524558444622" transient="false" version="3.0">
+<config date="1524650971840" transient="false" version="3.0">
 <site enabled="true" policy="USER-EXCLUDE" updateable="true" url="platform:/base/">
-<feature id="org.etri.slice.tools.adl.feature" url="features/org.etri.slice.tools.adl.feature_1.0.0.201804241724/" version="1.0.0.201804241724">
+<feature id="org.etri.slice.tools.adl.feature" url="features/org.etri.slice.tools.adl.feature_1.0.0.201804251905/" version="1.0.0.201804251905">
 </feature>
-<feature id="org.etri.slice.tools.adl.platform.feature" url="features/org.etri.slice.tools.adl.platform.feature_1.0.0.201804241724/" version="1.0.0.201804241724">
+<feature id="org.etri.slice.tools.adl.platform.feature" url="features/org.etri.slice.tools.adl.platform.feature_1.0.0.201804251905/" version="1.0.0.201804251905">
 </feature>
 </site>
 </config>
