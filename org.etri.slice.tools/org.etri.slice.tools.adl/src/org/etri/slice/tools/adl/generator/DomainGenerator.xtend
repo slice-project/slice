@@ -27,7 +27,7 @@ class DomainGenerator implements IGenerator {
 	
 	def compileBundleProperties(DomainDeclaration it) '''
 		# Configure the created bundle
-		export.packages=!org.eclipse.jetty.*,*
+		export.packages=!org.eclipse.jetty.*,javax.xml.stream,*
 		embed.dependency=*,;scope=!provided|test;inline=true
 		embed.directory=lib
 		bundle.classpath=.,{maven-dependencies}

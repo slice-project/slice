@@ -44,7 +44,7 @@ public class DomainGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("# Configure the created bundle");
     _builder.newLine();
-    _builder.append("export.packages=!org.eclipse.jetty.*,*");
+    _builder.append("export.packages=!org.eclipse.jetty.*,javax.xml.stream,*");
     _builder.newLine();
     _builder.append("embed.dependency=*,;scope=!provided|test;inline=true");
     _builder.newLine();
