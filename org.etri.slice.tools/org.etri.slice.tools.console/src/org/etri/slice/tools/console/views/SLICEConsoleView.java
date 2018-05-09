@@ -126,8 +126,6 @@ public class SLICEConsoleView extends ViewPart {
 
 	private void loadPreferences()
 	{
-		System.out.println("loadPreferences ...................");
-		
 		Preferences preferences = ConfigurationScope.INSTANCE.getNode(Activator.PLUGIN_ID);
 		Preferences webConsoleUrlsNode = preferences.node(PREF_WEB_CONSOLE_URLS_NODE);
 		
