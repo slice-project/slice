@@ -52,4 +52,18 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.etri.slice.tools.jmxconsole"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.etri.slice.tools.adl.project"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

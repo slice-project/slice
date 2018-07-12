@@ -9,9 +9,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
@@ -332,13 +330,11 @@ public class DistributionGenerator implements IGenerator {
     }
     _builder.append("\t\t");
     _builder.newLine();
+    _builder.append("<!--\t");
+    _builder.newLine();
     {
-      int _size = IterableExtensions.size(Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class));
-      boolean _greaterThan = (_size > 0);
-      if (_greaterThan) {
-        _builder.append("\t\t");
-        final AgentDeclaration agent = ((AgentDeclaration[])Conversions.unwrapArray(Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class), AgentDeclaration.class))[0];
-        _builder.newLineIfNotEmpty();
+      Iterable<AgentDeclaration> _filter_1 = Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class);
+      for(final AgentDeclaration e_1 : _filter_1) {
         _builder.append("\t\t");
         _builder.append("<dependency>");
         _builder.newLine();
@@ -349,10 +345,10 @@ public class DistributionGenerator implements IGenerator {
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("<artifactId>org.etri.slice.agents.");
-        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
         _builder.append(_fullyQualifiedName_1, "\t\t\t");
         _builder.append(".");
-        String _lowerCase = agent.getName().toLowerCase();
+        String _lowerCase = e_1.getName().toLowerCase();
         _builder.append(_lowerCase, "\t\t\t");
         _builder.append("</artifactId>");
         _builder.newLineIfNotEmpty();
@@ -373,10 +369,10 @@ public class DistributionGenerator implements IGenerator {
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("<artifactId>org.etri.slice.devices.");
-        QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
+        QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
         _builder.append(_fullyQualifiedName_2, "\t\t\t");
         _builder.append(".");
-        String _lowerCase_1 = agent.getName().toLowerCase();
+        String _lowerCase_1 = e_1.getName().toLowerCase();
         _builder.append(_lowerCase_1, "\t\t\t");
         _builder.append("</artifactId>");
         _builder.newLineIfNotEmpty();
@@ -385,73 +381,12 @@ public class DistributionGenerator implements IGenerator {
         _builder.append("<version>0.9.1</version>");
         _builder.newLine();
         _builder.append("\t\t");
-        _builder.append("</dependency>");
+        _builder.append("</dependency>\t\t\t\t\t\t\t\t\t\t");
         _builder.newLine();
       }
     }
-    {
-      int _size_1 = IterableExtensions.size(Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class));
-      boolean _greaterThan_1 = (_size_1 > 1);
-      if (_greaterThan_1) {
-        _builder.append("<!--\t");
-        _builder.newLine();
-        {
-          Iterable<AgentDeclaration> _filter_1 = Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class);
-          for(final AgentDeclaration e_1 : _filter_1) {
-            _builder.append("\t\t");
-            _builder.append("<dependency>");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("<groupId>org.etri.slice</groupId>");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("<artifactId>org.etri.slice.agents.");
-            QualifiedName _fullyQualifiedName_3 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
-            _builder.append(_fullyQualifiedName_3, "\t\t\t");
-            _builder.append(".");
-            String _lowerCase_2 = e_1.getName().toLowerCase();
-            _builder.append(_lowerCase_2, "\t\t\t");
-            _builder.append("</artifactId>");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("<version>0.9.1</version>");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("</dependency>");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("<dependency>");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("<groupId>org.etri.slice.devices</groupId>");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("<artifactId>org.etri.slice.devices.");
-            QualifiedName _fullyQualifiedName_4 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
-            _builder.append(_fullyQualifiedName_4, "\t\t\t");
-            _builder.append(".");
-            String _lowerCase_3 = e_1.getName().toLowerCase();
-            _builder.append(_lowerCase_3, "\t\t\t");
-            _builder.append("</artifactId>");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
-            _builder.append("\t");
-            _builder.append("<version>0.9.1</version>");
-            _builder.newLine();
-            _builder.append("\t\t");
-            _builder.append("</dependency>\t\t\t\t\t\t\t\t\t\t");
-            _builder.newLine();
-          }
-        }
-        _builder.append("-->");
-        _builder.newLine();
-      }
-    }
+    _builder.append("-->");
+    _builder.newLine();
     _builder.append("\t");
     _builder.append("</dependencies>");
     _builder.newLine();

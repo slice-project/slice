@@ -5,7 +5,6 @@ package org.etri.slice.tools.adl.domainmodel.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -13,10 +12,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
@@ -30,7 +29,7 @@ import org.etri.slice.tools.adl.domainmodel.Feature;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.ControlImpl#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.ControlImpl#getSuperTypes <em>Super Types</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.ControlImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
@@ -39,14 +38,14 @@ import org.etri.slice.tools.adl.domainmodel.Feature;
 public class ControlImpl extends AbstractElementImpl implements Control
 {
   /**
-   * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' reference.
+   * The cached value of the '{@link #getSuperTypes() <em>Super Types</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSuperType()
+   * @see #getSuperTypes()
    * @generated
    * @ordered
    */
-  protected Control superType;
+  protected EList<JvmParameterizedTypeReference> superTypes;
 
   /**
    * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
@@ -84,42 +83,13 @@ public class ControlImpl extends AbstractElementImpl implements Control
    * <!-- end-user-doc -->
    * @generated
    */
-  public Control getSuperType()
+  public EList<JvmParameterizedTypeReference> getSuperTypes()
   {
-    if (superType != null && superType.eIsProxy())
+    if (superTypes == null)
     {
-      InternalEObject oldSuperType = (InternalEObject)superType;
-      superType = (Control)eResolveProxy(oldSuperType);
-      if (superType != oldSuperType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomainmodelPackage.CONTROL__SUPER_TYPE, oldSuperType, superType));
-      }
+      superTypes = new EObjectContainmentEList<JvmParameterizedTypeReference>(JvmParameterizedTypeReference.class, this, DomainmodelPackage.CONTROL__SUPER_TYPES);
     }
-    return superType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Control basicGetSuperType()
-  {
-    return superType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSuperType(Control newSuperType)
-  {
-    Control oldSuperType = superType;
-    superType = newSuperType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.CONTROL__SUPER_TYPE, oldSuperType, superType));
+    return superTypes;
   }
 
   /**
@@ -146,6 +116,8 @@ public class ControlImpl extends AbstractElementImpl implements Control
   {
     switch (featureID)
     {
+      case DomainmodelPackage.CONTROL__SUPER_TYPES:
+        return ((InternalEList<?>)getSuperTypes()).basicRemove(otherEnd, msgs);
       case DomainmodelPackage.CONTROL__FEATURES:
         return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
     }
@@ -162,9 +134,8 @@ public class ControlImpl extends AbstractElementImpl implements Control
   {
     switch (featureID)
     {
-      case DomainmodelPackage.CONTROL__SUPER_TYPE:
-        if (resolve) return getSuperType();
-        return basicGetSuperType();
+      case DomainmodelPackage.CONTROL__SUPER_TYPES:
+        return getSuperTypes();
       case DomainmodelPackage.CONTROL__FEATURES:
         return getFeatures();
     }
@@ -182,8 +153,9 @@ public class ControlImpl extends AbstractElementImpl implements Control
   {
     switch (featureID)
     {
-      case DomainmodelPackage.CONTROL__SUPER_TYPE:
-        setSuperType((Control)newValue);
+      case DomainmodelPackage.CONTROL__SUPER_TYPES:
+        getSuperTypes().clear();
+        getSuperTypes().addAll((Collection<? extends JvmParameterizedTypeReference>)newValue);
         return;
       case DomainmodelPackage.CONTROL__FEATURES:
         getFeatures().clear();
@@ -203,8 +175,8 @@ public class ControlImpl extends AbstractElementImpl implements Control
   {
     switch (featureID)
     {
-      case DomainmodelPackage.CONTROL__SUPER_TYPE:
-        setSuperType((Control)null);
+      case DomainmodelPackage.CONTROL__SUPER_TYPES:
+        getSuperTypes().clear();
         return;
       case DomainmodelPackage.CONTROL__FEATURES:
         getFeatures().clear();
@@ -223,8 +195,8 @@ public class ControlImpl extends AbstractElementImpl implements Control
   {
     switch (featureID)
     {
-      case DomainmodelPackage.CONTROL__SUPER_TYPE:
-        return superType != null;
+      case DomainmodelPackage.CONTROL__SUPER_TYPES:
+        return superTypes != null && !superTypes.isEmpty();
       case DomainmodelPackage.CONTROL__FEATURES:
         return features != null && !features.isEmpty();
     }

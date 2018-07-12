@@ -42,6 +42,9 @@ public class CommandSetCompiler {
           _builder.append("package org.etri.slice.rules.");
           QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
           _builder.append(_fullyQualifiedName);
+          _builder.append(".");
+          String _lowerCase = agent.getName().toLowerCase();
+          _builder.append(_lowerCase);
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }

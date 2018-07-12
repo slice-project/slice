@@ -1,6 +1,8 @@
 package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.impl.JvmGenericTypeImplCustom
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
@@ -50,23 +52,35 @@ class ControlWrapperCompiler {
 				m_wm.addServiceWrapper(«name».id, this);
 			}
 			
-			«compileSuperType(importManager)»
+			«IF superTypes.size > 0»
+				«toInterface.compileSuperType(importManager)»
+			«ENDIF»
 			«FOR f : features»
 				«f.compile(importManager)»
 				
 			«ENDFOR»
 		}
 	'''
-	
-	private def compileSuperType(Control it, ImportManager importManager)	 '''
-		«IF superType !== null»
-			«FOR f : superType.features»
-				«f.compile(importManager)»
-				
-			«ENDFOR»
-			«compileSuperType(superType, importManager)»
-		«ENDIF»
-	'''
+
+	private def compileSuperType(JvmGenericType it, ImportManager importManager) '''
+		«FOR superType : superTypes»
+			«val jvmType = superType.type as JvmGenericTypeImplCustom»
+			«IF jvmType.isInterface»
+				«jvmType.compile(importManager)»				
+				«compileSuperType(jvmType, importManager)»
+			«ENDIF»
+		«ENDFOR»
+	'''	
+    
+    private def compile(JvmGenericType it, ImportManager importManager)	'''
+    	«FOR method : declaredOperations»
+    		@Override
+    		public «method.returnType.shortName(importManager)» «method.simpleName»«method.parameters(importManager)»«method.exceptions(importManager)» {
+    			«IF !method.returnType.type.simpleName.equals("void")»return «ENDIF»m_proxy.«method.simpleName»(«FOR p : method.parameters SEPARATOR ', '»«p.name»«ENDFOR»);
+    		}
+    		
+    	«ENDFOR»    
+    '''
     
   	private def compile(Feature it, ImportManager importManager) { 
 		switch it {
@@ -85,16 +99,9 @@ class ControlWrapperCompiler {
 			Operation :  '''
 				@Override
 				public «type.shortName(importManager)» «name»«parameters(importManager)»«exceptions(importManager)» {
-					«IF !type.type.simpleName.equals("void")»return «ENDIF»m_proxy.«name»(«FOR p : params SEPARATOR ', '» «p.name»«ENDFOR»);
+					«IF !type.type.simpleName.equals("void")»return «ENDIF»m_proxy.«name»(«FOR p : params SEPARATOR ', '»«p.name»«ENDFOR»);
 				}
 			'''
 		}
    	}
-   	
-   	private def parameters(Operation it, ImportManager importManager) 
-   		'''(«FOR p : params SEPARATOR ', '»«p.parameterType.shortName(importManager)» «p.name»«ENDFOR»)'''
-   	
-   	private def exceptions(Operation it, ImportManager importManager) 
- 		'''«IF exceptions.size > 0» throws «FOR e : exceptions SEPARATOR ', '»«e.shortName(importManager)»«ENDFOR»«ELSE»«ENDIF»'''
-
 }

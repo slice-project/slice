@@ -42,8 +42,8 @@ class ControlGenerator implements IGenerator {
 		«body»
 	'''
  
-	def body(Control it, ImportManager importManager) '''
-		public interface «name» «IF superType !== null»extends «superType.shortName(importManager)» «ENDIF»{
+ 	def body(Control it, ImportManager importManager) '''
+		public interface «name» «IF superTypes.size > 0»extends «FOR superType : superTypes SEPARATOR ', '»«superType.shortName(importManager)»«ENDFOR» «ENDIF»{
 			
 			«val id = name.toFirstLower»
 			static final String id = "«id»";
@@ -66,6 +66,7 @@ class ControlGenerator implements IGenerator {
 		}   	
     }
     
+    
   	def compile(Feature it, ImportManager importManager) { 
 		switch it {
 			Property : '''
@@ -80,8 +81,10 @@ class ControlGenerator implements IGenerator {
 		}
    	}
    	
+   	
    	def parameters(Operation it, ImportManager importManager) 
    		'''(«FOR p : params SEPARATOR ', '»«p.parameterType.shortName(importManager)» «p.name»«ENDFOR»)'''
+   	
    	
    	def exceptions(Operation it, ImportManager importManager) 
  		'''«IF exceptions.size > 0» throws «FOR e : exceptions SEPARATOR ', '»«e.shortName(importManager)»«ENDFOR»;«ELSE»;«ENDIF»'''

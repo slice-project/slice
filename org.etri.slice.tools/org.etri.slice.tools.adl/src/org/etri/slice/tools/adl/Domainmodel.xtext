@@ -5,7 +5,7 @@ generate domainmodel "http://www.etri.org/slice/tools/adl/Domainmodel"
 DomainModel:
 	importSection=XImportSection?
 	elements+=AbstractElement*;
-	
+
 AbstractElement:
 	DomainDeclaration | Context | Event | Exception | Control | AgentDeclaration;
 
@@ -29,7 +29,7 @@ Exception:
 	'exception' name=ValidID ('extends' superType=JvmParameterizedTypeReference)?';';	
 	
 Control:
-	'control' name=ValidID ('extends' superType=[Control])? '{'
+	'control' name=ValidID ('extends' superTypes+=JvmParameterizedTypeReference (',' superTypes+=JvmParameterizedTypeReference)*)? '{'
 		features+=Feature*	
 	'}';	
 	
@@ -70,8 +70,7 @@ Command:
 	'}';
 	
 CommandContext:
-	'context' context=[Context]'.'property=ValidID
-;	
+	'context' context=[Context]'.'property=ValidID;	
 
 DataType:
 	Context | Event;
@@ -102,9 +101,8 @@ Operation:
 		('throws' exceptions+=JvmTypeReference (',' exceptions+=JvmTypeReference)*)?';'?;
 
 Topic:
-	'@topic('name=STRING')';		
+	'@topic' '(' name=STRING')';		
 
 Agency:
-	'@agency(ip='ip=STRING',' 'port='port=INT')';
-	
+	'@agency' '(' 'ip' '=' ip=STRING ',' 'port' '=' port=INT ')';
 	

@@ -22,6 +22,7 @@
 package org.etri.slice.core.inference;
 
 import org.etri.slice.api.perception.ContextMemory;
+import org.etri.slice.commons.SliceContext;
 import org.kie.api.event.rule.ObjectDeletedEvent;
 import org.kie.api.event.rule.ObjectInsertedEvent;
 import org.kie.api.event.rule.ObjectUpdatedEvent;
@@ -45,7 +46,10 @@ public class RuleRuntimeEventListenerImpl implements RuleRuntimeEventListener {
     public void objectInserted(ObjectInsertedEvent event) {
         numberOfFacts++;
         Object fact = event.getObject();
-        m_cm.addContext(fact);
+        if ( fact.getClass().isAnnotationPresent(SliceContext.class) ) {        
+        	m_cm.addContext(fact);
+        }
+        
         logger.info("INSERTED: " + fact);
     }
 

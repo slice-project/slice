@@ -3,10 +3,65 @@
  */
 package org.etri.slice.tools.adl.ui.contentassist
 
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import org.etri.slice.tools.adl.domainmodel.Call
+import org.etri.slice.tools.adl.domainmodel.Command
+import org.etri.slice.tools.adl.domainmodel.Operation
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
  * on how to customize the content assistant.
  */
 class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
+
+	/**
+	 * AgentDeclaration/CommandSet/Command/method
+	 */
+	override completeCommand_Method(EObject element, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+
+		if (element instanceof Command) {
+			element.action.features.forEach [ feature |
+				{
+					if (feature instanceof Operation) {
+						acceptor.accept(
+							createCompletionProposal(feature.name, feature.name + " - Operation", null, context));
+					} else {
+						val setter = "set" + feature.name.toFirstUpper
+						
+						acceptor.accept(
+							createCompletionProposal(setter, setter + " - Field", null, context));						
+					}
+				}
+			]
+		}
+	}
+	
+	
+	/**
+	 * AgentDeclaration/BehaviorSet/Behavior/Action/Call/method
+	 */
+	override completeCall_Method(EObject element, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+
+		if (element instanceof Call) {
+			element.control.features.forEach [ feature |
+				{
+					if (feature instanceof Operation) {
+						acceptor.accept(
+							createCompletionProposal(feature.name, feature.name + " - Operation", null, context));
+					} else {
+						val setter = "set" + feature.name.toFirstUpper
+						
+						acceptor.accept(
+							createCompletionProposal(setter, setter + " - Field", null, context));						
+					}
+				}
+			]
+		}
+	}
+	
 }

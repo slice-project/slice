@@ -71,6 +71,37 @@ class AgentGenerator implements IGenerator {
 					<module>org.etri.slice.rules.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</module>
 				«ENDFOR»
 				</modules>
+				
+				<distributionManagement>
+					<repository>
+						<id>slice-mvn-hosted</id>
+						<url>http://129.254.88.119:8081/nexus/content/repositories/releases/</url>
+					</repository>
+				</distributionManagement>	
+				
+				<build>
+					<plugins>
+						<plugin>
+						   <groupId>org.sonatype.plugins</groupId>
+						   <artifactId>nexus-staging-maven-plugin</artifactId>
+						   <version>1.5.1</version>
+						   <executions>
+						      <execution>
+						         <id>default-deploy</id>
+						         <phase>deploy</phase>
+						         <goals>
+						            <goal>deploy</goal>
+						         </goals>
+						      </execution>
+						   </executions>
+						   <configuration>
+						      <serverId>nexus</serverId>
+						      <nexusUrl>http://129.254.88.119:8081/nexus/</nexusUrl>
+						      <skipStaging>true</skipStaging>
+						   </configuration>
+						</plugin>			
+					</plugins>
+				</build>
 		</project>
 	'''		
 }

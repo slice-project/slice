@@ -20,7 +20,7 @@ class CommandSetCompiler {
 		action.shortName(importManager)
 		'''
 		«IF eContainer !== null»
-			package org.etri.slice.rules.«agent.eContainer.fullyQualifiedName»;
+			package org.etri.slice.rules.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»;
 		«ENDIF»
 
 		«FOR i:importManager.imports»

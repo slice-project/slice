@@ -44,23 +44,41 @@ import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
 import org.eclipse.xtext.xbase.formatting2.XbaseFormatter;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xtype.XFunctionTypeRef;
 import org.eclipse.xtext.xtype.XImportDeclaration;
 import org.eclipse.xtext.xtype.XImportSection;
 import org.etri.slice.tools.adl.domainmodel.AbstractElement;
+import org.etri.slice.tools.adl.domainmodel.Action;
+import org.etri.slice.tools.adl.domainmodel.Agency;
+import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
+import org.etri.slice.tools.adl.domainmodel.Behavior;
+import org.etri.slice.tools.adl.domainmodel.BehaviorSet;
+import org.etri.slice.tools.adl.domainmodel.Command;
+import org.etri.slice.tools.adl.domainmodel.CommandContext;
+import org.etri.slice.tools.adl.domainmodel.CommandSet;
 import org.etri.slice.tools.adl.domainmodel.Context;
+import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 import org.etri.slice.tools.adl.domainmodel.DomainModel;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
+import org.etri.slice.tools.adl.domainmodel.Event;
+import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.Operation;
 import org.etri.slice.tools.adl.domainmodel.Property;
+import org.etri.slice.tools.adl.domainmodel.RuleSet;
+import org.etri.slice.tools.adl.domainmodel.Situation;
+import org.etri.slice.tools.adl.domainmodel.Topic;
 
 @SuppressWarnings("all")
 public class DomainmodelFormatter extends XbaseFormatter {
+  /**
+   * DomainModel formatting
+   */
   protected void _format(final DomainModel domainmodel, @Extension final IFormattableDocument document) {
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
-      it.setNewLines(0, 0, 1);
+      it.setNewLines(1);
       it.noSpace();
     };
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
@@ -68,19 +86,36 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.<DomainModel>append(document.<DomainModel>prepend(domainmodel, _function), _function_1);
     this.format(domainmodel.getImportSection(), document);
+    final AbstractElement lastElement = IterableExtensions.<AbstractElement>last(domainmodel.getElements());
     EList<AbstractElement> _elements = domainmodel.getElements();
     for (final AbstractElement element : _elements) {
-      this.format(element, document);
+      {
+        this.format(element, document);
+        if ((element == lastElement)) {
+          final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(1);
+          };
+          document.<AbstractElement>append(element, _function_2);
+        } else {
+          final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(2);
+          };
+          document.<AbstractElement>append(element, _function_3);
+        }
+      }
     }
   }
   
-  protected void _format(final DomainDeclaration pkg, @Extension final IFormattableDocument document) {
-    final ISemanticRegion open = this.textRegionExtensions.regionFor(pkg).keyword("{");
-    final ISemanticRegion close = this.textRegionExtensions.regionFor(pkg).keyword("}");
+  /**
+   * DomainDeclaration formatting
+   */
+  protected void _format(final DomainDeclaration domain, @Extension final IFormattableDocument document) {
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(domain).keyword("{");
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(domain).keyword("}");
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
-    document.surround(this.textRegionExtensions.regionFor(pkg).feature(DomainmodelPackage.Literals.ABSTRACT_ELEMENT__NAME), _function);
+    document.surround(this.textRegionExtensions.regionFor(domain).feature(DomainmodelPackage.Literals.ABSTRACT_ELEMENT__NAME), _function);
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
       it.newLine();
     };
@@ -89,62 +124,461 @@ public class DomainmodelFormatter extends XbaseFormatter {
       it.indent();
     };
     document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_2);
-    EList<AbstractElement> _elements = pkg.getElements();
+    final AbstractElement lastElement = IterableExtensions.<AbstractElement>last(domain.getElements());
+    EList<AbstractElement> _elements = domain.getElements();
     for (final AbstractElement element : _elements) {
       {
         document.<AbstractElement>format(element);
-        final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
-          it.setNewLines(1, 1, 2);
-        };
-        document.<AbstractElement>append(element, _function_3);
+        if ((element == lastElement)) {
+          final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(1);
+          };
+          document.<AbstractElement>append(element, _function_3);
+        } else {
+          final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(2);
+          };
+          document.<AbstractElement>append(element, _function_4);
+        }
       }
     }
   }
   
-  protected void _format(final Context entity, @Extension final IFormattableDocument document) {
-    final ISemanticRegion open = this.textRegionExtensions.regionFor(entity).keyword("{");
-    final ISemanticRegion close = this.textRegionExtensions.regionFor(entity).keyword("}");
+  /**
+   * AbstractElement formatting
+   */
+  protected void _format(final AbstractElement element, @Extension final IFormattableDocument document) {
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(element).keyword("{");
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(element).keyword("}");
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
-    document.surround(this.textRegionExtensions.regionFor(entity).feature(DomainmodelPackage.Literals.ABSTRACT_ELEMENT__NAME), _function);
+    document.surround(this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.ABSTRACT_ELEMENT__NAME), _function);
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
-      it.oneSpace();
-    };
-    document.<JvmParameterizedTypeReference>surround(entity.getSuperType(), _function_1);
-    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
       it.newLine();
     };
-    document.append(open, _function_2);
-    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+    document.append(open, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
       it.indent();
     };
-    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_3);
-    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
-      it.indent();
-    };
-    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_4);
-    this.format(entity.getSuperType(), document);
-    EList<Property> _properties = entity.getProperties();
-    for (final Property property : _properties) {
-      {
-        document.<Property>format(property);
-        final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
-          it.setNewLines(1, 1, 2);
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_2);
+    if ((element instanceof Context)) {
+      final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+        it.oneSpace();
+      };
+      document.append(this.textRegionExtensions.regionFor(element).keyword("context"), _function_3);
+      ISemanticRegion _feature = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.CONTEXT__SUPER_TYPE);
+      ISemanticRegion _prepend = null;
+      if (_feature!=null) {
+        final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+          it.oneSpace();
         };
-        document.<Property>append(property, _function_5);
+        _prepend=document.prepend(_feature, _function_4);
+      }
+      final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
+        it.noSpace();
+      };
+      document.append(_prepend, _function_5);
+      EList<Property> _properties = ((Context)element).getProperties();
+      for (final Property property : _properties) {
+        {
+          document.<Property>format(property);
+          final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(1);
+          };
+          document.<Property>append(property, _function_6);
+        }
+      }
+    } else {
+      if ((element instanceof Control)) {
+        final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
+          it.oneSpace();
+        };
+        document.append(this.textRegionExtensions.regionFor(element).keyword("control"), _function_6);
+        ISemanticRegion _feature_1 = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.CONTROL__SUPER_TYPES);
+        ISemanticRegion _prepend_1 = null;
+        if (_feature_1!=null) {
+          final Procedure1<IHiddenRegionFormatter> _function_7 = (IHiddenRegionFormatter it) -> {
+            it.oneSpace();
+          };
+          _prepend_1=document.prepend(_feature_1, _function_7);
+        }
+        final Procedure1<IHiddenRegionFormatter> _function_8 = (IHiddenRegionFormatter it) -> {
+          it.noSpace();
+        };
+        document.append(_prepend_1, _function_8);
+        EList<Feature> _features = ((Control)element).getFeatures();
+        for (final Feature feature : _features) {
+          {
+            document.<Feature>format(feature);
+            final Procedure1<IHiddenRegionFormatter> _function_9 = (IHiddenRegionFormatter it) -> {
+              it.setNewLines(1);
+            };
+            document.<Feature>append(feature, _function_9);
+          }
+        }
+      } else {
+        if ((element instanceof Event)) {
+          final Procedure1<IHiddenRegionFormatter> _function_9 = (IHiddenRegionFormatter it) -> {
+            it.oneSpace();
+          };
+          document.append(this.textRegionExtensions.regionFor(element).keyword("event"), _function_9);
+          ISemanticRegion _feature_2 = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.EVENT__SUPER_TYPE);
+          ISemanticRegion _prepend_2 = null;
+          if (_feature_2!=null) {
+            final Procedure1<IHiddenRegionFormatter> _function_10 = (IHiddenRegionFormatter it) -> {
+              it.oneSpace();
+            };
+            _prepend_2=document.prepend(_feature_2, _function_10);
+          }
+          final Procedure1<IHiddenRegionFormatter> _function_11 = (IHiddenRegionFormatter it) -> {
+            it.noSpace();
+          };
+          document.append(_prepend_2, _function_11);
+          document.<Topic>format(((Event)element).getTopic());
+          EList<Property> _properties_1 = ((Event)element).getProperties();
+          for (final Property property_1 : _properties_1) {
+            {
+              document.<Property>format(property_1);
+              final Procedure1<IHiddenRegionFormatter> _function_12 = (IHiddenRegionFormatter it) -> {
+                it.setNewLines(1);
+              };
+              document.<Property>append(property_1, _function_12);
+            }
+          }
+        } else {
+          if ((element instanceof org.etri.slice.tools.adl.domainmodel.Exception)) {
+            final Procedure1<IHiddenRegionFormatter> _function_12 = (IHiddenRegionFormatter it) -> {
+              it.oneSpace();
+            };
+            document.append(this.textRegionExtensions.regionFor(element).keyword("exception"), _function_12);
+            ISemanticRegion _feature_3 = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.EXCEPTION__SUPER_TYPE);
+            ISemanticRegion _prepend_3 = null;
+            if (_feature_3!=null) {
+              final Procedure1<IHiddenRegionFormatter> _function_13 = (IHiddenRegionFormatter it) -> {
+                it.oneSpace();
+              };
+              _prepend_3=document.prepend(_feature_3, _function_13);
+            }
+            final Procedure1<IHiddenRegionFormatter> _function_14 = (IHiddenRegionFormatter it) -> {
+              it.noSpace();
+            };
+            document.append(_prepend_3, _function_14);
+          } else {
+            if ((element instanceof AgentDeclaration)) {
+              final Procedure1<IHiddenRegionFormatter> _function_15 = (IHiddenRegionFormatter it) -> {
+                it.oneSpace();
+              };
+              document.append(this.textRegionExtensions.regionFor(element).keyword("agent"), _function_15);
+              document.<Agency>format(((AgentDeclaration)element).getAgency());
+              document.<RuleSet>format(((AgentDeclaration)element).getRuleSet());
+              document.<BehaviorSet>format(((AgentDeclaration)element).getBehaviorSet());
+              EList<CommandSet> _commandSets = ((AgentDeclaration)element).getCommandSets();
+              for (final CommandSet commandSet : _commandSets) {
+                {
+                  document.<CommandSet>format(commandSet);
+                  final Procedure1<IHiddenRegionFormatter> _function_16 = (IHiddenRegionFormatter it) -> {
+                    it.setNewLines(1);
+                  };
+                  document.<CommandSet>append(commandSet, _function_16);
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
   
-  protected void _format(final Property property, @Extension final IFormattableDocument document) {
+  /**
+   * Topic formatting
+   */
+  protected void _format(final Topic topic, @Extension final IFormattableDocument document) {
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };
-    document.surround(this.textRegionExtensions.regionFor(property).keyword(":"), _function);
-    document.<JvmTypeReference>format(property.getType());
+    document.append(this.textRegionExtensions.regionFor(topic).keyword("@topic"), _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.surround(this.textRegionExtensions.regionFor(topic).keyword("("), _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(this.textRegionExtensions.regionFor(topic).keyword(")"), _function_2);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.surround(this.textRegionExtensions.regionFor(topic).feature(DomainmodelPackage.Literals.TOPIC__NAME), _function_3);
   }
   
+  /**
+   * Agency formatting
+   */
+  protected void _format(final Agency agency, @Extension final IFormattableDocument document) {
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(agency).keyword("@agency"), _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.surround(this.textRegionExtensions.regionFor(agency).keyword("ip"), _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.surround(this.textRegionExtensions.regionFor(agency).keyword("("), _function_2);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(this.textRegionExtensions.regionFor(agency).keyword(")"), _function_3);
+    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.surround(this.textRegionExtensions.regionFor(agency).keyword("="), _function_4);
+    final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(agency).keyword(","), _function_5), _function_6);
+    final Procedure1<IHiddenRegionFormatter> _function_7 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.surround(this.textRegionExtensions.regionFor(agency).feature(DomainmodelPackage.Literals.AGENCY__PORT), _function_7);
+    final Procedure1<IHiddenRegionFormatter> _function_8 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.surround(this.textRegionExtensions.regionFor(agency).feature(DomainmodelPackage.Literals.AGENCY__IP), _function_8);
+  }
+  
+  /**
+   * Ruleset formatting
+   */
+  protected void _format(final RuleSet ruleSet, @Extension final IFormattableDocument document) {
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(ruleSet).keyword("{");
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(ruleSet).keyword("}");
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(open, _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.indent();
+    };
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(ruleSet).keyword("hasRuleSet"), _function_2);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__NAME), _function_3);
+    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__GROUP_ID), _function_4), _function_5);
+    final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    final Procedure1<IHiddenRegionFormatter> _function_7 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__ARTIFACT_ID), _function_6), _function_7);
+  }
+  
+  /**
+   * BehaviorSet formatting
+   */
+  protected void _format(final BehaviorSet behaviorSet, @Extension final IFormattableDocument document) {
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(behaviorSet).keyword("{");
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(behaviorSet).keyword("}");
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(open, _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.indent();
+    };
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(behaviorSet).keyword("hasBehaviors"), _function_2);
+    final Behavior lastElement = IterableExtensions.<Behavior>last(behaviorSet.getBehaviors());
+    EList<Behavior> _behaviors = behaviorSet.getBehaviors();
+    for (final Behavior behavior : _behaviors) {
+      {
+        document.<Behavior>format(behavior);
+        if ((behavior == lastElement)) {
+          final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(1);
+          };
+          document.<Behavior>append(behavior, _function_3);
+        } else {
+          final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(2);
+          };
+          document.<Behavior>append(behavior, _function_4);
+        }
+      }
+    }
+  }
+  
+  /**
+   * BehaviorSet formatting
+   */
+  protected void _format(final Behavior behavior, @Extension final IFormattableDocument document) {
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(behavior).feature(DomainmodelPackage.Literals.BEHAVIOR__NAME);
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(behavior).keyword("end");
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(open, _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.indent();
+    };
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
+    document.<Situation>format(behavior.getSituation());
+    document.<Action>format(behavior.getAction());
+  }
+  
+  protected void _format(final Situation situation, @Extension final IFormattableDocument document) {
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(situation).keyword("on"), _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(IterableExtensions.<ISemanticRegion>last(this.textRegionExtensions.regionFor(situation).features(DomainmodelPackage.Literals.SITUATION__TYPES)), _function_1);
+  }
+  
+  protected void _format(final Action action, @Extension final IFormattableDocument document) {
+    ISemanticRegion _feature = this.textRegionExtensions.regionFor(action).feature(DomainmodelPackage.Literals.CALL__METHOD);
+    if (_feature!=null) {
+      final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+        it.newLine();
+      };
+      document.append(_feature, _function);
+    }
+    ISemanticRegion _feature_1 = this.textRegionExtensions.regionFor(action).feature(DomainmodelPackage.Literals.PUBLISH__EVENT);
+    if (_feature_1!=null) {
+      final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+        it.newLine();
+      };
+      document.append(_feature_1, _function_1);
+    }
+    ISemanticRegion _keyword = this.textRegionExtensions.regionFor(action).keyword("no-op");
+    if (_keyword!=null) {
+      final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+        it.newLine();
+      };
+      document.append(_keyword, _function_2);
+    }
+  }
+  
+  /**
+   * CommandSet formatting
+   */
+  protected void _format(final CommandSet commandSet, @Extension final IFormattableDocument document) {
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(commandSet).keyword("{");
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(commandSet).keyword("}");
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(open, _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.indent();
+    };
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(commandSet).keyword("hasCommandsOf"), _function_2);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(commandSet).feature(DomainmodelPackage.Literals.COMMAND_SET__CONTROL), _function_3);
+    final Command lastElement = IterableExtensions.<Command>last(commandSet.getCommands());
+    EList<Command> _commands = commandSet.getCommands();
+    for (final Command command : _commands) {
+      {
+        document.<Command>format(command);
+        if ((command == lastElement)) {
+          final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(1);
+          };
+          document.<Command>append(command, _function_4);
+        } else {
+          final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
+            it.setNewLines(2);
+          };
+          document.<Command>append(command, _function_5);
+        }
+      }
+    }
+  }
+  
+  /**
+   * Command formatting
+   */
+  protected void _format(final Command command, @Extension final IFormattableDocument document) {
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(command).keyword("{");
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(command).keyword("}");
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(open, _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.indent();
+    };
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(command).keyword("command"), _function_2);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND__NAME), _function_3);
+    EList<CommandContext> _contexts = command.getContexts();
+    for (final CommandContext context : _contexts) {
+      {
+        document.<CommandContext>format(context);
+        final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+          it.setNewLines(1);
+        };
+        document.<CommandContext>append(context, _function_4);
+      }
+    }
+    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND__METHOD), _function_4);
+  }
+  
+  /**
+   * CommandContext formatting
+   */
+  protected void _format(final CommandContext context, @Extension final IFormattableDocument document) {
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(context).keyword("context"), _function);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(this.textRegionExtensions.allRegionsFor(context).feature(DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY), _function_1);
+  }
+  
+  /**
+   * Operation formatting
+   */
   protected void _format(final Operation operation, @Extension final IFormattableDocument document) {
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
       it.noSpace();
@@ -167,164 +601,203 @@ public class DomainmodelFormatter extends XbaseFormatter {
       for (final JvmFormalParameter params : _params) {
         document.<JvmFormalParameter>format(params);
       }
-      final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
-        it.noSpace();
-      };
-      document.prepend(this.textRegionExtensions.regionFor(operation).keyword(")"), _function_3);
     }
-    JvmTypeReference _type = operation.getType();
-    boolean _tripleNotEquals = (_type != null);
-    if (_tripleNotEquals) {
+    int _size = operation.getExceptions().size();
+    boolean _greaterThan = (_size > 0);
+    if (_greaterThan) {
+      final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+        it.oneSpace();
+      };
+      document.append(this.textRegionExtensions.regionFor(operation).keyword(")"), _function_3);
+    } else {
       final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
         it.noSpace();
       };
       document.append(this.textRegionExtensions.regionFor(operation).keyword(")"), _function_4);
-      final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
-        it.noSpace();
-      };
-      final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
-        it.oneSpace();
-      };
-      document.<JvmTypeReference>append(document.<JvmTypeReference>prepend(operation.getType(), _function_5), _function_6);
-      document.<JvmTypeReference>format(operation.getType());
-    } else {
-      final Procedure1<IHiddenRegionFormatter> _function_7 = (IHiddenRegionFormatter it) -> {
-        it.oneSpace();
-      };
-      document.append(this.textRegionExtensions.regionFor(operation).keyword(")"), _function_7);
     }
+    final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.<JvmTypeReference>append(document.<JvmTypeReference>prepend(operation.getType(), _function_5), _function_6);
+    document.<JvmTypeReference>format(operation.getType());
   }
   
-  public void format(final Object entity, final IFormattableDocument document) {
-    if (entity instanceof JvmTypeParameter) {
-      _format((JvmTypeParameter)entity, document);
+  /**
+   * Property formatting
+   */
+  protected void _format(final Property property, @Extension final IFormattableDocument document) {
+    final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(property).feature(DomainmodelPackage.Literals.FEATURE__NAME), _function), _function_1);
+  }
+  
+  public void format(final Object domain, final IFormattableDocument document) {
+    if (domain instanceof JvmTypeParameter) {
+      _format((JvmTypeParameter)domain, document);
       return;
-    } else if (entity instanceof JvmFormalParameter) {
-      _format((JvmFormalParameter)entity, document);
+    } else if (domain instanceof JvmFormalParameter) {
+      _format((JvmFormalParameter)domain, document);
       return;
-    } else if (entity instanceof XtextResource) {
-      _format((XtextResource)entity, document);
+    } else if (domain instanceof XtextResource) {
+      _format((XtextResource)domain, document);
       return;
-    } else if (entity instanceof XAssignment) {
-      _format((XAssignment)entity, document);
+    } else if (domain instanceof XAssignment) {
+      _format((XAssignment)domain, document);
       return;
-    } else if (entity instanceof XBinaryOperation) {
-      _format((XBinaryOperation)entity, document);
+    } else if (domain instanceof XBinaryOperation) {
+      _format((XBinaryOperation)domain, document);
       return;
-    } else if (entity instanceof XDoWhileExpression) {
-      _format((XDoWhileExpression)entity, document);
+    } else if (domain instanceof XDoWhileExpression) {
+      _format((XDoWhileExpression)domain, document);
       return;
-    } else if (entity instanceof XFeatureCall) {
-      _format((XFeatureCall)entity, document);
+    } else if (domain instanceof XFeatureCall) {
+      _format((XFeatureCall)domain, document);
       return;
-    } else if (entity instanceof XMemberFeatureCall) {
-      _format((XMemberFeatureCall)entity, document);
+    } else if (domain instanceof XMemberFeatureCall) {
+      _format((XMemberFeatureCall)domain, document);
       return;
-    } else if (entity instanceof XPostfixOperation) {
-      _format((XPostfixOperation)entity, document);
+    } else if (domain instanceof XPostfixOperation) {
+      _format((XPostfixOperation)domain, document);
       return;
-    } else if (entity instanceof XWhileExpression) {
-      _format((XWhileExpression)entity, document);
+    } else if (domain instanceof XWhileExpression) {
+      _format((XWhileExpression)domain, document);
       return;
-    } else if (entity instanceof XFunctionTypeRef) {
-      _format((XFunctionTypeRef)entity, document);
+    } else if (domain instanceof XFunctionTypeRef) {
+      _format((XFunctionTypeRef)domain, document);
       return;
-    } else if (entity instanceof JvmGenericArrayTypeReference) {
-      _format((JvmGenericArrayTypeReference)entity, document);
+    } else if (domain instanceof JvmGenericArrayTypeReference) {
+      _format((JvmGenericArrayTypeReference)domain, document);
       return;
-    } else if (entity instanceof JvmParameterizedTypeReference) {
-      _format((JvmParameterizedTypeReference)entity, document);
+    } else if (domain instanceof JvmParameterizedTypeReference) {
+      _format((JvmParameterizedTypeReference)domain, document);
       return;
-    } else if (entity instanceof JvmWildcardTypeReference) {
-      _format((JvmWildcardTypeReference)entity, document);
+    } else if (domain instanceof JvmWildcardTypeReference) {
+      _format((JvmWildcardTypeReference)domain, document);
       return;
-    } else if (entity instanceof XBasicForLoopExpression) {
-      _format((XBasicForLoopExpression)entity, document);
+    } else if (domain instanceof XBasicForLoopExpression) {
+      _format((XBasicForLoopExpression)domain, document);
       return;
-    } else if (entity instanceof XBlockExpression) {
-      _format((XBlockExpression)entity, document);
+    } else if (domain instanceof XBlockExpression) {
+      _format((XBlockExpression)domain, document);
       return;
-    } else if (entity instanceof XCastedExpression) {
-      _format((XCastedExpression)entity, document);
+    } else if (domain instanceof XCastedExpression) {
+      _format((XCastedExpression)domain, document);
       return;
-    } else if (entity instanceof XClosure) {
-      _format((XClosure)entity, document);
+    } else if (domain instanceof XClosure) {
+      _format((XClosure)domain, document);
       return;
-    } else if (entity instanceof XCollectionLiteral) {
-      _format((XCollectionLiteral)entity, document);
+    } else if (domain instanceof XCollectionLiteral) {
+      _format((XCollectionLiteral)domain, document);
       return;
-    } else if (entity instanceof XConstructorCall) {
-      _format((XConstructorCall)entity, document);
+    } else if (domain instanceof XConstructorCall) {
+      _format((XConstructorCall)domain, document);
       return;
-    } else if (entity instanceof XForLoopExpression) {
-      _format((XForLoopExpression)entity, document);
+    } else if (domain instanceof XForLoopExpression) {
+      _format((XForLoopExpression)domain, document);
       return;
-    } else if (entity instanceof XIfExpression) {
-      _format((XIfExpression)entity, document);
+    } else if (domain instanceof XIfExpression) {
+      _format((XIfExpression)domain, document);
       return;
-    } else if (entity instanceof XInstanceOfExpression) {
-      _format((XInstanceOfExpression)entity, document);
+    } else if (domain instanceof XInstanceOfExpression) {
+      _format((XInstanceOfExpression)domain, document);
       return;
-    } else if (entity instanceof XReturnExpression) {
-      _format((XReturnExpression)entity, document);
+    } else if (domain instanceof XReturnExpression) {
+      _format((XReturnExpression)domain, document);
       return;
-    } else if (entity instanceof XSwitchExpression) {
-      _format((XSwitchExpression)entity, document);
+    } else if (domain instanceof XSwitchExpression) {
+      _format((XSwitchExpression)domain, document);
       return;
-    } else if (entity instanceof XSynchronizedExpression) {
-      _format((XSynchronizedExpression)entity, document);
+    } else if (domain instanceof XSynchronizedExpression) {
+      _format((XSynchronizedExpression)domain, document);
       return;
-    } else if (entity instanceof XThrowExpression) {
-      _format((XThrowExpression)entity, document);
+    } else if (domain instanceof XThrowExpression) {
+      _format((XThrowExpression)domain, document);
       return;
-    } else if (entity instanceof XTryCatchFinallyExpression) {
-      _format((XTryCatchFinallyExpression)entity, document);
+    } else if (domain instanceof XTryCatchFinallyExpression) {
+      _format((XTryCatchFinallyExpression)domain, document);
       return;
-    } else if (entity instanceof XTypeLiteral) {
-      _format((XTypeLiteral)entity, document);
+    } else if (domain instanceof XTypeLiteral) {
+      _format((XTypeLiteral)domain, document);
       return;
-    } else if (entity instanceof XVariableDeclaration) {
-      _format((XVariableDeclaration)entity, document);
+    } else if (domain instanceof XVariableDeclaration) {
+      _format((XVariableDeclaration)domain, document);
       return;
-    } else if (entity instanceof Context) {
-      _format((Context)entity, document);
+    } else if (domain instanceof DomainDeclaration) {
+      _format((DomainDeclaration)domain, document);
       return;
-    } else if (entity instanceof DomainDeclaration) {
-      _format((DomainDeclaration)entity, document);
+    } else if (domain instanceof Operation) {
+      _format((Operation)domain, document);
       return;
-    } else if (entity instanceof Operation) {
-      _format((Operation)entity, document);
+    } else if (domain instanceof Property) {
+      _format((Property)domain, document);
       return;
-    } else if (entity instanceof Property) {
-      _format((Property)entity, document);
+    } else if (domain instanceof JvmTypeConstraint) {
+      _format((JvmTypeConstraint)domain, document);
       return;
-    } else if (entity instanceof JvmTypeConstraint) {
-      _format((JvmTypeConstraint)entity, document);
+    } else if (domain instanceof XExpression) {
+      _format((XExpression)domain, document);
       return;
-    } else if (entity instanceof XExpression) {
-      _format((XExpression)entity, document);
+    } else if (domain instanceof XImportDeclaration) {
+      _format((XImportDeclaration)domain, document);
       return;
-    } else if (entity instanceof XImportDeclaration) {
-      _format((XImportDeclaration)entity, document);
+    } else if (domain instanceof XImportSection) {
+      _format((XImportSection)domain, document);
       return;
-    } else if (entity instanceof XImportSection) {
-      _format((XImportSection)entity, document);
+    } else if (domain instanceof AbstractElement) {
+      _format((AbstractElement)domain, document);
       return;
-    } else if (entity instanceof DomainModel) {
-      _format((DomainModel)entity, document);
+    } else if (domain instanceof Action) {
+      _format((Action)domain, document);
       return;
-    } else if (entity instanceof EObject) {
-      _format((EObject)entity, document);
+    } else if (domain instanceof Agency) {
+      _format((Agency)domain, document);
       return;
-    } else if (entity == null) {
+    } else if (domain instanceof Behavior) {
+      _format((Behavior)domain, document);
+      return;
+    } else if (domain instanceof BehaviorSet) {
+      _format((BehaviorSet)domain, document);
+      return;
+    } else if (domain instanceof Command) {
+      _format((Command)domain, document);
+      return;
+    } else if (domain instanceof CommandContext) {
+      _format((CommandContext)domain, document);
+      return;
+    } else if (domain instanceof CommandSet) {
+      _format((CommandSet)domain, document);
+      return;
+    } else if (domain instanceof DomainModel) {
+      _format((DomainModel)domain, document);
+      return;
+    } else if (domain instanceof RuleSet) {
+      _format((RuleSet)domain, document);
+      return;
+    } else if (domain instanceof Situation) {
+      _format((Situation)domain, document);
+      return;
+    } else if (domain instanceof Topic) {
+      _format((Topic)domain, document);
+      return;
+    } else if (domain instanceof EObject) {
+      _format((EObject)domain, document);
+      return;
+    } else if (domain == null) {
       _format((Void)null, document);
       return;
-    } else if (entity != null) {
-      _format(entity, document);
+    } else if (domain != null) {
+      _format(domain, document);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(entity, document).toString());
+        Arrays.<Object>asList(domain, document).toString());
     }
   }
 }

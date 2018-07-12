@@ -466,7 +466,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getControl_SuperType()
+  public EReference getControl_SuperTypes()
   {
     return (EReference)controlEClass.getEStructuralFeatures().get(0);
   }
@@ -1024,7 +1024,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     createEReference(exceptionEClass, EXCEPTION__SUPER_TYPE);
 
     controlEClass = createEClass(CONTROL);
-    createEReference(controlEClass, CONTROL__SUPER_TYPE);
+    createEReference(controlEClass, CONTROL__SUPER_TYPES);
     createEReference(controlEClass, CONTROL__FEATURES);
 
     agentDeclarationEClass = createEClass(AGENT_DECLARATION);
@@ -1166,7 +1166,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     initEReference(getException_SuperType(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superType", null, 0, 1, org.etri.slice.tools.adl.domainmodel.Exception.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(controlEClass, Control.class, "Control", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getControl_SuperType(), this.getControl(), null, "superType", null, 0, 1, Control.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getControl_SuperTypes(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superTypes", null, 0, -1, Control.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getControl_Features(), this.getFeature(), null, "features", null, 0, -1, Control.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(agentDeclarationEClass, AgentDeclaration.class, "AgentDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

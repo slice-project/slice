@@ -5,6 +5,8 @@ package org.etri.slice.tools.adl.domainmodel;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Control</b></em>'.
@@ -14,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.etri.slice.tools.adl.domainmodel.Control#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.etri.slice.tools.adl.domainmodel.Control#getSuperTypes <em>Super Types</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Control#getFeatures <em>Features</em>}</li>
  * </ul>
  *
@@ -25,30 +27,20 @@ import org.eclipse.emf.common.util.EList;
 public interface Control extends AbstractElement
 {
   /**
-   * Returns the value of the '<em><b>Super Type</b></em>' reference.
+   * Returns the value of the '<em><b>Super Types</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.xtext.common.types.JvmParameterizedTypeReference}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Super Type</em>' reference isn't clear,
+   * If the meaning of the '<em>Super Types</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Super Type</em>' reference.
-   * @see #setSuperType(Control)
-   * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getControl_SuperType()
-   * @model
+   * @return the value of the '<em>Super Types</em>' containment reference list.
+   * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getControl_SuperTypes()
+   * @model containment="true"
    * @generated
    */
-  Control getSuperType();
-
-  /**
-   * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.Control#getSuperType <em>Super Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Super Type</em>' reference.
-   * @see #getSuperType()
-   * @generated
-   */
-  void setSuperType(Control value);
+  EList<JvmParameterizedTypeReference> getSuperTypes();
 
   /**
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.

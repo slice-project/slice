@@ -89,9 +89,9 @@ public class ContextMemoryImpl implements ContextMemory {
 			m_contexts.put(key, value);
 			s_logger.info("CONTEXT INSERTED : [" + key + "," + value +"]");
 
-			if ( field.getType().isAnnotationPresent(SliceContext.class) ) {
-				insertContext(value);
-			}			
+//			if ( field.getType().isAnnotationPresent(SliceContext.class) ) {
+//				insertContext(value);
+//			}			
 		}		
 	}
 	

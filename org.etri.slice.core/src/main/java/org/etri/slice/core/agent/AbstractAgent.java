@@ -36,7 +36,7 @@ import com.google.gson.JsonObject;
 
 public abstract class AbstractAgent implements Agent {
 
-	public static final String JMX_DOMAIN = "org.etri.slice.agent";
+	public static final String JMX_DOMAIN = "org.etri.slice.agents";
 	private final DirectProvider m_provider = new DirectProvider();
 	
 	public AbstractAgent() {

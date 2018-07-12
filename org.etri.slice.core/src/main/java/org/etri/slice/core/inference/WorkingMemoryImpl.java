@@ -21,6 +21,8 @@
  */
 package org.etri.slice.core.inference;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Collection;
 
 import org.apache.felix.ipojo.annotations.Component;
@@ -30,6 +32,7 @@ import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.api.inference.WorkingMemory;
+import org.etri.slice.commons.SliceContext;
 import org.kie.api.runtime.Channel;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.ObjectFilter;
@@ -53,6 +56,7 @@ public class WorkingMemoryImpl implements WorkingMemory {
 	public synchronized void insert(Object fact) {
 		m_drools.getSessionLock().lock();
 		m_session.insert(fact);
+		insertFact(fact);
 		m_drools.getSessionLock().unlock();
 	}
 
@@ -110,4 +114,28 @@ public class WorkingMemoryImpl implements WorkingMemory {
 	public void stop() {
 		m_session.destroy();
 	}
+	
+	private void insertFact(Object fact) {
+		Class<?> cls = fact.getClass();		
+		Field fieldlist[] = fact.getClass().getDeclaredFields();
+		for ( Field field : fieldlist ) {
+			if ( Modifier.isStatic(field.getModifiers()) ) {
+				continue;
+			}
+			StringBuffer sbuff = new StringBuffer();
+			sbuff.append(cls.getSimpleName());
+			sbuff.append(".");
+			sbuff.append(field.getName());
+			field.setAccessible(true);
+			Object obj = null;
+			try {
+				obj = field.get(fact);
+			} 
+			catch ( Exception ignored ) {	}
+			if ( field.getType().isAnnotationPresent(SliceContext.class) ) {
+				m_session.insert(obj);
+				insertFact(obj);
+			}			
+		}		
+	}	
 }

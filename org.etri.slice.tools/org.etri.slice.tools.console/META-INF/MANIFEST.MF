@@ -10,3 +10,5 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.etri.slice.tools.console
 Eclipse-AutoStart: true
+Bundle-ClassPath: lib/lombok.jar,
+ .

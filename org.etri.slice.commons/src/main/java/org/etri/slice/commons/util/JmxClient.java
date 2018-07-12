@@ -64,11 +64,12 @@ public class JmxClient {
 				closeQuietly(m_jmxConnector);
 				m_jmxConnector = null;
 			}
+			
 			throw createJmException("Problems connecting to the server" + e, e);
 		}		
 	}
 	
-	public <T> T getProxy(Class<T> interfaeClass) {		
+	public <T> T getProxy(Class<T> interfaeClass) throws JMException {		
 		try {
 			Set<ObjectName> objNames = m_mbeanConn.queryNames(ObjectName.getInstance(s_queryString), null);
 			Iterator<ObjectName> iter = objNames.iterator();
@@ -83,10 +84,8 @@ public class JmxClient {
 			return JMX.newMXBeanProxy(m_mbeanConn, objName, interfaeClass);
 		}
 		catch ( Exception e ) {
-			
+			throw createJmException("Problems connecting to the server" + e, e);
 		}
-		
-		return null;
 	}
 	
 	private void closeQuietly(Closeable closeable) {

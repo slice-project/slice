@@ -3,6 +3,16 @@
  */
 package org.etri.slice.tools.adl.ui.contentassist;
 
+import java.util.function.Consumer;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.etri.slice.tools.adl.domainmodel.Call;
+import org.etri.slice.tools.adl.domainmodel.Command;
+import org.etri.slice.tools.adl.domainmodel.Feature;
+import org.etri.slice.tools.adl.domainmodel.Operation;
 import org.etri.slice.tools.adl.ui.contentassist.AbstractDomainmodelProposalProvider;
 
 /**
@@ -11,4 +21,51 @@ import org.etri.slice.tools.adl.ui.contentassist.AbstractDomainmodelProposalProv
  */
 @SuppressWarnings("all")
 public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
+  /**
+   * AgentDeclaration/CommandSet/Command/method
+   */
+  @Override
+  public void completeCommand_Method(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    if ((element instanceof Command)) {
+      final Consumer<Feature> _function = (Feature feature) -> {
+        if ((feature instanceof Operation)) {
+          String _name = ((Operation)feature).getName();
+          String _name_1 = ((Operation)feature).getName();
+          String _plus = (_name_1 + " - Operation");
+          acceptor.accept(
+            this.createCompletionProposal(_name, _plus, null, context));
+        } else {
+          String _firstUpper = StringExtensions.toFirstUpper(feature.getName());
+          final String setter = ("set" + _firstUpper);
+          acceptor.accept(
+            this.createCompletionProposal(setter, (setter + " - Field"), null, context));
+        }
+      };
+      ((Command)element).getAction().getFeatures().forEach(_function);
+    }
+  }
+  
+  /**
+   * AgentDeclaration/BehaviorSet/Behavior/Action/Call/method
+   */
+  @Override
+  public void completeCall_Method(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    if ((element instanceof Call)) {
+      final Consumer<Feature> _function = (Feature feature) -> {
+        if ((feature instanceof Operation)) {
+          String _name = ((Operation)feature).getName();
+          String _name_1 = ((Operation)feature).getName();
+          String _plus = (_name_1 + " - Operation");
+          acceptor.accept(
+            this.createCompletionProposal(_name, _plus, null, context));
+        } else {
+          String _firstUpper = StringExtensions.toFirstUpper(feature.getName());
+          final String setter = ("set" + _firstUpper);
+          acceptor.accept(
+            this.createCompletionProposal(setter, (setter + " - Field"), null, context));
+        }
+      };
+      ((Call)element).getControl().getFeatures().forEach(_function);
+    }
+  }
 }

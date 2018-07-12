@@ -36,7 +36,7 @@ class RuleSetCompiler {
 		«val importManager = new ImportManager(true)» 
 		«val body = ruleBody(importManager)»
 		«IF eContainer !== null»
-			package org.etri.slice.rules.«eContainer.fullyQualifiedName»;
+			package org.etri.slice.rules.«eContainer.fullyQualifiedName».«name.toLowerCase»;
 		«ENDIF»
 		
 		«FOR i:importManager.imports»

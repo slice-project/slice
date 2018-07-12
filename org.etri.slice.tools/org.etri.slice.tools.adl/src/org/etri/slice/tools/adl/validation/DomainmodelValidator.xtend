@@ -3,13 +3,27 @@
  */
 package org.etri.slice.tools.adl.validation
 
+import com.google.common.collect.HashMultimap
+import java.util.Set
+import java.util.regex.Pattern
+import javax.inject.Inject
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.util.Strings
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.validation.ValidationMessageAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations
+import org.etri.slice.tools.adl.domainmodel.Agency
+import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Context
+import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage
+import org.etri.slice.tools.adl.domainmodel.Event
+import org.etri.slice.tools.adl.domainmodel.Exception
 import org.etri.slice.tools.adl.domainmodel.Feature
+import org.etri.slice.tools.adl.domainmodel.Property
+import org.etri.slice.tools.adl.domainmodel.Topic
 
 /**
  * This class contains custom validation rules. 
@@ -17,6 +31,13 @@ import org.etri.slice.tools.adl.domainmodel.Feature
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class DomainmodelValidator extends AbstractDomainmodelValidator {
+
+	
+	val TOPIC_LEVEL_REG_EXPR = "[a-zA-Z\\$][a-zA-Z0-9_]*";
+	val TOPIC_NAME_REG_EXPR =  "^" + TOPIC_LEVEL_REG_EXPR + "(/" + TOPIC_LEVEL_REG_EXPR + ")*$";
+	
+	Pattern topicNamePattern
+	@Inject extension IJvmModelAssociations
 	
 	@Check def void checkTypeNameStartsWithCapital(Context context) {
 		if (!Character::isUpperCase(context.getName().charAt(0))) {
@@ -41,4 +62,173 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 		}
 	}
 	
+	/**
+	 * check duplicated names
+	 */
+	@Check def void checkDuplicatedNames(DomainDeclaration domain) {		
+		// Context Name
+		val contextNames = newHashSet
+    	for (context : domain.elements.filter(typeof(Context))) {
+       	 	if(!contextNames.add(context.name))
+            	error("Duplicated context name" , context, DomainmodelPackage.Literals::ABSTRACT_ELEMENT__NAME,
+            		IssueCodes::DUPLICATE_ELEMENT
+            	)
+    	} 
+    	
+    	// Control
+    	val controlNames = newHashSet
+    	for (control : domain.elements.filter(typeof(Control))) {
+       	 	if(!controlNames.add(control.name))
+            	error("Duplicated control name" , control, DomainmodelPackage.Literals::ABSTRACT_ELEMENT__NAME, 
+            		IssueCodes::DUPLICATE_ELEMENT
+            	)
+    	} 
+    	 
+    	 // AgentDeclaration
+    	val agentNames = newHashSet
+    	for (agent : domain.elements.filter(typeof(AgentDeclaration))) {
+       	 	if(!agentNames.add(agent.name))
+            	error("Duplicated agent name" , agent, DomainmodelPackage.Literals::ABSTRACT_ELEMENT__NAME, 
+            		IssueCodes::DUPLICATE_ELEMENT
+            	)
+    	} 
+    	
+    	// Event
+    	val eventNames = newHashSet
+    	for (event : domain.elements.filter(typeof(Event))) {
+       	 	if(!eventNames.add(event.name))
+            	error("Duplicated event name" , event, DomainmodelPackage.Literals::ABSTRACT_ELEMENT__NAME, 
+            		IssueCodes::DUPLICATE_ELEMENT
+            	)
+    	} 
+    	
+    	// Exception
+    	val exceptionNames = newHashSet
+    	for (exception : domain.elements.filter(typeof(Exception))) {
+       	 	if(!exceptionNames.add(exception.name))
+            	error("Duplicated exception name" , exception, DomainmodelPackage.Literals::ABSTRACT_ELEMENT__NAME, 
+            		IssueCodes::DUPLICATE_ELEMENT
+            	)
+    	}  	
+	}
+	
+	
+	def private void checkNoDuplicateElements(Iterable<? extends Feature> elements, String desc, EStructuralFeature feature, String issueCode)
+	{
+		val multiMap = HashMultimap.create()
+		
+		for(e: elements)
+			multiMap.put(e.name, e)
+			
+		for(entry : multiMap.asMap.entrySet)
+		{
+			val duplicates = entry.value
+			
+			if(duplicates.size > 1)
+			{
+				for(d: duplicates)
+				{ 
+					error("Duplicate " + desc + " '" + d.name + "'", d, 
+						feature, 
+						issueCode
+					)
+				}
+			}
+		}
+	}
+	
+	@Check def void checkFeatureDuplicatedInControl(Control control)
+	{	
+		checkNoDuplicateElements(control.features.filter(Feature), "feature", DomainmodelPackage.Literals::FEATURE__NAME, IssueCodes::DUPLICATE_FEATURE)
+	}
+	
+	@Check def void checkPropertyDuplicatedInContext(Context context)
+	{	
+		checkNoDuplicateElements(context.properties.filter(Property), "property", DomainmodelPackage.Literals::FEATURE__NAME, IssueCodes::DUPLICATE_PROPERTY)
+	}
+	
+	@Check def void checkPropertyDuplicatedInEvent(Event event)
+	{	
+		checkNoDuplicateElements(event.properties.filter(Property), "property", DomainmodelPackage.Literals::FEATURE__NAME, IssueCodes::DUPLICATE_PROPERTY)
+	}
+		
+	@Check def void checkAgencyIPFormat(Agency agentcy) {	
+		
+	}
+	
+	@Check def void checkTopicName(Topic topic) {	
+		var name = topic.name
+		
+		if(name.length == 0)
+		{
+			error("Invalid topic name, topic name must consist of at least one character to be valid", 
+				topic, DomainmodelPackage.Literals::TOPIC__NAME)	
+		}
+		else
+		{	
+			if(null === topicNamePattern)
+				topicNamePattern = Pattern.compile(TOPIC_NAME_REG_EXPR)
+			
+			if(!topicNamePattern.matcher(name).matches)
+			{
+				error("Invalid topic name, topic name format is invalid.", 
+				topic, DomainmodelPackage.Literals::TOPIC__NAME)	
+			}
+		}
+	}
+	
+	def private boolean hasCycleInHierarchy(JvmGenericType t, Set<JvmGenericType> processed)
+	{
+//		if(processed.contains(t))
+//			return true;
+//			
+//		processed.add(t)
+//		
+//		return t.superTypes.map[type].filter(JvmGenericType).exists[hasCycleInHierarchy(processed)]	
+		return false
+	}
+	
+	@Check def void checkNoCycleInContextHierarchy(Context context)
+	{
+		val inferredJavaType = context.jvmElements.filter(JvmGenericType).head	
+		
+		if(inferredJavaType.hasCycleInHierarchy(newHashSet()))
+		{
+			error("cycle in hierarchy of context '" + context.name + "'", 
+				context, DomainmodelPackage.Literals::CONTEXT__SUPER_TYPE, IssueCodes::CONTEXT_HIERARCHY_CYCLE)	
+		}
+	}
+	
+		@Check def void checkNoCycleInControlHierarchy(Control cotrol)
+	{
+		val inferredJavaType = cotrol.jvmElements.filter(JvmGenericType).head	
+		
+		if(inferredJavaType.hasCycleInHierarchy(newHashSet()))
+		{
+			error("cycle in hierarchy of control '" + cotrol.name + "'", 
+				cotrol, DomainmodelPackage.Literals::CONTROL__SUPER_TYPES, IssueCodes::CONTROL_HIERARCHY_CYCLE)	
+		}
+	}
+	
+	@Check def void checkNoCycleInEventHierarchy(Event event)
+	{
+		val inferredJavaType = event.jvmElements.filter(JvmGenericType).head	
+		
+		if(inferredJavaType.hasCycleInHierarchy(newHashSet()))
+		{
+			error("cycle in hierarchy of event '" + event.name + "'", 
+				event, DomainmodelPackage.Literals::CONTEXT__SUPER_TYPE, IssueCodes::EVENT_HIERARCHY_CYCLE)	
+		}
+	}
+	
+	@Check def void checkNoCycleInExceptionHierarchy(Exception exception)
+	{
+		val inferredJavaType = exception.jvmElements.filter(JvmGenericType).head	
+		
+		if(inferredJavaType.hasCycleInHierarchy(newHashSet()))
+		{
+			error("cycle in hierarchy of exception '" + exception.name + "'", 
+				exception, DomainmodelPackage.Literals::CONTEXT__SUPER_TYPE, IssueCodes::EXCEPTION_HIERARCHY_CYCLE)	
+		}
+	}
 }

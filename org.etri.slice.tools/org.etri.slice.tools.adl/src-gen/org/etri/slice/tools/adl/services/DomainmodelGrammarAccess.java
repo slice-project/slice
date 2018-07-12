@@ -302,21 +302,26 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cExtendsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSuperTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cSuperTypeControlCrossReference_2_1_0 = (CrossReference)cSuperTypeAssignment_2_1.eContents().get(0);
-		private final RuleCall cSuperTypeControlIDTerminalRuleCall_2_1_0_1 = (RuleCall)cSuperTypeControlCrossReference_2_1_0.eContents().get(1);
+		private final Assignment cSuperTypesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_1_0 = (RuleCall)cSuperTypesAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cSuperTypesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0 = (RuleCall)cSuperTypesAssignment_2_2_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cFeaturesAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cFeaturesFeatureParserRuleCall_4_0 = (RuleCall)cFeaturesAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Control:
-		//	'control' name=ValidID ('extends' superType=[Control])? '{'
+		//	'control' name=ValidID ('extends' superTypes+=JvmParameterizedTypeReference (','
+		//	superTypes+=JvmParameterizedTypeReference)*)? '{'
 		//	features+=Feature*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'control' name=ValidID ('extends' superType=[Control])? '{' features+=Feature* '}'
+		//'control' name=ValidID ('extends' superTypes+=JvmParameterizedTypeReference (','
+		//superTypes+=JvmParameterizedTypeReference)*)? '{' features+=Feature* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'control'
@@ -328,20 +333,29 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
 		
-		//('extends' superType=[Control])?
+		//('extends' superTypes+=JvmParameterizedTypeReference (',' superTypes+=JvmParameterizedTypeReference)*)?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'extends'
 		public Keyword getExtendsKeyword_2_0() { return cExtendsKeyword_2_0; }
 		
-		//superType=[Control]
-		public Assignment getSuperTypeAssignment_2_1() { return cSuperTypeAssignment_2_1; }
+		//superTypes+=JvmParameterizedTypeReference
+		public Assignment getSuperTypesAssignment_2_1() { return cSuperTypesAssignment_2_1; }
 		
-		//[Control]
-		public CrossReference getSuperTypeControlCrossReference_2_1_0() { return cSuperTypeControlCrossReference_2_1_0; }
+		//JvmParameterizedTypeReference
+		public RuleCall getSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_1_0() { return cSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_1_0; }
 		
-		//ID
-		public RuleCall getSuperTypeControlIDTerminalRuleCall_2_1_0_1() { return cSuperTypeControlIDTerminalRuleCall_2_1_0_1; }
+		//(',' superTypes+=JvmParameterizedTypeReference)*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+		
+		//superTypes+=JvmParameterizedTypeReference
+		public Assignment getSuperTypesAssignment_2_2_1() { return cSuperTypesAssignment_2_2_1; }
+		
+		//JvmParameterizedTypeReference
+		public RuleCall getSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0() { return cSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
@@ -1059,71 +1073,91 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.etri.slice.tools.adl.Domainmodel.Topic");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTopicKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Topic:
-		//	'@topic(' name=STRING ')';
+		//	'@topic' '(' name=STRING ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'@topic(' name=STRING ')'
+		//'@topic' '(' name=STRING ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'@topic('
+		//'@topic'
 		public Keyword getTopicKeyword_0() { return cTopicKeyword_0; }
 		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
 		//name=STRING
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getNameSTRINGTerminalRuleCall_2_0() { return cNameSTRINGTerminalRuleCall_2_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 	public class AgencyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.etri.slice.tools.adl.Domainmodel.Agency");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cAgencyIpKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cIpAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cIpSTRINGTerminalRuleCall_1_0 = (RuleCall)cIpAssignment_1.eContents().get(0);
-		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cPortKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPortAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPortINTTerminalRuleCall_4_0 = (RuleCall)cPortAssignment_4.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cAgencyKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cIpKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cIpAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cIpSTRINGTerminalRuleCall_4_0 = (RuleCall)cIpAssignment_4.eContents().get(0);
+		private final Keyword cCommaKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cPortKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cPortAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cPortINTTerminalRuleCall_8_0 = (RuleCall)cPortAssignment_8.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Agency:
-		//	'@agency(ip=' ip=STRING ',' 'port=' port=INT ')';
+		//	'@agency' '(' 'ip' '=' ip=STRING ',' 'port' '=' port=INT ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'@agency(ip=' ip=STRING ',' 'port=' port=INT ')'
+		//'@agency' '(' 'ip' '=' ip=STRING ',' 'port' '=' port=INT ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'@agency(ip='
-		public Keyword getAgencyIpKeyword_0() { return cAgencyIpKeyword_0; }
+		//'@agency'
+		public Keyword getAgencyKeyword_0() { return cAgencyKeyword_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
+		//'ip'
+		public Keyword getIpKeyword_2() { return cIpKeyword_2; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
 		
 		//ip=STRING
-		public Assignment getIpAssignment_1() { return cIpAssignment_1; }
+		public Assignment getIpAssignment_4() { return cIpAssignment_4; }
 		
 		//STRING
-		public RuleCall getIpSTRINGTerminalRuleCall_1_0() { return cIpSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getIpSTRINGTerminalRuleCall_4_0() { return cIpSTRINGTerminalRuleCall_4_0; }
 		
 		//','
-		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		public Keyword getCommaKeyword_5() { return cCommaKeyword_5; }
 		
-		//'port='
-		public Keyword getPortKeyword_3() { return cPortKeyword_3; }
+		//'port'
+		public Keyword getPortKeyword_6() { return cPortKeyword_6; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
 		
 		//port=INT
-		public Assignment getPortAssignment_4() { return cPortAssignment_4; }
+		public Assignment getPortAssignment_8() { return cPortAssignment_8; }
 		
 		//INT
-		public RuleCall getPortINTTerminalRuleCall_4_0() { return cPortINTTerminalRuleCall_4_0; }
+		public RuleCall getPortINTTerminalRuleCall_8_0() { return cPortINTTerminalRuleCall_8_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		public Keyword getRightParenthesisKeyword_9() { return cRightParenthesisKeyword_9; }
 	}
 	
 	
@@ -1293,7 +1327,8 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Control:
-	//	'control' name=ValidID ('extends' superType=[Control])? '{'
+	//	'control' name=ValidID ('extends' superTypes+=JvmParameterizedTypeReference (','
+	//	superTypes+=JvmParameterizedTypeReference)*)? '{'
 	//	features+=Feature*
 	//	'}';
 	public ControlElements getControlAccess() {
@@ -1484,7 +1519,7 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Topic:
-	//	'@topic(' name=STRING ')';
+	//	'@topic' '(' name=STRING ')';
 	public TopicElements getTopicAccess() {
 		return pTopic;
 	}
@@ -1494,7 +1529,7 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Agency:
-	//	'@agency(ip=' ip=STRING ',' 'port=' port=INT ')';
+	//	'@agency' '(' 'ip' '=' ip=STRING ',' 'port' '=' port=INT ')';
 	public AgencyElements getAgencyAccess() {
 		return pAgency;
 	}

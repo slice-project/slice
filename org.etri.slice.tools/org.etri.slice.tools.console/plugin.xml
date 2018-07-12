@@ -9,7 +9,7 @@
             id="org.etri.slice.tools.console">
       </category>
       <view
-            name="SLICE Console View"
+            name="SLICE Web Console"
             inject="true"
             icon="icons/sample.png"
             category="org.etri.slice.tools.console"

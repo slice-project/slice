@@ -74,7 +74,7 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 
 	private static Logger s_logger = LoggerFactory.getLogger(ActionRuleLearnerImpl.class);		
 	
-	@Property(name="actionrulelearner.minnumofrules", value="5")
+	@Property(name="actionrulelearner.minnumofrules", value="1")
 	public long MIN_NUM_OF_RULES;
 	@Property(name="actionrulelearner.loggingintervalbetweenlearnings", value="10")
 	private int LOGGING_INTERVAL_BETWEEN_LEARNINGS;
@@ -290,6 +290,7 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 			}
 
 			RuleBody.RuleBodyBuilder ruleBodyBuilder = RuleBody.builder();
+			ruleBodyBuilder.addAttribute("salience 10");
 			int i = 0;
 			for (String type : conditionMap.keySet()) {
 				StringBuffer conditionStringBuffer = new StringBuffer();

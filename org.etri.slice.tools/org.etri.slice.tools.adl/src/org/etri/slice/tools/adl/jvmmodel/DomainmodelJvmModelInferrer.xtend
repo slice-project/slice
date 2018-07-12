@@ -10,8 +10,11 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1
 import org.etri.slice.tools.adl.domainmodel.Context
+import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.domainmodel.Exception
+import org.etri.slice.tools.adl.domainmodel.Operation
+import org.etri.slice.tools.adl.domainmodel.Property
 import org.etri.slice.tools.adl.generator.GeneratorUtils
 
 /**
@@ -109,35 +112,40 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
-//	def dispatch infer(Control control, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-//
-//		accept(control.toInterface( control.fullyQualifiedName.adaptToSlice("service").toString )[]) [
-//			documentation = control.documentation
-//			if (control.superType !== null)
-//				superTypes += control.superType.cloneWithProxies
-//			
-//			// now let's go over the features
-//			for ( f : control.features ) {
-//				switch f {
-//			
-//					// for properties we create a field, a getter and a setter
-//					Property : {
-//						members += f.toGetter(f.name, f.type)
-//						members += f.toSetter(f.name, f.type)
-//					}
-//			
-//					// operations are mapped to methods
-//					Operation : {
-//						members += f.toMethod(f.name, f.type ?: inferredType) [
-//							documentation = f.documentation
-//							for (p : f.params) {
-//								parameters += p.toParameter(p.name, p.parameterType)
-//							}
-//						]
-//					}
-//				}
-//			}
-//		]
-//	}	
-	
+	def dispatch infer(Control control, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
+
+		accept(control.toInterface( control.fullyQualifiedName.adaptToSlice("service").toString )[]) [
+			documentation = control.documentation
+			for (superType : control.superTypes ) {
+				superTypes += superType.cloneWithProxies
+			}
+			
+			// now let's go over the features
+			for ( f : control.features ) {
+				switch f {
+			
+					// for properties we create a field, a getter and a setter
+					Property : {
+						members += f.toGetter(f.name, f.type)
+						members += f.toSetter(f.name, f.type)
+					}
+			
+					// operations are mapped to methods
+					Operation : {
+						members += f.toMethod(f.name, f.type ?: inferredType) [
+							documentation = f.documentation
+							for (p : f.params) {
+								parameters += p.toParameter(p.name, p.parameterType)
+							}
+							
+							for (e : f.exceptions) {
+								exceptions += e.cloneWithProxies;
+							}
+						]
+					}
+				}
+			}
+		]
+	}		
+
 }

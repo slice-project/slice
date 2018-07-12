@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
@@ -101,12 +102,23 @@ public class ControlGenerator implements IGenerator {
     _builder.append(_name);
     _builder.append(" ");
     {
-      Control _superType = it.getSuperType();
-      boolean _tripleNotEquals = (_superType != null);
-      if (_tripleNotEquals) {
+      int _size = it.getSuperTypes().size();
+      boolean _greaterThan = (_size > 0);
+      if (_greaterThan) {
         _builder.append("extends ");
-        CharSequence _shortName = this._generatorUtils.shortName(it.getSuperType(), importManager);
-        _builder.append(_shortName);
+        {
+          EList<JvmParameterizedTypeReference> _superTypes = it.getSuperTypes();
+          boolean _hasElements = false;
+          for(final JvmParameterizedTypeReference superType : _superTypes) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate(", ", "");
+            }
+            String _shortName = this._generatorUtils.shortName(superType, importManager);
+            _builder.append(_shortName);
+          }
+        }
         _builder.append(" ");
       }
     }

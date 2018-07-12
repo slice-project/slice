@@ -20,13 +20,18 @@ import org.osgi.service.prefs.Preferences;
 
 public class WebConsoleInfoDialog extends Dialog{
 
+	private static final int DIALOG_WIDTH = 500;
+	private static final int DIALOG_HEIGHT = 200;
+	
 	ConsoleWebInfo consoleWebInfo = null;
 	
 	String name;
-	String url;
+	String ip;
+	int port;
 	
 	Text nameText;
-	Text urlText;
+	Text ipText;
+	Text portText;
 	
 	public WebConsoleInfoDialog(Shell parentShell) {
 		super(parentShell);
@@ -50,32 +55,45 @@ public class WebConsoleInfoDialog extends Dialog{
 		initLayout(container);
 		
 		Label nameLabel = new Label(container, SWT.NONE);
-		nameLabel.setText("Name : ");
+		nameLabel.setText("Name: ");
 		
 		nameText = new Text(container, SWT.BORDER);
-		nameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 5;				
+		nameText.setLayoutData(gridData);
 		
-		Label urlLabel = new Label(container, SWT.NONE);
-		urlLabel.setText("URL : ");
+		Label ipLabel = new Label(container, SWT.NONE);
+		ipLabel.setText("IP/Host: ");
 		
-		urlText = new Text(container, SWT.BORDER);
-		urlText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		ipText = new Text(container, SWT.BORDER);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 1;		
+		ipText.setLayoutData(gridData);
+		
+		Label portLabel = new Label(container, SWT.NONE);
+		portLabel.setText("Port: ");
+		
+		portText = new Text(container, SWT.BORDER);
+		gridData = new GridData(SWT.NONE, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 1;		
+		portText.setLayoutData(gridData);
 		
 		// 변경 시 
 		if(null != consoleWebInfo)
 		{
 			nameText.setText(consoleWebInfo.getName());
-			urlText.setText(consoleWebInfo.getUrl());
+			ipText.setText(consoleWebInfo.getIp());
+			portText.setText(Integer.toString(consoleWebInfo.getPort()));
 			
 			nameText.setEditable(false);
-			urlText.setFocus();
+			ipText.setFocus();
 		}
 		
 		return container;
 	}
 
 	private void initLayout(Composite container) {
-		GridLayout gridLayout = new GridLayout(2, false);
+		GridLayout gridLayout = new GridLayout(6, false);
 		gridLayout.marginWidth = 15;
 		gridLayout.marginHeight = 25;
 		gridLayout.horizontalSpacing = 10;
@@ -85,13 +103,13 @@ public class WebConsoleInfoDialog extends Dialog{
 	
 	@Override
 	protected Point getInitialSize() {
-		return new Point(610, 250);
+		return new Point(DIALOG_WIDTH, DIALOG_HEIGHT);
 	}
 
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		newShell.setText("Console Web");
+		newShell.setText("Felix Web Console Connection Info");
 	}
 
 	@Override
@@ -103,15 +121,27 @@ public class WebConsoleInfoDialog extends Dialog{
 	@Override
 	protected void okPressed() {
 		name = nameText.getText();
-		url = urlText.getText();
+		ip = ipText.getText();
+		String portString = portText.getText();
 		
-		if(name.trim().length() == 0 || url.trim().length() == 0)
+		if(name.trim().length() == 0 || ip.trim().length() == 0 || portString.trim().length() == 0)
 		{
-			MessageDialog.openError(getShell(), "Error - Repository name or URL required", 
-					"The repository name or URL input fields are empty.\nPlease enter the repository name and URL.");
+			MessageDialog.openError(getShell(), "Error - Repository name or IP/Port required", 
+					"The repository name or IP/Port input fields are empty.\nPlease enter the repository name and ip/port.");
 			return;
 		}
 		
+		try
+		{			
+			port = Integer.parseInt(portString);
+		}
+		catch(NumberFormatException e)
+		{
+			MessageDialog.openError(getShell(), "Error - Invalid Repository Port", 
+					"The repository port must be an positive integer value.\nPlease enter a positive integer value in the port input field.");
+			return;
+		}
+								
 		// 업데이트가 아니고 기존에 존재하는 URL 이름 인지를 체크한다.
 		if(null == consoleWebInfo && isExist())
 		{
@@ -140,14 +170,14 @@ public class WebConsoleInfoDialog extends Dialog{
 	public ConsoleWebInfo getConsoleWebInfo() {
 		if(null == consoleWebInfo)
 		{
-			return new ConsoleWebInfo(name, url);
+			return new ConsoleWebInfo(name, ip, port);
 		}
 		else
 		{
 			consoleWebInfo.setName(name);
-			consoleWebInfo.setUrl(url);
-			
-			
+			consoleWebInfo.setIp(ip);
+			consoleWebInfo.setPort(port);
+						
 			return consoleWebInfo;
 		}
 	}

@@ -83,6 +83,13 @@ public class ADLGenerator implements IGenerator {
 				<project.inceptionYear>2017</project.inceptionYear>
 				<slice.home>/Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution</slice.home>
 			</properties>
+			
+			<distributionManagement>
+				<repository>
+					<id>slice-obr-hosted</id>
+					<url>http://129.254.88.119:8081/nexus/content/repositories/slice-obr/</url>
+				</repository>
+			</distributionManagement>
 		
 			<repositories>
 				<repository>
@@ -139,6 +146,9 @@ public class ADLGenerator implements IGenerator {
 						<plugin>
 							<groupId>org.apache.felix</groupId>
 							<artifactId>maven-bundle-plugin</artifactId>
+							<configuration>
+								<remoteOBR>slice-obr-hosted</remoteOBR>
+							</configuration>
 							<version>3.3.0</version>
 							<extensions>true</extensions>
 						</plugin>

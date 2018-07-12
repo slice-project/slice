@@ -84,6 +84,7 @@ public class DomainmodelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExceptionAccess().getGroup_2(), "rule__Exception__Group_2__0");
 					put(grammarAccess.getControlAccess().getGroup(), "rule__Control__Group__0");
 					put(grammarAccess.getControlAccess().getGroup_2(), "rule__Control__Group_2__0");
+					put(grammarAccess.getControlAccess().getGroup_2_2(), "rule__Control__Group_2_2__0");
 					put(grammarAccess.getAgentDeclarationAccess().getGroup(), "rule__AgentDeclaration__Group__0");
 					put(grammarAccess.getRuleSetAccess().getGroup(), "rule__RuleSet__Group__0");
 					put(grammarAccess.getBehaviorSetAccess().getGroup(), "rule__BehaviorSet__Group__0");
@@ -297,7 +298,8 @@ public class DomainmodelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExceptionAccess().getNameAssignment_1(), "rule__Exception__NameAssignment_1");
 					put(grammarAccess.getExceptionAccess().getSuperTypeAssignment_2_1(), "rule__Exception__SuperTypeAssignment_2_1");
 					put(grammarAccess.getControlAccess().getNameAssignment_1(), "rule__Control__NameAssignment_1");
-					put(grammarAccess.getControlAccess().getSuperTypeAssignment_2_1(), "rule__Control__SuperTypeAssignment_2_1");
+					put(grammarAccess.getControlAccess().getSuperTypesAssignment_2_1(), "rule__Control__SuperTypesAssignment_2_1");
+					put(grammarAccess.getControlAccess().getSuperTypesAssignment_2_2_1(), "rule__Control__SuperTypesAssignment_2_2_1");
 					put(grammarAccess.getControlAccess().getFeaturesAssignment_4(), "rule__Control__FeaturesAssignment_4");
 					put(grammarAccess.getAgentDeclarationAccess().getAgencyAssignment_0(), "rule__AgentDeclaration__AgencyAssignment_0");
 					put(grammarAccess.getAgentDeclarationAccess().getNameAssignment_2(), "rule__AgentDeclaration__NameAssignment_2");
@@ -335,9 +337,9 @@ public class DomainmodelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOperationAccess().getParamsAssignment_4_1_1(), "rule__Operation__ParamsAssignment_4_1_1");
 					put(grammarAccess.getOperationAccess().getExceptionsAssignment_6_1(), "rule__Operation__ExceptionsAssignment_6_1");
 					put(grammarAccess.getOperationAccess().getExceptionsAssignment_6_2_1(), "rule__Operation__ExceptionsAssignment_6_2_1");
-					put(grammarAccess.getTopicAccess().getNameAssignment_1(), "rule__Topic__NameAssignment_1");
-					put(grammarAccess.getAgencyAccess().getIpAssignment_1(), "rule__Agency__IpAssignment_1");
-					put(grammarAccess.getAgencyAccess().getPortAssignment_4(), "rule__Agency__PortAssignment_4");
+					put(grammarAccess.getTopicAccess().getNameAssignment_2(), "rule__Topic__NameAssignment_2");
+					put(grammarAccess.getAgencyAccess().getIpAssignment_4(), "rule__Agency__IpAssignment_4");
+					put(grammarAccess.getAgencyAccess().getPortAssignment_8(), "rule__Agency__PortAssignment_8");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");

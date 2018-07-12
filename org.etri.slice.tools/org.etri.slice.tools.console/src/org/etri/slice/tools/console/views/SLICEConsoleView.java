@@ -51,7 +51,8 @@ public class SLICEConsoleView extends ViewPart {
 
 	public static final String PREF_WEB_CONSOLE_URLS_NODE = "WebConsoleURLS";
 	public static final String PREF_WEB_CONSOLE_NAME = "NAME";
-	public static final String PREF_WEB_CONSOLE_URL = "URL";
+	public static final String PREF_WEB_CONSOLE_IP= "IP";
+	public static final String PREF_WEB_CONSOLE_PORT = "PORT";
 	
 	/**
 	 * The ID of the view as specified by the extension.
@@ -80,7 +81,7 @@ public class SLICEConsoleView extends ViewPart {
 			switch(columnIndex)
 			{
 				case 0:	return consoleWebInfo.getName();
-				case 1:	return consoleWebInfo.getUrl();
+				case 1:	return consoleWebInfo.getURL();
 			}
 			
 			return "-";
@@ -99,7 +100,7 @@ public class SLICEConsoleView extends ViewPart {
 		tableColumn.setWidth(300);
 		tableColumn.setResizable(true);
 		tableColumn.setMoveable(false);
-		
+				
 		tableColumn = new TableColumn(table, SWT.LEFT);
 		tableColumn.setText("URL");
 		tableColumn.setWidth(1280);
@@ -107,14 +108,8 @@ public class SLICEConsoleView extends ViewPart {
 		tableColumn.setMoveable(false);
 		
 		viewer.setLabelProvider(new ViewLabelProvider());
-		
-		/*input = new ArrayList<ConsoleWebInfo>();
-		input.add(new ConsoleWebInfo("Carseat111111", "http://localhost:8080/system/console/bundles"));
-		input.add(new ConsoleWebInfo("object Detector", "http://www.google.com"));
-		*/
-		
+				
 		// Create the help context id for the viewer's control
-//		workbench.getHelpSystem().setHelp(viewer.getControl(), "org.etri.slice.tools.console.viewer");
 		getSite().setSelectionProvider(viewer);
 		makeActions(parent.getShell());
 		hookContextMenu();
@@ -133,7 +128,17 @@ public class SLICEConsoleView extends ViewPart {
 			for(String name : webConsoleUrlsNode.childrenNames())
 			{
 				Preferences url = webConsoleUrlsNode.node(name);
-				input.add(new ConsoleWebInfo(name, url.get(PREF_WEB_CONSOLE_URL, "")));
+				
+				String ip = url.get(PREF_WEB_CONSOLE_IP, "");
+				int port = url.getInt(PREF_WEB_CONSOLE_PORT, -1);
+				
+				// if invalid data or old data, skip
+				if(0 == ip.length() || -1 == port )
+				{
+					continue;
+				}
+				
+				input.add(new ConsoleWebInfo(name, ip, port));
 			}
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
@@ -205,7 +210,7 @@ public class SLICEConsoleView extends ViewPart {
 				if(!selection.isEmpty())
 				{
 					ConsoleWebInfo obj = (ConsoleWebInfo)selection.getFirstElement();
-					openUrl(obj.getUrl(), obj.getName(), WebBrowserPreference.INTERNAL);
+					openUrl(obj.getURL(), "Felix Web Console : " + obj.getName(), WebBrowserPreference.INTERNAL);
 				}
 			}
 		};

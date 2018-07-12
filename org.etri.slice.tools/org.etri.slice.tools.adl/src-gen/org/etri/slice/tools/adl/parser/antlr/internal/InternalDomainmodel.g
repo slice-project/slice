@@ -583,27 +583,58 @@ ruleControl returns [EObject current=null]
 			(
 				(
 					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getControlRule());
-						}
+						newCompositeNode(grammarAccess.getControlAccess().getSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_1_0());
 					}
-					otherlv_3=RULE_ID
+					lv_superTypes_3_0=ruleJvmParameterizedTypeReference
 					{
-						newLeafNode(otherlv_3, grammarAccess.getControlAccess().getSuperTypeControlCrossReference_2_1_0());
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getControlRule());
+						}
+						add(
+							$current,
+							"superTypes",
+							lv_superTypes_3_0,
+							"org.eclipse.xtext.xbase.Xtype.JvmParameterizedTypeReference");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			(
+				otherlv_4=','
+				{
+					newLeafNode(otherlv_4, grammarAccess.getControlAccess().getCommaKeyword_2_2_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getControlAccess().getSuperTypesJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0());
+						}
+						lv_superTypes_5_0=ruleJvmParameterizedTypeReference
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getControlRule());
+							}
+							add(
+								$current,
+								"superTypes",
+								lv_superTypes_5_0,
+								"org.eclipse.xtext.xbase.Xtype.JvmParameterizedTypeReference");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
 		)?
-		otherlv_4='{'
+		otherlv_6='{'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getControlAccess().getLeftCurlyBracketKeyword_3());
+			newLeafNode(otherlv_6, grammarAccess.getControlAccess().getLeftCurlyBracketKeyword_3());
 		}
 		(
 			(
 				{
 					newCompositeNode(grammarAccess.getControlAccess().getFeaturesFeatureParserRuleCall_4_0());
 				}
-				lv_features_5_0=ruleFeature
+				lv_features_7_0=ruleFeature
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getControlRule());
@@ -611,15 +642,15 @@ ruleControl returns [EObject current=null]
 					add(
 						$current,
 						"features",
-						lv_features_5_0,
+						lv_features_7_0,
 						"org.etri.slice.tools.adl.Domainmodel.Feature");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_6='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getControlAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_8, grammarAccess.getControlAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;
@@ -1746,15 +1777,19 @@ ruleTopic returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='@topic('
+		otherlv_0='@topic'
 		{
 			newLeafNode(otherlv_0, grammarAccess.getTopicAccess().getTopicKeyword_0());
 		}
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getTopicAccess().getLeftParenthesisKeyword_1());
+		}
 		(
 			(
-				lv_name_1_0=RULE_STRING
+				lv_name_2_0=RULE_STRING
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getTopicAccess().getNameSTRINGTerminalRuleCall_1_0());
+					newLeafNode(lv_name_2_0, grammarAccess.getTopicAccess().getNameSTRINGTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
@@ -1763,14 +1798,14 @@ ruleTopic returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_2_0,
 						"org.eclipse.xtext.xbase.Xtype.STRING");
 				}
 			)
 		)
-		otherlv_2=')'
+		otherlv_3=')'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getTopicAccess().getRightParenthesisKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getTopicAccess().getRightParenthesisKeyword_3());
 		}
 	)
 ;
@@ -1791,15 +1826,27 @@ ruleAgency returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='@agency(ip='
+		otherlv_0='@agency'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getAgencyAccess().getAgencyIpKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getAgencyAccess().getAgencyKeyword_0());
+		}
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getAgencyAccess().getLeftParenthesisKeyword_1());
+		}
+		otherlv_2='ip'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getAgencyAccess().getIpKeyword_2());
+		}
+		otherlv_3='='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getAgencyAccess().getEqualsSignKeyword_3());
 		}
 		(
 			(
-				lv_ip_1_0=RULE_STRING
+				lv_ip_4_0=RULE_STRING
 				{
-					newLeafNode(lv_ip_1_0, grammarAccess.getAgencyAccess().getIpSTRINGTerminalRuleCall_1_0());
+					newLeafNode(lv_ip_4_0, grammarAccess.getAgencyAccess().getIpSTRINGTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -1808,24 +1855,28 @@ ruleAgency returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"ip",
-						lv_ip_1_0,
+						lv_ip_4_0,
 						"org.eclipse.xtext.xbase.Xtype.STRING");
 				}
 			)
 		)
-		otherlv_2=','
+		otherlv_5=','
 		{
-			newLeafNode(otherlv_2, grammarAccess.getAgencyAccess().getCommaKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getAgencyAccess().getCommaKeyword_5());
 		}
-		otherlv_3='port='
+		otherlv_6='port'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getAgencyAccess().getPortKeyword_3());
+			newLeafNode(otherlv_6, grammarAccess.getAgencyAccess().getPortKeyword_6());
+		}
+		otherlv_7='='
+		{
+			newLeafNode(otherlv_7, grammarAccess.getAgencyAccess().getEqualsSignKeyword_7());
 		}
 		(
 			(
-				lv_port_4_0=RULE_INT
+				lv_port_8_0=RULE_INT
 				{
-					newLeafNode(lv_port_4_0, grammarAccess.getAgencyAccess().getPortINTTerminalRuleCall_4_0());
+					newLeafNode(lv_port_8_0, grammarAccess.getAgencyAccess().getPortINTTerminalRuleCall_8_0());
 				}
 				{
 					if ($current==null) {
@@ -1834,14 +1885,14 @@ ruleAgency returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"port",
-						lv_port_4_0,
+						lv_port_8_0,
 						"org.eclipse.xtext.xbase.Xbase.INT");
 				}
 			)
 		)
-		otherlv_5=')'
+		otherlv_9=')'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getAgencyAccess().getRightParenthesisKeyword_5());
+			newLeafNode(otherlv_9, grammarAccess.getAgencyAccess().getRightParenthesisKeyword_9());
 		}
 	)
 ;

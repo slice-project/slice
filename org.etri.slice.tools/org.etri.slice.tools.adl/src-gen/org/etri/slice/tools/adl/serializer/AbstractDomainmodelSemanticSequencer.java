@@ -418,8 +418,8 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DomainmodelPackage.Literals.AGENCY__PORT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAgencyAccess().getIpSTRINGTerminalRuleCall_1_0(), semanticObject.getIp());
-		feeder.accept(grammarAccess.getAgencyAccess().getPortINTTerminalRuleCall_4_0(), semanticObject.getPort());
+		feeder.accept(grammarAccess.getAgencyAccess().getIpSTRINGTerminalRuleCall_4_0(), semanticObject.getIp());
+		feeder.accept(grammarAccess.getAgencyAccess().getPortINTTerminalRuleCall_8_0(), semanticObject.getPort());
 		feeder.finish();
 	}
 	
@@ -563,7 +563,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     Control returns Control
 	 *
 	 * Constraint:
-	 *     (name=ValidID superType=[Control|ID]? features+=Feature*)
+	 *     (name=ValidID (superTypes+=JvmParameterizedTypeReference superTypes+=JvmParameterizedTypeReference*)? features+=Feature*)
 	 */
 	protected void sequence_Control(ISerializationContext context, Control semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -752,7 +752,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DomainmodelPackage.Literals.TOPIC__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTopicAccess().getNameSTRINGTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTopicAccess().getNameSTRINGTerminalRuleCall_2_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	

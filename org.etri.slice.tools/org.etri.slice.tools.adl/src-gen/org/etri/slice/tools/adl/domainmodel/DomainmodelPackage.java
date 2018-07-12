@@ -317,13 +317,13 @@ public interface DomainmodelPackage extends EPackage
   int CONTROL__NAME = ABSTRACT_ELEMENT__NAME;
 
   /**
-   * The feature id for the '<em><b>Super Type</b></em>' reference.
+   * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROL__SUPER_TYPE = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
+  int CONTROL__SUPER_TYPES = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -1218,15 +1218,15 @@ public interface DomainmodelPackage extends EPackage
   EClass getControl();
 
   /**
-   * Returns the meta object for the reference '{@link org.etri.slice.tools.adl.domainmodel.Control#getSuperType <em>Super Type</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.etri.slice.tools.adl.domainmodel.Control#getSuperTypes <em>Super Types</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Super Type</em>'.
-   * @see org.etri.slice.tools.adl.domainmodel.Control#getSuperType()
+   * @return the meta object for the containment reference list '<em>Super Types</em>'.
+   * @see org.etri.slice.tools.adl.domainmodel.Control#getSuperTypes()
    * @see #getControl()
    * @generated
    */
-  EReference getControl_SuperType();
+  EReference getControl_SuperTypes();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.etri.slice.tools.adl.domainmodel.Control#getFeatures <em>Features</em>}'.
@@ -1934,12 +1934,12 @@ public interface DomainmodelPackage extends EPackage
     EClass CONTROL = eINSTANCE.getControl();
 
     /**
-     * The meta object literal for the '<em><b>Super Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Super Types</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONTROL__SUPER_TYPE = eINSTANCE.getControl_SuperType();
+    EReference CONTROL__SUPER_TYPES = eINSTANCE.getControl_SuperTypes();
 
     /**
      * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.

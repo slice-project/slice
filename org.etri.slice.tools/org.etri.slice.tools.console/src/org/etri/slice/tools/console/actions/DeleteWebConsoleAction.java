@@ -2,6 +2,8 @@ package org.etri.slice.tools.console.actions;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelection;
@@ -10,6 +12,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.statushandlers.StatusManager;
 import org.etri.slice.tools.console.Activator;
 import org.etri.slice.tools.console.model.ConsoleWebInfo;
 import org.etri.slice.tools.console.views.SLICEConsoleView;
@@ -51,7 +54,9 @@ public class DeleteWebConsoleAction extends Action  implements ISelectionListene
 				webConsoleUrlsNode.flush();
 			}		
 		} catch (BackingStoreException e) {
-			e.printStackTrace();
+			Status status= new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+					"A preferences operation could not complete because of a failure in the backing store, or a failure to contact the backing store.");
+			StatusManager.getManager().handle(status, StatusManager.LOG);
 		}
 		
 		

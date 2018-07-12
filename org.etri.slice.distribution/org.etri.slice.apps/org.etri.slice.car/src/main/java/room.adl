@@ -1,0 +1,54 @@
+import org.etri.slice.commons.room.^context.Temperature
+
+domain room {
+			
+	context Temperature {
+		int value;		
+	}
+	
+	@topic("temperate_changed")
+	event TemperatureChanged {
+		Temperature temp; 
+	}
+	
+	control ElectronicFan {
+		int level;
+	}	
+								
+	@agency(ip="129.254.88.119", port=1883)
+	agent TemperatureDetector {
+		hasRuleSet temperaturedetector_rules {
+			group-id "org.etri.slice"
+			artifact-id "temperaturedetector"
+		}
+		
+		hasBehaviors {
+			behavior "Temperature Change Detection"
+				on Temperature
+				do publish TemperatureChanged
+			end
+		}
+	}
+	
+	@agency(ip="129.254.88.119", port=1883)
+	agent FanController {
+		hasRuleSet fancontroller_rules {
+			group-id "org.etri.slice"
+			artifact-id "fancontroller"
+		}
+		
+		hasBehaviors {
+			behavior "Temperature Change Detection"
+				on TemperatureChanged
+				do no-op
+			end
+		}
+		
+		hasCommandsOf ElectronicFan {
+			command fan_level {
+				context Temperature.value
+				action ElectronicFan.setLevel
+			}
+		}
+	}															
+}

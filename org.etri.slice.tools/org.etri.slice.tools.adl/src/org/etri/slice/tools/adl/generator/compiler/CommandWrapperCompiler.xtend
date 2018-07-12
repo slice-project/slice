@@ -3,6 +3,8 @@ package org.etri.slice.tools.adl.generator.compiler
 import com.google.inject.Inject
 import java.util.HashMap
 import java.util.Map
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.impl.JvmGenericTypeImplCustom
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
@@ -58,7 +60,7 @@ class CommandWrapperCompiler {
  
 	private def body(CommandSet it, ImportManager importManager) '''
 		public class «control.name»Commander implements «control.shortName(importManager)» {
-			private static Logger s_logger = LoggerFactory.getLogger(SeatControlCommander.class);
+			private static Logger s_logger = LoggerFactory.getLogger(«control.name»Commander.class);
 			
 			@Requires
 			private «control.name» m_proxy;
@@ -74,7 +76,9 @@ class CommandWrapperCompiler {
 				control.registerControl(this.getClass().getSimpleName(), «control.name».id, null, «control.name».class, this);
 			}
 			
-			«control.compileSuperType(importManager)»
+			«IF control.superTypes.size > 0»
+				«control.toInterface.compileSuperType(importManager)»
+			«ENDIF»
 			«FOR f : control.features»
 				«f.compileFeature(control, importManager)»
 				
@@ -90,16 +94,26 @@ class CommandWrapperCompiler {
 		}
 	'''
 	
-	private def compileSuperType(Control it, ImportManager importManager)	 '''
-		«IF superType !== null»
-			«FOR f : superType.features»
-				«f.compileFeature(it, importManager)»
-				
-			«ENDFOR»
-			«compileSuperType(superType, importManager)»
-		«ENDIF»
-	'''
+	private def compileSuperType(JvmGenericType it, ImportManager importManager) '''
+		«FOR superType : superTypes»
+			«val jvmType = superType.type as JvmGenericTypeImplCustom»
+			«IF jvmType.isInterface»
+				«jvmType.compile(importManager)»				
+				«compileSuperType(jvmType, importManager)»
+			«ENDIF»
+		«ENDFOR»
+	'''	
     
+    private def compile(JvmGenericType it, ImportManager importManager)	'''
+    	«FOR method : declaredOperations»
+    		@Override
+    		public «method.returnType.shortName(importManager)» «method.simpleName»«method.parameters(importManager)»«method.exceptions(importManager)» {
+    			«IF !method.returnType.type.simpleName.equals("void")»return «ENDIF»m_proxy.«method.simpleName»(«FOR p : method.parameters SEPARATOR ', '»«p.name»«ENDFOR»);
+    		}
+    		
+    	«ENDFOR»    
+    '''
+ 
   	private def compileFeature(Feature it, Control control, ImportManager importManager) { 
 		switch it {
 			Property : '''
@@ -139,14 +153,8 @@ class CommandWrapperCompiler {
 			logAction(builder.build());		
 		«ENDIF»   	
    	'''
-   	
-   	private def parameters(Operation it, ImportManager importManager) 
-   		'''(«FOR p : params SEPARATOR ', '»«p.parameterType.shortName(importManager)» «p.name»«ENDFOR»)'''
-   	
-   	private def exceptions(Operation it, ImportManager importManager) 
- 		'''«IF exceptions.size > 0» throws «FOR e : exceptions SEPARATOR ', '»«e.shortName(importManager)»«ENDFOR»«ELSE»«ENDIF»'''
- 		
+
  	private def toKey(Control it, String method)  {
- 		return it.name + "." + method;
+ 		return name + "." + method;
  	}
 }
