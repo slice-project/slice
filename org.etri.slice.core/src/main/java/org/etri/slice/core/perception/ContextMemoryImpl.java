@@ -88,10 +88,6 @@ public class ContextMemoryImpl implements ContextMemory {
 			String key = sbuff.toString();
 			m_contexts.put(key, value);
 			s_logger.info("CONTEXT INSERTED : [" + key + "," + value +"]");
-
-//			if ( field.getType().isAnnotationPresent(SliceContext.class) ) {
-//				insertContext(value);
-//			}			
 		}		
 	}
 	
