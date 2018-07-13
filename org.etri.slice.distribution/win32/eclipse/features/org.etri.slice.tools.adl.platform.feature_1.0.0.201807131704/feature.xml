@@ -2,7 +2,7 @@
 <feature
       id="org.etri.slice.tools.adl.platform.feature"
       label="Feature"
-      version="1.0.0.201805091508"
+      version="1.0.0.201807131704"
       provider-name="ETRI">
 
    <description url="http://www.example.com/description">
@@ -1863,6 +1863,13 @@
          download-size="0"
          install-size="0"
          version="3.8.0.v20161203-2153"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jdt"
+         download-size="0"
+         install-size="0"
+         version="3.13.4.v20180330-0640"
          unpack="false"/>
 
 </feature>
