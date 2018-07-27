@@ -10,5 +10,5 @@ package org.etri.slice.tools.adl.scoping
  * on how and when to use it.
  */
 class DomainmodelScopeProvider extends AbstractDomainmodelScopeProvider {
-
+	
 }

@@ -9,19 +9,21 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.domainmodel.Property;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 
 @SuppressWarnings("all")
-public class EventGenerator implements IGenerator {
+public class EventGenerator implements IGeneratorForMultiInput {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
@@ -35,9 +37,12 @@ public class EventGenerator implements IGenerator {
   private OutputPathUtils _outputPathUtils;
   
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    Iterable<Event> _filter = Iterables.<Event>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Event.class);
-    for (final Event e : _filter) {
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    final Function1<Resource, Iterable<Event>> _function = (Resource it) -> {
+      return Iterables.<Event>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), Event.class);
+    };
+    Iterable<Event> _flatten = Iterables.<Event>concat(ListExtensions.<Resource, Iterable<Event>>map(resources, _function));
+    for (final Event e : _flatten) {
       {
         final String package_ = this._outputPathUtils.getSliceFullyQualifiedName(e).replace(".", "/");
         String _commonsMavenSrcHome = this._outputPathUtils.getCommonsMavenSrcHome(e);
@@ -180,5 +185,10 @@ public class EventGenerator implements IGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     return _builder;
+  }
+  
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

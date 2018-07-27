@@ -29,6 +29,7 @@ import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.Operation;
 import org.etri.slice.tools.adl.domainmodel.Property;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces;
 
 /**
  * <p>Infers a JVM model from the source model.</p>
@@ -51,6 +52,11 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   private GeneratorUtils _generatorUtils;
   
   protected void _infer(final Context context, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
+    String _name = context.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
+      return;
+    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(context));
       JvmParameterizedTypeReference _superType = context.getSuperType();
@@ -59,6 +65,10 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
         EList<JvmTypeReference> _superTypes = it.getSuperTypes();
         JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(context.getSuperType());
         this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _cloneWithProxies);
+      } else {
+        EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+        JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(CommonInterfaces.CONTEXT_BASE);
+        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef);
       }
       EList<JvmMember> _members = it.getMembers();
       final Procedure1<JvmConstructor> _function_1 = (JvmConstructor it_1) -> {
@@ -98,6 +108,11 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final org.etri.slice.tools.adl.domainmodel.Exception exc, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
+    String _name = exc.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
+      return;
+    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(exc));
       JvmParameterizedTypeReference _superType = exc.getSuperType();
@@ -106,6 +121,10 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
         EList<JvmTypeReference> _superTypes = it.getSuperTypes();
         JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(exc.getSuperType());
         this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _cloneWithProxies);
+      } else {
+        EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+        JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(CommonInterfaces.EXCEPTION_INTERFACE);
+        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef);
       }
       EList<JvmMember> _members = it.getMembers();
       final Procedure1<JvmConstructor> _function_1 = (JvmConstructor it_1) -> {
@@ -134,6 +153,11 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final Event event, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
+    String _name = event.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
+      return;
+    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(event));
       JvmParameterizedTypeReference _superType = event.getSuperType();
@@ -142,6 +166,10 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
         EList<JvmTypeReference> _superTypes = it.getSuperTypes();
         JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(event.getSuperType());
         this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _cloneWithProxies);
+      } else {
+        EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+        JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(CommonInterfaces.EVENT_BASE);
+        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef);
       }
       EList<JvmMember> _members = it.getMembers();
       final Procedure1<JvmConstructor> _function_1 = (JvmConstructor it_1) -> {
@@ -181,15 +209,24 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final Control control, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
+    String _name = control.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
+      return;
+    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
     };
     final Procedure1<JvmGenericType> _function_1 = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(control));
-      EList<JvmParameterizedTypeReference> _superTypes = control.getSuperTypes();
-      for (final JvmParameterizedTypeReference superType : _superTypes) {
-        EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
-        JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(superType);
-        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _cloneWithProxies);
+      int _size = control.getSuperTypes().size();
+      boolean _greaterThan = (_size > 0);
+      if (_greaterThan) {
+        EList<JvmParameterizedTypeReference> _superTypes = control.getSuperTypes();
+        for (final JvmParameterizedTypeReference superType : _superTypes) {
+          EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+          JvmTypeReference _cloneWithProxies = this._jvmTypesBuilder.cloneWithProxies(superType);
+          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _cloneWithProxies);
+        }
       }
       EList<Feature> _features = control.getFeatures();
       for (final Feature f : _features) {
@@ -207,7 +244,7 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
           if (f instanceof Operation) {
             _matched=true;
             EList<JvmMember> _members = it.getMembers();
-            String _name = ((Operation)f).getName();
+            String _name_1 = ((Operation)f).getName();
             JvmTypeReference _elvis = null;
             JvmTypeReference _type = ((Operation)f).getType();
             if (_type != null) {
@@ -231,7 +268,7 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
                 this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions_1, _cloneWithProxies_1);
               }
             };
-            JvmOperation _method = this._jvmTypesBuilder.toMethod(f, _name, _elvis, _function_2);
+            JvmOperation _method = this._jvmTypesBuilder.toMethod(f, _name_1, _elvis, _function_2);
             this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
           }
         }

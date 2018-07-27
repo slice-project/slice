@@ -2,19 +2,22 @@ package org.etri.slice.tools.adl.generator;
 
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 import org.etri.slice.tools.adl.generator.compiler.POMCompiler;
 
 @SuppressWarnings("all")
-public class DomainGenerator implements IGenerator {
+public class DomainGenerator implements IGeneratorForMultiInput {
   @Inject
   @Extension
   private POMCompiler _pOMCompiler;
@@ -24,11 +27,19 @@ public class DomainGenerator implements IGenerator {
   private OutputPathUtils _outputPathUtils;
   
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    Iterable<DomainDeclaration> _filter = Iterables.<DomainDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), DomainDeclaration.class);
-    for (final DomainDeclaration e : _filter) {
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    final Function1<Resource, Iterable<DomainDeclaration>> _function = (Resource it) -> {
+      return Iterables.<DomainDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), DomainDeclaration.class);
+    };
+    Iterable<DomainDeclaration> _flatten = Iterables.<DomainDeclaration>concat(ListExtensions.<Resource, Iterable<DomainDeclaration>>map(resources, _function));
+    for (final DomainDeclaration e : _flatten) {
       this.generateMavenProject(e, fsa);
     }
+  }
+  
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
   public void generateMavenProject(final DomainDeclaration it, final IFileSystemAccess fsa) {

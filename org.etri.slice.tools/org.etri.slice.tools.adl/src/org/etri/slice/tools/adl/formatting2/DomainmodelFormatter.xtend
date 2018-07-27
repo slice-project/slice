@@ -3,6 +3,7 @@
  */
 package org.etri.slice.tools.adl.formatting2
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.formatting2.IFormattableDocument
 import org.eclipse.xtext.xbase.formatting2.XbaseFormatter
 import org.etri.slice.tools.adl.domainmodel.AbstractElement
@@ -58,6 +59,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 		val close = domain.regionFor.keyword("}")
 
 		domain.regionFor.feature(ABSTRACT_ELEMENT__NAME).surround[oneSpace]
+		
 		open.append[newLine]
 		interior(open, close)[indent]
 
@@ -81,21 +83,24 @@ class DomainmodelFormatter extends XbaseFormatter {
 		val close = element.regionFor.keyword("}")
 
 		element.regionFor.feature(ABSTRACT_ELEMENT__NAME).surround[oneSpace]
-
+		
 		open.append[newLine]
 		interior(open, close)[indent]
 				
 		if (element instanceof Context) {
 			element.regionFor.keyword("context").append[oneSpace]
-			element.regionFor.feature(CONTEXT__SUPER_TYPE)?.prepend[oneSpace].append[noSpace]
+			element.superType?.prepend[oneSpace].append[noSpace]
 
 			for (Property property : element.properties) {
-				property.format
+				property.format(document)
 				property.append[setNewLines(1)]
 			}
-		} else if (element instanceof Control) {			
+		} else if (element instanceof Control) {
 			element.regionFor.keyword("control").append[oneSpace]
-			element.regionFor.feature(CONTROL__SUPER_TYPES)?.prepend[oneSpace].append[noSpace]
+			
+			for (JvmParameterizedTypeReference superType : element.superTypes) {
+				superType.prepend[oneSpace].append[noSpace]
+			}
 			
 			for (Feature feature : element.features) {
 				feature.format
@@ -103,7 +108,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 			}
 		} else if (element instanceof Event) {
 			element.regionFor.keyword("event").append[oneSpace]
-			element.regionFor.feature(EVENT__SUPER_TYPE)?.prepend[oneSpace].append[noSpace]
+			element.superType?.prepend[oneSpace].append[noSpace]
 			element.topic.format
 
 			for (Property property : element.properties) {
@@ -112,7 +117,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 			}
 		} else if (element instanceof Exception) {
 			element.regionFor.keyword("exception").append[oneSpace]
-			element.regionFor.feature(EXCEPTION__SUPER_TYPE)?.prepend[oneSpace].append[noSpace]
+			element.superType?.prepend[oneSpace].append[noSpace]
 		} else if (element instanceof AgentDeclaration) {
 			element.regionFor.keyword("agent").append[oneSpace]
 			element.agency.format
@@ -125,7 +130,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Topic formatting
 	 */
@@ -155,13 +160,13 @@ class DomainmodelFormatter extends XbaseFormatter {
 	/**
 	 * Ruleset formatting
 	 */
-	def dispatch void format(RuleSet ruleSet, extension IFormattableDocument document) {		
+	def dispatch void format(RuleSet ruleSet, extension IFormattableDocument document) {
 		val open = ruleSet.regionFor.keyword("{")
 		val close = ruleSet.regionFor.keyword("}")
-		
+
 		open.append[newLine]
 		interior(open, close)[indent]
-		
+
 		ruleSet.regionFor.keyword("hasRuleSet").append[oneSpace]
 		ruleSet.regionFor.feature(RULE_SET__NAME).append[noSpace]
 		ruleSet.regionFor.feature(RULE_SET__GROUP_ID).prepend[oneSpace].append[newLine]
@@ -174,14 +179,14 @@ class DomainmodelFormatter extends XbaseFormatter {
 	def dispatch void format(BehaviorSet behaviorSet, extension IFormattableDocument document) {
 		val open = behaviorSet.regionFor.keyword("{")
 		val close = behaviorSet.regionFor.keyword("}")
-		
+
 		open.append[newLine]
 		interior(open, close)[indent]
-		
+
 		behaviorSet.regionFor.keyword("hasBehaviors").append[oneSpace]
-		
+
 		val lastElement = behaviorSet.behaviors.last
-		
+
 		for (Behavior behavior : behaviorSet.behaviors) {
 			behavior.format
 
@@ -195,75 +200,75 @@ class DomainmodelFormatter extends XbaseFormatter {
 	/**
 	 * BehaviorSet formatting
 	 */
-	def dispatch void format(Behavior behavior, extension IFormattableDocument document) {		
+	def dispatch void format(Behavior behavior, extension IFormattableDocument document) {
 		val open = behavior.regionFor.feature(BEHAVIOR__NAME)
 		val close = behavior.regionFor.keyword("end")
-		
+
 		open.append[newLine]
 		interior(open, close)[indent]
 
 		behavior.situation.format
 		behavior.action.format
 	}
-	
+
 	def dispatch void format(Situation situation, extension IFormattableDocument document) {
 		situation.regionFor.keyword("on").append[oneSpace]
 		situation.regionFor.features(SITUATION__TYPES).last.append[newLine]
 	}
-	
+
 	def dispatch void format(Action action, extension IFormattableDocument document) {
 		action.regionFor.feature(CALL__METHOD)?.append[newLine]
 		action.regionFor.feature(PUBLISH__EVENT)?.append[newLine]
-		action.regionFor.keyword("no-op")?.append[newLine]		
+		action.regionFor.keyword("no-op")?.append[newLine]
 	}
-	
+
 	/**
 	 * CommandSet formatting
 	 */
 	def dispatch void format(CommandSet commandSet, extension IFormattableDocument document) {
 		val open = commandSet.regionFor.keyword("{")
 		val close = commandSet.regionFor.keyword("}")
-		
+
 		open.append[newLine]
 		interior(open, close)[indent]
-		
+
 		commandSet.regionFor.keyword("hasCommandsOf").append[oneSpace]
 		commandSet.regionFor.feature(COMMAND_SET__CONTROL).append[noSpace]
-		
+
 		val lastElement = commandSet.commands.last
-		
+
 		for (Command command : commandSet.commands) {
 			command.format
-			
+
 			if (command === lastElement)
 				command.append[setNewLines(1)]
 			else
 				command.append[setNewLines(2)]
 		}
-		
+
 	}
-	
+
 	/**
 	 * Command formatting
 	 */
 	def dispatch void format(Command command, extension IFormattableDocument document) {
 		val open = command.regionFor.keyword("{")
 		val close = command.regionFor.keyword("}")
-		
+
 		open.append[newLine]
 		interior(open, close)[indent]
-		
+
 		command.regionFor.keyword("command").append[oneSpace]
 		command.regionFor.feature(COMMAND__NAME).append[oneSpace]
-		
+
 		for (CommandContext context : command.contexts) {
 			context.format
 			context.append[setNewLines(1)]
 		}
-		
-		command.regionFor.feature(COMMAND__METHOD).append[newLine]
+
+		command.regionFor.feature(COMMAND_CONTEXT__PROPERTY).append[newLine]
 	}
-	
+
 	/**
 	 * CommandContext formatting
 	 */
@@ -271,8 +276,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 		context.regionFor.keyword("context").append[oneSpace]
 		context.allRegionsFor.feature(COMMAND_CONTEXT__PROPERTY).append[newLine]
 	}
-		
-	
+
 	/**
 	 * Operation formatting
 	 */
@@ -282,10 +286,10 @@ class DomainmodelFormatter extends XbaseFormatter {
 		if (!operation.params.isEmpty) {
 			for (comma : operation.regionFor.keywords(","))
 				comma.prepend[noSpace].append[oneSpace]
-				
+
 			for (params : operation.params)
 				params.format
-			
+
 		}
 
 		if (operation.exceptions.size > 0)
@@ -295,12 +299,19 @@ class DomainmodelFormatter extends XbaseFormatter {
 
 		operation.type.prepend[oneSpace].append[oneSpace]
 		operation.type.format
+		
+		operation.name.format
 	}
-	
+
 	/**
 	 * Property formatting
 	 */
 	def dispatch void format(Property property, extension IFormattableDocument document) {
-		property.regionFor.feature(FEATURE__NAME).prepend[oneSpace].append[noSpace]
+		System.out.println("format Property");
+		
+		property.type.prepend[noSpace].append[oneSpace]
+		property.type.format
+
+		property.name.format
 	}
 }

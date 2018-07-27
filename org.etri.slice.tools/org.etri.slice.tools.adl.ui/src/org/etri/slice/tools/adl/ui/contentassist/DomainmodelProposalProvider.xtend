@@ -3,20 +3,116 @@
  */
 package org.etri.slice.tools.adl.ui.contentassist
 
+import com.google.inject.Inject
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.jface.viewers.ILabelProvider
 import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.TypesPackage
+import org.eclipse.xtext.common.types.access.IJvmTypeProvider
+import org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 import org.etri.slice.tools.adl.domainmodel.Call
 import org.etri.slice.tools.adl.domainmodel.Command
+import org.etri.slice.tools.adl.domainmodel.CommandContext
+import org.etri.slice.tools.adl.domainmodel.Context
+import org.etri.slice.tools.adl.domainmodel.Control
+import org.etri.slice.tools.adl.domainmodel.Event
+import org.etri.slice.tools.adl.domainmodel.Exception
 import org.etri.slice.tools.adl.domainmodel.Operation
+import org.etri.slice.tools.adl.generator.GeneratorUtils
+import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces
+import org.etri.slice.tools.adl.utils.DomainnodeUtil
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
  * on how to customize the content assistant.
- */
+ */ 
+
+
 class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 
+	@Inject extension DomainnodeUtil
+	@Inject extension ILabelProvider labelProvider
+	@Inject extension ITypesProposalProvider provider
+	@Inject extension IJvmTypeProvider.Factory    
+    @Inject extension IQualifiedNameProvider    
+    @Inject extension GeneratorUtils
+    
+ 	override completeJvmParameterizedTypeReference_Type(EObject element, Assignment assignment, 
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) 
+	{
+		switch element{
+			Control:
+			{
+				val fqn = element.fullyQualifiedName.adaptToSlice("service").toString
+				
+				provider.createTypeProposals(this, context, TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, 
+		     		new AcceptInterfaceFilter(fqn), acceptor
+		     	)
+		     }
+		     Context:
+		     {
+		     	val fqn = element.fullyQualifiedName.adaptToSlice("context").toString
+		     	
+		     	val typeProvider = createTypeProvider(element.eResource.resourceSet)		
+				val contextBase = typeProvider.findTypeByName(CommonInterfaces.CONTEXT_BASE);
+	            
+	            provider.createSubTypeProposals(contextBase, this, context, 
+	            	TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, 
+		            	new AcceptableSuperTypeFilter(fqn, CommonInterfaces.CONTEXT_BASE), acceptor)
+		     }
+		     Event:
+		     {
+		     	val fqn = element.fullyQualifiedName.adaptToSlice("event").toString
+		     	
+		     	val typeProvider = createTypeProvider(element.eResource.resourceSet)		
+				val eventBase = typeProvider.findTypeByName(CommonInterfaces.EVENT_BASE);
+	            	            	            
+	            provider.createSubTypeProposals(eventBase, this, context, 
+	            	TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, 
+		            	new AcceptableSuperTypeFilter(fqn, CommonInterfaces.EVENT_BASE), acceptor)
+		     }
+		     Exception:
+		     {
+		     	val fqn = element.fullyQualifiedName.adaptToSlice("").toString
+		     	
+		     	val typeProvider = createTypeProvider(element.eResource.resourceSet)		
+				val exceptionBase = typeProvider.findTypeByName(CommonInterfaces.EXCEPTION_INTERFACE);
+	            
+	            provider.createSubTypeProposals(exceptionBase, this, context, 
+	            	TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, 
+		            	new AcceptableSuperTypeFilter(fqn, CommonInterfaces.EXCEPTION_INTERFACE), acceptor)
+		     }
+		     default:
+		     	super.completeJvmParameterizedTypeReference_Type(element, assignment, context, acceptor)
+		}
+	}
+		
+	/**
+	 * AgentDeclaration/CommandSet/Context/property
+	 */
+	override completeCommandContext_Property(EObject element, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+
+		if (element instanceof CommandContext) {
+			element.context.properties.forEach [ property | 
+					acceptor.accept(
+							createCompletionProposal(property.name, property.name + ":" + property.type.simpleName + " - " + element.context.name, getImage(property), context));
+			]
+						
+			element.context.classHierarchyFields.forEach[ field | 
+					acceptor.accept(
+							createCompletionProposal(field.simpleName, 
+								field.simpleName + ":" + field.type.simpleName + " - " + (field.eContainer as JvmGenericType).simpleName, 
+								labelProvider.getImage(field), context
+							));
+			]
+		}
+	}
+	
 	/**
 	 * AgentDeclaration/CommandSet/Command/method
 	 */
@@ -28,17 +124,34 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 				{
 					if (feature instanceof Operation) {
 						acceptor.accept(
-							createCompletionProposal(feature.name, feature.name + " - Operation", null, context));
+							createCompletionProposal(feature.name, feature.name + " - " + element.action.name, null, context));
 					} else {
 						val setter = "set" + feature.name.toFirstUpper
 						
 						acceptor.accept(
-							createCompletionProposal(setter, setter + " - Field", null, context));						
+							createCompletionProposal(setter, setter + " - " + element.action.name, getImage(feature), context));						
 					}
 				}
 			]
+			
+			element.action.classHierarchyFields.forEach[ field | 
+				    val setter = "set" + field.name.toFirstUpper
+				    
+					acceptor.accept(
+							createCompletionProposal(setter, setter + " - " + (field.eContainer as Control).name, 
+								getImage(field), context
+							));
+			]
+			
+			element.action.classHierarchyMethods.forEach[ operation | 
+					acceptor.accept(
+							createCompletionProposal(operation.name, operation.name + " - " + (operation.eContainer as Control).name, 
+								getImage(operation), context
+							));
+			]
 		}
-	}
+	} 
+	
 	
 	
 	/**

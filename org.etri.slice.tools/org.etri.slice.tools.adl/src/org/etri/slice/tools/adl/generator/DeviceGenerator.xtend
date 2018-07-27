@@ -1,26 +1,26 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 
-class DeviceGenerator implements IGenerator {	
+class DeviceGenerator implements IGeneratorForMultiInput {	
 
 	@Inject DeviceProjectGenerator deviceProjectGenerator
 	@Inject extension IQualifiedNameProvider
 		
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		fsa.generateFile(OutputPathUtils.sliceDevices + "/pom.xml", compileDevicesPOM(resource))
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
+		fsa.generateFile(OutputPathUtils.sliceDevices + "/pom.xml", compileDevicesPOM(resources))
 		
-		for (e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))) {
-			deviceProjectGenerator.doGenerate(resource, fsa)
+		for ( e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten ) {
+			deviceProjectGenerator.doGenerate(resources, fsa)
 		}
 	}
 	
-	def compileDevicesPOM(Resource resource) '''
+	def compileDevicesPOM(List<Resource> resources) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
@@ -38,10 +38,15 @@ class DeviceGenerator implements IGenerator {
 			<packaging>pom</packaging>
 			
 			<modules>
-				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»
+				«FOR e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten»
 					<module>org.etri.slice.devices.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</module>
 				«ENDFOR»
 			</modules>
 		</project>
-	'''	
+	'''
+	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

@@ -45,7 +45,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.xtext.ui.XtextProjectHelper;
-import org.etri.slice.tools.adl.project.wizards.SLICENewFileWizard;
+import org.etri.slice.tools.adl.project.wizards.ADLSampleContstants;
 import org.etri.slice.tools.adl.project.wizards.SLICEPomContants;
 
 /**
@@ -235,7 +235,7 @@ public class SLICECarSampleProjectWizard extends Wizard implements INewWizard {
 		
 		String contents = null;
 		
-		contents = MessageFormat.format(SLICENewFileWizard.SAMPLE_ADL_CONTENTS, domain);
+		contents = MessageFormat.format(ADLSampleContstants.SAMPLE_ADL_CONTENTS, domain);
 		
 		return new ByteArrayInputStream(contents.getBytes());
 	}

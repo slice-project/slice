@@ -49,7 +49,7 @@ import org.eclipse.xtext.ui.XtextProjectHelper;
 public class SLICENewProjectWizard extends NewElementWizard implements IExecutableExtension {
 
 	private final static String TITLE = "New SLICE Project";
-	
+		
 	private SLICENewProjectWizardPageOne fFirstPage;
 	private SLICENewProjectWizardPageTwo fSecondPage;
 
@@ -244,9 +244,9 @@ public class SLICENewProjectWizard extends NewElementWizard implements IExecutab
 		String contents = null;
 
 		if(domain.trim().length() > 0)
-			contents = MessageFormat.format(SLICENewFileWizard.SIMPLE_ADL_CONTENTS_WITH_DOMAIN, domain);
+			contents = MessageFormat.format(ADLSampleContstants.SIMPLE_ADL_CONTENTS_WITH_DOMAIN, domain);
 		else
-			contents = SLICENewFileWizard.SIMPLE_ADL_CONTENTS;
+			contents = ADLSampleContstants.SIMPLE_ADL_CONTENTS;
 		
 		return new ByteArrayInputStream(contents.getBytes());
 	}

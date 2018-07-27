@@ -6,7 +6,9 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.etri.slice.tools.adl.product.Activator
 Bundle-Vendor: ETRI
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.equinox.ds,
+ org.eclipse.core.runtime,
+ org.etri.slice.tools.adl.project;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.etri.slice.tools.adl.product
 Bundle-ActivationPolicy: lazy

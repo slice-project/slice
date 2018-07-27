@@ -7,11 +7,6 @@
             name="SLICE"
             id="org.etri.slice.tools.adl.project">
       </category>
-      <category
-            id="org.etri.slice.tools.adl.project.examples"
-            name="Examples"
-            parentCategory="org.etri.slice.tools.adl.project">
-      </category>
       <wizard
             category="org.etri.slice.tools.adl.project"
             class="org.etri.slice.tools.adl.project.wizards.SLICENewFileWizard"
@@ -26,17 +21,6 @@
             icon="icons/slice_new_project.png"
             id="org.etri.slice.tools.adl.project.wizards.SLICEProjectWizard"
             name="SLICE Project"
-            project="true">
-      </wizard>
-
-      <wizard
-            canFinishEarly="true"
-            category="org.etri.slice.tools.adl.project/org.etri.slice.tools.adl.project.examples"
-            class="org.etri.slice.tools.adl.project.wizards.examples.SLICECarSampleProjectWizard"
-            hasPages="false"
-            icon="icons/slice_new_project.png"
-            id="org.etri.slice.tools.adl.project.wizards.examples.car"
-            name="SLICE Car Example Project"
             project="true">
       </wizard>
    </extension>

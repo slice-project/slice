@@ -5,7 +5,13 @@ package org.etri.slice.tools.adl.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
+import org.eclipse.xtext.builder.BuilderParticipant;
+import org.eclipse.xtext.generator.IShouldGenerate;
 import org.etri.slice.tools.adl.ui.AbstractDomainmodelUiModule;
+import org.etri.slice.tools.adl.ui.builder.BuilderParticipantForMultiInput;
+import org.etri.slice.tools.adl.ui.builder.SLICEShouldGenerate;
+import org.etri.slice.tools.adl.utils.DomainnodeUtil;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -13,6 +19,24 @@ import org.etri.slice.tools.adl.ui.AbstractDomainmodelUiModule;
 @FinalFieldsConstructor
 @SuppressWarnings("all")
 public class DomainmodelUiModule extends AbstractDomainmodelUiModule {
+  public Class<? extends DomainnodeUtil> bindDomainmodeUtil() {
+    return DomainnodeUtil.class;
+  }
+  
+  @Override
+  public Class<? extends BuilderParticipant> bindIXtextBuilderParticipant() {
+    return BuilderParticipantForMultiInput.class;
+  }
+  
+  public Class<? extends DomainManager> bindDomainManager() {
+    return DomainManager.class;
+  }
+  
+  @Override
+  public Class<? extends IShouldGenerate> bindIShouldGenerate() {
+    return SLICEShouldGenerate.class;
+  }
+  
   public DomainmodelUiModule(final AbstractUIPlugin plugin) {
     super(plugin);
   }

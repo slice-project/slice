@@ -9,19 +9,21 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Property;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 
 @SuppressWarnings("all")
-public class ContextGenerator implements IGenerator {
+public class ContextGenerator implements IGeneratorForMultiInput {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
@@ -35,9 +37,12 @@ public class ContextGenerator implements IGenerator {
   private OutputPathUtils _outputPathUtils;
   
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    Iterable<Context> _filter = Iterables.<Context>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Context.class);
-    for (final Context e : _filter) {
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    final Function1<Resource, Iterable<Context>> _function = (Resource it) -> {
+      return Iterables.<Context>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), Context.class);
+    };
+    Iterable<Context> _flatten = Iterables.<Context>concat(ListExtensions.<Resource, Iterable<Context>>map(resources, _function));
+    for (final Context e : _flatten) {
       {
         final String package_ = this._outputPathUtils.getSliceFullyQualifiedName(e).replace(".", "/");
         String _commonsMavenSrcHome = this._outputPathUtils.getCommonsMavenSrcHome(e);
@@ -71,6 +76,8 @@ public class ContextGenerator implements IGenerator {
     }
     _builder.newLine();
     _builder.append("import org.etri.slice.commons.SliceContext;");
+    _builder.newLine();
+    _builder.append("import org.etri.slice.commons.internal.ContextBase;");
     _builder.newLine();
     _builder.append("import org.kie.api.definition.type.Role;");
     _builder.newLine();
@@ -117,6 +124,23 @@ public class ContextGenerator implements IGenerator {
     _builder.append("public class ");
     String _name = it.getName();
     _builder.append(_name);
+    _builder.append(" ");
+    {
+      JvmParameterizedTypeReference _superType = it.getSuperType();
+      boolean _tripleNotEquals = (_superType != null);
+      if (_tripleNotEquals) {
+        _builder.append("extends ");
+        String _shortName = this._generatorUtils.shortName(it.getSuperType(), importManager);
+        _builder.append(_shortName);
+      }
+    }
+    {
+      JvmParameterizedTypeReference _superType_1 = it.getSuperType();
+      boolean _tripleEquals = (_superType_1 == null);
+      if (_tripleEquals) {
+        _builder.append(" implements ContextBase");
+      }
+    }
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -163,11 +187,11 @@ public class ContextGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("\t");
     {
-      JvmParameterizedTypeReference _superType = it.getSuperType();
-      boolean _tripleNotEquals = (_superType != null);
-      if (_tripleNotEquals) {
-        String _shortName = this._generatorUtils.shortName(it.getSuperType(), importManager);
-        _builder.append(_shortName, "\t");
+      JvmParameterizedTypeReference _superType_2 = it.getSuperType();
+      boolean _tripleNotEquals_1 = (_superType_2 != null);
+      if (_tripleNotEquals_1) {
+        String _shortName_1 = this._generatorUtils.shortName(it.getSuperType(), importManager);
+        _builder.append(_shortName_1, "\t");
         _builder.append(" ");
         String _lowerCase_1 = it.getSuperType().getSimpleName().toLowerCase();
         _builder.append(_lowerCase_1, "\t");
@@ -200,5 +224,10 @@ public class ContextGenerator implements IGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     return _builder;
+  }
+  
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

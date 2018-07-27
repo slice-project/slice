@@ -1,22 +1,22 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.domainmodel.Property
 
-class EventGenerator implements IGenerator {
+class EventGenerator implements IGeneratorForMultiInput {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
 	@Inject extension OutputPathUtils	
 	
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for(e: resource.allContents.toIterable.filter(typeof(Event))) {
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
+		for ( e: resources.map[allContents.toIterable.filter(typeof(Event))].flatten ) {
 			val package = e.sliceFullyQualifiedName.replace(".", "/")
 			val file = e.commonsMavenSrcHome + package + "/" + e.name + ".java"
 			fsa.generateFile(file, e.compile)
@@ -72,4 +72,9 @@ class EventGenerator implements IGenerator {
   	def compile(Property it, ImportManager importManager) '''
 		private «type.shortName(importManager)» «name»;
 	'''
+	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

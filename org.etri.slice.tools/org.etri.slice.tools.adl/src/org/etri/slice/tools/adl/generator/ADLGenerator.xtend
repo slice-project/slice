@@ -1,34 +1,61 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
+import org.eclipse.core.runtime.IStatus
+import org.eclipse.core.runtime.Status
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.ui.statushandlers.StatusManager
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.util.CancelIndicator
+import org.eclipse.xtext.validation.CheckMode
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager
 
-public class ADLGenerator implements IGenerator {
-	
+public class ADLGenerator implements IGeneratorForMultiInput {
+
 	@Inject AgentGenerator agentGenerator
 	@Inject DeviceGenerator deviceGenerator
 	@Inject DomainModelGenerator domainGenerator
 	@Inject DistributionGenerator distributionGenerator
-  	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		generateMavenProject(resource, fsa)
-		domainGenerator.doGenerate(resource, fsa)		
 
-		if ( resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 0 ) {	
-			agentGenerator.doGenerate(resource, fsa)
-			deviceGenerator.doGenerate(resource, fsa)
-			distributionGenerator.doGenerate(resource, fsa)			
-		} 
-  	}
-  	
- 	def generateMavenProject(Resource resource, IFileSystemAccess fsa) {		
-		fsa.generateFile("license-header.txt", compileLicenseHeader)
-		fsa.generateFile("pom.xml", compilePOM(resource))				
+	@Inject extension DomainDependencyUtil
+	@Inject DomainManager domainManager
+
+	override void doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
+		resources.checkDomainDependencies
+
+		if (!domainManager.existCycle) {
+			generateMavenProject(resources, fsa)
+			domainGenerator.doGenerate(resources, fsa)
+
+			if (resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten.size > 0) {
+				agentGenerator.doGenerate(resources, fsa)
+				deviceGenerator.doGenerate(resources, fsa)
+				distributionGenerator.doGenerate(resources, fsa)
+			}
+		} else {
+			domainManager.domains.values.forEach[d |
+				val erros = (d.eObject.eResource as XtextResource).getResourceServiceProvider().getResourceValidator().validate(d.eObject.eResource, CheckMode.ALL, CancelIndicator.NullImpl); 
+
+				if(d.hasCycle)
+				{					
+					val status = new Status(IStatus.ERROR, "org.etri.slice.tools.adl.ui", "domain " + d.domain + " has cycle.");
+				  	StatusManager.getManager().handle(status, StatusManager.LOG);	
+				}
+				
+				val r = d.eObject.eResource.resourceSet.resources.head;		
+			]
+		}
 	}
-	
+
+	def generateMavenProject(List<Resource> resources, IFileSystemAccess fsa) {
+		fsa.generateFile("license-header.txt", compileLicenseHeader)
+		fsa.generateFile("pom.xml", compilePOM(resources))
+	}
+
 	def compileLicenseHeader() '''
 		Copyright (c) ${inceptionyear}-${year} ${holder} (${contact})
 		http://slice.etri.re.kr
@@ -48,9 +75,9 @@ public class ADLGenerator implements IGenerator {
 		You should have received a copy of the GNU General Public License
 		along with ${name}; see the file COPYING.  If not, see
 		<http://www.gnu.org/licenses/>.
-	''' 	
-	
-	def compilePOM(Resource resource) '''
+	'''
+
+	def compilePOM(List<Resource> resources) '''
 		<?xml version="1.0" encoding="UTF-8"?>
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -65,14 +92,14 @@ public class ADLGenerator implements IGenerator {
 			<description>org.etri.slice parent</description>
 		
 			<modules>
-				«IF resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 0»
-				<module>org.etri.slice.agents</module>
-				<module>org.etri.slice.devices</module>
+				«IF resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten.size > 0»
+					<module>org.etri.slice.agents</module>
+					<module>org.etri.slice.devices</module>
 				«ENDIF»
 				<module>org.etri.slice.models</module>
-				«IF resource.allContents.toIterable.filter(typeof(AgentDeclaration)).size > 0»
-				<module>org.etri.slice.rules</module>
-				<module>org.etri.slice.distribution</module>
+				«IF resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten.size > 0»
+					<module>org.etri.slice.rules</module>
+					<module>org.etri.slice.distribution</module>
 				«ENDIF»
 			</modules>
 		
@@ -260,5 +287,11 @@ public class ADLGenerator implements IGenerator {
 				</plugins>
 			</build>
 		</project>
-	''' 		
+	'''
+	
+	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}	
 }
+
+

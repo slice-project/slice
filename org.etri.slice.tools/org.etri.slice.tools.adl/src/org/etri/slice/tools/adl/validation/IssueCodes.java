@@ -11,6 +11,8 @@ public interface IssueCodes {
 	public static final String MISSING_TYPE = PREFIX + "MissingType";
 
 	public static final String DUPLICATE_ELEMENT = PREFIX + "DuplicateElement";
+
+	public static final String DUPLICATE_EXTERNAL_ELEMENT = PREFIX + "DuplicateExternalElement";
 	
 	public static final String DUPLICATE_FEATURE = PREFIX + "DuplicateFeature";
 	
@@ -23,4 +25,12 @@ public interface IssueCodes {
 	public static final String EVENT_HIERARCHY_CYCLE = PREFIX + "EventHierarchyCycle";
 	
 	public static final String EXCEPTION_HIERARCHY_CYCLE = PREFIX + "ExceptionHierarchyCycle";
+	
+	public static final String CONTEXT_MUST_EXTENDS_CONTEXT = PREFIX + "ContextMustExtendsContext";
+	
+	public static final String EVENT_MUST_EXTENDS_EVENT = PREFIX + "EventMustExtendsEvent";
+
+	public static final String EXCEPTION_MUST_EXTENDS_EXCEPTION = PREFIX + "ExceptionMustExtendsException";
+	
+	public static final String DOMAIN_DEPENDENCY_CYCLE = PREFIX + "DomainDependencyCycle";
 }

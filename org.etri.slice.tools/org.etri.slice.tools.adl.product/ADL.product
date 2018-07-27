@@ -3,21 +3,42 @@
 
 <product name="ADL" uid="ADL" id="org.etri.slice.tools.adl.product.product" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
+   <aboutInfo>
+      <image path="/org.etri.slice.tools.adl.product/icons/about.png"/>
+      <text>
+         SLICE Tools
+      </text>
+   </aboutInfo>
+
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
+      <programArgsWin>-perspective org.eclipse.jdt.ui.JavaPerspective
+      </programArgsWin>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
+      <vmArgsWin>-Dosgi.requiredJavaVersion=1.8
+-Dosgi.instance.area.default=@user.home/eclipse-workspace
+-XX:+UseG1GC
+-XX:+UseStringDeduplication
+-Xms256m
+-Xmx2024m
+-javaagent:lombok.jar
+      </vmArgsWin>
    </launcherArgs>
 
-   <windowImages/>
+   <windowImages i16="/org.etri.slice.tools.adl.product/icons/SLICE-16.png" i32="/org.etri.slice.tools.adl.product/icons/SLICE-32.png" i48="/org.etri.slice.tools.adl.product/icons/SLICE-48.png" i64="/org.etri.slice.tools.adl.product/icons/SLICE-64.png" i128="/org.etri.slice.tools.adl.product/icons/SLICE-128.png" i256="/org.etri.slice.tools.adl.product/icons/SLICE-256.png"/>
 
-   <launcher>
-      <win useIco="false">
+   <splash
+      location="org.etri.slice.tools.adl.ui" />
+   <launcher name="slice-tools">
+      <win useIco="true">
+         <ico path="/org.etri.slice.tools.adl.ui/icons/SLICE2.ico"/>
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
@@ -105,6 +126,18 @@
       <feature id="org.etri.slice.tools.adl.platform.feature" version="1.0.0.qualifier"/>
    </features>
 
+   <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+   </configurations>
+
+   <repositories>
+      <repository location="http://download.eclipse.org/releases/oxygen" enabled="true" />
+      <repository location="http://download.eclipse.org/eclipse/updates/4.7" enabled="true" />
+   </repositories>
 
    <preferencesInfo>
       <targetfile overwrite="false"/>

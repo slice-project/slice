@@ -5,7 +5,11 @@ package org.etri.slice.tools.adl.ui.labeling;
 
 import com.google.inject.Inject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.xtext.common.types.JvmField;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider;
+import org.etri.slice.tools.adl.domainmodel.Operation;
+import org.etri.slice.tools.adl.domainmodel.Property;
 
 /**
  * Provides labels for EObjects.
@@ -17,5 +21,21 @@ public class DomainmodelLabelProvider extends XbaseLabelProvider {
   @Inject
   public DomainmodelLabelProvider(final AdapterFactoryLabelProvider delegate) {
     super(delegate);
+  }
+  
+  public String image(final Property property) {
+    return "Property.gif";
+  }
+  
+  public String image(final JvmField field) {
+    return "Property.gif";
+  }
+  
+  public String image(final Operation operation) {
+    return "Operation.gif";
+  }
+  
+  public String image(final JvmOperation operation) {
+    return "Operation.gif";
   }
 }

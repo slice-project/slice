@@ -5,7 +5,11 @@ package org.etri.slice.tools.adl.ui.labeling
 
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
+import org.eclipse.xtext.common.types.JvmField
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider
+import org.etri.slice.tools.adl.domainmodel.Operation
+import org.etri.slice.tools.adl.domainmodel.Property
 
 /**
  * Provides labels for EObjects.
@@ -19,13 +23,20 @@ class DomainmodelLabelProvider extends XbaseLabelProvider {
 		super(delegate);
 	}
 
-	// Labels and icons can be computed like this:
+	def image(Property property) {
+		'Property.gif'
+	}
 	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def image(JvmField field) {
+		'Property.gif'
+	}
+	
+	def image(Operation operation) {
+		'Operation.gif'
+	}
+	
+	def image(JvmOperation operation) {
+		'Operation.gif'
+	}
+	
 }

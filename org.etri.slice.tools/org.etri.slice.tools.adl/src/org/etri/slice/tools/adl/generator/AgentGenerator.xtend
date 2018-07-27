@@ -1,26 +1,26 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 
-class AgentGenerator implements IGenerator {	
+class AgentGenerator implements IGeneratorForMultiInput {	
 
 	@Inject AgentProjectGenerator agentProjectGenerator
 	@Inject RuleSetGenerator ruleSetGenerator
 	@Inject extension CommanderGenerator
 	@Inject extension IQualifiedNameProvider
 		
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		fsa.generateFile(OutputPathUtils.sliceAgents + "/pom.xml", compileAgentsPOM(resource))
-		fsa.generateFile(OutputPathUtils.sliceRules + "/pom.xml", compileRulesPOM(resource))
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
+		fsa.generateFile(OutputPathUtils.sliceAgents + "/pom.xml", compileAgentsPOM(resources))
+		fsa.generateFile(OutputPathUtils.sliceRules + "/pom.xml", compileRulesPOM(resources))
 		
-		for (e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))) {
-			agentProjectGenerator.doGenerate(resource, fsa)
-			ruleSetGenerator.doGenerate(resource, fsa)
+		for (e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten) {
+			agentProjectGenerator.doGenerate(resources, fsa)
+			ruleSetGenerator.doGenerate(resources, fsa)
 			
 			if ( e.commandSets !== null )	 {
 				for (c: e.commandSets ) {
@@ -30,7 +30,7 @@ class AgentGenerator implements IGenerator {
 		}
 	}
 	
-	def compileAgentsPOM(Resource resource) '''
+	def compileAgentsPOM(List<Resource> resources) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
@@ -47,14 +47,14 @@ class AgentGenerator implements IGenerator {
 			<packaging>pom</packaging>
 			
 			<modules>
-				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»
+				«FOR e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten»
 					<module>org.etri.slice.agents.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</module>
 				«ENDFOR»
 			</modules>
 		</project>
 	'''	
 	
-	def compileRulesPOM(Resource resource) '''
+	def compileRulesPOM(List<Resource> resources) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		
@@ -67,7 +67,7 @@ class AgentGenerator implements IGenerator {
 			<name>The SLICE rules</name>
 			
 				<modules>
-				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»
+				«FOR e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten»
 					<module>org.etri.slice.rules.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</module>
 				«ENDFOR»
 				</modules>
@@ -103,5 +103,10 @@ class AgentGenerator implements IGenerator {
 					</plugins>
 				</build>
 		</project>
-	'''		
+	'''
+	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

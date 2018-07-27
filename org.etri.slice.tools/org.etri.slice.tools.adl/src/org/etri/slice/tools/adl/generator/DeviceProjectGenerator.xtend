@@ -1,9 +1,9 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Call
@@ -12,7 +12,7 @@ import org.etri.slice.tools.adl.generator.compiler.LogbackCompiler
 import org.etri.slice.tools.adl.generator.compiler.MetaDataCompiler
 import org.etri.slice.tools.adl.generator.compiler.POMCompiler
 
-class DeviceProjectGenerator implements IGenerator {
+class DeviceProjectGenerator implements IGeneratorForMultiInput {
 	
 	@Inject extension IQualifiedNameProvider	
 	@Inject extension BehaviorGenerator
@@ -21,8 +21,8 @@ class DeviceProjectGenerator implements IGenerator {
 	@Inject extension LogbackCompiler
 	@Inject extension OutputPathUtils
 	
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {		
-		for ( e: resource.allContents.toIterable.filter(typeof(AgentDeclaration)) ) {
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {	
+		for ( e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten )	{
 			generateDevice(e, fsa)
 			generateMavenProject(e, fsa)
 			generateMetaData(e, fsa)
@@ -66,4 +66,9 @@ class DeviceProjectGenerator implements IGenerator {
 		bundle.classpath=.,{maven-dependencies}		
 		private.packages=org.etri.slice.devices.«eContainer.fullyQualifiedName».«name.toLowerCase».*
 	'''
+	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

@@ -8,17 +8,19 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 
 @SuppressWarnings("all")
-public class ExceptionGenerator implements IGenerator {
+public class ExceptionGenerator implements IGeneratorForMultiInput {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
@@ -32,9 +34,12 @@ public class ExceptionGenerator implements IGenerator {
   private OutputPathUtils _outputPathUtils;
   
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    Iterable<org.etri.slice.tools.adl.domainmodel.Exception> _filter = Iterables.<org.etri.slice.tools.adl.domainmodel.Exception>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), org.etri.slice.tools.adl.domainmodel.Exception.class);
-    for (final org.etri.slice.tools.adl.domainmodel.Exception e : _filter) {
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    final Function1<Resource, Iterable<org.etri.slice.tools.adl.domainmodel.Exception>> _function = (Resource it) -> {
+      return Iterables.<org.etri.slice.tools.adl.domainmodel.Exception>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), org.etri.slice.tools.adl.domainmodel.Exception.class);
+    };
+    Iterable<org.etri.slice.tools.adl.domainmodel.Exception> _flatten = Iterables.<org.etri.slice.tools.adl.domainmodel.Exception>concat(ListExtensions.<Resource, Iterable<org.etri.slice.tools.adl.domainmodel.Exception>>map(resources, _function));
+    for (final org.etri.slice.tools.adl.domainmodel.Exception e : _flatten) {
       {
         final String package_ = this._outputPathUtils.getSliceFullyQualifiedName(e).replace(".", "/");
         String _commonsMavenSrcHome = this._outputPathUtils.getCommonsMavenSrcHome(e);
@@ -46,6 +51,11 @@ public class ExceptionGenerator implements IGenerator {
         fsa.generateFile(file, this.compile(e));
       }
     }
+  }
+  
+  @Override
+  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
   public CharSequence compile(final org.etri.slice.tools.adl.domainmodel.Exception it) {

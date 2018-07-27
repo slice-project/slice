@@ -167,22 +167,22 @@ public class DomainmodelFormatter extends XbaseFormatter {
         it.oneSpace();
       };
       document.append(this.textRegionExtensions.regionFor(element).keyword("context"), _function_3);
-      ISemanticRegion _feature = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.CONTEXT__SUPER_TYPE);
-      ISemanticRegion _prepend = null;
-      if (_feature!=null) {
+      JvmParameterizedTypeReference _superType = ((Context)element).getSuperType();
+      JvmParameterizedTypeReference _prepend = null;
+      if (_superType!=null) {
         final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
           it.oneSpace();
         };
-        _prepend=document.prepend(_feature, _function_4);
+        _prepend=document.<JvmParameterizedTypeReference>prepend(_superType, _function_4);
       }
       final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
         it.noSpace();
       };
-      document.append(_prepend, _function_5);
+      document.<JvmParameterizedTypeReference>append(_prepend, _function_5);
       EList<Property> _properties = ((Context)element).getProperties();
       for (final Property property : _properties) {
         {
-          document.<Property>format(property);
+          this.format(property, document);
           final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
             it.setNewLines(1);
           };
@@ -195,18 +195,16 @@ public class DomainmodelFormatter extends XbaseFormatter {
           it.oneSpace();
         };
         document.append(this.textRegionExtensions.regionFor(element).keyword("control"), _function_6);
-        ISemanticRegion _feature_1 = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.CONTROL__SUPER_TYPES);
-        ISemanticRegion _prepend_1 = null;
-        if (_feature_1!=null) {
+        EList<JvmParameterizedTypeReference> _superTypes = ((Control)element).getSuperTypes();
+        for (final JvmParameterizedTypeReference superType : _superTypes) {
           final Procedure1<IHiddenRegionFormatter> _function_7 = (IHiddenRegionFormatter it) -> {
             it.oneSpace();
           };
-          _prepend_1=document.prepend(_feature_1, _function_7);
+          final Procedure1<IHiddenRegionFormatter> _function_8 = (IHiddenRegionFormatter it) -> {
+            it.noSpace();
+          };
+          document.<JvmParameterizedTypeReference>append(document.<JvmParameterizedTypeReference>prepend(superType, _function_7), _function_8);
         }
-        final Procedure1<IHiddenRegionFormatter> _function_8 = (IHiddenRegionFormatter it) -> {
-          it.noSpace();
-        };
-        document.append(_prepend_1, _function_8);
         EList<Feature> _features = ((Control)element).getFeatures();
         for (final Feature feature : _features) {
           {
@@ -223,18 +221,18 @@ public class DomainmodelFormatter extends XbaseFormatter {
             it.oneSpace();
           };
           document.append(this.textRegionExtensions.regionFor(element).keyword("event"), _function_9);
-          ISemanticRegion _feature_2 = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.EVENT__SUPER_TYPE);
-          ISemanticRegion _prepend_2 = null;
-          if (_feature_2!=null) {
+          JvmParameterizedTypeReference _superType_1 = ((Event)element).getSuperType();
+          JvmParameterizedTypeReference _prepend_1 = null;
+          if (_superType_1!=null) {
             final Procedure1<IHiddenRegionFormatter> _function_10 = (IHiddenRegionFormatter it) -> {
               it.oneSpace();
             };
-            _prepend_2=document.prepend(_feature_2, _function_10);
+            _prepend_1=document.<JvmParameterizedTypeReference>prepend(_superType_1, _function_10);
           }
           final Procedure1<IHiddenRegionFormatter> _function_11 = (IHiddenRegionFormatter it) -> {
             it.noSpace();
           };
-          document.append(_prepend_2, _function_11);
+          document.<JvmParameterizedTypeReference>append(_prepend_1, _function_11);
           document.<Topic>format(((Event)element).getTopic());
           EList<Property> _properties_1 = ((Event)element).getProperties();
           for (final Property property_1 : _properties_1) {
@@ -252,18 +250,18 @@ public class DomainmodelFormatter extends XbaseFormatter {
               it.oneSpace();
             };
             document.append(this.textRegionExtensions.regionFor(element).keyword("exception"), _function_12);
-            ISemanticRegion _feature_3 = this.textRegionExtensions.regionFor(element).feature(DomainmodelPackage.Literals.EXCEPTION__SUPER_TYPE);
-            ISemanticRegion _prepend_3 = null;
-            if (_feature_3!=null) {
+            JvmParameterizedTypeReference _superType_2 = ((org.etri.slice.tools.adl.domainmodel.Exception)element).getSuperType();
+            JvmParameterizedTypeReference _prepend_2 = null;
+            if (_superType_2!=null) {
               final Procedure1<IHiddenRegionFormatter> _function_13 = (IHiddenRegionFormatter it) -> {
                 it.oneSpace();
               };
-              _prepend_3=document.prepend(_feature_3, _function_13);
+              _prepend_2=document.<JvmParameterizedTypeReference>prepend(_superType_2, _function_13);
             }
             final Procedure1<IHiddenRegionFormatter> _function_14 = (IHiddenRegionFormatter it) -> {
               it.noSpace();
             };
-            document.append(_prepend_3, _function_14);
+            document.<JvmParameterizedTypeReference>append(_prepend_2, _function_14);
           } else {
             if ((element instanceof AgentDeclaration)) {
               final Procedure1<IHiddenRegionFormatter> _function_15 = (IHiddenRegionFormatter it) -> {
@@ -559,7 +557,7 @@ public class DomainmodelFormatter extends XbaseFormatter {
     final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
       it.newLine();
     };
-    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND__METHOD), _function_4);
+    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY), _function_4);
   }
   
   /**
@@ -623,19 +621,23 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.<JvmTypeReference>append(document.<JvmTypeReference>prepend(operation.getType(), _function_5), _function_6);
     document.<JvmTypeReference>format(operation.getType());
+    document.<String>format(operation.getName());
   }
   
   /**
    * Property formatting
    */
   protected void _format(final Property property, @Extension final IFormattableDocument document) {
+    System.out.println("format Property");
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
-      it.oneSpace();
-    };
-    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };
-    document.append(document.prepend(this.textRegionExtensions.regionFor(property).feature(DomainmodelPackage.Literals.FEATURE__NAME), _function), _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.<JvmTypeReference>append(document.<JvmTypeReference>prepend(property.getType(), _function), _function_1);
+    document.<JvmTypeReference>format(property.getType());
+    document.<String>format(property.getName());
   }
   
   public void format(final Object domain, final IFormattableDocument document) {

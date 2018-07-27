@@ -7,13 +7,16 @@
  */
 package org.etri.slice.tools.adl;
 
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.resource.persistence.IResourceStorageFacade;
 import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
 import org.etri.slice.tools.adl.AbstractDomainmodelRuntimeModule;
 import org.etri.slice.tools.adl.DomainModelOutputConfigurationProvider;
 import org.etri.slice.tools.adl.generator.ADLGenerator;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
+import org.etri.slice.tools.adl.utils.DomainnodeUtil;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -28,8 +31,19 @@ public class DomainmodelRuntimeModule extends AbstractDomainmodelRuntimeModule {
     return DomainModelOutputConfigurationProvider.class;
   }
   
-  @Override
-  public Class<? extends IGenerator> bindIGenerator() {
+  public Class<? extends IGeneratorForMultiInput> bindIGenerator2() {
     return ADLGenerator.class;
+  }
+  
+  public Class<? extends DomainnodeUtil> bindDomainmodeUtil() {
+    return DomainnodeUtil.class;
+  }
+  
+  public Class<? extends DomainDependencyUtil> bindDomainDependencyUtil() {
+    return DomainDependencyUtil.class;
+  }
+  
+  public Class<? extends DomainManager> bindDomainManager() {
+    return DomainManager.class;
   }
 }

@@ -3,7 +3,11 @@
  */
 package org.etri.slice.tools.adl.ui.quickfix
 
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+import org.eclipse.xtext.validation.Issue
 import org.eclipse.xtext.xbase.ui.quickfix.XbaseQuickfixProvider
+import org.etri.slice.tools.adl.validation.IssueCodes
 
 /**
  * Custom quickfixes.
@@ -12,13 +16,25 @@ import org.eclipse.xtext.xbase.ui.quickfix.XbaseQuickfixProvider
  */
 class ADLQuickfixProvider extends XbaseQuickfixProvider {
 
-//	@Fix(ADLValidator.INVALID_NAME)
-//	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Capitalize name', 'Capitalize the name.', 'upcase.png') [
-//			context |
-//			val xtextDocument = context.xtextDocument
-//			val firstLetter = xtextDocument.get(issue.offset, 1)
-//			xtextDocument.replace(issue.offset, 1, firstLetter.toUpperCase)
-//		]
-//	}
+	@Fix(IssueCodes::INVALID_TYPE_NAME)
+	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Capitalize name', 'Capitalize the name.', 'upcase.png') [
+			context |
+			val xtextDocument = context.xtextDocument
+			val firstLetter = xtextDocument.get(issue.offset, 1)
+			xtextDocument.replace(issue.offset, 1, firstLetter.toUpperCase)
+		]
+	}
+	
+	@Fix(IssueCodes::INVALID_FEATURE_NAME)
+	def toLowercaseName(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Lowercase name', 'Change the name to lowercase', 'lcase.png') [
+			context |
+			val xtextDocument = context.xtextDocument
+			val firstLetter = xtextDocument.get(issue.offset, 1)
+			xtextDocument.replace(issue.offset, 1, firstLetter.toLowerCase)
+		]
+	}
+	
+	
 }

@@ -1,13 +1,16 @@
 package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
+import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager
 
 class POMCompiler {	
 	
 	@Inject extension IQualifiedNameProvider	
+	@Inject DomainManager domainManager
 	
 	def compileDomainPOM(DomainDeclaration it) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -32,7 +35,14 @@ class POMCompiler {
 					<groupId>org.etri.slice</groupId>
 					<artifactId>org.etri.slice.commons</artifactId>
 					<version>0.9.1</version>
+				</dependency>				
+				«FOR d : domainManager.getDomain(fullyQualifiedName.toString).dependencies»
+				<dependency>
+					<groupId>org.etri.slice.commons</groupId>
+					<artifactId>org.etri.slice.commons.«d.domain»</artifactId>
+					<version>0.9.1</version>
 				</dependency>
+				«ENDFOR»
 			</dependencies>
 		
 			<build>
@@ -91,7 +101,15 @@ class POMCompiler {
 		</project>		
 	'''
 	
-	def compileAgentPOM(AgentDeclaration it) '''
+	def compileAgentPOM(AgentDeclaration it) 
+	{
+		val domain = EcoreUtil2.getContainerOfType(it, DomainDeclaration)
+		var domainFQN = ""
+		
+		if(null !== domain)
+			domainFQN = domain.fullyQualifiedName.toString
+		
+		'''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
@@ -117,7 +135,14 @@ class POMCompiler {
 					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
 					<version>0.9.1</version>
-				</dependency>			
+				</dependency>
+				«FOR d : domainManager.getDomain(domainFQN).dependencies»
+				<dependency>
+					<groupId>org.etri.slice.commons</groupId>
+					<artifactId>org.etri.slice.commons.«d.domain»</artifactId>
+					<version>0.9.1</version>
+				</dependency>
+				«ENDFOR»			
 			</dependencies>
 		
 			<build>
@@ -151,9 +176,18 @@ class POMCompiler {
 			</build>	
 			
 		</project>
-	'''	
+		'''	
+	}
 	
-	def compileDevicePOM(AgentDeclaration it) '''
+	def compileDevicePOM(AgentDeclaration it) 
+	{
+		val domain = EcoreUtil2.getContainerOfType(it, DomainDeclaration)
+		var domainFQN = ""
+		
+		if(null !== domain)
+			domainFQN = domain.fullyQualifiedName.toString
+			
+		'''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
@@ -174,7 +208,14 @@ class POMCompiler {
 					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
 					<version>0.9.1</version>
-				</dependency>			
+				</dependency>
+				«FOR d : domainManager.getDomain(domainFQN).dependencies»
+				<dependency>
+					<groupId>org.etri.slice.commons</groupId>
+					<artifactId>org.etri.slice.commons.«d.domain»</artifactId>
+					<version>0.9.1</version>
+				</dependency>
+				«ENDFOR»		
 			</dependencies>
 		
 			<build>
@@ -216,8 +257,9 @@ class POMCompiler {
 			</build>
 			
 		</project>
-	'''		
-	
+		'''		
+	}
+				
 	def compileRulePOM(AgentDeclaration it) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">

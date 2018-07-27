@@ -50,7 +50,25 @@ class DomainmodelQuickfixProvider extends XbaseQuickfixProvider {
 		acceptor.accept(issue, 'Remove duplicated element', 'Remove duplicated element', 'delete_obj.png') [
 			element, context | {
 					val container = element.eContainer
-					System.out.println("container " + container)		
+					
+					if(container instanceof DomainModel)
+					{
+						(container as DomainModel).elements.remove(element)
+					}
+					else if(container instanceof DomainDeclaration)
+					{
+						(container as DomainDeclaration).elements.remove(element)	
+					}
+				}			
+		]
+	}
+	
+	@Fix(IssueCodes::DUPLICATE_EXTERNAL_ELEMENT)
+	def removeDuplicatedExternalElement(Issue issue, IssueResolutionAcceptor acceptor)
+	{
+		acceptor.accept(issue, 'Remove local duplicated element', 'Remove local duplicated element', 'delete_obj.png') [
+			element, context | {
+					val container = element.eContainer
 					
 					if(container instanceof DomainModel)
 					{
@@ -100,13 +118,7 @@ class DomainmodelQuickfixProvider extends XbaseQuickfixProvider {
 		acceptor.accept(issue, 'Remove supertype', '''Remove supertype '<<issue.data.get(0)>>' ''', 'delete_obj.gif') [
 			element, context | (element as Context).superType = null]
 	}
-	
-	@Fix(IssueCodes::CONTROL_HIERARCHY_CYCLE)
-	def removeControlCycleInHierarchy(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Remove supertype', '''Remove supertype '<<issue.data.get(0)>>' ''', 'delete_obj.gif') [
-//			element, context | (element as Control).superType = null]
-	}
-	
+		
 	@Fix(IssueCodes::EVENT_HIERARCHY_CYCLE)
 	def removeEventCycleInHierarchy(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Remove supertype', '''Remove supertype '<<issue.data.get(0)>>' ''', 'delete_obj.gif') [

@@ -1,26 +1,29 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 import org.etri.slice.tools.adl.generator.compiler.POMCompiler
 
-class DomainGenerator implements IGenerator {	
+class DomainGenerator implements IGeneratorForMultiInput {	
 
 	@Inject extension POMCompiler
 	@Inject extension OutputPathUtils
 		
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
 				
-		for (e: resource.allContents.toIterable.filter(typeof(DomainDeclaration))) {
+		for ( e: resources.map[allContents.toIterable.filter(typeof(DomainDeclaration))].flatten ) {
 			generateMavenProject(e, fsa)
 		}
 	}
 	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
 	
-	def generateMavenProject(DomainDeclaration it, IFileSystemAccess fsa) {		
+	def generateMavenProject(DomainDeclaration it, IFileSystemAccess fsa) {				
 		fsa.generateFile(commonsMavenHome + "bundle.properties", compileBundleProperties)
 		fsa.generateFile(commonsMavenHome + "pom.xml", compileDomainPOM)				
 	}
@@ -33,4 +36,7 @@ class DomainGenerator implements IGenerator {
 		bundle.classpath=.,{maven-dependencies}
 		import.packages=*;resolution:=optional	
 	'''
+	
+
+	
 }

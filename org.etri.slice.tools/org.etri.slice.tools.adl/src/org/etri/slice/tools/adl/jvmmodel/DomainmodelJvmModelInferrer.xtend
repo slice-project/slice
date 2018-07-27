@@ -30,11 +30,15 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension GeneratorUtils
 
 	def dispatch infer(Context context, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
+		if ( context.name === null) return;
 		accept(context.toClass( context.fullyQualifiedName.adaptToSlice("context") )) [
 			documentation = context.documentation
+						
 			if (context.superType !== null)
 				superTypes += context.superType.cloneWithProxies
-			
+			else
+				superTypes += typeRef(CommonInterfaces.CONTEXT_BASE)
+				
 			// let's add a default constructor
 			members += context.toConstructor []
 			
@@ -60,12 +64,14 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	}
 	
 	def dispatch infer(Exception exc, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-
+		if ( exc.name === null) return;
 		accept(exc.toClass( exc.fullyQualifiedName.adaptToSlice("") )) [
 			documentation = exc.documentation
 			if (exc.superType !== null)
 				superTypes += exc.superType.cloneWithProxies
-			
+			else
+				superTypes += typeRef(CommonInterfaces.EXCEPTION_INTERFACE)
+				
 			// let's add a default constructor
 			members += exc.toConstructor []
 			
@@ -82,11 +88,13 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	}	
 	
 	def dispatch infer(Event event, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-
+		if ( event.name === null) return;
 		accept(event.toClass( event.fullyQualifiedName.adaptToSlice("event") )) [
 			documentation = event.documentation
 			if (event.superType !== null)
 				superTypes += event.superType.cloneWithProxies
+			else
+				superTypes += typeRef(CommonInterfaces.EVENT_BASE)
 			
 			// let's add a default constructor
 			members += event.toConstructor []
@@ -113,12 +121,16 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	}
 	
 	def dispatch infer(Control control, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-
+		if ( control.name === null) return;
 		accept(control.toInterface( control.fullyQualifiedName.adaptToSlice("service").toString )[]) [
 			documentation = control.documentation
-			for (superType : control.superTypes ) {
-				superTypes += superType.cloneWithProxies
-			}
+			
+			if(control.superTypes.size() > 0)
+			{
+				for (superType : control.superTypes ) {
+					superTypes += superType.cloneWithProxies
+				}
+			}				
 			
 			// now let's go over the features
 			for ( f : control.features ) {

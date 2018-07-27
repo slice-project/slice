@@ -49,6 +49,7 @@ class GeneratorUtils {
   
 	def shortName(JvmTypeReference ref, ImportManager importManager) {
 		val result = new StringBuilderBasedAppendable(importManager)
+		
 		ref.serialize(ref.eContainer, result);
 		result.toString
 	}

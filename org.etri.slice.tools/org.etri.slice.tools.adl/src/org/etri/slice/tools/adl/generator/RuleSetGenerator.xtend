@@ -1,23 +1,23 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.generator.compiler.POMCompiler
 import org.etri.slice.tools.adl.generator.compiler.RuleSetCompiler
 
-class RuleSetGenerator implements IGenerator {
+class RuleSetGenerator implements IGeneratorForMultiInput {
 	
 	@Inject extension RuleSetCompiler
 	@Inject extension POMCompiler
 	@Inject extension OutputPathUtils
 	@Inject extension IQualifiedNameProvider		
 	
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {		
-		for (e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))) {
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {		
+		for (e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten) {
 			generateMavenProject(e, fsa)				
 			generateRule(e, fsa)	
 			generateMetaINF(e, fsa)
@@ -48,5 +48,10 @@ class RuleSetGenerator implements IGenerator {
 				<ksession name="org.etri.slice" type="stateful" default="true"/>
 			</kbase>
 		</kmodule>	
-	'''	
+	'''
+	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

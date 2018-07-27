@@ -2,16 +2,18 @@ package org.etri.slice.tools.adl.generator;
 
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.etri.slice.tools.adl.domainmodel.Action;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Behavior;
@@ -19,13 +21,14 @@ import org.etri.slice.tools.adl.domainmodel.Call;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.DataType;
 import org.etri.slice.tools.adl.generator.BehaviorGenerator;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 import org.etri.slice.tools.adl.generator.compiler.LogbackCompiler;
 import org.etri.slice.tools.adl.generator.compiler.MetaDataCompiler;
 import org.etri.slice.tools.adl.generator.compiler.POMCompiler;
 
 @SuppressWarnings("all")
-public class DeviceProjectGenerator implements IGenerator {
+public class DeviceProjectGenerator implements IGeneratorForMultiInput {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
@@ -51,9 +54,12 @@ public class DeviceProjectGenerator implements IGenerator {
   private OutputPathUtils _outputPathUtils;
   
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    Iterable<AgentDeclaration> _filter = Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class);
-    for (final AgentDeclaration e : _filter) {
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    final Function1<Resource, Iterable<AgentDeclaration>> _function = (Resource it) -> {
+      return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+    };
+    Iterable<AgentDeclaration> _flatten = Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function));
+    for (final AgentDeclaration e : _flatten) {
       {
         this.generateDevice(e, fsa);
         this.generateMavenProject(e, fsa);
@@ -124,5 +130,10 @@ public class DeviceProjectGenerator implements IGenerator {
     _builder.append(".*");
     _builder.newLineIfNotEmpty();
     return _builder;
+  }
+  
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

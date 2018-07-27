@@ -1,17 +1,17 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
+import org.etri.slice.tools.adl.generator.compiler.AgentCompiler
 import org.etri.slice.tools.adl.generator.compiler.LogbackCompiler
 import org.etri.slice.tools.adl.generator.compiler.MetaDataCompiler
 import org.etri.slice.tools.adl.generator.compiler.POMCompiler
-import org.etri.slice.tools.adl.generator.compiler.AgentCompiler
 
-class AgentProjectGenerator implements IGenerator {
+class AgentProjectGenerator implements IGeneratorForMultiInput {
 	
 	@Inject extension IQualifiedNameProvider	
 	@Inject extension AgentCompiler
@@ -20,8 +20,8 @@ class AgentProjectGenerator implements IGenerator {
 	@Inject extension LogbackCompiler
 	@Inject extension OutputPathUtils
 	
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {		
-		for (e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))) {
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {		
+		for (e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten) {
 			generateMavenProject(e, fsa)
 			generateAgent(e, fsa)
 			generateMetaData(e, fsa)
@@ -52,4 +52,9 @@ class AgentProjectGenerator implements IGenerator {
 		# Configure the created bundle
 		private.packages=org.etri.slice.agents.«eContainer.fullyQualifiedName».«name.toLowerCase».*
 	'''
+	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

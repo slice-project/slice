@@ -11,22 +11,24 @@ import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.Operation;
 import org.etri.slice.tools.adl.domainmodel.Property;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 
 @SuppressWarnings("all")
-public class ControlGenerator implements IGenerator {
+public class ControlGenerator implements IGeneratorForMultiInput {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
@@ -40,9 +42,12 @@ public class ControlGenerator implements IGenerator {
   private OutputPathUtils _outputPathUtils;
   
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    Iterable<Control> _filter = Iterables.<Control>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Control.class);
-    for (final Control e : _filter) {
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    final Function1<Resource, Iterable<Control>> _function = (Resource it) -> {
+      return Iterables.<Control>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), Control.class);
+    };
+    Iterable<Control> _flatten = Iterables.<Control>concat(ListExtensions.<Resource, Iterable<Control>>map(resources, _function));
+    for (final Control e : _flatten) {
       {
         final String package_ = this._outputPathUtils.getSliceFullyQualifiedName(e).replace(".", "/");
         String _commonsMavenSrcHome = this._outputPathUtils.getCommonsMavenSrcHome(e);
@@ -76,7 +81,6 @@ public class ControlGenerator implements IGenerator {
     }
     _builder.newLine();
     _builder.append("import javax.management.MXBean;");
-    _builder.newLine();
     _builder.newLine();
     {
       List<String> _imports = importManager.getImports();
@@ -279,5 +283,10 @@ public class ControlGenerator implements IGenerator {
       }
     }
     return _builder;
+  }
+  
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

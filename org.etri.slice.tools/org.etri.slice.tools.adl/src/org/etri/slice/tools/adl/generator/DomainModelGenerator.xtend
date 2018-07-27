@@ -1,32 +1,35 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager
 
-class DomainModelGenerator implements IGenerator {
-	
+class DomainModelGenerator implements IGeneratorForMultiInput {
+
 	@Inject ContextGenerator contextGenerator
 	@Inject ControlGenerator controlGenerator
 	@Inject DomainGenerator domainGenerator
 	@Inject EventGenerator eventGenerator
 	@Inject ExceptionGenerator exceptionGenerator
-	@Inject extension IQualifiedNameProvider	
+	@Inject DomainManager domainManager
 	
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		fsa.generateFile(OutputPathUtils.sliceModels + "/pom.xml", compileModelsPOM(resource))
-		
-		domainGenerator.doGenerate(resource, fsa)
-		contextGenerator.doGenerate(resource, fsa)
-		controlGenerator.doGenerate(resource, fsa)
-		eventGenerator.doGenerate(resource, fsa)
-		exceptionGenerator.doGenerate(resource, fsa)
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	def compileModelsPOM(Resource resource) '''
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
+		fsa.generateFile(OutputPathUtils.sliceModels + "/pom.xml", compileModelsPOM(domainManager))
+	
+		domainGenerator.doGenerate(resources, fsa)
+		contextGenerator.doGenerate(resources, fsa)
+		controlGenerator.doGenerate(resources, fsa)
+		eventGenerator.doGenerate(resources, fsa)
+		exceptionGenerator.doGenerate(resources, fsa)
+	}
+	
+	def compileModelsPOM(DomainManager domainManager) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<modelVersion>4.0.0</modelVersion>
@@ -44,8 +47,8 @@ class DomainModelGenerator implements IGenerator {
 			<packaging>pom</packaging>
 			
 			<modules>
-				«FOR e: resource.allContents.toIterable.filter(typeof(DomainDeclaration))»
-					<module>org.etri.slice.commons.«e.fullyQualifiedName»</module>
+				«FOR e : domainManager.buildOrderedDomainList»
+					<module>org.etri.slice.commons.«e.domain»</module>
 				«ENDFOR»
 			</modules>
 		
@@ -57,7 +60,5 @@ class DomainModelGenerator implements IGenerator {
 				</dependency>
 			</dependencies>
 		</project>		
-	'''		
+	'''	
 }
-
-

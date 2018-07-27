@@ -2,33 +2,38 @@ package org.etri.slice.tools.adl.generator;
 
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
 
 @SuppressWarnings("all")
-public class DistributionGenerator implements IGenerator {
+public class DistributionGenerator implements IGeneratorForMultiInput {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
   
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    fsa.generateFile((OutputPathUtils.sliceDistribution + "/pom.xml"), this.compileDistributionPOM(resource));
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    fsa.generateFile((OutputPathUtils.sliceDistribution + "/pom.xml"), this.compileDistributionPOM(resources));
     fsa.generateFile((OutputPathUtils.sliceDistribution + "/run_slice.bat"), this.compileRunBatch());
     fsa.generateFile((OutputPathUtils.sliceDistribution + "/run_slice.sh"), this.compileRunShell());
   }
   
-  public CharSequence compileDistributionPOM(final Resource resource) {
+  public CharSequence compileDistributionPOM(final List<Resource> resources) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
     _builder.newLine();
@@ -303,8 +308,11 @@ public class DistributionGenerator implements IGenerator {
     _builder.append("</dependency>\t\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
     {
-      Iterable<DomainDeclaration> _filter = Iterables.<DomainDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), DomainDeclaration.class);
-      for(final DomainDeclaration e : _filter) {
+      final Function1<Resource, Iterable<DomainDeclaration>> _function = (Resource it) -> {
+        return Iterables.<DomainDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), DomainDeclaration.class);
+      };
+      Iterable<DomainDeclaration> _flatten = Iterables.<DomainDeclaration>concat(ListExtensions.<Resource, Iterable<DomainDeclaration>>map(resources, _function));
+      for(final DomainDeclaration e : _flatten) {
         _builder.append("\t\t");
         _builder.append("<dependency>");
         _builder.newLine();
@@ -330,11 +338,19 @@ public class DistributionGenerator implements IGenerator {
     }
     _builder.append("\t\t");
     _builder.newLine();
-    _builder.append("<!--\t");
-    _builder.newLine();
     {
-      Iterable<AgentDeclaration> _filter_1 = Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class);
-      for(final AgentDeclaration e_1 : _filter_1) {
+      final Function1<Resource, Iterable<AgentDeclaration>> _function_1 = (Resource it) -> {
+        return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+      };
+      int _size = IterableExtensions.size(Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function_1)));
+      boolean _greaterThan = (_size > 0);
+      if (_greaterThan) {
+        _builder.append("\t\t");
+        final Function1<Resource, Iterable<AgentDeclaration>> _function_2 = (Resource it) -> {
+          return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+        };
+        final AgentDeclaration agent = ((AgentDeclaration[])Conversions.unwrapArray(Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function_2)), AgentDeclaration.class))[0];
+        _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("<dependency>");
         _builder.newLine();
@@ -345,10 +361,10 @@ public class DistributionGenerator implements IGenerator {
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("<artifactId>org.etri.slice.agents.");
-        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
         _builder.append(_fullyQualifiedName_1, "\t\t\t");
         _builder.append(".");
-        String _lowerCase = e_1.getName().toLowerCase();
+        String _lowerCase = agent.getName().toLowerCase();
         _builder.append(_lowerCase, "\t\t\t");
         _builder.append("</artifactId>");
         _builder.newLineIfNotEmpty();
@@ -369,10 +385,10 @@ public class DistributionGenerator implements IGenerator {
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("<artifactId>org.etri.slice.devices.");
-        QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
+        QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
         _builder.append(_fullyQualifiedName_2, "\t\t\t");
         _builder.append(".");
-        String _lowerCase_1 = e_1.getName().toLowerCase();
+        String _lowerCase_1 = agent.getName().toLowerCase();
         _builder.append(_lowerCase_1, "\t\t\t");
         _builder.append("</artifactId>");
         _builder.newLineIfNotEmpty();
@@ -381,12 +397,79 @@ public class DistributionGenerator implements IGenerator {
         _builder.append("<version>0.9.1</version>");
         _builder.newLine();
         _builder.append("\t\t");
-        _builder.append("</dependency>\t\t\t\t\t\t\t\t\t\t");
+        _builder.append("</dependency>");
         _builder.newLine();
       }
     }
-    _builder.append("-->");
-    _builder.newLine();
+    {
+      final Function1<Resource, Iterable<AgentDeclaration>> _function_3 = (Resource it) -> {
+        return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+      };
+      int _size_1 = IterableExtensions.size(Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function_3)));
+      boolean _greaterThan_1 = (_size_1 > 1);
+      if (_greaterThan_1) {
+        _builder.append("<!--\t");
+        _builder.newLine();
+        {
+          final Function1<Resource, Iterable<AgentDeclaration>> _function_4 = (Resource it) -> {
+            return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+          };
+          Iterable<AgentDeclaration> _flatten_1 = Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function_4));
+          for(final AgentDeclaration e_1 : _flatten_1) {
+            _builder.append("\t\t");
+            _builder.append("<dependency>");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("<groupId>org.etri.slice</groupId>");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("<artifactId>org.etri.slice.agents.");
+            QualifiedName _fullyQualifiedName_3 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
+            _builder.append(_fullyQualifiedName_3, "\t\t\t");
+            _builder.append(".");
+            String _lowerCase_2 = e_1.getName().toLowerCase();
+            _builder.append(_lowerCase_2, "\t\t\t");
+            _builder.append("</artifactId>");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("<version>0.9.1</version>");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("</dependency>");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("<dependency>");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("<groupId>org.etri.slice.devices</groupId>");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("<artifactId>org.etri.slice.devices.");
+            QualifiedName _fullyQualifiedName_4 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1.eContainer());
+            _builder.append(_fullyQualifiedName_4, "\t\t\t");
+            _builder.append(".");
+            String _lowerCase_3 = e_1.getName().toLowerCase();
+            _builder.append(_lowerCase_3, "\t\t\t");
+            _builder.append("</artifactId>");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("<version>0.9.1</version>");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("</dependency>\t\t\t\t\t\t\t\t\t\t");
+            _builder.newLine();
+          }
+        }
+        _builder.append("-->");
+        _builder.newLine();
+      }
+    }
     _builder.append("\t");
     _builder.append("</dependencies>");
     _builder.newLine();
@@ -638,5 +721,10 @@ public class DistributionGenerator implements IGenerator {
     _builder.append("java -jar -Dcom.sun.management.jmxremote.port=3403 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false ./bin/felix.jar");
     _builder.newLine();
     return _builder;
+  }
+  
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

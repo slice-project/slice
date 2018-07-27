@@ -15,6 +15,18 @@
                name="appName"
                value="ADL">
          </property>
+         <property
+               name="aboutText"
+               value="SLICE Tools">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/about.png">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/SLICE-16.png,icons/SLICE-32.png,icons/SLICE-48.png,icons/SLICE-64.png,icons/SLICE-128.png,icons/SLICE-256.png">
+         </property>
       </product>
    </extension>
 

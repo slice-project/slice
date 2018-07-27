@@ -3,17 +3,37 @@
  */
 package org.etri.slice.tools.adl.ui.contentassist;
 
+import com.google.inject.Inject;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.common.types.JvmField;
+import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.TypesPackage;
+import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
+import org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.etri.slice.tools.adl.domainmodel.Call;
 import org.etri.slice.tools.adl.domainmodel.Command;
+import org.etri.slice.tools.adl.domainmodel.CommandContext;
+import org.etri.slice.tools.adl.domainmodel.Context;
+import org.etri.slice.tools.adl.domainmodel.Control;
+import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.Operation;
+import org.etri.slice.tools.adl.domainmodel.Property;
+import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces;
 import org.etri.slice.tools.adl.ui.contentassist.AbstractDomainmodelProposalProvider;
+import org.etri.slice.tools.adl.ui.contentassist.AcceptInterfaceFilter;
+import org.etri.slice.tools.adl.ui.contentassist.AcceptableSuperTypeFilter;
+import org.etri.slice.tools.adl.utils.DomainnodeUtil;
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
@@ -21,6 +41,114 @@ import org.etri.slice.tools.adl.ui.contentassist.AbstractDomainmodelProposalProv
  */
 @SuppressWarnings("all")
 public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
+  @Inject
+  @Extension
+  private DomainnodeUtil _domainnodeUtil;
+  
+  @Inject
+  @Extension
+  private ILabelProvider labelProvider;
+  
+  @Inject
+  @Extension
+  private ITypesProposalProvider provider;
+  
+  @Inject
+  @Extension
+  private IJvmTypeProvider.Factory _factory;
+  
+  @Inject
+  @Extension
+  private IQualifiedNameProvider _iQualifiedNameProvider;
+  
+  @Inject
+  @Extension
+  private GeneratorUtils _generatorUtils;
+  
+  @Override
+  public void completeJvmParameterizedTypeReference_Type(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    boolean _matched = false;
+    if (element instanceof Control) {
+      _matched=true;
+      final String fqn = this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(element), "service").toString();
+      AcceptInterfaceFilter _acceptInterfaceFilter = new AcceptInterfaceFilter(fqn);
+      this.provider.createTypeProposals(this, context, TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptInterfaceFilter, acceptor);
+    }
+    if (!_matched) {
+      if (element instanceof Context) {
+        _matched=true;
+        final String fqn = this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(element), "context").toString();
+        final IJvmTypeProvider typeProvider = this._factory.createTypeProvider(((Context)element).eResource().getResourceSet());
+        final JvmType contextBase = typeProvider.findTypeByName(CommonInterfaces.CONTEXT_BASE);
+        AcceptableSuperTypeFilter _acceptableSuperTypeFilter = new AcceptableSuperTypeFilter(fqn, CommonInterfaces.CONTEXT_BASE);
+        this.provider.createSubTypeProposals(contextBase, this, context, 
+          TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptableSuperTypeFilter, acceptor);
+      }
+    }
+    if (!_matched) {
+      if (element instanceof Event) {
+        _matched=true;
+        final String fqn = this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(element), "event").toString();
+        final IJvmTypeProvider typeProvider = this._factory.createTypeProvider(((Event)element).eResource().getResourceSet());
+        final JvmType eventBase = typeProvider.findTypeByName(CommonInterfaces.EVENT_BASE);
+        AcceptableSuperTypeFilter _acceptableSuperTypeFilter = new AcceptableSuperTypeFilter(fqn, CommonInterfaces.EVENT_BASE);
+        this.provider.createSubTypeProposals(eventBase, this, context, 
+          TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptableSuperTypeFilter, acceptor);
+      }
+    }
+    if (!_matched) {
+      if (element instanceof org.etri.slice.tools.adl.domainmodel.Exception) {
+        _matched=true;
+        final String fqn = this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(element), "").toString();
+        final IJvmTypeProvider typeProvider = this._factory.createTypeProvider(((org.etri.slice.tools.adl.domainmodel.Exception)element).eResource().getResourceSet());
+        final JvmType exceptionBase = typeProvider.findTypeByName(CommonInterfaces.EXCEPTION_INTERFACE);
+        AcceptableSuperTypeFilter _acceptableSuperTypeFilter = new AcceptableSuperTypeFilter(fqn, CommonInterfaces.EXCEPTION_INTERFACE);
+        this.provider.createSubTypeProposals(exceptionBase, this, context, 
+          TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptableSuperTypeFilter, acceptor);
+      }
+    }
+    if (!_matched) {
+      super.completeJvmParameterizedTypeReference_Type(element, assignment, context, acceptor);
+    }
+  }
+  
+  /**
+   * AgentDeclaration/CommandSet/Context/property
+   */
+  @Override
+  public void completeCommandContext_Property(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    if ((element instanceof CommandContext)) {
+      final Consumer<Property> _function = (Property property) -> {
+        String _name = property.getName();
+        String _name_1 = property.getName();
+        String _plus = (_name_1 + ":");
+        String _simpleName = property.getType().getSimpleName();
+        String _plus_1 = (_plus + _simpleName);
+        String _plus_2 = (_plus_1 + " - ");
+        String _name_2 = ((CommandContext)element).getContext().getName();
+        String _plus_3 = (_plus_2 + _name_2);
+        acceptor.accept(
+          this.createCompletionProposal(_name, _plus_3, this.getImage(property), context));
+      };
+      ((CommandContext)element).getContext().getProperties().forEach(_function);
+      final Consumer<JvmField> _function_1 = (JvmField field) -> {
+        String _simpleName = field.getSimpleName();
+        String _simpleName_1 = field.getSimpleName();
+        String _plus = (_simpleName_1 + ":");
+        String _simpleName_2 = field.getType().getSimpleName();
+        String _plus_1 = (_plus + _simpleName_2);
+        String _plus_2 = (_plus_1 + " - ");
+        EObject _eContainer = field.eContainer();
+        String _simpleName_3 = ((JvmGenericType) _eContainer).getSimpleName();
+        String _plus_3 = (_plus_2 + _simpleName_3);
+        acceptor.accept(
+          this.createCompletionProposal(_simpleName, _plus_3, 
+            this.labelProvider.getImage(field), context));
+      };
+      this._domainnodeUtil.classHierarchyFields(((CommandContext)element).getContext()).forEach(_function_1);
+    }
+  }
+  
   /**
    * AgentDeclaration/CommandSet/Command/method
    */
@@ -31,17 +159,44 @@ public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProv
         if ((feature instanceof Operation)) {
           String _name = ((Operation)feature).getName();
           String _name_1 = ((Operation)feature).getName();
-          String _plus = (_name_1 + " - Operation");
+          String _plus = (_name_1 + " - ");
+          String _name_2 = ((Command)element).getAction().getName();
+          String _plus_1 = (_plus + _name_2);
           acceptor.accept(
-            this.createCompletionProposal(_name, _plus, null, context));
+            this.createCompletionProposal(_name, _plus_1, null, context));
         } else {
           String _firstUpper = StringExtensions.toFirstUpper(feature.getName());
           final String setter = ("set" + _firstUpper);
+          String _name_3 = ((Command)element).getAction().getName();
+          String _plus_2 = ((setter + " - ") + _name_3);
           acceptor.accept(
-            this.createCompletionProposal(setter, (setter + " - Field"), null, context));
+            this.createCompletionProposal(setter, _plus_2, this.getImage(feature), context));
         }
       };
       ((Command)element).getAction().getFeatures().forEach(_function);
+      final Consumer<Feature> _function_1 = (Feature field) -> {
+        String _firstUpper = StringExtensions.toFirstUpper(field.getName());
+        final String setter = ("set" + _firstUpper);
+        EObject _eContainer = field.eContainer();
+        String _name = ((Control) _eContainer).getName();
+        String _plus = ((setter + " - ") + _name);
+        acceptor.accept(
+          this.createCompletionProposal(setter, _plus, 
+            this.getImage(field), context));
+      };
+      this._domainnodeUtil.classHierarchyFields(((Command)element).getAction()).forEach(_function_1);
+      final Consumer<Feature> _function_2 = (Feature operation) -> {
+        String _name = operation.getName();
+        String _name_1 = operation.getName();
+        String _plus = (_name_1 + " - ");
+        EObject _eContainer = operation.eContainer();
+        String _name_2 = ((Control) _eContainer).getName();
+        String _plus_1 = (_plus + _name_2);
+        acceptor.accept(
+          this.createCompletionProposal(_name, _plus_1, 
+            this.getImage(operation), context));
+      };
+      this._domainnodeUtil.classHierarchyMethods(((Command)element).getAction()).forEach(_function_2);
     }
   }
   

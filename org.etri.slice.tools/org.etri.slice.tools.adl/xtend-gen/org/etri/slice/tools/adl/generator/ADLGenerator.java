@@ -2,21 +2,36 @@ package org.etri.slice.tools.adl.generator;
 
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.util.List;
+import java.util.function.Consumer;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.util.CancelIndicator;
+import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.Issue;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.generator.AgentGenerator;
 import org.etri.slice.tools.adl.generator.DeviceGenerator;
 import org.etri.slice.tools.adl.generator.DistributionGenerator;
 import org.etri.slice.tools.adl.generator.DomainModelGenerator;
+import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
+import org.etri.slice.tools.adl.validation.domain_dependency.Domain;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager;
 
 @SuppressWarnings("all")
-public class ADLGenerator implements IGenerator {
+public class ADLGenerator implements IGeneratorForMultiInput {
   @Inject
   private AgentGenerator agentGenerator;
   
@@ -29,22 +44,49 @@ public class ADLGenerator implements IGenerator {
   @Inject
   private DistributionGenerator distributionGenerator;
   
+  @Inject
+  @Extension
+  private DomainDependencyUtil _domainDependencyUtil;
+  
+  @Inject
+  private DomainManager domainManager;
+  
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    this.generateMavenProject(resource, fsa);
-    this.domainGenerator.doGenerate(resource, fsa);
-    int _size = IterableExtensions.size(Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class));
-    boolean _greaterThan = (_size > 0);
-    if (_greaterThan) {
-      this.agentGenerator.doGenerate(resource, fsa);
-      this.deviceGenerator.doGenerate(resource, fsa);
-      this.distributionGenerator.doGenerate(resource, fsa);
+  public void doGenerate(final List<Resource> resources, final IFileSystemAccess fsa) {
+    this._domainDependencyUtil.checkDomainDependencies(resources);
+    boolean _existCycle = this.domainManager.existCycle();
+    boolean _not = (!_existCycle);
+    if (_not) {
+      this.generateMavenProject(resources, fsa);
+      this.domainGenerator.doGenerate(resources, fsa);
+      final Function1<Resource, Iterable<AgentDeclaration>> _function = (Resource it) -> {
+        return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+      };
+      int _size = IterableExtensions.size(Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function)));
+      boolean _greaterThan = (_size > 0);
+      if (_greaterThan) {
+        this.agentGenerator.doGenerate(resources, fsa);
+        this.deviceGenerator.doGenerate(resources, fsa);
+        this.distributionGenerator.doGenerate(resources, fsa);
+      }
+    } else {
+      final Consumer<Domain> _function_1 = (Domain d) -> {
+        Resource _eResource = d.eObject.eResource();
+        final List<Issue> erros = ((XtextResource) _eResource).getResourceServiceProvider().getResourceValidator().validate(d.eObject.eResource(), CheckMode.ALL, CancelIndicator.NullImpl);
+        boolean _hasCycle = d.hasCycle();
+        if (_hasCycle) {
+          final Status status = new Status(IStatus.ERROR, "org.etri.slice.tools.adl.ui", (("domain " + d.domain) + " has cycle."));
+          StatusManager.getManager().handle(status, StatusManager.LOG);
+        }
+        final Resource r = IterableExtensions.<Resource>head(d.eObject.eResource().getResourceSet().getResources());
+      };
+      this.domainManager.domains.values().forEach(_function_1);
     }
   }
   
-  public void generateMavenProject(final Resource resource, final IFileSystemAccess fsa) {
+  public void generateMavenProject(final List<Resource> resources, final IFileSystemAccess fsa) {
     fsa.generateFile("license-header.txt", this.compileLicenseHeader());
-    fsa.generateFile("pom.xml", this.compilePOM(resource));
+    fsa.generateFile("pom.xml", this.compilePOM(resources));
   }
   
   public CharSequence compileLicenseHeader() {
@@ -84,7 +126,7 @@ public class ADLGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compilePOM(final Resource resource) {
+  public CharSequence compilePOM(final List<Resource> resources) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
     _builder.newLine();
@@ -121,7 +163,10 @@ public class ADLGenerator implements IGenerator {
     _builder.append("<modules>");
     _builder.newLine();
     {
-      int _size = IterableExtensions.size(Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class));
+      final Function1<Resource, Iterable<AgentDeclaration>> _function = (Resource it) -> {
+        return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+      };
+      int _size = IterableExtensions.size(Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function)));
       boolean _greaterThan = (_size > 0);
       if (_greaterThan) {
         _builder.append("\t\t");
@@ -136,7 +181,10 @@ public class ADLGenerator implements IGenerator {
     _builder.append("<module>org.etri.slice.models</module>");
     _builder.newLine();
     {
-      int _size_1 = IterableExtensions.size(Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AgentDeclaration.class));
+      final Function1<Resource, Iterable<AgentDeclaration>> _function_1 = (Resource it) -> {
+        return Iterables.<AgentDeclaration>filter(IteratorExtensions.<EObject>toIterable(it.getAllContents()), AgentDeclaration.class);
+      };
+      int _size_1 = IterableExtensions.size(Iterables.<AgentDeclaration>concat(ListExtensions.<Resource, Iterable<AgentDeclaration>>map(resources, _function_1)));
       boolean _greaterThan_1 = (_size_1 > 0);
       if (_greaterThan_1) {
         _builder.append("\t\t");
@@ -696,5 +744,10 @@ public class ADLGenerator implements IGenerator {
     _builder.append("</project>");
     _builder.newLine();
     return _builder;
+  }
+  
+  @Override
+  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

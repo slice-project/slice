@@ -1,9 +1,9 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.Control
@@ -11,21 +11,21 @@ import org.etri.slice.tools.adl.domainmodel.Feature
 import org.etri.slice.tools.adl.domainmodel.Operation
 import org.etri.slice.tools.adl.domainmodel.Property
 
-class ControlGenerator implements IGenerator {
+class ControlGenerator implements IGeneratorForMultiInput {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
 	@Inject extension OutputPathUtils	
 	
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for(e: resource.allContents.toIterable.filter(typeof(Control))) {
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
+		for ( e: resources.map[allContents.toIterable.filter(typeof(Control))].flatten ) {
 			val package = e.sliceFullyQualifiedName.replace(".", "/")
 			val file = e.commonsMavenSrcHome + package + "/" + e.name + ".java"
 			fsa.generateFile(file, e.compile)
 		}
 	}
 	
-	def compile(Control it) '''
+	def compile(Control it)	 '''
 		«val importManager = new ImportManager(true)» 
 		«val body = body(importManager)»
 		«IF eContainer !== null»
@@ -33,7 +33,6 @@ class ControlGenerator implements IGenerator {
 		«ENDIF»
 		
 		import javax.management.MXBean;
-		
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
@@ -88,5 +87,9 @@ class ControlGenerator implements IGenerator {
    	
    	def exceptions(Operation it, ImportManager importManager) 
  		'''«IF exceptions.size > 0» throws «FOR e : exceptions SEPARATOR ', '»«e.shortName(importManager)»«ENDFOR»;«ELSE»;«ENDIF»'''
+			
+			override doGenerate(Resource input, IFileSystemAccess fsa) {
+				throw new UnsupportedOperationException("TODO: auto-generated method stub")
+			}
 		
 }

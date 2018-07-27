@@ -1,24 +1,24 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 
-class DistributionGenerator implements IGenerator {	
+class DistributionGenerator implements IGeneratorForMultiInput {	
 
 	@Inject extension IQualifiedNameProvider
 		
-	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		fsa.generateFile(OutputPathUtils.sliceDistribution + "/pom.xml", compileDistributionPOM(resource))
+	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
+		fsa.generateFile(OutputPathUtils.sliceDistribution + "/pom.xml", compileDistributionPOM(resources))
 		fsa.generateFile(OutputPathUtils.sliceDistribution + "/run_slice.bat", compileRunBatch)
 		fsa.generateFile(OutputPathUtils.sliceDistribution + "/run_slice.sh", compileRunShell)		
 	}
 	
-	def compileDistributionPOM(Resource resource) '''
+	def compileDistributionPOM(List<Resource> resources) '''
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		
@@ -112,7 +112,7 @@ class DistributionGenerator implements IGenerator {
 					<artifactId>org.etri.slice.commons</artifactId>
 					<version>0.9.1</version>
 				</dependency>										
-				«FOR e: resource.allContents.toIterable.filter(typeof(DomainDeclaration))»
+				«FOR e: resources.map[allContents.toIterable.filter(typeof(DomainDeclaration))].flatten»
 					<dependency>
 						<groupId>org.etri.slice.commons</groupId>
 						<artifactId>org.etri.slice.commons.«e.fullyQualifiedName»</artifactId>
@@ -120,8 +120,22 @@ class DistributionGenerator implements IGenerator {
 					</dependency>
 				«ENDFOR»
 				
+				«IF resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten.size > 0»
+				«val agent = resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten.get(0)»
+				<dependency>
+					<groupId>org.etri.slice</groupId>
+					<artifactId>org.etri.slice.agents.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»</artifactId>
+					<version>0.9.1</version>
+				</dependency>
+				<dependency>
+					<groupId>org.etri.slice.devices</groupId>
+					<artifactId>org.etri.slice.devices.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»</artifactId>
+					<version>0.9.1</version>
+				</dependency>
+				«ENDIF»
+				«IF resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten.size > 1»
 		<!--	
-				«FOR e: resource.allContents.toIterable.filter(typeof(AgentDeclaration))»	
+				«FOR e: resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten»	
 					<dependency>
 						<groupId>org.etri.slice</groupId>
 						<artifactId>org.etri.slice.agents.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</artifactId>
@@ -134,6 +148,7 @@ class DistributionGenerator implements IGenerator {
 					</dependency>										
 				«ENDFOR»	
 		-->
+				«ENDIF»							
 			</dependencies>
 		
 			<build>
@@ -222,5 +237,10 @@ class DistributionGenerator implements IGenerator {
 	
 	def compileRunShell() '''
 		java -jar -Dcom.sun.management.jmxremote.port=3403 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false ./bin/felix.jar
-	'''	
+	'''
+	
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

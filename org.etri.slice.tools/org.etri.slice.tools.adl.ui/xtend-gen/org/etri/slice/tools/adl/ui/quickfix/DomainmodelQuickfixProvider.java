@@ -54,7 +54,6 @@ public class DomainmodelQuickfixProvider extends XbaseQuickfixProvider {
   public void removeDuplicatedElement(final Issue issue, final IssueResolutionAcceptor acceptor) {
     final ISemanticModification _function = (EObject element, IModificationContext context) -> {
       final EObject container = element.eContainer();
-      System.out.println(("container " + container));
       if ((container instanceof DomainModel)) {
         ((DomainModel) container).getElements().remove(element);
       } else {
@@ -64,6 +63,21 @@ public class DomainmodelQuickfixProvider extends XbaseQuickfixProvider {
       }
     };
     acceptor.accept(issue, "Remove duplicated element", "Remove duplicated element", "delete_obj.png", _function);
+  }
+  
+  @Fix(IssueCodes.DUPLICATE_EXTERNAL_ELEMENT)
+  public void removeDuplicatedExternalElement(final Issue issue, final IssueResolutionAcceptor acceptor) {
+    final ISemanticModification _function = (EObject element, IModificationContext context) -> {
+      final EObject container = element.eContainer();
+      if ((container instanceof DomainModel)) {
+        ((DomainModel) container).getElements().remove(element);
+      } else {
+        if ((container instanceof DomainDeclaration)) {
+          ((DomainDeclaration) container).getElements().remove(element);
+        }
+      }
+    };
+    acceptor.accept(issue, "Remove local duplicated element", "Remove local duplicated element", "delete_obj.png", _function);
   }
   
   @Fix(IssueCodes.DUPLICATE_FEATURE)
@@ -105,11 +119,6 @@ public class DomainmodelQuickfixProvider extends XbaseQuickfixProvider {
       ((Context) element).setSuperType(null);
     };
     acceptor.accept(issue, "Remove supertype", _builder.toString(), "delete_obj.gif", _function);
-  }
-  
-  @Fix(IssueCodes.CONTROL_HIERARCHY_CYCLE)
-  public Object removeControlCycleInHierarchy(final Issue issue, final IssueResolutionAcceptor acceptor) {
-    return null;
   }
   
   @Fix(IssueCodes.EVENT_HIERARCHY_CYCLE)
