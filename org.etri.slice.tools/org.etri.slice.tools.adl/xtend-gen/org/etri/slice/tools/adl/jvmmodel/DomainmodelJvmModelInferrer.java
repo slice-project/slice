@@ -52,11 +52,6 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   private GeneratorUtils _generatorUtils;
   
   protected void _infer(final Context context, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
-    String _name = context.getName();
-    boolean _tripleEquals = (_name == null);
-    if (_tripleEquals) {
-      return;
-    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(context));
       JvmParameterizedTypeReference _superType = context.getSuperType();
@@ -108,11 +103,6 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final org.etri.slice.tools.adl.domainmodel.Exception exc, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
-    String _name = exc.getName();
-    boolean _tripleEquals = (_name == null);
-    if (_tripleEquals) {
-      return;
-    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(exc));
       JvmParameterizedTypeReference _superType = exc.getSuperType();
@@ -153,11 +143,6 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final Event event, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
-    String _name = event.getName();
-    boolean _tripleEquals = (_name == null);
-    if (_tripleEquals) {
-      return;
-    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(event));
       JvmParameterizedTypeReference _superType = event.getSuperType();

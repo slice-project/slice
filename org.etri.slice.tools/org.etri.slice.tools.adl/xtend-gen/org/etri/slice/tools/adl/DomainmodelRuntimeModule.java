@@ -31,7 +31,7 @@ public class DomainmodelRuntimeModule extends AbstractDomainmodelRuntimeModule {
     return DomainModelOutputConfigurationProvider.class;
   }
   
-  public Class<? extends IGeneratorForMultiInput> bindIGenerator2() {
+  public Class<? extends IGeneratorForMultiInput> bindIGeneratorForMultiInput() {
     return ADLGenerator.class;
   }
   
