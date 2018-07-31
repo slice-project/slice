@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.sensor;
+package org.etri.slice.commons.device;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,7 +50,7 @@ public abstract class AbstractPollingSensor<E> implements Sensor, Runnable {
 	@Override
 	public void start() throws SliceException {
 		m_executor.execute(this);
-		
+		s_logger.info("STARTED: AbstractPollingSensor");
 	}
 
 	@Override
@@ -59,6 +59,7 @@ public abstract class AbstractPollingSensor<E> implements Sensor, Runnable {
 		m_stopRequested = true;
 		m_stopCondition.signal();
 		m_lock.unlock();
+		s_logger.info("STOPPED: AbstractPollingSensor");		
 	}
 
 	@Override

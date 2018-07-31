@@ -19,8 +19,8 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons;
+package org.etri.slice.commons.internal;
 
-public interface Control {
+public interface ControlBase {
 
 }

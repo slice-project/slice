@@ -19,8 +19,14 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.device;
+package org.etri.slice.commons.device.mqtt;
 
-public interface DataListener<T> {
-	void dataReceived(T data);
+import org.apache.edgent.execution.Job;
+import org.apache.edgent.execution.Submitter;
+import org.apache.edgent.topology.Topology;
+import org.apache.edgent.topology.TopologyProvider;
+
+public interface MqttDevice extends Submitter<Topology, Job>, TopologyProvider {
+	
+	String getMqttURL();
 }

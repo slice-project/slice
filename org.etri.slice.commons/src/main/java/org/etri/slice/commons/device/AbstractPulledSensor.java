@@ -19,7 +19,7 @@
  * along with The SLICE components; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.commons.sensor;
+package org.etri.slice.commons.device;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -31,13 +31,12 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.http.annotation.GuardedBy;
-import org.etri.slice.commons.ContextListener;
 import org.etri.slice.commons.Sensor;
 import org.etri.slice.commons.SliceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractPulledSensor<E> implements Sensor, Runnable, ContextListener<E> {
+public abstract class AbstractPulledSensor<E> implements Sensor, Runnable, DataListener<E> {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(AbstractPulledSensor.class);	
 
@@ -50,18 +49,19 @@ public abstract class AbstractPulledSensor<E> implements Sensor, Runnable, Conte
 	protected abstract void publish(E e);
 	
 	@Override
-	public void contextReceived(E context) {
+	public void dataReceived(E data) {
 		try {
-			m_queue.put(context);
+			m_queue.put(data);
 		} 
 		catch ( InterruptedException e ) {	
-			s_logger.debug("Interrupted: PUT - " + context);
+			s_logger.debug("Interrupted: PUT - " + data);
 		}
 	}
 	
 	@Override
 	public void start() throws SliceException {
 		m_executor.execute(this);
+		s_logger.info("STARTED: AbstractPulledSensor");		
 	}
 
 	@Override
@@ -69,12 +69,12 @@ public abstract class AbstractPulledSensor<E> implements Sensor, Runnable, Conte
 		m_lock.lock();
 		m_stopRequested = true;
 		m_lock.unlock();
+		s_logger.info("STOPPED: AbstractPulledSensor");			
 	}
 
 	@Override
 	public void run() {
-		m_lock.lock();
-		while ( !m_stopRequested ) {
+		while ( !isStopRequested() ) {
 			E element = null;
 			try {
 				element = m_queue.poll(100, TimeUnit.MILLISECONDS);
@@ -86,7 +86,14 @@ public abstract class AbstractPulledSensor<E> implements Sensor, Runnable, Conte
 				publish(element);
 			}
 		}
-		m_lock.unlock();
 	}
 
+	private boolean isStopRequested() {
+		m_lock.lock();
+		boolean isRequested = m_stopRequested;
+		m_lock.unlock();
+		
+		return isRequested;
+	}
+	
 }
