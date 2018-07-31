@@ -30,7 +30,7 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension GeneratorUtils
 
 	def dispatch infer(Context context, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-		if ( context.name === null) return;
+//		if ( context.name === null) return;
 		accept(context.toClass( context.fullyQualifiedName.adaptToSlice("context") )) [
 			documentation = context.documentation
 						
@@ -64,7 +64,7 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	}
 	
 	def dispatch infer(Exception exc, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-		if ( exc.name === null) return;
+//		if ( exc.name === null) return;
 		accept(exc.toClass( exc.fullyQualifiedName.adaptToSlice("") )) [
 			documentation = exc.documentation
 			if (exc.superType !== null)
@@ -88,7 +88,7 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	}	
 	
 	def dispatch infer(Event event, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-		if ( event.name === null) return;
+//		if ( event.name === null) return;
 		accept(event.toClass( event.fullyQualifiedName.adaptToSlice("event") )) [
 			documentation = event.documentation
 			if (event.superType !== null)

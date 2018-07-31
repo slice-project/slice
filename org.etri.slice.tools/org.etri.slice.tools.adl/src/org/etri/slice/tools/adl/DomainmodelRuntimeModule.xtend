@@ -28,7 +28,7 @@ class DomainmodelRuntimeModule extends AbstractDomainmodelRuntimeModule {
 		return DomainModelOutputConfigurationProvider
 	}
 	
-	def Class<? extends IGeneratorForMultiInput> bindIGenerator2() {
+	def Class<? extends IGeneratorForMultiInput> bindIGeneratorForMultiInput() {
 		return ADLGenerator;
 	}
 	
