@@ -14,7 +14,8 @@ class Domain {
 	
 	new(String domain)
 	{
-		this.domain = domain
+		this.domain = domain 
+		
 	}
 	
 	new(DomainDeclaration domain, String domainFQN)
