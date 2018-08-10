@@ -6,6 +6,7 @@ package org.etri.slice.tools.adl.validation;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
@@ -13,7 +14,10 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
@@ -31,9 +35,13 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
 import org.etri.slice.tools.adl.domainmodel.Agency;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
+import org.etri.slice.tools.adl.domainmodel.Call;
+import org.etri.slice.tools.adl.domainmodel.Command;
+import org.etri.slice.tools.adl.domainmodel.CommandContext;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
@@ -382,6 +390,106 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
         String _plus_1 = (_plus + "\' must inherits another exception.");
         this.error(_plus_1, exception, 
           DomainmodelPackage.Literals.EXCEPTION__SUPER_TYPE, IssueCodes.EXCEPTION_MUST_EXTENDS_EXCEPTION);
+      }
+    }
+  }
+  
+  @Check
+  public void checkCommandContextProperty(final CommandContext commandContext) {
+    if (((commandContext.getContext() != null) && (commandContext.getProperty() != null))) {
+      final ArrayList<String> properties = new ArrayList<String>();
+      JvmType _context = commandContext.getContext();
+      JvmGenericType context = ((JvmGenericType) _context);
+      final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
+        boolean _matched = false;
+        if (feature instanceof JvmField) {
+          _matched=true;
+          properties.add(((JvmField)feature).getSimpleName());
+        }
+      };
+      context.getAllFeatures().forEach(_function);
+      boolean _contains = properties.contains(commandContext.getProperty());
+      boolean _not = (!_contains);
+      if (_not) {
+        String _property = commandContext.getProperty();
+        String _plus = ("command context property \'" + _property);
+        String _plus_1 = (_plus + "\' is not feature of context ");
+        String _simpleName = commandContext.getContext().getSimpleName();
+        String _plus_2 = (_plus_1 + _simpleName);
+        this.error(_plus_2, commandContext, 
+          DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY, IssueCodes.INVALID_COMMAND_CONTEXT_PROPERTY);
+      }
+    }
+  }
+  
+  @Check
+  public void checkCommandMethod(final Command command) {
+    if (((command.getAction() != null) && (command.getMethod() != null))) {
+      final ArrayList<String> methods = new ArrayList<String>();
+      JvmType _action = command.getAction();
+      JvmGenericType cmd = ((JvmGenericType) _action);
+      final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
+        boolean _matched = false;
+        if (feature instanceof JvmOperation) {
+          _matched=true;
+          methods.add(((JvmOperation)feature).getSimpleName());
+        }
+        if (!_matched) {
+          if (feature instanceof JvmField) {
+            _matched=true;
+            String _firstUpper = StringExtensions.toFirstUpper(((JvmField)feature).getSimpleName());
+            final String setter = ("set" + _firstUpper);
+            methods.add(setter);
+          }
+        }
+      };
+      cmd.getAllFeatures().forEach(_function);
+      boolean _contains = methods.contains(command.getMethod());
+      boolean _not = (!_contains);
+      if (_not) {
+        String _method = command.getMethod();
+        String _plus = ("command method \'" + _method);
+        String _plus_1 = (_plus + "\' is not method of action ");
+        String _simpleName = command.getAction().getSimpleName();
+        String _plus_2 = (_plus_1 + _simpleName);
+        this.error(_plus_2, command, 
+          DomainmodelPackage.Literals.COMMAND__METHOD, IssueCodes.INVALID_COMMAND_METHOD);
+      }
+    }
+  }
+  
+  @Check
+  public void checkCallMethod(final Call call) {
+    if (((call.getControl() != null) && (call.getMethod() != null))) {
+      final ArrayList<String> methods = new ArrayList<String>();
+      JvmType _control = call.getControl();
+      JvmGenericType control = ((JvmGenericType) _control);
+      final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
+        boolean _matched = false;
+        if (feature instanceof JvmOperation) {
+          _matched=true;
+          methods.add(((JvmOperation)feature).getSimpleName());
+        }
+        if (!_matched) {
+          if (feature instanceof JvmField) {
+            _matched=true;
+            String _firstUpper = StringExtensions.toFirstUpper(((JvmField)feature).getSimpleName());
+            final String setter = ("set" + _firstUpper);
+            methods.add(setter);
+          }
+        }
+      };
+      control.getAllFeatures().forEach(_function);
+      boolean _contains = methods.contains(call.getMethod());
+      boolean _not = (!_contains);
+      if (_not) {
+        String _method = call.getMethod();
+        String _plus = ("call method \'" + _method);
+        String _plus_1 = (_plus + "\' is not method of control ");
+        String _simpleName = call.getControl().getSimpleName();
+        String _plus_2 = (_plus_1 + _simpleName);
+        this.error(_plus_2, call, 
+          DomainmodelPackage.Literals.CALL__METHOD, IssueCodes.INVALID_CALL_METHOD);
       }
     }
   }
