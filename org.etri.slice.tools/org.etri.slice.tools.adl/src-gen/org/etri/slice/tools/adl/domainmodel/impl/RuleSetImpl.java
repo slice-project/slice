@@ -19,12 +19,12 @@ import org.etri.slice.tools.adl.domainmodel.RuleSet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.RuleSetImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.RuleSetImpl#getGroup_id <em>Group id</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.RuleSetImpl#getArtifact_id <em>Artifact id</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

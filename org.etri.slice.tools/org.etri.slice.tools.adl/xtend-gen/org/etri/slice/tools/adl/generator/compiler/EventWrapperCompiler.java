@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.UUID;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
-import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
 
 @SuppressWarnings("all")
@@ -23,7 +24,7 @@ public class EventWrapperCompiler {
   @Extension
   private GeneratorUtils _generatorUtils;
   
-  public CharSequence compileWrapper(final Event it, final AgentDeclaration agent) {
+  public CharSequence compileEventWrapper(final JvmType it, final AgentDeclaration agent) {
     StringConcatenation _builder = new StringConcatenation();
     final ImportManager importManager = new ImportManager(true);
     _builder.append(" ");
@@ -66,14 +67,14 @@ public class EventWrapperCompiler {
     _builder.append("import org.etri.slice.core.perception.MqttEventPublisher;");
     _builder.newLine();
     _builder.append("import org.etri.slice.agents.");
-    QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
+    QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
     _builder.append(_fullyQualifiedName_1);
     _builder.append(".");
     String _lowerCase_1 = agent.getName().toLowerCase();
     _builder.append(_lowerCase_1);
     _builder.append(".stream.");
-    String _name = it.getName();
-    _builder.append(_name);
+    String _simpleName = it.getSimpleName();
+    _builder.append(_simpleName);
     _builder.append("Stream;");
     _builder.newLineIfNotEmpty();
     {
@@ -92,17 +93,17 @@ public class EventWrapperCompiler {
     return _builder;
   }
   
-  public CharSequence body(final Event it, final AgentDeclaration agent, final ImportManager importManager) {
+  public CharSequence body(final JvmType it, final AgentDeclaration agent, final ImportManager importManager) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("@Component");
     _builder.newLine();
     _builder.append("@Instantiate");
     _builder.newLine();
     _builder.append("public class ");
-    String _name = it.getName();
-    _builder.append(_name);
+    String _simpleName = it.getSimpleName();
+    _builder.append(_simpleName);
     _builder.append("Channel extends MqttEventPublisher<");
-    CharSequence _serialize = importManager.serialize(this._generatorUtils.toJvmGenericType(it, this._iQualifiedNameProvider.getFullyQualifiedName(it), "event"));
+    CharSequence _serialize = importManager.serialize(((JvmGenericType) it));
     _builder.append(_serialize);
     _builder.append("> {");
     _builder.newLineIfNotEmpty();
@@ -116,8 +117,8 @@ public class EventWrapperCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Property(name=\"topic\", value=");
-    String _name_1 = it.getName();
-    _builder.append(_name_1, "\t");
+    String _simpleName_1 = it.getSimpleName();
+    _builder.append(_simpleName_1, "\t");
     _builder.append(".TOPIC)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -156,14 +157,14 @@ public class EventWrapperCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Requires(from=");
-    String _name_2 = it.getName();
-    _builder.append(_name_2, "\t");
+    String _simpleName_2 = it.getSimpleName();
+    _builder.append(_simpleName_2, "\t");
     _builder.append("Stream.SERVICE_NAME)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private EventStream<");
-    String _name_3 = it.getName();
-    _builder.append(_name_3, "\t");
+    String _simpleName_3 = it.getSimpleName();
+    _builder.append(_simpleName_3, "\t");
     _builder.append("> m_streaming;\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -214,8 +215,8 @@ public class EventWrapperCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("protected EventStream<");
-    String _name_4 = it.getName();
-    _builder.append(_name_4, "\t");
+    String _simpleName_4 = it.getSimpleName();
+    _builder.append(_simpleName_4, "\t");
     _builder.append("> getEventStream() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");

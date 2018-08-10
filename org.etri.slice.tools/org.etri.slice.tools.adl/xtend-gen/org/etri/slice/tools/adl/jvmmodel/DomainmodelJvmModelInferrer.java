@@ -22,6 +22,7 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.Event;
@@ -194,14 +195,7 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final Control control, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
-    String _name = control.getName();
-    boolean _tripleEquals = (_name == null);
-    if (_tripleEquals) {
-      return;
-    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
-    };
-    final Procedure1<JvmGenericType> _function_1 = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(control));
       int _size = control.getSuperTypes().size();
       boolean _greaterThan = (_size > 0);
@@ -218,18 +212,16 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
         boolean _matched = false;
         if (f instanceof Property) {
           _matched=true;
+          final JvmField member = this._jvmTypesBuilder.toField(f, ((Property)f).getName(), ((Property)f).getType());
+          member.setStatic(true);
           EList<JvmMember> _members = it.getMembers();
-          JvmOperation _getter = this._jvmTypesBuilder.toGetter(f, ((Property)f).getName(), ((Property)f).getType());
-          this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _getter);
-          EList<JvmMember> _members_1 = it.getMembers();
-          JvmOperation _setter = this._jvmTypesBuilder.toSetter(f, ((Property)f).getName(), ((Property)f).getType());
-          this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _setter);
+          this._jvmTypesBuilder.<JvmField>operator_add(_members, member);
         }
         if (!_matched) {
           if (f instanceof Operation) {
             _matched=true;
             EList<JvmMember> _members = it.getMembers();
-            String _name_1 = ((Operation)f).getName();
+            String _name = ((Operation)f).getName();
             JvmTypeReference _elvis = null;
             JvmTypeReference _type = ((Operation)f).getType();
             if (_type != null) {
@@ -238,7 +230,7 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
               JvmTypeReference _inferredType = this._jvmTypesBuilder.inferredType();
               _elvis = _inferredType;
             }
-            final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
+            final Procedure1<JvmOperation> _function_1 = (JvmOperation it_1) -> {
               this._jvmTypesBuilder.setDocumentation(it_1, this._jvmTypesBuilder.getDocumentation(f));
               EList<JvmFormalParameter> _params = ((Operation)f).getParams();
               for (final JvmFormalParameter p : _params) {
@@ -253,34 +245,40 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
                 this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions_1, _cloneWithProxies_1);
               }
             };
-            JvmOperation _method = this._jvmTypesBuilder.toMethod(f, _name_1, _elvis, _function_2);
+            JvmOperation _method = this._jvmTypesBuilder.toMethod(f, _name, _elvis, _function_1);
             this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
           }
         }
       }
     };
-    acceptor.<JvmGenericType>accept(this._jvmTypesBuilder.toInterface(control, this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(control), "service").toString(), _function), _function_1);
+    acceptor.<JvmGenericType>accept(this._jvmTypesBuilder.toInterface(control, this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(control), "service").toString(), _function));
   }
   
-  public void infer(final EObject context, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
-    if (context instanceof Context) {
-      _infer((Context)context, acceptor, prelinkingPhase);
+  protected void _infer(final AgentDeclaration agent, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
+  }
+  
+  public void infer(final EObject agent, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
+    if (agent instanceof AgentDeclaration) {
+      _infer((AgentDeclaration)agent, acceptor, prelinkingPhase);
       return;
-    } else if (context instanceof Control) {
-      _infer((Control)context, acceptor, prelinkingPhase);
+    } else if (agent instanceof Context) {
+      _infer((Context)agent, acceptor, prelinkingPhase);
       return;
-    } else if (context instanceof Event) {
-      _infer((Event)context, acceptor, prelinkingPhase);
+    } else if (agent instanceof Control) {
+      _infer((Control)agent, acceptor, prelinkingPhase);
       return;
-    } else if (context instanceof org.etri.slice.tools.adl.domainmodel.Exception) {
-      _infer((org.etri.slice.tools.adl.domainmodel.Exception)context, acceptor, prelinkingPhase);
+    } else if (agent instanceof Event) {
+      _infer((Event)agent, acceptor, prelinkingPhase);
       return;
-    } else if (context != null) {
-      _infer(context, acceptor, prelinkingPhase);
+    } else if (agent instanceof org.etri.slice.tools.adl.domainmodel.Exception) {
+      _infer((org.etri.slice.tools.adl.domainmodel.Exception)agent, acceptor, prelinkingPhase);
+      return;
+    } else if (agent != null) {
+      _infer(agent, acceptor, prelinkingPhase);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(context, acceptor, prelinkingPhase).toString());
+        Arrays.<Object>asList(agent, acceptor, prelinkingPhase).toString());
     }
   }
 }

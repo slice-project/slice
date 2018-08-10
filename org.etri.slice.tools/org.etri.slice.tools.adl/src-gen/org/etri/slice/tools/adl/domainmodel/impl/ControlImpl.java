@@ -27,11 +27,11 @@ import org.etri.slice.tools.adl.domainmodel.Feature;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.ControlImpl#getSuperTypes <em>Super Types</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.ControlImpl#getFeatures <em>Features</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

@@ -7,6 +7,7 @@
  */
 package org.etri.slice.tools.adl;
 
+import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.resource.persistence.IResourceStorageFacade;
 import org.eclipse.xtext.xbase.resource.BatchLinkableResourceStorageFacade;
@@ -29,6 +30,11 @@ public class DomainmodelRuntimeModule extends AbstractDomainmodelRuntimeModule {
   
   public Class<? extends OutputConfigurationProvider> bindOutputConfigurationProvider() {
     return DomainModelOutputConfigurationProvider.class;
+  }
+  
+  @Override
+  public Class<? extends IGenerator> bindIGenerator() {
+    return ADLGenerator.class;
   }
   
   public Class<? extends IGeneratorForMultiInput> bindIGeneratorForMultiInput() {

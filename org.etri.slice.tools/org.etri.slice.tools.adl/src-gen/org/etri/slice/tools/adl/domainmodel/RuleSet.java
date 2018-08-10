@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.RuleSet#getName <em>Name</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.RuleSet#getGroup_id <em>Group id</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.RuleSet#getArtifact_id <em>Artifact id</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getRuleSet()
  * @model

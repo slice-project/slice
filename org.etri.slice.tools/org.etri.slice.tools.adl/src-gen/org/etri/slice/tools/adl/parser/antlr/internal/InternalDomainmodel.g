@@ -1031,13 +1031,19 @@ ruleCommandSet returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getCommandSetRule());
-					}
+					newCompositeNode(grammarAccess.getCommandSetAccess().getControlJvmTypeReferenceParserRuleCall_1_0());
 				}
-				otherlv_1=RULE_ID
+				lv_control_1_0=ruleJvmTypeReference
 				{
-					newLeafNode(otherlv_1, grammarAccess.getCommandSetAccess().getControlControlCrossReference_1_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCommandSetRule());
+					}
+					set(
+						$current,
+						"control",
+						lv_control_1_0,
+						"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1146,7 +1152,7 @@ ruleCommand returns [EObject current=null]
 				}
 				otherlv_5=RULE_ID
 				{
-					newLeafNode(otherlv_5, grammarAccess.getCommandAccess().getActionControlCrossReference_5_0());
+					newLeafNode(otherlv_5, grammarAccess.getCommandAccess().getActionJvmTypeCrossReference_5_0());
 				}
 			)
 		)
@@ -1209,7 +1215,7 @@ ruleCommandContext returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getCommandContextAccess().getContextContextCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getCommandContextAccess().getContextJvmTypeCrossReference_1_0());
 				}
 			)
 		)
@@ -1262,13 +1268,19 @@ ruleSituation returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSituationRule());
-					}
+					newCompositeNode(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_1_0());
 				}
-				otherlv_1=RULE_ID
+				lv_types_1_0=ruleJvmTypeReference
 				{
-					newLeafNode(otherlv_1, grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_1_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSituationRule());
+					}
+					add(
+						$current,
+						"types",
+						lv_types_1_0,
+						"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1280,13 +1292,19 @@ ruleSituation returns [EObject current=null]
 			(
 				(
 					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getSituationRule());
-						}
+						newCompositeNode(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_2_1_0());
 					}
-					otherlv_3=RULE_ID
+					lv_types_3_0=ruleJvmTypeReference
 					{
-						newLeafNode(otherlv_3, grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_2_1_0());
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSituationRule());
+						}
+						add(
+							$current,
+							"types",
+							lv_types_3_0,
+							"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -1378,13 +1396,19 @@ rulePublish returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPublishRule());
-					}
+					newCompositeNode(grammarAccess.getPublishAccess().getEventJvmTypeReferenceParserRuleCall_1_0());
 				}
-				otherlv_1=RULE_ID
+				lv_event_1_0=ruleJvmTypeReference
 				{
-					newLeafNode(otherlv_1, grammarAccess.getPublishAccess().getEventEventCrossReference_1_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPublishRule());
+					}
+					set(
+						$current,
+						"event",
+						lv_event_1_0,
+						"org.eclipse.xtext.xbase.Xtype.JvmTypeReference");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1461,7 +1485,7 @@ ruleCall returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getCallAccess().getControlControlCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getCallAccess().getControlJvmTypeCrossReference_1_0());
 				}
 			)
 		)

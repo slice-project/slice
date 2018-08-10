@@ -538,7 +538,7 @@ public interface DomainmodelPackage extends EPackage
   int COMMAND_SET = 11;
 
   /**
-   * The feature id for the '<em><b>Control</b></em>' reference.
+   * The feature id for the '<em><b>Control</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -686,7 +686,7 @@ public interface DomainmodelPackage extends EPackage
   int SITUATION = 15;
 
   /**
-   * The feature id for the '<em><b>Types</b></em>' reference list.
+   * The feature id for the '<em><b>Types</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -751,7 +751,7 @@ public interface DomainmodelPackage extends EPackage
   int PUBLISH__ACTION = ACTION__ACTION;
 
   /**
-   * The feature id for the '<em><b>Event</b></em>' reference.
+   * The feature id for the '<em><b>Event</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1411,10 +1411,10 @@ public interface DomainmodelPackage extends EPackage
   EClass getCommandSet();
 
   /**
-   * Returns the meta object for the reference '{@link org.etri.slice.tools.adl.domainmodel.CommandSet#getControl <em>Control</em>}'.
+   * Returns the meta object for the containment reference '{@link org.etri.slice.tools.adl.domainmodel.CommandSet#getControl <em>Control</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Control</em>'.
+   * @return the meta object for the containment reference '<em>Control</em>'.
    * @see org.etri.slice.tools.adl.domainmodel.CommandSet#getControl()
    * @see #getCommandSet()
    * @generated
@@ -1539,10 +1539,10 @@ public interface DomainmodelPackage extends EPackage
   EClass getSituation();
 
   /**
-   * Returns the meta object for the reference list '{@link org.etri.slice.tools.adl.domainmodel.Situation#getTypes <em>Types</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.etri.slice.tools.adl.domainmodel.Situation#getTypes <em>Types</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Types</em>'.
+   * @return the meta object for the containment reference list '<em>Types</em>'.
    * @see org.etri.slice.tools.adl.domainmodel.Situation#getTypes()
    * @see #getSituation()
    * @generated
@@ -1581,10 +1581,10 @@ public interface DomainmodelPackage extends EPackage
   EClass getPublish();
 
   /**
-   * Returns the meta object for the reference '{@link org.etri.slice.tools.adl.domainmodel.Publish#getEvent <em>Event</em>}'.
+   * Returns the meta object for the containment reference '{@link org.etri.slice.tools.adl.domainmodel.Publish#getEvent <em>Event</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Event</em>'.
+   * @return the meta object for the containment reference '<em>Event</em>'.
    * @see org.etri.slice.tools.adl.domainmodel.Publish#getEvent()
    * @see #getPublish()
    * @generated
@@ -2088,7 +2088,7 @@ public interface DomainmodelPackage extends EPackage
     EClass COMMAND_SET = eINSTANCE.getCommandSet();
 
     /**
-     * The meta object literal for the '<em><b>Control</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Control</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2192,7 +2192,7 @@ public interface DomainmodelPackage extends EPackage
     EClass SITUATION = eINSTANCE.getSituation();
 
     /**
-     * The meta object literal for the '<em><b>Types</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Types</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2228,7 +2228,7 @@ public interface DomainmodelPackage extends EPackage
     EClass PUBLISH = eINSTANCE.getPublish();
 
     /**
-     * The meta object literal for the '<em><b>Event</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Event</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

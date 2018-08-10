@@ -2,6 +2,8 @@ grammar org.etri.slice.tools.adl.Domainmodel with org.eclipse.xtext.xbase.Xbase
 
 generate domainmodel "http://www.etri.org/slice/tools/adl/Domainmodel"
 
+import "http://www.eclipse.org/xtext/common/JavaVMTypes"
+
 DomainModel:
 	importSection=XImportSection?
 	elements+=AbstractElement*;
@@ -23,7 +25,7 @@ Event:
 	topic=Topic
 	'event' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{'
 		properties+=Property*
-	'}';	
+	'}';
 	
 Exception:
 	'exception' name=ValidID ('extends' superType=JvmParameterizedTypeReference)?';';	
@@ -59,36 +61,36 @@ Behavior:
 	'end';
 	
 CommandSet:
-	'hasCommandsOf' control=[Control] '{'
+	'hasCommandsOf' control=JvmTypeReference '{'
 		commands+=Command+
 	'}';	
 	
 Command:
 	'command' name=ValidID '{'
 		contexts += CommandContext+
-		'action' action=[Control]'.'method=ValidID
+		'action' action=[JvmType] '.' method=ValidID
 	'}';
 	
 CommandContext:
-	'context' context=[Context]'.'property=ValidID;	
+	'context' context=[JvmType] '.' property=ValidID;	
 
 DataType:
 	Context | Event;
 
 Situation:
-	'on' types+=[DataType] (',' types+=[DataType])*;
+	'on' types+=JvmTypeReference (',' types+=JvmTypeReference)*;
 
 Action:
 	'do' (Publish | Call | NoOp);
 
 Publish:
-	action='publish' event=[Event];
+	action='publish' event=JvmTypeReference;
 
 NoOp:
 	action='no-op';
 
 Call:
-	action='call' control=[Control]'.'method=ValidID;
+	action='call' control=[JvmType] '.'method=ValidID;
 
 Feature:
 	Property | Operation;

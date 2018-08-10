@@ -31,11 +31,11 @@ import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.DomainModelImpl#getImportSection <em>Import Section</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.DomainModelImpl#getElements <em>Elements</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

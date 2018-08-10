@@ -9,8 +9,8 @@ import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 
 @Singleton
 class DomainManager {
+	@Inject extension IQualifiedNameProvider
 	
-	@Inject extension IQualifiedNameProvider	
 	public HashMap<String, Domain> domains = new HashMap<String, Domain>()
 		
 	def init() {

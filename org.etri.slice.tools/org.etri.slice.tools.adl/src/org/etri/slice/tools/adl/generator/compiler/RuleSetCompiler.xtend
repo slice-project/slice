@@ -4,9 +4,12 @@ import com.google.inject.Inject
 import java.util.HashSet
 import java.util.Set
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmType
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
+import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
 import org.etri.slice.tools.adl.domainmodel.AbstractElement
 import org.etri.slice.tools.adl.domainmodel.Action
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
@@ -14,7 +17,6 @@ import org.etri.slice.tools.adl.domainmodel.Behavior
 import org.etri.slice.tools.adl.domainmodel.Call
 import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.domainmodel.Control
-import org.etri.slice.tools.adl.domainmodel.DataType
 import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.domainmodel.Publish
 import org.etri.slice.tools.adl.domainmodel.Situation
@@ -29,6 +31,8 @@ class RuleSetCompiler {
 	@Inject extension IQualifiedNameProvider	
 	@Inject extension BehaviorGenerator
 	
+	@Inject extension JvmModelAssociator
+	
 	def compileRuleSet(AgentDeclaration it, IFileSystemAccess fsa) {
 		m_fsa = fsa
 		m_globals.clear	
@@ -36,7 +40,7 @@ class RuleSetCompiler {
 		«val importManager = new ImportManager(true)» 
 		«val body = ruleBody(importManager)»
 		«IF eContainer !== null»
-			package org.etri.slice.rules.«eContainer.fullyQualifiedName».«name.toLowerCase»;
+			package org.etri.slice.rules.«eContainer.fullyQualifiedName»;
 		«ENDIF»
 		
 		«FOR i:importManager.imports»
@@ -80,7 +84,7 @@ class RuleSetCompiler {
 		«ENDIF»
 	'''	
 	
-	def compileDataType(DataType it, AgentDeclaration agent, ImportManager importManager) {
+	def compileDataType( JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
 		switch ( it ) {
 			Context : '''«compileContextAdaptor(agent, importManager)»(/* */)'''
 			Event : '''«compileEventAdaptor(agent, importManager)»(/* */)'''
@@ -101,20 +105,24 @@ class RuleSetCompiler {
 		
 	def compileAction(Action it, AgentDeclaration agent, ImportManager importManager) {
 		switch it {
-			Publish : '''channels["«event.topic.name»"].send(new «event.compileEventWrapper(agent, importManager)»(/* */));'''
-			Call : '''«control.compileControlWrapper(agent, importManager).toString.toFirstLower».«method»(/* */);'''
+			Publish : '''channels["«(event.type.sourceElements.head as Event).topic.name»"].send(new «event.compileEventWrapper(agent, importManager)»(/* */));'''
+			Call : '''«control.compileControlWrapper(agent, importManager).toString.toFirstLower».«it.method»(/* */);'''
 		}
 	}
 	
-	def compileEventWrapper(Event it, AgentDeclaration agent, ImportManager importManager) {
-		val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "event")
+	def compileEventWrapper(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
+//		val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "event")
+		val JvmGenericType type = it.type as JvmGenericType
+		
 		generateEventWrapper(agent, m_fsa)
 		importManager.serialize(type)
 	}	
 	
-	def compileControlWrapper(Control it, AgentDeclaration agent, ImportManager importManager) {		
-		add
-		val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "service")
+	def compileControlWrapper(JvmType it, AgentDeclaration agent, ImportManager importManager) {		
+		add(it.sourceElements.head as Control)
+//		val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "service")
+		val JvmGenericType type = it as JvmGenericType
+		
 		generateControlWrapper(agent, m_fsa)
 		importManager.serialize(type)
 	}

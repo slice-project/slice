@@ -23,12 +23,12 @@ import org.etri.slice.tools.adl.domainmodel.Situation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.BehaviorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.BehaviorImpl#getSituation <em>Situation</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.BehaviorImpl#getAction <em>Action</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

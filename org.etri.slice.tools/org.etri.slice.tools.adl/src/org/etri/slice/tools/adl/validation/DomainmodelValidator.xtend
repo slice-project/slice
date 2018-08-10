@@ -5,10 +5,13 @@ package org.etri.slice.tools.adl.validation
 
 import com.google.common.collect.HashMultimap
 import com.google.inject.Inject
+import java.util.ArrayList
 import java.util.Set
 import java.util.regex.Pattern
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.Strings
@@ -18,6 +21,9 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations
 import org.etri.slice.tools.adl.domainmodel.Agency
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
+import org.etri.slice.tools.adl.domainmodel.Call
+import org.etri.slice.tools.adl.domainmodel.Command
+import org.etri.slice.tools.adl.domainmodel.CommandContext
 import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
@@ -303,7 +309,93 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 		}
 	} 
 	
+	@Check def void checkCommandContextProperty(CommandContext  commandContext) {
+		if(commandContext.context !== null && commandContext.property !== null)
+		{
+			
+			val properties = new ArrayList<String>
+			var context = commandContext.context as JvmGenericType
+			
+			context.allFeatures.forEach [ feature |
+				switch feature
+				{
+					JvmField:
+					{
+						properties.add(feature.simpleName)
+					}
+				}						
+			]
+			
+			if(!properties.contains(commandContext.property))
+			{
+				error("command context property '" + commandContext.property + "' is not feature of context " + commandContext.context.simpleName, commandContext,
+						DomainmodelPackage.Literals::COMMAND_CONTEXT__PROPERTY, IssueCodes::INVALID_COMMAND_CONTEXT_PROPERTY)
+			}
+			
 
+		}
+	} 
+	
+	@Check def void checkCommandMethod(Command  command) {
+		if(command.action !== null && command.method !== null)
+		{
+			
+			val methods = new ArrayList<String>
+			var cmd = command.action as JvmGenericType
+			
+			cmd.allFeatures.forEach [ feature |
+				switch feature
+				{
+					JvmOperation:
+					{
+						methods.add(feature.simpleName)
+					}
+					JvmField:
+					{
+						val setter = "set" + feature.simpleName.toFirstUpper
+						methods.add(setter)
+					}
+				}						
+			]
+			
+			if(!methods.contains(command.method))
+			{
+				error("command method '" + command.method + "' is not method of action " + command.action.simpleName, command,
+						DomainmodelPackage.Literals::COMMAND__METHOD, IssueCodes::INVALID_COMMAND_METHOD)
+			}
+		}
+	} 
+	
+	@Check def void checkCallMethod(Call  call) {
+		if(call.control !== null && call.method !== null)
+		{
+			
+			val methods = new ArrayList<String>
+			var control = call.control as JvmGenericType
+			
+			control.allFeatures.forEach [ feature |
+				switch feature
+				{
+					JvmOperation:
+					{
+						methods.add(feature.simpleName)
+					}
+					JvmField:
+					{
+						val setter = "set" + feature.simpleName.toFirstUpper
+						methods.add(setter)
+					}
+				}						
+			]
+			
+			if(!methods.contains(call.method))
+			{
+				error("call method '" + call.method + "' is not method of control " + call.control.simpleName, call,
+						DomainmodelPackage.Literals::CALL__METHOD, IssueCodes::INVALID_CALL_METHOD)
+			}
+		}
+	} 
+	
 	@Check(CheckType.EXPENSIVE) 
 	def void checkDomainCrossReference(DomainDeclaration domain) {
 		if(domainManager.getDomain(domain.fullyQualifiedName.toString).hasCycle)

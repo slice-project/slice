@@ -8,10 +8,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
+import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
@@ -22,7 +25,6 @@ import org.etri.slice.tools.adl.domainmodel.Behavior;
 import org.etri.slice.tools.adl.domainmodel.Call;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Control;
-import org.etri.slice.tools.adl.domainmodel.DataType;
 import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.domainmodel.Publish;
 import org.etri.slice.tools.adl.domainmodel.Situation;
@@ -48,6 +50,10 @@ public class RuleSetCompiler {
   @Extension
   private BehaviorGenerator _behaviorGenerator;
   
+  @Inject
+  @Extension
+  private JvmModelAssociator _jvmModelAssociator;
+  
   public CharSequence compileRuleSet(final AgentDeclaration it, final IFileSystemAccess fsa) {
     CharSequence _xblockexpression = null;
     {
@@ -66,9 +72,6 @@ public class RuleSetCompiler {
           _builder.append("package org.etri.slice.rules.");
           QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
           _builder.append(_fullyQualifiedName);
-          _builder.append(".");
-          String _lowerCase = it.getName().toLowerCase();
-          _builder.append(_lowerCase);
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
@@ -119,8 +122,8 @@ public class RuleSetCompiler {
             _builder.newLineIfNotEmpty();
           } else {
             {
-              EList<DataType> _types = b.getSituation().getTypes();
-              for(final DataType context : _types) {
+              EList<JvmTypeReference> _types = b.getSituation().getTypes();
+              for(final JvmTypeReference context : _types) {
                 this._behaviorGenerator.generateAdaptor(context, it, this.m_fsa);
               }
             }
@@ -173,8 +176,8 @@ public class RuleSetCompiler {
         _builder.newLineIfNotEmpty();
       } else {
         {
-          EList<DataType> _types = it.getTypes();
-          for(final DataType context : _types) {
+          EList<JvmTypeReference> _types = it.getTypes();
+          for(final JvmTypeReference context : _types) {
             _builder.append("$e");
             int _plusPlus = index++;
             _builder.append(_plusPlus);
@@ -189,13 +192,13 @@ public class RuleSetCompiler {
     return _builder;
   }
   
-  public CharSequence compileDataType(final DataType it, final AgentDeclaration agent, final ImportManager importManager) {
+  public CharSequence compileDataType(final JvmTypeReference it, final AgentDeclaration agent, final ImportManager importManager) {
     CharSequence _switchResult = null;
     boolean _matched = false;
     if (it instanceof Context) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
-      CharSequence _compileContextAdaptor = this.compileContextAdaptor(((AbstractElement)it), agent, importManager);
+      CharSequence _compileContextAdaptor = this.compileContextAdaptor(((Context)it), agent, importManager);
       _builder.append(_compileContextAdaptor);
       _builder.append("(/* */)");
       _switchResult = _builder;
@@ -204,7 +207,7 @@ public class RuleSetCompiler {
       if (it instanceof Event) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        CharSequence _compileEventAdaptor = this.compileEventAdaptor(((AbstractElement)it), agent, importManager);
+        CharSequence _compileEventAdaptor = this.compileEventAdaptor(((Event)it), agent, importManager);
         _builder.append(_compileEventAdaptor);
         _builder.append("(/* */)");
         _switchResult = _builder;
@@ -240,7 +243,8 @@ public class RuleSetCompiler {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("channels[\"");
-      String _name = ((Publish)it).getEvent().getTopic().getName();
+      EObject _head = IterableExtensions.<EObject>head(this._jvmModelAssociator.getSourceElements(((Publish)it).getEvent().getType()));
+      String _name = ((Event) _head).getTopic().getName();
       _builder.append(_name);
       _builder.append("\"].send(new ");
       CharSequence _compileEventWrapper = this.compileEventWrapper(((Publish)it).getEvent(), agent, importManager);
@@ -264,21 +268,23 @@ public class RuleSetCompiler {
     return _switchResult;
   }
   
-  public CharSequence compileEventWrapper(final Event it, final AgentDeclaration agent, final ImportManager importManager) {
+  public CharSequence compileEventWrapper(final JvmTypeReference it, final AgentDeclaration agent, final ImportManager importManager) {
     CharSequence _xblockexpression = null;
     {
-      final JvmGenericType type = this._generatorUtils.toJvmGenericType(it, this._iQualifiedNameProvider.getFullyQualifiedName(it), "event");
+      JvmType _type = it.getType();
+      final JvmGenericType type = ((JvmGenericType) _type);
       this._behaviorGenerator.generateEventWrapper(it, agent, this.m_fsa);
       _xblockexpression = importManager.serialize(type);
     }
     return _xblockexpression;
   }
   
-  public CharSequence compileControlWrapper(final Control it, final AgentDeclaration agent, final ImportManager importManager) {
+  public CharSequence compileControlWrapper(final JvmType it, final AgentDeclaration agent, final ImportManager importManager) {
     CharSequence _xblockexpression = null;
     {
-      this.m_globals.add(it);
-      final JvmGenericType type = this._generatorUtils.toJvmGenericType(it, this._iQualifiedNameProvider.getFullyQualifiedName(it), "service");
+      EObject _head = IterableExtensions.<EObject>head(this._jvmModelAssociator.getSourceElements(it));
+      this.m_globals.add(((Control) _head));
+      final JvmGenericType type = ((JvmGenericType) it);
       this._behaviorGenerator.generateControlWrapper(it, agent, this.m_fsa);
       _xblockexpression = importManager.serialize(type);
     }

@@ -19581,7 +19581,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5538:1: ( rule__CommandSet__Group__0__Impl rule__CommandSet__Group__1 )
             // InternalDomainmodel.g:5539:2: rule__CommandSet__Group__0__Impl rule__CommandSet__Group__1
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_33);
             rule__CommandSet__Group__0__Impl();
 
             state._fsp--;
@@ -19749,7 +19749,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5592:1: ( rule__CommandSet__Group__2__Impl rule__CommandSet__Group__3 )
             // InternalDomainmodel.g:5593:2: rule__CommandSet__Group__2__Impl rule__CommandSet__Group__3
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             rule__CommandSet__Group__2__Impl();
 
             state._fsp--;
@@ -19878,7 +19878,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5635:3: ( rule__CommandSet__CommandsAssignment_3 )
             // InternalDomainmodel.g:5635:4: rule__CommandSet__CommandsAssignment_3
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             rule__CommandSet__CommandsAssignment_3();
 
             state._fsp--;
@@ -19913,7 +19913,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             	case 1 :
             	    // InternalDomainmodel.g:5640:4: rule__CommandSet__CommandsAssignment_3
             	    {
-            	    pushFollow(FOLLOW_34);
+            	    pushFollow(FOLLOW_35);
             	    rule__CommandSet__CommandsAssignment_3();
 
             	    state._fsp--;
@@ -20206,7 +20206,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5734:1: ( rule__Command__Group__2__Impl rule__Command__Group__3 )
             // InternalDomainmodel.g:5735:2: rule__Command__Group__2__Impl rule__Command__Group__3
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_36);
             rule__Command__Group__2__Impl();
 
             state._fsp--;
@@ -20285,7 +20285,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5761:1: ( rule__Command__Group__3__Impl rule__Command__Group__4 )
             // InternalDomainmodel.g:5762:2: rule__Command__Group__3__Impl rule__Command__Group__4
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_37);
             rule__Command__Group__3__Impl();
 
             state._fsp--;
@@ -20335,7 +20335,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5777:3: ( rule__Command__ContextsAssignment_3 )
             // InternalDomainmodel.g:5777:4: rule__Command__ContextsAssignment_3
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_38);
             rule__Command__ContextsAssignment_3();
 
             state._fsp--;
@@ -20370,7 +20370,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             	case 1 :
             	    // InternalDomainmodel.g:5782:4: rule__Command__ContextsAssignment_3
             	    {
-            	    pushFollow(FOLLOW_37);
+            	    pushFollow(FOLLOW_38);
             	    rule__Command__ContextsAssignment_3();
 
             	    state._fsp--;
@@ -20500,7 +20500,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5822:1: ( rule__Command__Group__5__Impl rule__Command__Group__6 )
             // InternalDomainmodel.g:5823:2: rule__Command__Group__5__Impl rule__Command__Group__6
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__Command__Group__5__Impl();
 
             state._fsp--;
@@ -20910,7 +20910,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:5957:1: ( rule__CommandContext__Group__1__Impl rule__CommandContext__Group__2 )
             // InternalDomainmodel.g:5958:2: rule__CommandContext__Group__1__Impl rule__CommandContext__Group__2
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__CommandContext__Group__1__Impl();
 
             state._fsp--;
@@ -21162,7 +21162,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6038:1: ( rule__Situation__Group__0__Impl rule__Situation__Group__1 )
             // InternalDomainmodel.g:6039:2: rule__Situation__Group__0__Impl rule__Situation__Group__1
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_33);
             rule__Situation__Group__0__Impl();
 
             state._fsp--;
@@ -21432,7 +21432,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6119:1: ( rule__Situation__Group_2__0__Impl rule__Situation__Group_2__1 )
             // InternalDomainmodel.g:6120:2: rule__Situation__Group_2__0__Impl rule__Situation__Group_2__1
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_33);
             rule__Situation__Group_2__0__Impl();
 
             state._fsp--;
@@ -21595,7 +21595,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6173:1: ( rule__Action__Group__0__Impl rule__Action__Group__1 )
             // InternalDomainmodel.g:6174:2: rule__Action__Group__0__Impl rule__Action__Group__1
             {
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_40);
             rule__Action__Group__0__Impl();
 
             state._fsp--;
@@ -21758,7 +21758,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6227:1: ( rule__Publish__Group__0__Impl rule__Publish__Group__1 )
             // InternalDomainmodel.g:6228:2: rule__Publish__Group__0__Impl rule__Publish__Group__1
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_33);
             rule__Publish__Group__0__Impl();
 
             state._fsp--;
@@ -22020,7 +22020,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6308:1: ( rule__Call__Group__1__Impl rule__Call__Group__2 )
             // InternalDomainmodel.g:6309:2: rule__Call__Group__1__Impl rule__Call__Group__2
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__Call__Group__1__Impl();
 
             state._fsp--;
@@ -22361,7 +22361,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6416:1: ( rule__Property__Group__1__Impl rule__Property__Group__2 )
             // InternalDomainmodel.g:6417:2: rule__Property__Group__1__Impl rule__Property__Group__2
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_41);
             rule__Property__Group__1__Impl();
 
             state._fsp--;
@@ -22541,7 +22541,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6470:1: ( rule__Operation__Group__0__Impl rule__Operation__Group__1 )
             // InternalDomainmodel.g:6471:2: rule__Operation__Group__0__Impl rule__Operation__Group__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__Operation__Group__0__Impl();
 
             state._fsp--;
@@ -23438,7 +23438,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6740:1: ( rule__Operation__Group_4_1__0__Impl rule__Operation__Group_4_1__1 )
             // InternalDomainmodel.g:6741:2: rule__Operation__Group_4_1__0__Impl rule__Operation__Group_4_1__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__Operation__Group_4_1__0__Impl();
 
             state._fsp--;
@@ -23601,7 +23601,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6794:1: ( rule__Operation__Group_6__0__Impl rule__Operation__Group_6__1 )
             // InternalDomainmodel.g:6795:2: rule__Operation__Group_6__0__Impl rule__Operation__Group_6__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__Operation__Group_6__0__Impl();
 
             state._fsp--;
@@ -23871,7 +23871,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:6875:1: ( rule__Operation__Group_6_2__0__Impl rule__Operation__Group_6_2__1 )
             // InternalDomainmodel.g:6876:2: rule__Operation__Group_6_2__0__Impl rule__Operation__Group_6_2__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__Operation__Group_6_2__0__Impl();
 
             state._fsp--;
@@ -28664,7 +28664,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:8387:1: ( rule__XRelationalExpression__Group_1_0__0__Impl rule__XRelationalExpression__Group_1_0__1 )
             // InternalDomainmodel.g:8388:2: rule__XRelationalExpression__Group_1_0__0__Impl rule__XRelationalExpression__Group_1_0__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XRelationalExpression__Group_1_0__0__Impl();
 
             state._fsp--;
@@ -32908,7 +32908,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:9737:1: ( rule__XCastedExpression__Group_1__0__Impl rule__XCastedExpression__Group_1__1 )
             // InternalDomainmodel.g:9738:2: rule__XCastedExpression__Group_1__0__Impl rule__XCastedExpression__Group_1__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XCastedExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -38976,7 +38976,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:11627:1: ( rule__XClosure__Group_1_0_0_1__0__Impl rule__XClosure__Group_1_0_0_1__1 )
             // InternalDomainmodel.g:11628:2: rule__XClosure__Group_1_0_0_1__0__Impl rule__XClosure__Group_1_0_0_1__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XClosure__Group_1_0_0_1__0__Impl();
 
             state._fsp--;
@@ -39320,7 +39320,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:11735:1: ( rule__XExpressionInClosure__Group_1__0__Impl rule__XExpressionInClosure__Group_1__1 )
             // InternalDomainmodel.g:11736:2: rule__XExpressionInClosure__Group_1__0__Impl rule__XExpressionInClosure__Group_1__1
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_41);
             rule__XExpressionInClosure__Group_1__0__Impl();
 
             state._fsp--;
@@ -40211,7 +40211,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:12005:1: ( rule__XShortClosure__Group_0_0_1_1__0__Impl rule__XShortClosure__Group_0_0_1_1__1 )
             // InternalDomainmodel.g:12006:2: rule__XShortClosure__Group_0_0_1_1__0__Impl rule__XShortClosure__Group_0_0_1_1__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XShortClosure__Group_0_0_1_1__0__Impl();
 
             state._fsp--;
@@ -42315,7 +42315,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:12680:1: ( rule__XSwitchExpression__Group_2_0_0_0__0__Impl rule__XSwitchExpression__Group_2_0_0_0__1 )
             // InternalDomainmodel.g:12681:2: rule__XSwitchExpression__Group_2_0_0_0__0__Impl rule__XSwitchExpression__Group_2_0_0_0__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XSwitchExpression__Group_2_0_0_0__0__Impl();
 
             state._fsp--;
@@ -44498,7 +44498,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:13382:1: ( rule__XForLoopExpression__Group_0_0__2__Impl rule__XForLoopExpression__Group_0_0__3 )
             // InternalDomainmodel.g:13383:2: rule__XForLoopExpression__Group_0_0__2__Impl rule__XForLoopExpression__Group_0_0__3
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XForLoopExpression__Group_0_0__2__Impl();
 
             state._fsp--;
@@ -47702,7 +47702,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:14408:1: ( rule__XBlockExpression__Group_2__0__Impl rule__XBlockExpression__Group_2__1 )
             // InternalDomainmodel.g:14409:2: rule__XBlockExpression__Group_2__0__Impl rule__XBlockExpression__Group_2__1
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_41);
             rule__XBlockExpression__Group_2__0__Impl();
 
             state._fsp--;
@@ -47961,7 +47961,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:14489:1: ( rule__XVariableDeclaration__Group__1__Impl rule__XVariableDeclaration__Group__2 )
             // InternalDomainmodel.g:14490:2: rule__XVariableDeclaration__Group__1__Impl rule__XVariableDeclaration__Group__2
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XVariableDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -48654,7 +48654,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:14705:1: ( rule__JvmFormalParameter__Group__0__Impl rule__JvmFormalParameter__Group__1 )
             // InternalDomainmodel.g:14706:2: rule__JvmFormalParameter__Group__0__Impl rule__JvmFormalParameter__Group__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__JvmFormalParameter__Group__0__Impl();
 
             state._fsp--;
@@ -55553,7 +55553,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:16872:1: ( rule__XCatchClause__Group__1__Impl rule__XCatchClause__Group__2 )
             // InternalDomainmodel.g:16873:2: rule__XCatchClause__Group__1__Impl rule__XCatchClause__Group__2
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XCatchClause__Group__1__Impl();
 
             state._fsp--;
@@ -55884,7 +55884,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:16980:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
             // InternalDomainmodel.g:16981:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__QualifiedName__Group__0__Impl();
 
             state._fsp--;
@@ -56244,7 +56244,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:17088:1: ( rule__Number__Group_1__0__Impl rule__Number__Group_1__1 )
             // InternalDomainmodel.g:17089:2: rule__Number__Group_1__0__Impl rule__Number__Group_1__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__Number__Group_1__0__Impl();
 
             state._fsp--;
@@ -57186,7 +57186,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:17385:1: ( rule__XFunctionTypeRef__Group__0__Impl rule__XFunctionTypeRef__Group__1 )
             // InternalDomainmodel.g:17386:2: rule__XFunctionTypeRef__Group__0__Impl rule__XFunctionTypeRef__Group__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XFunctionTypeRef__Group__0__Impl();
 
             state._fsp--;
@@ -57286,7 +57286,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:17412:1: ( rule__XFunctionTypeRef__Group__1__Impl rule__XFunctionTypeRef__Group__2 )
             // InternalDomainmodel.g:17413:2: rule__XFunctionTypeRef__Group__1__Impl rule__XFunctionTypeRef__Group__2
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XFunctionTypeRef__Group__1__Impl();
 
             state._fsp--;
@@ -57893,7 +57893,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:17601:1: ( rule__XFunctionTypeRef__Group_0_1_1__0__Impl rule__XFunctionTypeRef__Group_0_1_1__1 )
             // InternalDomainmodel.g:17602:2: rule__XFunctionTypeRef__Group_0_1_1__0__Impl rule__XFunctionTypeRef__Group_0_1_1__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__XFunctionTypeRef__Group_0_1_1__0__Impl();
 
             state._fsp--;
@@ -58517,7 +58517,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:17790:1: ( rule__JvmParameterizedTypeReference__Group_1__3__Impl rule__JvmParameterizedTypeReference__Group_1__4 )
             // InternalDomainmodel.g:17791:2: rule__JvmParameterizedTypeReference__Group_1__3__Impl rule__JvmParameterizedTypeReference__Group_1__4
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__JvmParameterizedTypeReference__Group_1__3__Impl();
 
             state._fsp--;
@@ -59226,7 +59226,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18006:1: ( rule__JvmParameterizedTypeReference__Group_1_4_0_0__0__Impl rule__JvmParameterizedTypeReference__Group_1_4_0_0__1 )
             // InternalDomainmodel.g:18007:2: rule__JvmParameterizedTypeReference__Group_1_4_0_0__0__Impl rule__JvmParameterizedTypeReference__Group_1_4_0_0__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__JvmParameterizedTypeReference__Group_1_4_0_0__0__Impl();
 
             state._fsp--;
@@ -60532,7 +60532,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18411:1: ( rule__JvmUpperBound__Group__0__Impl rule__JvmUpperBound__Group__1 )
             // InternalDomainmodel.g:18412:2: rule__JvmUpperBound__Group__0__Impl rule__JvmUpperBound__Group__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__JvmUpperBound__Group__0__Impl();
 
             state._fsp--;
@@ -60695,7 +60695,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18465:1: ( rule__JvmUpperBoundAnded__Group__0__Impl rule__JvmUpperBoundAnded__Group__1 )
             // InternalDomainmodel.g:18466:2: rule__JvmUpperBoundAnded__Group__0__Impl rule__JvmUpperBoundAnded__Group__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__JvmUpperBoundAnded__Group__0__Impl();
 
             state._fsp--;
@@ -60858,7 +60858,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18519:1: ( rule__JvmLowerBound__Group__0__Impl rule__JvmLowerBound__Group__1 )
             // InternalDomainmodel.g:18520:2: rule__JvmLowerBound__Group__0__Impl rule__JvmLowerBound__Group__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__JvmLowerBound__Group__0__Impl();
 
             state._fsp--;
@@ -61021,7 +61021,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18573:1: ( rule__JvmLowerBoundAnded__Group__0__Impl rule__JvmLowerBoundAnded__Group__1 )
             // InternalDomainmodel.g:18574:2: rule__JvmLowerBoundAnded__Group__0__Impl rule__JvmLowerBoundAnded__Group__1
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_33);
             rule__JvmLowerBoundAnded__Group__0__Impl();
 
             state._fsp--;
@@ -61184,7 +61184,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18627:1: ( rule__QualifiedNameWithWildcard__Group__0__Impl rule__QualifiedNameWithWildcard__Group__1 )
             // InternalDomainmodel.g:18628:2: rule__QualifiedNameWithWildcard__Group__0__Impl rule__QualifiedNameWithWildcard__Group__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__QualifiedNameWithWildcard__Group__0__Impl();
 
             state._fsp--;
@@ -61499,7 +61499,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18735:1: ( rule__XImportDeclaration__Group__1__Impl rule__XImportDeclaration__Group__2 )
             // InternalDomainmodel.g:18736:2: rule__XImportDeclaration__Group__1__Impl rule__XImportDeclaration__Group__2
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_41);
             rule__XImportDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -62041,7 +62041,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             // InternalDomainmodel.g:18897:1: ( rule__QualifiedNameInStaticImport__Group__0__Impl rule__QualifiedNameInStaticImport__Group__1 )
             // InternalDomainmodel.g:18898:2: rule__QualifiedNameInStaticImport__Group__0__Impl rule__QualifiedNameInStaticImport__Group__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_39);
             rule__QualifiedNameInStaticImport__Group__0__Impl();
 
             state._fsp--;
@@ -63482,36 +63482,28 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__CommandSet__ControlAssignment_1"
-    // InternalDomainmodel.g:19382:1: rule__CommandSet__ControlAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalDomainmodel.g:19382:1: rule__CommandSet__ControlAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__CommandSet__ControlAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19386:1: ( ( ( RULE_ID ) ) )
-            // InternalDomainmodel.g:19387:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19386:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19387:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19387:2: ( ( RULE_ID ) )
-            // InternalDomainmodel.g:19388:3: ( RULE_ID )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandSetAccess().getControlControlCrossReference_1_0()); 
-            }
-            // InternalDomainmodel.g:19389:3: ( RULE_ID )
-            // InternalDomainmodel.g:19390:4: RULE_ID
+            // InternalDomainmodel.g:19387:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19388:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandSetAccess().getControlControlIDTerminalRuleCall_1_0_1()); 
+               before(grammarAccess.getCommandSetAccess().getControlJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getCommandSetAccess().getControlControlIDTerminalRuleCall_1_0_1()); 
-            }
+            pushFollow(FOLLOW_2);
+            ruleJvmTypeReference();
 
-            }
-
+            state._fsp--;
+            if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCommandSetAccess().getControlControlCrossReference_1_0()); 
+               after(grammarAccess.getCommandSetAccess().getControlJvmTypeReferenceParserRuleCall_1_0()); 
             }
 
             }
@@ -63535,17 +63527,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__CommandSet__CommandsAssignment_3"
-    // InternalDomainmodel.g:19401:1: rule__CommandSet__CommandsAssignment_3 : ( ruleCommand ) ;
+    // InternalDomainmodel.g:19397:1: rule__CommandSet__CommandsAssignment_3 : ( ruleCommand ) ;
     public final void rule__CommandSet__CommandsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19405:1: ( ( ruleCommand ) )
-            // InternalDomainmodel.g:19406:2: ( ruleCommand )
+            // InternalDomainmodel.g:19401:1: ( ( ruleCommand ) )
+            // InternalDomainmodel.g:19402:2: ( ruleCommand )
             {
-            // InternalDomainmodel.g:19406:2: ( ruleCommand )
-            // InternalDomainmodel.g:19407:3: ruleCommand
+            // InternalDomainmodel.g:19402:2: ( ruleCommand )
+            // InternalDomainmodel.g:19403:3: ruleCommand
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandSetAccess().getCommandsCommandParserRuleCall_3_0()); 
@@ -63580,17 +63572,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Command__NameAssignment_1"
-    // InternalDomainmodel.g:19416:1: rule__Command__NameAssignment_1 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:19412:1: rule__Command__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__Command__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19420:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:19421:2: ( ruleValidID )
+            // InternalDomainmodel.g:19416:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:19417:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:19421:2: ( ruleValidID )
-            // InternalDomainmodel.g:19422:3: ruleValidID
+            // InternalDomainmodel.g:19417:2: ( ruleValidID )
+            // InternalDomainmodel.g:19418:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getNameValidIDParserRuleCall_1_0()); 
@@ -63625,17 +63617,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Command__ContextsAssignment_3"
-    // InternalDomainmodel.g:19431:1: rule__Command__ContextsAssignment_3 : ( ruleCommandContext ) ;
+    // InternalDomainmodel.g:19427:1: rule__Command__ContextsAssignment_3 : ( ruleCommandContext ) ;
     public final void rule__Command__ContextsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19435:1: ( ( ruleCommandContext ) )
-            // InternalDomainmodel.g:19436:2: ( ruleCommandContext )
+            // InternalDomainmodel.g:19431:1: ( ( ruleCommandContext ) )
+            // InternalDomainmodel.g:19432:2: ( ruleCommandContext )
             {
-            // InternalDomainmodel.g:19436:2: ( ruleCommandContext )
-            // InternalDomainmodel.g:19437:3: ruleCommandContext
+            // InternalDomainmodel.g:19432:2: ( ruleCommandContext )
+            // InternalDomainmodel.g:19433:3: ruleCommandContext
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getContextsCommandContextParserRuleCall_3_0()); 
@@ -63670,36 +63662,36 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Command__ActionAssignment_5"
-    // InternalDomainmodel.g:19446:1: rule__Command__ActionAssignment_5 : ( ( RULE_ID ) ) ;
+    // InternalDomainmodel.g:19442:1: rule__Command__ActionAssignment_5 : ( ( RULE_ID ) ) ;
     public final void rule__Command__ActionAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19450:1: ( ( ( RULE_ID ) ) )
-            // InternalDomainmodel.g:19451:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19446:1: ( ( ( RULE_ID ) ) )
+            // InternalDomainmodel.g:19447:2: ( ( RULE_ID ) )
             {
-            // InternalDomainmodel.g:19451:2: ( ( RULE_ID ) )
-            // InternalDomainmodel.g:19452:3: ( RULE_ID )
+            // InternalDomainmodel.g:19447:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19448:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandAccess().getActionControlCrossReference_5_0()); 
+               before(grammarAccess.getCommandAccess().getActionJvmTypeCrossReference_5_0()); 
             }
-            // InternalDomainmodel.g:19453:3: ( RULE_ID )
-            // InternalDomainmodel.g:19454:4: RULE_ID
+            // InternalDomainmodel.g:19449:3: ( RULE_ID )
+            // InternalDomainmodel.g:19450:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandAccess().getActionControlIDTerminalRuleCall_5_0_1()); 
+               before(grammarAccess.getCommandAccess().getActionJvmTypeIDTerminalRuleCall_5_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCommandAccess().getActionControlIDTerminalRuleCall_5_0_1()); 
+               after(grammarAccess.getCommandAccess().getActionJvmTypeIDTerminalRuleCall_5_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCommandAccess().getActionControlCrossReference_5_0()); 
+               after(grammarAccess.getCommandAccess().getActionJvmTypeCrossReference_5_0()); 
             }
 
             }
@@ -63723,17 +63715,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Command__MethodAssignment_7"
-    // InternalDomainmodel.g:19465:1: rule__Command__MethodAssignment_7 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:19461:1: rule__Command__MethodAssignment_7 : ( ruleValidID ) ;
     public final void rule__Command__MethodAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19469:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:19470:2: ( ruleValidID )
+            // InternalDomainmodel.g:19465:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:19466:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:19470:2: ( ruleValidID )
-            // InternalDomainmodel.g:19471:3: ruleValidID
+            // InternalDomainmodel.g:19466:2: ( ruleValidID )
+            // InternalDomainmodel.g:19467:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getMethodValidIDParserRuleCall_7_0()); 
@@ -63768,36 +63760,36 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__CommandContext__ContextAssignment_1"
-    // InternalDomainmodel.g:19480:1: rule__CommandContext__ContextAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalDomainmodel.g:19476:1: rule__CommandContext__ContextAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__CommandContext__ContextAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19484:1: ( ( ( RULE_ID ) ) )
-            // InternalDomainmodel.g:19485:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19480:1: ( ( ( RULE_ID ) ) )
+            // InternalDomainmodel.g:19481:2: ( ( RULE_ID ) )
             {
-            // InternalDomainmodel.g:19485:2: ( ( RULE_ID ) )
-            // InternalDomainmodel.g:19486:3: ( RULE_ID )
+            // InternalDomainmodel.g:19481:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19482:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandContextAccess().getContextContextCrossReference_1_0()); 
+               before(grammarAccess.getCommandContextAccess().getContextJvmTypeCrossReference_1_0()); 
             }
-            // InternalDomainmodel.g:19487:3: ( RULE_ID )
-            // InternalDomainmodel.g:19488:4: RULE_ID
+            // InternalDomainmodel.g:19483:3: ( RULE_ID )
+            // InternalDomainmodel.g:19484:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandContextAccess().getContextContextIDTerminalRuleCall_1_0_1()); 
+               before(grammarAccess.getCommandContextAccess().getContextJvmTypeIDTerminalRuleCall_1_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCommandContextAccess().getContextContextIDTerminalRuleCall_1_0_1()); 
+               after(grammarAccess.getCommandContextAccess().getContextJvmTypeIDTerminalRuleCall_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCommandContextAccess().getContextContextCrossReference_1_0()); 
+               after(grammarAccess.getCommandContextAccess().getContextJvmTypeCrossReference_1_0()); 
             }
 
             }
@@ -63821,17 +63813,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__CommandContext__PropertyAssignment_3"
-    // InternalDomainmodel.g:19499:1: rule__CommandContext__PropertyAssignment_3 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:19495:1: rule__CommandContext__PropertyAssignment_3 : ( ruleValidID ) ;
     public final void rule__CommandContext__PropertyAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19503:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:19504:2: ( ruleValidID )
+            // InternalDomainmodel.g:19499:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:19500:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:19504:2: ( ruleValidID )
-            // InternalDomainmodel.g:19505:3: ruleValidID
+            // InternalDomainmodel.g:19500:2: ( ruleValidID )
+            // InternalDomainmodel.g:19501:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandContextAccess().getPropertyValidIDParserRuleCall_3_0()); 
@@ -63866,36 +63858,28 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Situation__TypesAssignment_1"
-    // InternalDomainmodel.g:19514:1: rule__Situation__TypesAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalDomainmodel.g:19510:1: rule__Situation__TypesAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__Situation__TypesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19518:1: ( ( ( RULE_ID ) ) )
-            // InternalDomainmodel.g:19519:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19514:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19515:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19519:2: ( ( RULE_ID ) )
-            // InternalDomainmodel.g:19520:3: ( RULE_ID )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_1_0()); 
-            }
-            // InternalDomainmodel.g:19521:3: ( RULE_ID )
-            // InternalDomainmodel.g:19522:4: RULE_ID
+            // InternalDomainmodel.g:19515:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19516:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_1_0_1()); 
+               before(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_1_0_1()); 
-            }
+            pushFollow(FOLLOW_2);
+            ruleJvmTypeReference();
 
-            }
-
+            state._fsp--;
+            if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_1_0()); 
+               after(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_1_0()); 
             }
 
             }
@@ -63919,36 +63903,28 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Situation__TypesAssignment_2_1"
-    // InternalDomainmodel.g:19533:1: rule__Situation__TypesAssignment_2_1 : ( ( RULE_ID ) ) ;
+    // InternalDomainmodel.g:19525:1: rule__Situation__TypesAssignment_2_1 : ( ruleJvmTypeReference ) ;
     public final void rule__Situation__TypesAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19537:1: ( ( ( RULE_ID ) ) )
-            // InternalDomainmodel.g:19538:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19529:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19530:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19538:2: ( ( RULE_ID ) )
-            // InternalDomainmodel.g:19539:3: ( RULE_ID )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_2_1_0()); 
-            }
-            // InternalDomainmodel.g:19540:3: ( RULE_ID )
-            // InternalDomainmodel.g:19541:4: RULE_ID
+            // InternalDomainmodel.g:19530:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19531:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_2_1_0_1()); 
+               before(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_2_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_2_1_0_1()); 
-            }
+            pushFollow(FOLLOW_2);
+            ruleJvmTypeReference();
 
-            }
-
+            state._fsp--;
+            if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_2_1_0()); 
+               after(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_2_1_0()); 
             }
 
             }
@@ -63972,23 +63948,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Publish__ActionAssignment_0"
-    // InternalDomainmodel.g:19552:1: rule__Publish__ActionAssignment_0 : ( ( 'publish' ) ) ;
+    // InternalDomainmodel.g:19540:1: rule__Publish__ActionAssignment_0 : ( ( 'publish' ) ) ;
     public final void rule__Publish__ActionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19556:1: ( ( ( 'publish' ) ) )
-            // InternalDomainmodel.g:19557:2: ( ( 'publish' ) )
+            // InternalDomainmodel.g:19544:1: ( ( ( 'publish' ) ) )
+            // InternalDomainmodel.g:19545:2: ( ( 'publish' ) )
             {
-            // InternalDomainmodel.g:19557:2: ( ( 'publish' ) )
-            // InternalDomainmodel.g:19558:3: ( 'publish' )
+            // InternalDomainmodel.g:19545:2: ( ( 'publish' ) )
+            // InternalDomainmodel.g:19546:3: ( 'publish' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPublishAccess().getActionPublishKeyword_0_0()); 
             }
-            // InternalDomainmodel.g:19559:3: ( 'publish' )
-            // InternalDomainmodel.g:19560:4: 'publish'
+            // InternalDomainmodel.g:19547:3: ( 'publish' )
+            // InternalDomainmodel.g:19548:4: 'publish'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPublishAccess().getActionPublishKeyword_0_0()); 
@@ -64025,36 +64001,28 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Publish__EventAssignment_1"
-    // InternalDomainmodel.g:19571:1: rule__Publish__EventAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalDomainmodel.g:19559:1: rule__Publish__EventAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__Publish__EventAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19575:1: ( ( ( RULE_ID ) ) )
-            // InternalDomainmodel.g:19576:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19563:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19564:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19576:2: ( ( RULE_ID ) )
-            // InternalDomainmodel.g:19577:3: ( RULE_ID )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getPublishAccess().getEventEventCrossReference_1_0()); 
-            }
-            // InternalDomainmodel.g:19578:3: ( RULE_ID )
-            // InternalDomainmodel.g:19579:4: RULE_ID
+            // InternalDomainmodel.g:19564:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19565:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPublishAccess().getEventEventIDTerminalRuleCall_1_0_1()); 
+               before(grammarAccess.getPublishAccess().getEventJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getPublishAccess().getEventEventIDTerminalRuleCall_1_0_1()); 
-            }
+            pushFollow(FOLLOW_2);
+            ruleJvmTypeReference();
 
-            }
-
+            state._fsp--;
+            if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPublishAccess().getEventEventCrossReference_1_0()); 
+               after(grammarAccess.getPublishAccess().getEventJvmTypeReferenceParserRuleCall_1_0()); 
             }
 
             }
@@ -64078,23 +64046,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__NoOp__ActionAssignment"
-    // InternalDomainmodel.g:19590:1: rule__NoOp__ActionAssignment : ( ( 'no-op' ) ) ;
+    // InternalDomainmodel.g:19574:1: rule__NoOp__ActionAssignment : ( ( 'no-op' ) ) ;
     public final void rule__NoOp__ActionAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19594:1: ( ( ( 'no-op' ) ) )
-            // InternalDomainmodel.g:19595:2: ( ( 'no-op' ) )
+            // InternalDomainmodel.g:19578:1: ( ( ( 'no-op' ) ) )
+            // InternalDomainmodel.g:19579:2: ( ( 'no-op' ) )
             {
-            // InternalDomainmodel.g:19595:2: ( ( 'no-op' ) )
-            // InternalDomainmodel.g:19596:3: ( 'no-op' )
+            // InternalDomainmodel.g:19579:2: ( ( 'no-op' ) )
+            // InternalDomainmodel.g:19580:3: ( 'no-op' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNoOpAccess().getActionNoOpKeyword_0()); 
             }
-            // InternalDomainmodel.g:19597:3: ( 'no-op' )
-            // InternalDomainmodel.g:19598:4: 'no-op'
+            // InternalDomainmodel.g:19581:3: ( 'no-op' )
+            // InternalDomainmodel.g:19582:4: 'no-op'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNoOpAccess().getActionNoOpKeyword_0()); 
@@ -64131,23 +64099,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Call__ActionAssignment_0"
-    // InternalDomainmodel.g:19609:1: rule__Call__ActionAssignment_0 : ( ( 'call' ) ) ;
+    // InternalDomainmodel.g:19593:1: rule__Call__ActionAssignment_0 : ( ( 'call' ) ) ;
     public final void rule__Call__ActionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19613:1: ( ( ( 'call' ) ) )
-            // InternalDomainmodel.g:19614:2: ( ( 'call' ) )
+            // InternalDomainmodel.g:19597:1: ( ( ( 'call' ) ) )
+            // InternalDomainmodel.g:19598:2: ( ( 'call' ) )
             {
-            // InternalDomainmodel.g:19614:2: ( ( 'call' ) )
-            // InternalDomainmodel.g:19615:3: ( 'call' )
+            // InternalDomainmodel.g:19598:2: ( ( 'call' ) )
+            // InternalDomainmodel.g:19599:3: ( 'call' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCallAccess().getActionCallKeyword_0_0()); 
             }
-            // InternalDomainmodel.g:19616:3: ( 'call' )
-            // InternalDomainmodel.g:19617:4: 'call'
+            // InternalDomainmodel.g:19600:3: ( 'call' )
+            // InternalDomainmodel.g:19601:4: 'call'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCallAccess().getActionCallKeyword_0_0()); 
@@ -64184,36 +64152,36 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Call__ControlAssignment_1"
-    // InternalDomainmodel.g:19628:1: rule__Call__ControlAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalDomainmodel.g:19612:1: rule__Call__ControlAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__Call__ControlAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19632:1: ( ( ( RULE_ID ) ) )
-            // InternalDomainmodel.g:19633:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19616:1: ( ( ( RULE_ID ) ) )
+            // InternalDomainmodel.g:19617:2: ( ( RULE_ID ) )
             {
-            // InternalDomainmodel.g:19633:2: ( ( RULE_ID ) )
-            // InternalDomainmodel.g:19634:3: ( RULE_ID )
+            // InternalDomainmodel.g:19617:2: ( ( RULE_ID ) )
+            // InternalDomainmodel.g:19618:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCallAccess().getControlControlCrossReference_1_0()); 
+               before(grammarAccess.getCallAccess().getControlJvmTypeCrossReference_1_0()); 
             }
-            // InternalDomainmodel.g:19635:3: ( RULE_ID )
-            // InternalDomainmodel.g:19636:4: RULE_ID
+            // InternalDomainmodel.g:19619:3: ( RULE_ID )
+            // InternalDomainmodel.g:19620:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCallAccess().getControlControlIDTerminalRuleCall_1_0_1()); 
+               before(grammarAccess.getCallAccess().getControlJvmTypeIDTerminalRuleCall_1_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCallAccess().getControlControlIDTerminalRuleCall_1_0_1()); 
+               after(grammarAccess.getCallAccess().getControlJvmTypeIDTerminalRuleCall_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCallAccess().getControlControlCrossReference_1_0()); 
+               after(grammarAccess.getCallAccess().getControlJvmTypeCrossReference_1_0()); 
             }
 
             }
@@ -64237,17 +64205,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Call__MethodAssignment_3"
-    // InternalDomainmodel.g:19647:1: rule__Call__MethodAssignment_3 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:19631:1: rule__Call__MethodAssignment_3 : ( ruleValidID ) ;
     public final void rule__Call__MethodAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19651:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:19652:2: ( ruleValidID )
+            // InternalDomainmodel.g:19635:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:19636:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:19652:2: ( ruleValidID )
-            // InternalDomainmodel.g:19653:3: ruleValidID
+            // InternalDomainmodel.g:19636:2: ( ruleValidID )
+            // InternalDomainmodel.g:19637:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCallAccess().getMethodValidIDParserRuleCall_3_0()); 
@@ -64282,17 +64250,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Property__TypeAssignment_0"
-    // InternalDomainmodel.g:19662:1: rule__Property__TypeAssignment_0 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:19646:1: rule__Property__TypeAssignment_0 : ( ruleJvmTypeReference ) ;
     public final void rule__Property__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19666:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:19667:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19650:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19651:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19667:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:19668:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:19651:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19652:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPropertyAccess().getTypeJvmTypeReferenceParserRuleCall_0_0()); 
@@ -64327,17 +64295,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Property__NameAssignment_1"
-    // InternalDomainmodel.g:19677:1: rule__Property__NameAssignment_1 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:19661:1: rule__Property__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__Property__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19681:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:19682:2: ( ruleValidID )
+            // InternalDomainmodel.g:19665:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:19666:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:19682:2: ( ruleValidID )
-            // InternalDomainmodel.g:19683:3: ruleValidID
+            // InternalDomainmodel.g:19666:2: ( ruleValidID )
+            // InternalDomainmodel.g:19667:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPropertyAccess().getNameValidIDParserRuleCall_1_0()); 
@@ -64372,17 +64340,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Operation__TypeAssignment_1"
-    // InternalDomainmodel.g:19692:1: rule__Operation__TypeAssignment_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:19676:1: rule__Operation__TypeAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__Operation__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19696:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:19697:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19680:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19681:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19697:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:19698:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:19681:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19682:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOperationAccess().getTypeJvmTypeReferenceParserRuleCall_1_0()); 
@@ -64417,17 +64385,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Operation__NameAssignment_2"
-    // InternalDomainmodel.g:19707:1: rule__Operation__NameAssignment_2 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:19691:1: rule__Operation__NameAssignment_2 : ( ruleValidID ) ;
     public final void rule__Operation__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19711:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:19712:2: ( ruleValidID )
+            // InternalDomainmodel.g:19695:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:19696:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:19712:2: ( ruleValidID )
-            // InternalDomainmodel.g:19713:3: ruleValidID
+            // InternalDomainmodel.g:19696:2: ( ruleValidID )
+            // InternalDomainmodel.g:19697:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOperationAccess().getNameValidIDParserRuleCall_2_0()); 
@@ -64462,17 +64430,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Operation__ParamsAssignment_4_0"
-    // InternalDomainmodel.g:19722:1: rule__Operation__ParamsAssignment_4_0 : ( ruleFullJvmFormalParameter ) ;
+    // InternalDomainmodel.g:19706:1: rule__Operation__ParamsAssignment_4_0 : ( ruleFullJvmFormalParameter ) ;
     public final void rule__Operation__ParamsAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19726:1: ( ( ruleFullJvmFormalParameter ) )
-            // InternalDomainmodel.g:19727:2: ( ruleFullJvmFormalParameter )
+            // InternalDomainmodel.g:19710:1: ( ( ruleFullJvmFormalParameter ) )
+            // InternalDomainmodel.g:19711:2: ( ruleFullJvmFormalParameter )
             {
-            // InternalDomainmodel.g:19727:2: ( ruleFullJvmFormalParameter )
-            // InternalDomainmodel.g:19728:3: ruleFullJvmFormalParameter
+            // InternalDomainmodel.g:19711:2: ( ruleFullJvmFormalParameter )
+            // InternalDomainmodel.g:19712:3: ruleFullJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOperationAccess().getParamsFullJvmFormalParameterParserRuleCall_4_0_0()); 
@@ -64507,17 +64475,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Operation__ParamsAssignment_4_1_1"
-    // InternalDomainmodel.g:19737:1: rule__Operation__ParamsAssignment_4_1_1 : ( ruleFullJvmFormalParameter ) ;
+    // InternalDomainmodel.g:19721:1: rule__Operation__ParamsAssignment_4_1_1 : ( ruleFullJvmFormalParameter ) ;
     public final void rule__Operation__ParamsAssignment_4_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19741:1: ( ( ruleFullJvmFormalParameter ) )
-            // InternalDomainmodel.g:19742:2: ( ruleFullJvmFormalParameter )
+            // InternalDomainmodel.g:19725:1: ( ( ruleFullJvmFormalParameter ) )
+            // InternalDomainmodel.g:19726:2: ( ruleFullJvmFormalParameter )
             {
-            // InternalDomainmodel.g:19742:2: ( ruleFullJvmFormalParameter )
-            // InternalDomainmodel.g:19743:3: ruleFullJvmFormalParameter
+            // InternalDomainmodel.g:19726:2: ( ruleFullJvmFormalParameter )
+            // InternalDomainmodel.g:19727:3: ruleFullJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOperationAccess().getParamsFullJvmFormalParameterParserRuleCall_4_1_1_0()); 
@@ -64552,17 +64520,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Operation__ExceptionsAssignment_6_1"
-    // InternalDomainmodel.g:19752:1: rule__Operation__ExceptionsAssignment_6_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:19736:1: rule__Operation__ExceptionsAssignment_6_1 : ( ruleJvmTypeReference ) ;
     public final void rule__Operation__ExceptionsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19756:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:19757:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19740:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19741:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19757:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:19758:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:19741:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19742:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOperationAccess().getExceptionsJvmTypeReferenceParserRuleCall_6_1_0()); 
@@ -64597,17 +64565,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Operation__ExceptionsAssignment_6_2_1"
-    // InternalDomainmodel.g:19767:1: rule__Operation__ExceptionsAssignment_6_2_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:19751:1: rule__Operation__ExceptionsAssignment_6_2_1 : ( ruleJvmTypeReference ) ;
     public final void rule__Operation__ExceptionsAssignment_6_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19771:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:19772:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19755:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19756:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:19772:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:19773:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:19756:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19757:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOperationAccess().getExceptionsJvmTypeReferenceParserRuleCall_6_2_1_0()); 
@@ -64642,17 +64610,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Topic__NameAssignment_2"
-    // InternalDomainmodel.g:19782:1: rule__Topic__NameAssignment_2 : ( RULE_STRING ) ;
+    // InternalDomainmodel.g:19766:1: rule__Topic__NameAssignment_2 : ( RULE_STRING ) ;
     public final void rule__Topic__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19786:1: ( ( RULE_STRING ) )
-            // InternalDomainmodel.g:19787:2: ( RULE_STRING )
+            // InternalDomainmodel.g:19770:1: ( ( RULE_STRING ) )
+            // InternalDomainmodel.g:19771:2: ( RULE_STRING )
             {
-            // InternalDomainmodel.g:19787:2: ( RULE_STRING )
-            // InternalDomainmodel.g:19788:3: RULE_STRING
+            // InternalDomainmodel.g:19771:2: ( RULE_STRING )
+            // InternalDomainmodel.g:19772:3: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTopicAccess().getNameSTRINGTerminalRuleCall_2_0()); 
@@ -64683,17 +64651,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Agency__IpAssignment_4"
-    // InternalDomainmodel.g:19797:1: rule__Agency__IpAssignment_4 : ( RULE_STRING ) ;
+    // InternalDomainmodel.g:19781:1: rule__Agency__IpAssignment_4 : ( RULE_STRING ) ;
     public final void rule__Agency__IpAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19801:1: ( ( RULE_STRING ) )
-            // InternalDomainmodel.g:19802:2: ( RULE_STRING )
+            // InternalDomainmodel.g:19785:1: ( ( RULE_STRING ) )
+            // InternalDomainmodel.g:19786:2: ( RULE_STRING )
             {
-            // InternalDomainmodel.g:19802:2: ( RULE_STRING )
-            // InternalDomainmodel.g:19803:3: RULE_STRING
+            // InternalDomainmodel.g:19786:2: ( RULE_STRING )
+            // InternalDomainmodel.g:19787:3: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAgencyAccess().getIpSTRINGTerminalRuleCall_4_0()); 
@@ -64724,17 +64692,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Agency__PortAssignment_8"
-    // InternalDomainmodel.g:19812:1: rule__Agency__PortAssignment_8 : ( RULE_INT ) ;
+    // InternalDomainmodel.g:19796:1: rule__Agency__PortAssignment_8 : ( RULE_INT ) ;
     public final void rule__Agency__PortAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19816:1: ( ( RULE_INT ) )
-            // InternalDomainmodel.g:19817:2: ( RULE_INT )
+            // InternalDomainmodel.g:19800:1: ( ( RULE_INT ) )
+            // InternalDomainmodel.g:19801:2: ( RULE_INT )
             {
-            // InternalDomainmodel.g:19817:2: ( RULE_INT )
-            // InternalDomainmodel.g:19818:3: RULE_INT
+            // InternalDomainmodel.g:19801:2: ( RULE_INT )
+            // InternalDomainmodel.g:19802:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAgencyAccess().getPortINTTerminalRuleCall_8_0()); 
@@ -64765,23 +64733,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAssignment__FeatureAssignment_0_1"
-    // InternalDomainmodel.g:19827:1: rule__XAssignment__FeatureAssignment_0_1 : ( ( ruleFeatureCallID ) ) ;
+    // InternalDomainmodel.g:19811:1: rule__XAssignment__FeatureAssignment_0_1 : ( ( ruleFeatureCallID ) ) ;
     public final void rule__XAssignment__FeatureAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19831:1: ( ( ( ruleFeatureCallID ) ) )
-            // InternalDomainmodel.g:19832:2: ( ( ruleFeatureCallID ) )
+            // InternalDomainmodel.g:19815:1: ( ( ( ruleFeatureCallID ) ) )
+            // InternalDomainmodel.g:19816:2: ( ( ruleFeatureCallID ) )
             {
-            // InternalDomainmodel.g:19832:2: ( ( ruleFeatureCallID ) )
-            // InternalDomainmodel.g:19833:3: ( ruleFeatureCallID )
+            // InternalDomainmodel.g:19816:2: ( ( ruleFeatureCallID ) )
+            // InternalDomainmodel.g:19817:3: ( ruleFeatureCallID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
             }
-            // InternalDomainmodel.g:19834:3: ( ruleFeatureCallID )
-            // InternalDomainmodel.g:19835:4: ruleFeatureCallID
+            // InternalDomainmodel.g:19818:3: ( ruleFeatureCallID )
+            // InternalDomainmodel.g:19819:4: ruleFeatureCallID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementFeatureCallIDParserRuleCall_0_1_0_1()); 
@@ -64822,17 +64790,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAssignment__ValueAssignment_0_3"
-    // InternalDomainmodel.g:19846:1: rule__XAssignment__ValueAssignment_0_3 : ( ruleXAssignment ) ;
+    // InternalDomainmodel.g:19830:1: rule__XAssignment__ValueAssignment_0_3 : ( ruleXAssignment ) ;
     public final void rule__XAssignment__ValueAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19850:1: ( ( ruleXAssignment ) )
-            // InternalDomainmodel.g:19851:2: ( ruleXAssignment )
+            // InternalDomainmodel.g:19834:1: ( ( ruleXAssignment ) )
+            // InternalDomainmodel.g:19835:2: ( ruleXAssignment )
             {
-            // InternalDomainmodel.g:19851:2: ( ruleXAssignment )
-            // InternalDomainmodel.g:19852:3: ruleXAssignment
+            // InternalDomainmodel.g:19835:2: ( ruleXAssignment )
+            // InternalDomainmodel.g:19836:3: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getValueXAssignmentParserRuleCall_0_3_0()); 
@@ -64867,23 +64835,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAssignment__FeatureAssignment_1_1_0_0_1"
-    // InternalDomainmodel.g:19861:1: rule__XAssignment__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpMultiAssign ) ) ;
+    // InternalDomainmodel.g:19845:1: rule__XAssignment__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpMultiAssign ) ) ;
     public final void rule__XAssignment__FeatureAssignment_1_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19865:1: ( ( ( ruleOpMultiAssign ) ) )
-            // InternalDomainmodel.g:19866:2: ( ( ruleOpMultiAssign ) )
+            // InternalDomainmodel.g:19849:1: ( ( ( ruleOpMultiAssign ) ) )
+            // InternalDomainmodel.g:19850:2: ( ( ruleOpMultiAssign ) )
             {
-            // InternalDomainmodel.g:19866:2: ( ( ruleOpMultiAssign ) )
-            // InternalDomainmodel.g:19867:3: ( ruleOpMultiAssign )
+            // InternalDomainmodel.g:19850:2: ( ( ruleOpMultiAssign ) )
+            // InternalDomainmodel.g:19851:3: ( ruleOpMultiAssign )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:19868:3: ( ruleOpMultiAssign )
-            // InternalDomainmodel.g:19869:4: ruleOpMultiAssign
+            // InternalDomainmodel.g:19852:3: ( ruleOpMultiAssign )
+            // InternalDomainmodel.g:19853:4: ruleOpMultiAssign
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementOpMultiAssignParserRuleCall_1_1_0_0_1_0_1()); 
@@ -64924,17 +64892,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAssignment__RightOperandAssignment_1_1_1"
-    // InternalDomainmodel.g:19880:1: rule__XAssignment__RightOperandAssignment_1_1_1 : ( ruleXAssignment ) ;
+    // InternalDomainmodel.g:19864:1: rule__XAssignment__RightOperandAssignment_1_1_1 : ( ruleXAssignment ) ;
     public final void rule__XAssignment__RightOperandAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19884:1: ( ( ruleXAssignment ) )
-            // InternalDomainmodel.g:19885:2: ( ruleXAssignment )
+            // InternalDomainmodel.g:19868:1: ( ( ruleXAssignment ) )
+            // InternalDomainmodel.g:19869:2: ( ruleXAssignment )
             {
-            // InternalDomainmodel.g:19885:2: ( ruleXAssignment )
-            // InternalDomainmodel.g:19886:3: ruleXAssignment
+            // InternalDomainmodel.g:19869:2: ( ruleXAssignment )
+            // InternalDomainmodel.g:19870:3: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getRightOperandXAssignmentParserRuleCall_1_1_1_0()); 
@@ -64969,23 +64937,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XOrExpression__FeatureAssignment_1_0_0_1"
-    // InternalDomainmodel.g:19895:1: rule__XOrExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOr ) ) ;
+    // InternalDomainmodel.g:19879:1: rule__XOrExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOr ) ) ;
     public final void rule__XOrExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19899:1: ( ( ( ruleOpOr ) ) )
-            // InternalDomainmodel.g:19900:2: ( ( ruleOpOr ) )
+            // InternalDomainmodel.g:19883:1: ( ( ( ruleOpOr ) ) )
+            // InternalDomainmodel.g:19884:2: ( ( ruleOpOr ) )
             {
-            // InternalDomainmodel.g:19900:2: ( ( ruleOpOr ) )
-            // InternalDomainmodel.g:19901:3: ( ruleOpOr )
+            // InternalDomainmodel.g:19884:2: ( ( ruleOpOr ) )
+            // InternalDomainmodel.g:19885:3: ( ruleOpOr )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:19902:3: ( ruleOpOr )
-            // InternalDomainmodel.g:19903:4: ruleOpOr
+            // InternalDomainmodel.g:19886:3: ( ruleOpOr )
+            // InternalDomainmodel.g:19887:4: ruleOpOr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getFeatureJvmIdentifiableElementOpOrParserRuleCall_1_0_0_1_0_1()); 
@@ -65026,17 +64994,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XOrExpression__RightOperandAssignment_1_1"
-    // InternalDomainmodel.g:19914:1: rule__XOrExpression__RightOperandAssignment_1_1 : ( ruleXAndExpression ) ;
+    // InternalDomainmodel.g:19898:1: rule__XOrExpression__RightOperandAssignment_1_1 : ( ruleXAndExpression ) ;
     public final void rule__XOrExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19918:1: ( ( ruleXAndExpression ) )
-            // InternalDomainmodel.g:19919:2: ( ruleXAndExpression )
+            // InternalDomainmodel.g:19902:1: ( ( ruleXAndExpression ) )
+            // InternalDomainmodel.g:19903:2: ( ruleXAndExpression )
             {
-            // InternalDomainmodel.g:19919:2: ( ruleXAndExpression )
-            // InternalDomainmodel.g:19920:3: ruleXAndExpression
+            // InternalDomainmodel.g:19903:2: ( ruleXAndExpression )
+            // InternalDomainmodel.g:19904:3: ruleXAndExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getRightOperandXAndExpressionParserRuleCall_1_1_0()); 
@@ -65071,23 +65039,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAndExpression__FeatureAssignment_1_0_0_1"
-    // InternalDomainmodel.g:19929:1: rule__XAndExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAnd ) ) ;
+    // InternalDomainmodel.g:19913:1: rule__XAndExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAnd ) ) ;
     public final void rule__XAndExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19933:1: ( ( ( ruleOpAnd ) ) )
-            // InternalDomainmodel.g:19934:2: ( ( ruleOpAnd ) )
+            // InternalDomainmodel.g:19917:1: ( ( ( ruleOpAnd ) ) )
+            // InternalDomainmodel.g:19918:2: ( ( ruleOpAnd ) )
             {
-            // InternalDomainmodel.g:19934:2: ( ( ruleOpAnd ) )
-            // InternalDomainmodel.g:19935:3: ( ruleOpAnd )
+            // InternalDomainmodel.g:19918:2: ( ( ruleOpAnd ) )
+            // InternalDomainmodel.g:19919:3: ( ruleOpAnd )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:19936:3: ( ruleOpAnd )
-            // InternalDomainmodel.g:19937:4: ruleOpAnd
+            // InternalDomainmodel.g:19920:3: ( ruleOpAnd )
+            // InternalDomainmodel.g:19921:4: ruleOpAnd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getFeatureJvmIdentifiableElementOpAndParserRuleCall_1_0_0_1_0_1()); 
@@ -65128,17 +65096,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAndExpression__RightOperandAssignment_1_1"
-    // InternalDomainmodel.g:19948:1: rule__XAndExpression__RightOperandAssignment_1_1 : ( ruleXEqualityExpression ) ;
+    // InternalDomainmodel.g:19932:1: rule__XAndExpression__RightOperandAssignment_1_1 : ( ruleXEqualityExpression ) ;
     public final void rule__XAndExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19952:1: ( ( ruleXEqualityExpression ) )
-            // InternalDomainmodel.g:19953:2: ( ruleXEqualityExpression )
+            // InternalDomainmodel.g:19936:1: ( ( ruleXEqualityExpression ) )
+            // InternalDomainmodel.g:19937:2: ( ruleXEqualityExpression )
             {
-            // InternalDomainmodel.g:19953:2: ( ruleXEqualityExpression )
-            // InternalDomainmodel.g:19954:3: ruleXEqualityExpression
+            // InternalDomainmodel.g:19937:2: ( ruleXEqualityExpression )
+            // InternalDomainmodel.g:19938:3: ruleXEqualityExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getRightOperandXEqualityExpressionParserRuleCall_1_1_0()); 
@@ -65173,23 +65141,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XEqualityExpression__FeatureAssignment_1_0_0_1"
-    // InternalDomainmodel.g:19963:1: rule__XEqualityExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpEquality ) ) ;
+    // InternalDomainmodel.g:19947:1: rule__XEqualityExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpEquality ) ) ;
     public final void rule__XEqualityExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19967:1: ( ( ( ruleOpEquality ) ) )
-            // InternalDomainmodel.g:19968:2: ( ( ruleOpEquality ) )
+            // InternalDomainmodel.g:19951:1: ( ( ( ruleOpEquality ) ) )
+            // InternalDomainmodel.g:19952:2: ( ( ruleOpEquality ) )
             {
-            // InternalDomainmodel.g:19968:2: ( ( ruleOpEquality ) )
-            // InternalDomainmodel.g:19969:3: ( ruleOpEquality )
+            // InternalDomainmodel.g:19952:2: ( ( ruleOpEquality ) )
+            // InternalDomainmodel.g:19953:3: ( ruleOpEquality )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:19970:3: ( ruleOpEquality )
-            // InternalDomainmodel.g:19971:4: ruleOpEquality
+            // InternalDomainmodel.g:19954:3: ( ruleOpEquality )
+            // InternalDomainmodel.g:19955:4: ruleOpEquality
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getFeatureJvmIdentifiableElementOpEqualityParserRuleCall_1_0_0_1_0_1()); 
@@ -65230,17 +65198,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XEqualityExpression__RightOperandAssignment_1_1"
-    // InternalDomainmodel.g:19982:1: rule__XEqualityExpression__RightOperandAssignment_1_1 : ( ruleXRelationalExpression ) ;
+    // InternalDomainmodel.g:19966:1: rule__XEqualityExpression__RightOperandAssignment_1_1 : ( ruleXRelationalExpression ) ;
     public final void rule__XEqualityExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:19986:1: ( ( ruleXRelationalExpression ) )
-            // InternalDomainmodel.g:19987:2: ( ruleXRelationalExpression )
+            // InternalDomainmodel.g:19970:1: ( ( ruleXRelationalExpression ) )
+            // InternalDomainmodel.g:19971:2: ( ruleXRelationalExpression )
             {
-            // InternalDomainmodel.g:19987:2: ( ruleXRelationalExpression )
-            // InternalDomainmodel.g:19988:3: ruleXRelationalExpression
+            // InternalDomainmodel.g:19971:2: ( ruleXRelationalExpression )
+            // InternalDomainmodel.g:19972:3: ruleXRelationalExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getRightOperandXRelationalExpressionParserRuleCall_1_1_0()); 
@@ -65275,17 +65243,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XRelationalExpression__TypeAssignment_1_0_1"
-    // InternalDomainmodel.g:19997:1: rule__XRelationalExpression__TypeAssignment_1_0_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:19981:1: rule__XRelationalExpression__TypeAssignment_1_0_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XRelationalExpression__TypeAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20001:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:20002:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19985:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:19986:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:20002:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:20003:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:19986:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:19987:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_0_1_0()); 
@@ -65320,23 +65288,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1"
-    // InternalDomainmodel.g:20012:1: rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpCompare ) ) ;
+    // InternalDomainmodel.g:19996:1: rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpCompare ) ) ;
     public final void rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20016:1: ( ( ( ruleOpCompare ) ) )
-            // InternalDomainmodel.g:20017:2: ( ( ruleOpCompare ) )
+            // InternalDomainmodel.g:20000:1: ( ( ( ruleOpCompare ) ) )
+            // InternalDomainmodel.g:20001:2: ( ( ruleOpCompare ) )
             {
-            // InternalDomainmodel.g:20017:2: ( ( ruleOpCompare ) )
-            // InternalDomainmodel.g:20018:3: ( ruleOpCompare )
+            // InternalDomainmodel.g:20001:2: ( ( ruleOpCompare ) )
+            // InternalDomainmodel.g:20002:3: ( ruleOpCompare )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:20019:3: ( ruleOpCompare )
-            // InternalDomainmodel.g:20020:4: ruleOpCompare
+            // InternalDomainmodel.g:20003:3: ( ruleOpCompare )
+            // InternalDomainmodel.g:20004:4: ruleOpCompare
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementOpCompareParserRuleCall_1_1_0_0_1_0_1()); 
@@ -65377,17 +65345,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XRelationalExpression__RightOperandAssignment_1_1_1"
-    // InternalDomainmodel.g:20031:1: rule__XRelationalExpression__RightOperandAssignment_1_1_1 : ( ruleXOtherOperatorExpression ) ;
+    // InternalDomainmodel.g:20015:1: rule__XRelationalExpression__RightOperandAssignment_1_1_1 : ( ruleXOtherOperatorExpression ) ;
     public final void rule__XRelationalExpression__RightOperandAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20035:1: ( ( ruleXOtherOperatorExpression ) )
-            // InternalDomainmodel.g:20036:2: ( ruleXOtherOperatorExpression )
+            // InternalDomainmodel.g:20019:1: ( ( ruleXOtherOperatorExpression ) )
+            // InternalDomainmodel.g:20020:2: ( ruleXOtherOperatorExpression )
             {
-            // InternalDomainmodel.g:20036:2: ( ruleXOtherOperatorExpression )
-            // InternalDomainmodel.g:20037:3: ruleXOtherOperatorExpression
+            // InternalDomainmodel.g:20020:2: ( ruleXOtherOperatorExpression )
+            // InternalDomainmodel.g:20021:3: ruleXOtherOperatorExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getRightOperandXOtherOperatorExpressionParserRuleCall_1_1_1_0()); 
@@ -65422,23 +65390,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1"
-    // InternalDomainmodel.g:20046:1: rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOther ) ) ;
+    // InternalDomainmodel.g:20030:1: rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOther ) ) ;
     public final void rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20050:1: ( ( ( ruleOpOther ) ) )
-            // InternalDomainmodel.g:20051:2: ( ( ruleOpOther ) )
+            // InternalDomainmodel.g:20034:1: ( ( ( ruleOpOther ) ) )
+            // InternalDomainmodel.g:20035:2: ( ( ruleOpOther ) )
             {
-            // InternalDomainmodel.g:20051:2: ( ( ruleOpOther ) )
-            // InternalDomainmodel.g:20052:3: ( ruleOpOther )
+            // InternalDomainmodel.g:20035:2: ( ( ruleOpOther ) )
+            // InternalDomainmodel.g:20036:3: ( ruleOpOther )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:20053:3: ( ruleOpOther )
-            // InternalDomainmodel.g:20054:4: ruleOpOther
+            // InternalDomainmodel.g:20037:3: ( ruleOpOther )
+            // InternalDomainmodel.g:20038:4: ruleOpOther
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getFeatureJvmIdentifiableElementOpOtherParserRuleCall_1_0_0_1_0_1()); 
@@ -65479,17 +65447,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XOtherOperatorExpression__RightOperandAssignment_1_1"
-    // InternalDomainmodel.g:20065:1: rule__XOtherOperatorExpression__RightOperandAssignment_1_1 : ( ruleXAdditiveExpression ) ;
+    // InternalDomainmodel.g:20049:1: rule__XOtherOperatorExpression__RightOperandAssignment_1_1 : ( ruleXAdditiveExpression ) ;
     public final void rule__XOtherOperatorExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20069:1: ( ( ruleXAdditiveExpression ) )
-            // InternalDomainmodel.g:20070:2: ( ruleXAdditiveExpression )
+            // InternalDomainmodel.g:20053:1: ( ( ruleXAdditiveExpression ) )
+            // InternalDomainmodel.g:20054:2: ( ruleXAdditiveExpression )
             {
-            // InternalDomainmodel.g:20070:2: ( ruleXAdditiveExpression )
-            // InternalDomainmodel.g:20071:3: ruleXAdditiveExpression
+            // InternalDomainmodel.g:20054:2: ( ruleXAdditiveExpression )
+            // InternalDomainmodel.g:20055:3: ruleXAdditiveExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getRightOperandXAdditiveExpressionParserRuleCall_1_1_0()); 
@@ -65524,23 +65492,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAdditiveExpression__FeatureAssignment_1_0_0_1"
-    // InternalDomainmodel.g:20080:1: rule__XAdditiveExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAdd ) ) ;
+    // InternalDomainmodel.g:20064:1: rule__XAdditiveExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAdd ) ) ;
     public final void rule__XAdditiveExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20084:1: ( ( ( ruleOpAdd ) ) )
-            // InternalDomainmodel.g:20085:2: ( ( ruleOpAdd ) )
+            // InternalDomainmodel.g:20068:1: ( ( ( ruleOpAdd ) ) )
+            // InternalDomainmodel.g:20069:2: ( ( ruleOpAdd ) )
             {
-            // InternalDomainmodel.g:20085:2: ( ( ruleOpAdd ) )
-            // InternalDomainmodel.g:20086:3: ( ruleOpAdd )
+            // InternalDomainmodel.g:20069:2: ( ( ruleOpAdd ) )
+            // InternalDomainmodel.g:20070:3: ( ruleOpAdd )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:20087:3: ( ruleOpAdd )
-            // InternalDomainmodel.g:20088:4: ruleOpAdd
+            // InternalDomainmodel.g:20071:3: ( ruleOpAdd )
+            // InternalDomainmodel.g:20072:4: ruleOpAdd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getFeatureJvmIdentifiableElementOpAddParserRuleCall_1_0_0_1_0_1()); 
@@ -65581,17 +65549,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XAdditiveExpression__RightOperandAssignment_1_1"
-    // InternalDomainmodel.g:20099:1: rule__XAdditiveExpression__RightOperandAssignment_1_1 : ( ruleXMultiplicativeExpression ) ;
+    // InternalDomainmodel.g:20083:1: rule__XAdditiveExpression__RightOperandAssignment_1_1 : ( ruleXMultiplicativeExpression ) ;
     public final void rule__XAdditiveExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20103:1: ( ( ruleXMultiplicativeExpression ) )
-            // InternalDomainmodel.g:20104:2: ( ruleXMultiplicativeExpression )
+            // InternalDomainmodel.g:20087:1: ( ( ruleXMultiplicativeExpression ) )
+            // InternalDomainmodel.g:20088:2: ( ruleXMultiplicativeExpression )
             {
-            // InternalDomainmodel.g:20104:2: ( ruleXMultiplicativeExpression )
-            // InternalDomainmodel.g:20105:3: ruleXMultiplicativeExpression
+            // InternalDomainmodel.g:20088:2: ( ruleXMultiplicativeExpression )
+            // InternalDomainmodel.g:20089:3: ruleXMultiplicativeExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getRightOperandXMultiplicativeExpressionParserRuleCall_1_1_0()); 
@@ -65626,23 +65594,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1"
-    // InternalDomainmodel.g:20114:1: rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpMulti ) ) ;
+    // InternalDomainmodel.g:20098:1: rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpMulti ) ) ;
     public final void rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20118:1: ( ( ( ruleOpMulti ) ) )
-            // InternalDomainmodel.g:20119:2: ( ( ruleOpMulti ) )
+            // InternalDomainmodel.g:20102:1: ( ( ( ruleOpMulti ) ) )
+            // InternalDomainmodel.g:20103:2: ( ( ruleOpMulti ) )
             {
-            // InternalDomainmodel.g:20119:2: ( ( ruleOpMulti ) )
-            // InternalDomainmodel.g:20120:3: ( ruleOpMulti )
+            // InternalDomainmodel.g:20103:2: ( ( ruleOpMulti ) )
+            // InternalDomainmodel.g:20104:3: ( ruleOpMulti )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // InternalDomainmodel.g:20121:3: ( ruleOpMulti )
-            // InternalDomainmodel.g:20122:4: ruleOpMulti
+            // InternalDomainmodel.g:20105:3: ( ruleOpMulti )
+            // InternalDomainmodel.g:20106:4: ruleOpMulti
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getFeatureJvmIdentifiableElementOpMultiParserRuleCall_1_0_0_1_0_1()); 
@@ -65683,17 +65651,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMultiplicativeExpression__RightOperandAssignment_1_1"
-    // InternalDomainmodel.g:20133:1: rule__XMultiplicativeExpression__RightOperandAssignment_1_1 : ( ruleXUnaryOperation ) ;
+    // InternalDomainmodel.g:20117:1: rule__XMultiplicativeExpression__RightOperandAssignment_1_1 : ( ruleXUnaryOperation ) ;
     public final void rule__XMultiplicativeExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20137:1: ( ( ruleXUnaryOperation ) )
-            // InternalDomainmodel.g:20138:2: ( ruleXUnaryOperation )
+            // InternalDomainmodel.g:20121:1: ( ( ruleXUnaryOperation ) )
+            // InternalDomainmodel.g:20122:2: ( ruleXUnaryOperation )
             {
-            // InternalDomainmodel.g:20138:2: ( ruleXUnaryOperation )
-            // InternalDomainmodel.g:20139:3: ruleXUnaryOperation
+            // InternalDomainmodel.g:20122:2: ( ruleXUnaryOperation )
+            // InternalDomainmodel.g:20123:3: ruleXUnaryOperation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getRightOperandXUnaryOperationParserRuleCall_1_1_0()); 
@@ -65728,23 +65696,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XUnaryOperation__FeatureAssignment_0_1"
-    // InternalDomainmodel.g:20148:1: rule__XUnaryOperation__FeatureAssignment_0_1 : ( ( ruleOpUnary ) ) ;
+    // InternalDomainmodel.g:20132:1: rule__XUnaryOperation__FeatureAssignment_0_1 : ( ( ruleOpUnary ) ) ;
     public final void rule__XUnaryOperation__FeatureAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20152:1: ( ( ( ruleOpUnary ) ) )
-            // InternalDomainmodel.g:20153:2: ( ( ruleOpUnary ) )
+            // InternalDomainmodel.g:20136:1: ( ( ( ruleOpUnary ) ) )
+            // InternalDomainmodel.g:20137:2: ( ( ruleOpUnary ) )
             {
-            // InternalDomainmodel.g:20153:2: ( ( ruleOpUnary ) )
-            // InternalDomainmodel.g:20154:3: ( ruleOpUnary )
+            // InternalDomainmodel.g:20137:2: ( ( ruleOpUnary ) )
+            // InternalDomainmodel.g:20138:3: ( ruleOpUnary )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
             }
-            // InternalDomainmodel.g:20155:3: ( ruleOpUnary )
-            // InternalDomainmodel.g:20156:4: ruleOpUnary
+            // InternalDomainmodel.g:20139:3: ( ruleOpUnary )
+            // InternalDomainmodel.g:20140:4: ruleOpUnary
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getFeatureJvmIdentifiableElementOpUnaryParserRuleCall_0_1_0_1()); 
@@ -65785,17 +65753,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XUnaryOperation__OperandAssignment_0_2"
-    // InternalDomainmodel.g:20167:1: rule__XUnaryOperation__OperandAssignment_0_2 : ( ruleXUnaryOperation ) ;
+    // InternalDomainmodel.g:20151:1: rule__XUnaryOperation__OperandAssignment_0_2 : ( ruleXUnaryOperation ) ;
     public final void rule__XUnaryOperation__OperandAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20171:1: ( ( ruleXUnaryOperation ) )
-            // InternalDomainmodel.g:20172:2: ( ruleXUnaryOperation )
+            // InternalDomainmodel.g:20155:1: ( ( ruleXUnaryOperation ) )
+            // InternalDomainmodel.g:20156:2: ( ruleXUnaryOperation )
             {
-            // InternalDomainmodel.g:20172:2: ( ruleXUnaryOperation )
-            // InternalDomainmodel.g:20173:3: ruleXUnaryOperation
+            // InternalDomainmodel.g:20156:2: ( ruleXUnaryOperation )
+            // InternalDomainmodel.g:20157:3: ruleXUnaryOperation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getOperandXUnaryOperationParserRuleCall_0_2_0()); 
@@ -65830,17 +65798,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XCastedExpression__TypeAssignment_1_1"
-    // InternalDomainmodel.g:20182:1: rule__XCastedExpression__TypeAssignment_1_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:20166:1: rule__XCastedExpression__TypeAssignment_1_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XCastedExpression__TypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20186:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:20187:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:20170:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:20171:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:20187:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:20188:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:20171:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:20172:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCastedExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_1_0()); 
@@ -65875,23 +65843,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XPostfixOperation__FeatureAssignment_1_0_1"
-    // InternalDomainmodel.g:20197:1: rule__XPostfixOperation__FeatureAssignment_1_0_1 : ( ( ruleOpPostfix ) ) ;
+    // InternalDomainmodel.g:20181:1: rule__XPostfixOperation__FeatureAssignment_1_0_1 : ( ( ruleOpPostfix ) ) ;
     public final void rule__XPostfixOperation__FeatureAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20201:1: ( ( ( ruleOpPostfix ) ) )
-            // InternalDomainmodel.g:20202:2: ( ( ruleOpPostfix ) )
+            // InternalDomainmodel.g:20185:1: ( ( ( ruleOpPostfix ) ) )
+            // InternalDomainmodel.g:20186:2: ( ( ruleOpPostfix ) )
             {
-            // InternalDomainmodel.g:20202:2: ( ( ruleOpPostfix ) )
-            // InternalDomainmodel.g:20203:3: ( ruleOpPostfix )
+            // InternalDomainmodel.g:20186:2: ( ( ruleOpPostfix ) )
+            // InternalDomainmodel.g:20187:3: ( ruleOpPostfix )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXPostfixOperationAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_1_0()); 
             }
-            // InternalDomainmodel.g:20204:3: ( ruleOpPostfix )
-            // InternalDomainmodel.g:20205:4: ruleOpPostfix
+            // InternalDomainmodel.g:20188:3: ( ruleOpPostfix )
+            // InternalDomainmodel.g:20189:4: ruleOpPostfix
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXPostfixOperationAccess().getFeatureJvmIdentifiableElementOpPostfixParserRuleCall_1_0_1_0_1()); 
@@ -65932,23 +65900,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1"
-    // InternalDomainmodel.g:20216:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1 : ( ( '::' ) ) ;
+    // InternalDomainmodel.g:20200:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1 : ( ( '::' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20220:1: ( ( ( '::' ) ) )
-            // InternalDomainmodel.g:20221:2: ( ( '::' ) )
+            // InternalDomainmodel.g:20204:1: ( ( ( '::' ) ) )
+            // InternalDomainmodel.g:20205:2: ( ( '::' ) )
             {
-            // InternalDomainmodel.g:20221:2: ( ( '::' ) )
-            // InternalDomainmodel.g:20222:3: ( '::' )
+            // InternalDomainmodel.g:20205:2: ( ( '::' ) )
+            // InternalDomainmodel.g:20206:3: ( '::' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
             }
-            // InternalDomainmodel.g:20223:3: ( '::' )
-            // InternalDomainmodel.g:20224:4: '::'
+            // InternalDomainmodel.g:20207:3: ( '::' )
+            // InternalDomainmodel.g:20208:4: '::'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
@@ -65985,23 +65953,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2"
-    // InternalDomainmodel.g:20235:1: rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2 : ( ( ruleFeatureCallID ) ) ;
+    // InternalDomainmodel.g:20219:1: rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2 : ( ( ruleFeatureCallID ) ) ;
     public final void rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20239:1: ( ( ( ruleFeatureCallID ) ) )
-            // InternalDomainmodel.g:20240:2: ( ( ruleFeatureCallID ) )
+            // InternalDomainmodel.g:20223:1: ( ( ( ruleFeatureCallID ) ) )
+            // InternalDomainmodel.g:20224:2: ( ( ruleFeatureCallID ) )
             {
-            // InternalDomainmodel.g:20240:2: ( ( ruleFeatureCallID ) )
-            // InternalDomainmodel.g:20241:3: ( ruleFeatureCallID )
+            // InternalDomainmodel.g:20224:2: ( ( ruleFeatureCallID ) )
+            // InternalDomainmodel.g:20225:3: ( ruleFeatureCallID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_0_2_0()); 
             }
-            // InternalDomainmodel.g:20242:3: ( ruleFeatureCallID )
-            // InternalDomainmodel.g:20243:4: ruleFeatureCallID
+            // InternalDomainmodel.g:20226:3: ( ruleFeatureCallID )
+            // InternalDomainmodel.g:20227:4: ruleFeatureCallID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementFeatureCallIDParserRuleCall_1_0_0_0_2_0_1()); 
@@ -66042,17 +66010,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ValueAssignment_1_0_1"
-    // InternalDomainmodel.g:20254:1: rule__XMemberFeatureCall__ValueAssignment_1_0_1 : ( ruleXAssignment ) ;
+    // InternalDomainmodel.g:20238:1: rule__XMemberFeatureCall__ValueAssignment_1_0_1 : ( ruleXAssignment ) ;
     public final void rule__XMemberFeatureCall__ValueAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20258:1: ( ( ruleXAssignment ) )
-            // InternalDomainmodel.g:20259:2: ( ruleXAssignment )
+            // InternalDomainmodel.g:20242:1: ( ( ruleXAssignment ) )
+            // InternalDomainmodel.g:20243:2: ( ruleXAssignment )
             {
-            // InternalDomainmodel.g:20259:2: ( ruleXAssignment )
-            // InternalDomainmodel.g:20260:3: ruleXAssignment
+            // InternalDomainmodel.g:20243:2: ( ruleXAssignment )
+            // InternalDomainmodel.g:20244:3: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getValueXAssignmentParserRuleCall_1_0_1_0()); 
@@ -66087,23 +66055,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1"
-    // InternalDomainmodel.g:20269:1: rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1 : ( ( '?.' ) ) ;
+    // InternalDomainmodel.g:20253:1: rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1 : ( ( '?.' ) ) ;
     public final void rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20273:1: ( ( ( '?.' ) ) )
-            // InternalDomainmodel.g:20274:2: ( ( '?.' ) )
+            // InternalDomainmodel.g:20257:1: ( ( ( '?.' ) ) )
+            // InternalDomainmodel.g:20258:2: ( ( '?.' ) )
             {
-            // InternalDomainmodel.g:20274:2: ( ( '?.' ) )
-            // InternalDomainmodel.g:20275:3: ( '?.' )
+            // InternalDomainmodel.g:20258:2: ( ( '?.' ) )
+            // InternalDomainmodel.g:20259:3: ( '?.' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
             }
-            // InternalDomainmodel.g:20276:3: ( '?.' )
-            // InternalDomainmodel.g:20277:4: '?.'
+            // InternalDomainmodel.g:20260:3: ( '?.' )
+            // InternalDomainmodel.g:20261:4: '?.'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
@@ -66140,23 +66108,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2"
-    // InternalDomainmodel.g:20288:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2 : ( ( '::' ) ) ;
+    // InternalDomainmodel.g:20272:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2 : ( ( '::' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20292:1: ( ( ( '::' ) ) )
-            // InternalDomainmodel.g:20293:2: ( ( '::' ) )
+            // InternalDomainmodel.g:20276:1: ( ( ( '::' ) ) )
+            // InternalDomainmodel.g:20277:2: ( ( '::' ) )
             {
-            // InternalDomainmodel.g:20293:2: ( ( '::' ) )
-            // InternalDomainmodel.g:20294:3: ( '::' )
+            // InternalDomainmodel.g:20277:2: ( ( '::' ) )
+            // InternalDomainmodel.g:20278:3: ( '::' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
             }
-            // InternalDomainmodel.g:20295:3: ( '::' )
-            // InternalDomainmodel.g:20296:4: '::'
+            // InternalDomainmodel.g:20279:3: ( '::' )
+            // InternalDomainmodel.g:20280:4: '::'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
@@ -66193,17 +66161,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1"
-    // InternalDomainmodel.g:20307:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:20291:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20311:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:20312:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:20295:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:20296:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:20312:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:20313:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:20296:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:20297:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_1_0()); 
@@ -66238,17 +66206,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1"
-    // InternalDomainmodel.g:20322:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:20306:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20326:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:20327:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:20310:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:20311:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:20327:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:20328:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:20311:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:20312:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_2_1_0()); 
@@ -66283,23 +66251,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__FeatureAssignment_1_1_2"
-    // InternalDomainmodel.g:20337:1: rule__XMemberFeatureCall__FeatureAssignment_1_1_2 : ( ( ruleIdOrSuper ) ) ;
+    // InternalDomainmodel.g:20321:1: rule__XMemberFeatureCall__FeatureAssignment_1_1_2 : ( ( ruleIdOrSuper ) ) ;
     public final void rule__XMemberFeatureCall__FeatureAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20341:1: ( ( ( ruleIdOrSuper ) ) )
-            // InternalDomainmodel.g:20342:2: ( ( ruleIdOrSuper ) )
+            // InternalDomainmodel.g:20325:1: ( ( ( ruleIdOrSuper ) ) )
+            // InternalDomainmodel.g:20326:2: ( ( ruleIdOrSuper ) )
             {
-            // InternalDomainmodel.g:20342:2: ( ( ruleIdOrSuper ) )
-            // InternalDomainmodel.g:20343:3: ( ruleIdOrSuper )
+            // InternalDomainmodel.g:20326:2: ( ( ruleIdOrSuper ) )
+            // InternalDomainmodel.g:20327:3: ( ruleIdOrSuper )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_2_0()); 
             }
-            // InternalDomainmodel.g:20344:3: ( ruleIdOrSuper )
-            // InternalDomainmodel.g:20345:4: ruleIdOrSuper
+            // InternalDomainmodel.g:20328:3: ( ruleIdOrSuper )
+            // InternalDomainmodel.g:20329:4: ruleIdOrSuper
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementIdOrSuperParserRuleCall_1_1_2_0_1()); 
@@ -66340,23 +66308,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0"
-    // InternalDomainmodel.g:20356:1: rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0 : ( ( '(' ) ) ;
+    // InternalDomainmodel.g:20340:1: rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0 : ( ( '(' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20360:1: ( ( ( '(' ) ) )
-            // InternalDomainmodel.g:20361:2: ( ( '(' ) )
+            // InternalDomainmodel.g:20344:1: ( ( ( '(' ) ) )
+            // InternalDomainmodel.g:20345:2: ( ( '(' ) )
             {
-            // InternalDomainmodel.g:20361:2: ( ( '(' ) )
-            // InternalDomainmodel.g:20362:3: ( '(' )
+            // InternalDomainmodel.g:20345:2: ( ( '(' ) )
+            // InternalDomainmodel.g:20346:3: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
             }
-            // InternalDomainmodel.g:20363:3: ( '(' )
-            // InternalDomainmodel.g:20364:4: '('
+            // InternalDomainmodel.g:20347:3: ( '(' )
+            // InternalDomainmodel.g:20348:4: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
@@ -66393,17 +66361,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0"
-    // InternalDomainmodel.g:20375:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0 : ( ruleXShortClosure ) ;
+    // InternalDomainmodel.g:20359:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20379:1: ( ( ruleXShortClosure ) )
-            // InternalDomainmodel.g:20380:2: ( ruleXShortClosure )
+            // InternalDomainmodel.g:20363:1: ( ( ruleXShortClosure ) )
+            // InternalDomainmodel.g:20364:2: ( ruleXShortClosure )
             {
-            // InternalDomainmodel.g:20380:2: ( ruleXShortClosure )
-            // InternalDomainmodel.g:20381:3: ruleXShortClosure
+            // InternalDomainmodel.g:20364:2: ( ruleXShortClosure )
+            // InternalDomainmodel.g:20365:3: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXShortClosureParserRuleCall_1_1_3_1_0_0()); 
@@ -66438,17 +66406,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0"
-    // InternalDomainmodel.g:20390:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20374:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20394:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20395:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20378:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20379:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20395:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20396:3: ruleXExpression
+            // InternalDomainmodel.g:20379:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20380:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_0_0()); 
@@ -66483,17 +66451,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1"
-    // InternalDomainmodel.g:20405:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20389:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20409:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20410:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20393:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20394:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20410:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20411:3: ruleXExpression
+            // InternalDomainmodel.g:20394:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20395:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_1_1_0()); 
@@ -66528,17 +66496,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4"
-    // InternalDomainmodel.g:20420:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4 : ( ruleXClosure ) ;
+    // InternalDomainmodel.g:20404:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4 : ( ruleXClosure ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20424:1: ( ( ruleXClosure ) )
-            // InternalDomainmodel.g:20425:2: ( ruleXClosure )
+            // InternalDomainmodel.g:20408:1: ( ( ruleXClosure ) )
+            // InternalDomainmodel.g:20409:2: ( ruleXClosure )
             {
-            // InternalDomainmodel.g:20425:2: ( ruleXClosure )
-            // InternalDomainmodel.g:20426:3: ruleXClosure
+            // InternalDomainmodel.g:20409:2: ( ruleXClosure )
+            // InternalDomainmodel.g:20410:3: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXClosureParserRuleCall_1_1_4_0()); 
@@ -66573,17 +66541,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSetLiteral__ElementsAssignment_3_0"
-    // InternalDomainmodel.g:20435:1: rule__XSetLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20419:1: rule__XSetLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
     public final void rule__XSetLiteral__ElementsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20439:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20440:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20423:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20424:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20440:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20441:3: ruleXExpression
+            // InternalDomainmodel.g:20424:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20425:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
@@ -66618,17 +66586,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSetLiteral__ElementsAssignment_3_1_1"
-    // InternalDomainmodel.g:20450:1: rule__XSetLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20434:1: rule__XSetLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XSetLiteral__ElementsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20454:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20455:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20438:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20439:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20455:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20456:3: ruleXExpression
+            // InternalDomainmodel.g:20439:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20440:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
@@ -66663,17 +66631,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XListLiteral__ElementsAssignment_3_0"
-    // InternalDomainmodel.g:20465:1: rule__XListLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20449:1: rule__XListLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
     public final void rule__XListLiteral__ElementsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20469:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20470:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20453:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20454:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20470:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20471:3: ruleXExpression
+            // InternalDomainmodel.g:20454:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20455:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
@@ -66708,17 +66676,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XListLiteral__ElementsAssignment_3_1_1"
-    // InternalDomainmodel.g:20480:1: rule__XListLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20464:1: rule__XListLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XListLiteral__ElementsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20484:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20485:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20468:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20469:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20485:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20486:3: ruleXExpression
+            // InternalDomainmodel.g:20469:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20470:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
@@ -66753,17 +66721,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0"
-    // InternalDomainmodel.g:20495:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0 : ( ruleJvmFormalParameter ) ;
+    // InternalDomainmodel.g:20479:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20499:1: ( ( ruleJvmFormalParameter ) )
-            // InternalDomainmodel.g:20500:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20483:1: ( ( ruleJvmFormalParameter ) )
+            // InternalDomainmodel.g:20484:2: ( ruleJvmFormalParameter )
             {
-            // InternalDomainmodel.g:20500:2: ( ruleJvmFormalParameter )
-            // InternalDomainmodel.g:20501:3: ruleJvmFormalParameter
+            // InternalDomainmodel.g:20484:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20485:3: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_0_0()); 
@@ -66798,17 +66766,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1"
-    // InternalDomainmodel.g:20510:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1 : ( ruleJvmFormalParameter ) ;
+    // InternalDomainmodel.g:20494:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20514:1: ( ( ruleJvmFormalParameter ) )
-            // InternalDomainmodel.g:20515:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20498:1: ( ( ruleJvmFormalParameter ) )
+            // InternalDomainmodel.g:20499:2: ( ruleJvmFormalParameter )
             {
-            // InternalDomainmodel.g:20515:2: ( ruleJvmFormalParameter )
-            // InternalDomainmodel.g:20516:3: ruleJvmFormalParameter
+            // InternalDomainmodel.g:20499:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20500:3: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_1_1_0()); 
@@ -66843,23 +66811,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XClosure__ExplicitSyntaxAssignment_1_0_1"
-    // InternalDomainmodel.g:20525:1: rule__XClosure__ExplicitSyntaxAssignment_1_0_1 : ( ( '|' ) ) ;
+    // InternalDomainmodel.g:20509:1: rule__XClosure__ExplicitSyntaxAssignment_1_0_1 : ( ( '|' ) ) ;
     public final void rule__XClosure__ExplicitSyntaxAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20529:1: ( ( ( '|' ) ) )
-            // InternalDomainmodel.g:20530:2: ( ( '|' ) )
+            // InternalDomainmodel.g:20513:1: ( ( ( '|' ) ) )
+            // InternalDomainmodel.g:20514:2: ( ( '|' ) )
             {
-            // InternalDomainmodel.g:20530:2: ( ( '|' ) )
-            // InternalDomainmodel.g:20531:3: ( '|' )
+            // InternalDomainmodel.g:20514:2: ( ( '|' ) )
+            // InternalDomainmodel.g:20515:3: ( '|' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
             }
-            // InternalDomainmodel.g:20532:3: ( '|' )
-            // InternalDomainmodel.g:20533:4: '|'
+            // InternalDomainmodel.g:20516:3: ( '|' )
+            // InternalDomainmodel.g:20517:4: '|'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
@@ -66896,17 +66864,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XClosure__ExpressionAssignment_2"
-    // InternalDomainmodel.g:20544:1: rule__XClosure__ExpressionAssignment_2 : ( ruleXExpressionInClosure ) ;
+    // InternalDomainmodel.g:20528:1: rule__XClosure__ExpressionAssignment_2 : ( ruleXExpressionInClosure ) ;
     public final void rule__XClosure__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20548:1: ( ( ruleXExpressionInClosure ) )
-            // InternalDomainmodel.g:20549:2: ( ruleXExpressionInClosure )
+            // InternalDomainmodel.g:20532:1: ( ( ruleXExpressionInClosure ) )
+            // InternalDomainmodel.g:20533:2: ( ruleXExpressionInClosure )
             {
-            // InternalDomainmodel.g:20549:2: ( ruleXExpressionInClosure )
-            // InternalDomainmodel.g:20550:3: ruleXExpressionInClosure
+            // InternalDomainmodel.g:20533:2: ( ruleXExpressionInClosure )
+            // InternalDomainmodel.g:20534:3: ruleXExpressionInClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getExpressionXExpressionInClosureParserRuleCall_2_0()); 
@@ -66941,17 +66909,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XExpressionInClosure__ExpressionsAssignment_1_0"
-    // InternalDomainmodel.g:20559:1: rule__XExpressionInClosure__ExpressionsAssignment_1_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // InternalDomainmodel.g:20543:1: rule__XExpressionInClosure__ExpressionsAssignment_1_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XExpressionInClosure__ExpressionsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20563:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // InternalDomainmodel.g:20564:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:20547:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // InternalDomainmodel.g:20548:2: ( ruleXExpressionOrVarDeclaration )
             {
-            // InternalDomainmodel.g:20564:2: ( ruleXExpressionOrVarDeclaration )
-            // InternalDomainmodel.g:20565:3: ruleXExpressionOrVarDeclaration
+            // InternalDomainmodel.g:20548:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:20549:3: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXExpressionInClosureAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_1_0_0()); 
@@ -66986,17 +66954,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0"
-    // InternalDomainmodel.g:20574:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0 : ( ruleJvmFormalParameter ) ;
+    // InternalDomainmodel.g:20558:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20578:1: ( ( ruleJvmFormalParameter ) )
-            // InternalDomainmodel.g:20579:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20562:1: ( ( ruleJvmFormalParameter ) )
+            // InternalDomainmodel.g:20563:2: ( ruleJvmFormalParameter )
             {
-            // InternalDomainmodel.g:20579:2: ( ruleJvmFormalParameter )
-            // InternalDomainmodel.g:20580:3: ruleJvmFormalParameter
+            // InternalDomainmodel.g:20563:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20564:3: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_0_0()); 
@@ -67031,17 +66999,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1"
-    // InternalDomainmodel.g:20589:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1 : ( ruleJvmFormalParameter ) ;
+    // InternalDomainmodel.g:20573:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20593:1: ( ( ruleJvmFormalParameter ) )
-            // InternalDomainmodel.g:20594:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20577:1: ( ( ruleJvmFormalParameter ) )
+            // InternalDomainmodel.g:20578:2: ( ruleJvmFormalParameter )
             {
-            // InternalDomainmodel.g:20594:2: ( ruleJvmFormalParameter )
-            // InternalDomainmodel.g:20595:3: ruleJvmFormalParameter
+            // InternalDomainmodel.g:20578:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20579:3: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_1_1_0()); 
@@ -67076,23 +67044,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2"
-    // InternalDomainmodel.g:20604:1: rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2 : ( ( '|' ) ) ;
+    // InternalDomainmodel.g:20588:1: rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2 : ( ( '|' ) ) ;
     public final void rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20608:1: ( ( ( '|' ) ) )
-            // InternalDomainmodel.g:20609:2: ( ( '|' ) )
+            // InternalDomainmodel.g:20592:1: ( ( ( '|' ) ) )
+            // InternalDomainmodel.g:20593:2: ( ( '|' ) )
             {
-            // InternalDomainmodel.g:20609:2: ( ( '|' ) )
-            // InternalDomainmodel.g:20610:3: ( '|' )
+            // InternalDomainmodel.g:20593:2: ( ( '|' ) )
+            // InternalDomainmodel.g:20594:3: ( '|' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
             }
-            // InternalDomainmodel.g:20611:3: ( '|' )
-            // InternalDomainmodel.g:20612:4: '|'
+            // InternalDomainmodel.g:20595:3: ( '|' )
+            // InternalDomainmodel.g:20596:4: '|'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
@@ -67129,17 +67097,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XShortClosure__ExpressionAssignment_1"
-    // InternalDomainmodel.g:20623:1: rule__XShortClosure__ExpressionAssignment_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20607:1: rule__XShortClosure__ExpressionAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XShortClosure__ExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20627:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20628:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20611:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20612:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20628:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20629:3: ruleXExpression
+            // InternalDomainmodel.g:20612:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20613:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getExpressionXExpressionParserRuleCall_1_0()); 
@@ -67174,17 +67142,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XIfExpression__IfAssignment_3"
-    // InternalDomainmodel.g:20638:1: rule__XIfExpression__IfAssignment_3 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20622:1: rule__XIfExpression__IfAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__IfAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20642:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20643:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20626:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20627:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20643:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20644:3: ruleXExpression
+            // InternalDomainmodel.g:20627:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20628:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getIfXExpressionParserRuleCall_3_0()); 
@@ -67219,17 +67187,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XIfExpression__ThenAssignment_5"
-    // InternalDomainmodel.g:20653:1: rule__XIfExpression__ThenAssignment_5 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20637:1: rule__XIfExpression__ThenAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__ThenAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20657:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20658:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20641:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20642:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20658:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20659:3: ruleXExpression
+            // InternalDomainmodel.g:20642:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20643:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getThenXExpressionParserRuleCall_5_0()); 
@@ -67264,17 +67232,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XIfExpression__ElseAssignment_6_1"
-    // InternalDomainmodel.g:20668:1: rule__XIfExpression__ElseAssignment_6_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20652:1: rule__XIfExpression__ElseAssignment_6_1 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__ElseAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20672:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20673:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20656:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20657:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20673:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20674:3: ruleXExpression
+            // InternalDomainmodel.g:20657:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20658:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getElseXExpressionParserRuleCall_6_1_0()); 
@@ -67309,17 +67277,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1"
-    // InternalDomainmodel.g:20683:1: rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1 : ( ruleJvmFormalParameter ) ;
+    // InternalDomainmodel.g:20667:1: rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20687:1: ( ( ruleJvmFormalParameter ) )
-            // InternalDomainmodel.g:20688:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20671:1: ( ( ruleJvmFormalParameter ) )
+            // InternalDomainmodel.g:20672:2: ( ruleJvmFormalParameter )
             {
-            // InternalDomainmodel.g:20688:2: ( ruleJvmFormalParameter )
-            // InternalDomainmodel.g:20689:3: ruleJvmFormalParameter
+            // InternalDomainmodel.g:20672:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20673:3: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_0_0_0_1_0()); 
@@ -67354,17 +67322,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSwitchExpression__SwitchAssignment_2_0_1"
-    // InternalDomainmodel.g:20698:1: rule__XSwitchExpression__SwitchAssignment_2_0_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20682:1: rule__XSwitchExpression__SwitchAssignment_2_0_1 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__SwitchAssignment_2_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20702:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20703:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20686:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20687:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20703:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20704:3: ruleXExpression
+            // InternalDomainmodel.g:20687:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20688:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_0_1_0()); 
@@ -67399,17 +67367,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0"
-    // InternalDomainmodel.g:20713:1: rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0 : ( ruleJvmFormalParameter ) ;
+    // InternalDomainmodel.g:20697:1: rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20717:1: ( ( ruleJvmFormalParameter ) )
-            // InternalDomainmodel.g:20718:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20701:1: ( ( ruleJvmFormalParameter ) )
+            // InternalDomainmodel.g:20702:2: ( ruleJvmFormalParameter )
             {
-            // InternalDomainmodel.g:20718:2: ( ruleJvmFormalParameter )
-            // InternalDomainmodel.g:20719:3: ruleJvmFormalParameter
+            // InternalDomainmodel.g:20702:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20703:3: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_1_0_0_0_0()); 
@@ -67444,17 +67412,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSwitchExpression__SwitchAssignment_2_1_1"
-    // InternalDomainmodel.g:20728:1: rule__XSwitchExpression__SwitchAssignment_2_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20712:1: rule__XSwitchExpression__SwitchAssignment_2_1_1 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__SwitchAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20732:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20733:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20716:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20717:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20733:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20734:3: ruleXExpression
+            // InternalDomainmodel.g:20717:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20718:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_1_1_0()); 
@@ -67489,17 +67457,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSwitchExpression__CasesAssignment_4"
-    // InternalDomainmodel.g:20743:1: rule__XSwitchExpression__CasesAssignment_4 : ( ruleXCasePart ) ;
+    // InternalDomainmodel.g:20727:1: rule__XSwitchExpression__CasesAssignment_4 : ( ruleXCasePart ) ;
     public final void rule__XSwitchExpression__CasesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20747:1: ( ( ruleXCasePart ) )
-            // InternalDomainmodel.g:20748:2: ( ruleXCasePart )
+            // InternalDomainmodel.g:20731:1: ( ( ruleXCasePart ) )
+            // InternalDomainmodel.g:20732:2: ( ruleXCasePart )
             {
-            // InternalDomainmodel.g:20748:2: ( ruleXCasePart )
-            // InternalDomainmodel.g:20749:3: ruleXCasePart
+            // InternalDomainmodel.g:20732:2: ( ruleXCasePart )
+            // InternalDomainmodel.g:20733:3: ruleXCasePart
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getCasesXCasePartParserRuleCall_4_0()); 
@@ -67534,17 +67502,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSwitchExpression__DefaultAssignment_5_2"
-    // InternalDomainmodel.g:20758:1: rule__XSwitchExpression__DefaultAssignment_5_2 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20742:1: rule__XSwitchExpression__DefaultAssignment_5_2 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__DefaultAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20762:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20763:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20746:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20747:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20763:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20764:3: ruleXExpression
+            // InternalDomainmodel.g:20747:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20748:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDefaultXExpressionParserRuleCall_5_2_0()); 
@@ -67579,17 +67547,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XCasePart__TypeGuardAssignment_1"
-    // InternalDomainmodel.g:20773:1: rule__XCasePart__TypeGuardAssignment_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:20757:1: rule__XCasePart__TypeGuardAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XCasePart__TypeGuardAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20777:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:20778:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:20761:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:20762:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:20778:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:20779:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:20762:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:20763:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getTypeGuardJvmTypeReferenceParserRuleCall_1_0()); 
@@ -67624,17 +67592,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XCasePart__CaseAssignment_2_1"
-    // InternalDomainmodel.g:20788:1: rule__XCasePart__CaseAssignment_2_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20772:1: rule__XCasePart__CaseAssignment_2_1 : ( ruleXExpression ) ;
     public final void rule__XCasePart__CaseAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20792:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20793:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20776:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20777:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20793:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20794:3: ruleXExpression
+            // InternalDomainmodel.g:20777:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20778:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getCaseXExpressionParserRuleCall_2_1_0()); 
@@ -67669,17 +67637,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XCasePart__ThenAssignment_3_0_1"
-    // InternalDomainmodel.g:20803:1: rule__XCasePart__ThenAssignment_3_0_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20787:1: rule__XCasePart__ThenAssignment_3_0_1 : ( ruleXExpression ) ;
     public final void rule__XCasePart__ThenAssignment_3_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20807:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20808:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20791:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20792:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20808:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20809:3: ruleXExpression
+            // InternalDomainmodel.g:20792:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20793:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getThenXExpressionParserRuleCall_3_0_1_0()); 
@@ -67714,23 +67682,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XCasePart__FallThroughAssignment_3_1"
-    // InternalDomainmodel.g:20818:1: rule__XCasePart__FallThroughAssignment_3_1 : ( ( ',' ) ) ;
+    // InternalDomainmodel.g:20802:1: rule__XCasePart__FallThroughAssignment_3_1 : ( ( ',' ) ) ;
     public final void rule__XCasePart__FallThroughAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20822:1: ( ( ( ',' ) ) )
-            // InternalDomainmodel.g:20823:2: ( ( ',' ) )
+            // InternalDomainmodel.g:20806:1: ( ( ( ',' ) ) )
+            // InternalDomainmodel.g:20807:2: ( ( ',' ) )
             {
-            // InternalDomainmodel.g:20823:2: ( ( ',' ) )
-            // InternalDomainmodel.g:20824:3: ( ',' )
+            // InternalDomainmodel.g:20807:2: ( ( ',' ) )
+            // InternalDomainmodel.g:20808:3: ( ',' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getFallThroughCommaKeyword_3_1_0()); 
             }
-            // InternalDomainmodel.g:20825:3: ( ',' )
-            // InternalDomainmodel.g:20826:4: ','
+            // InternalDomainmodel.g:20809:3: ( ',' )
+            // InternalDomainmodel.g:20810:4: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getFallThroughCommaKeyword_3_1_0()); 
@@ -67767,17 +67735,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XForLoopExpression__DeclaredParamAssignment_0_0_3"
-    // InternalDomainmodel.g:20837:1: rule__XForLoopExpression__DeclaredParamAssignment_0_0_3 : ( ruleJvmFormalParameter ) ;
+    // InternalDomainmodel.g:20821:1: rule__XForLoopExpression__DeclaredParamAssignment_0_0_3 : ( ruleJvmFormalParameter ) ;
     public final void rule__XForLoopExpression__DeclaredParamAssignment_0_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20841:1: ( ( ruleJvmFormalParameter ) )
-            // InternalDomainmodel.g:20842:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20825:1: ( ( ruleJvmFormalParameter ) )
+            // InternalDomainmodel.g:20826:2: ( ruleJvmFormalParameter )
             {
-            // InternalDomainmodel.g:20842:2: ( ruleJvmFormalParameter )
-            // InternalDomainmodel.g:20843:3: ruleJvmFormalParameter
+            // InternalDomainmodel.g:20826:2: ( ruleJvmFormalParameter )
+            // InternalDomainmodel.g:20827:3: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_0_0_3_0()); 
@@ -67812,17 +67780,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XForLoopExpression__ForExpressionAssignment_1"
-    // InternalDomainmodel.g:20852:1: rule__XForLoopExpression__ForExpressionAssignment_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20836:1: rule__XForLoopExpression__ForExpressionAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XForLoopExpression__ForExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20856:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20857:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20840:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20841:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20857:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20858:3: ruleXExpression
+            // InternalDomainmodel.g:20841:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20842:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getForExpressionXExpressionParserRuleCall_1_0()); 
@@ -67857,17 +67825,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XForLoopExpression__EachExpressionAssignment_3"
-    // InternalDomainmodel.g:20867:1: rule__XForLoopExpression__EachExpressionAssignment_3 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20851:1: rule__XForLoopExpression__EachExpressionAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XForLoopExpression__EachExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20871:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20872:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20855:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20856:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20872:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20873:3: ruleXExpression
+            // InternalDomainmodel.g:20856:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20857:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_3_0()); 
@@ -67902,17 +67870,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0"
-    // InternalDomainmodel.g:20882:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // InternalDomainmodel.g:20866:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20886:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // InternalDomainmodel.g:20887:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:20870:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // InternalDomainmodel.g:20871:2: ( ruleXExpressionOrVarDeclaration )
             {
-            // InternalDomainmodel.g:20887:2: ( ruleXExpressionOrVarDeclaration )
-            // InternalDomainmodel.g:20888:3: ruleXExpressionOrVarDeclaration
+            // InternalDomainmodel.g:20871:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:20872:3: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_0_0()); 
@@ -67947,17 +67915,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1"
-    // InternalDomainmodel.g:20897:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1 : ( ruleXExpressionOrVarDeclaration ) ;
+    // InternalDomainmodel.g:20881:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20901:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // InternalDomainmodel.g:20902:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:20885:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // InternalDomainmodel.g:20886:2: ( ruleXExpressionOrVarDeclaration )
             {
-            // InternalDomainmodel.g:20902:2: ( ruleXExpressionOrVarDeclaration )
-            // InternalDomainmodel.g:20903:3: ruleXExpressionOrVarDeclaration
+            // InternalDomainmodel.g:20886:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:20887:3: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_1_1_0()); 
@@ -67992,17 +67960,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__ExpressionAssignment_5"
-    // InternalDomainmodel.g:20912:1: rule__XBasicForLoopExpression__ExpressionAssignment_5 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20896:1: rule__XBasicForLoopExpression__ExpressionAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__ExpressionAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20916:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20917:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20900:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20901:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20917:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20918:3: ruleXExpression
+            // InternalDomainmodel.g:20901:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20902:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getExpressionXExpressionParserRuleCall_5_0()); 
@@ -68037,17 +68005,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0"
-    // InternalDomainmodel.g:20927:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20911:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20931:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20932:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20915:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20916:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20932:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20933:3: ruleXExpression
+            // InternalDomainmodel.g:20916:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20917:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_0_0()); 
@@ -68082,17 +68050,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1"
-    // InternalDomainmodel.g:20942:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20926:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20946:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20947:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20930:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20931:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20947:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20948:3: ruleXExpression
+            // InternalDomainmodel.g:20931:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20932:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_1_1_0()); 
@@ -68127,17 +68095,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__EachExpressionAssignment_9"
-    // InternalDomainmodel.g:20957:1: rule__XBasicForLoopExpression__EachExpressionAssignment_9 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20941:1: rule__XBasicForLoopExpression__EachExpressionAssignment_9 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__EachExpressionAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20961:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20962:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20945:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20946:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20962:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20963:3: ruleXExpression
+            // InternalDomainmodel.g:20946:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20947:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_9_0()); 
@@ -68172,17 +68140,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XWhileExpression__PredicateAssignment_3"
-    // InternalDomainmodel.g:20972:1: rule__XWhileExpression__PredicateAssignment_3 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20956:1: rule__XWhileExpression__PredicateAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XWhileExpression__PredicateAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20976:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20977:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20960:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20961:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20977:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20978:3: ruleXExpression
+            // InternalDomainmodel.g:20961:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20962:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXWhileExpressionAccess().getPredicateXExpressionParserRuleCall_3_0()); 
@@ -68217,17 +68185,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XWhileExpression__BodyAssignment_5"
-    // InternalDomainmodel.g:20987:1: rule__XWhileExpression__BodyAssignment_5 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20971:1: rule__XWhileExpression__BodyAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XWhileExpression__BodyAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:20991:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:20992:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20975:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20976:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:20992:2: ( ruleXExpression )
-            // InternalDomainmodel.g:20993:3: ruleXExpression
+            // InternalDomainmodel.g:20976:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20977:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXWhileExpressionAccess().getBodyXExpressionParserRuleCall_5_0()); 
@@ -68262,17 +68230,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XDoWhileExpression__BodyAssignment_2"
-    // InternalDomainmodel.g:21002:1: rule__XDoWhileExpression__BodyAssignment_2 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:20986:1: rule__XDoWhileExpression__BodyAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XDoWhileExpression__BodyAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21006:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21007:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20990:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:20991:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21007:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21008:3: ruleXExpression
+            // InternalDomainmodel.g:20991:2: ( ruleXExpression )
+            // InternalDomainmodel.g:20992:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXDoWhileExpressionAccess().getBodyXExpressionParserRuleCall_2_0()); 
@@ -68307,17 +68275,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XDoWhileExpression__PredicateAssignment_5"
-    // InternalDomainmodel.g:21017:1: rule__XDoWhileExpression__PredicateAssignment_5 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21001:1: rule__XDoWhileExpression__PredicateAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XDoWhileExpression__PredicateAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21021:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21022:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21005:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21006:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21022:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21023:3: ruleXExpression
+            // InternalDomainmodel.g:21006:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21007:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXDoWhileExpressionAccess().getPredicateXExpressionParserRuleCall_5_0()); 
@@ -68352,17 +68320,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBlockExpression__ExpressionsAssignment_2_0"
-    // InternalDomainmodel.g:21032:1: rule__XBlockExpression__ExpressionsAssignment_2_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // InternalDomainmodel.g:21016:1: rule__XBlockExpression__ExpressionsAssignment_2_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBlockExpression__ExpressionsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21036:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // InternalDomainmodel.g:21037:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:21020:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // InternalDomainmodel.g:21021:2: ( ruleXExpressionOrVarDeclaration )
             {
-            // InternalDomainmodel.g:21037:2: ( ruleXExpressionOrVarDeclaration )
-            // InternalDomainmodel.g:21038:3: ruleXExpressionOrVarDeclaration
+            // InternalDomainmodel.g:21021:2: ( ruleXExpressionOrVarDeclaration )
+            // InternalDomainmodel.g:21022:3: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBlockExpressionAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_2_0_0()); 
@@ -68397,23 +68365,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XVariableDeclaration__WriteableAssignment_1_0"
-    // InternalDomainmodel.g:21047:1: rule__XVariableDeclaration__WriteableAssignment_1_0 : ( ( 'var' ) ) ;
+    // InternalDomainmodel.g:21031:1: rule__XVariableDeclaration__WriteableAssignment_1_0 : ( ( 'var' ) ) ;
     public final void rule__XVariableDeclaration__WriteableAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21051:1: ( ( ( 'var' ) ) )
-            // InternalDomainmodel.g:21052:2: ( ( 'var' ) )
+            // InternalDomainmodel.g:21035:1: ( ( ( 'var' ) ) )
+            // InternalDomainmodel.g:21036:2: ( ( 'var' ) )
             {
-            // InternalDomainmodel.g:21052:2: ( ( 'var' ) )
-            // InternalDomainmodel.g:21053:3: ( 'var' )
+            // InternalDomainmodel.g:21036:2: ( ( 'var' ) )
+            // InternalDomainmodel.g:21037:3: ( 'var' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
             }
-            // InternalDomainmodel.g:21054:3: ( 'var' )
-            // InternalDomainmodel.g:21055:4: 'var'
+            // InternalDomainmodel.g:21038:3: ( 'var' )
+            // InternalDomainmodel.g:21039:4: 'var'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
@@ -68450,17 +68418,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XVariableDeclaration__TypeAssignment_2_0_0_0"
-    // InternalDomainmodel.g:21066:1: rule__XVariableDeclaration__TypeAssignment_2_0_0_0 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21050:1: rule__XVariableDeclaration__TypeAssignment_2_0_0_0 : ( ruleJvmTypeReference ) ;
     public final void rule__XVariableDeclaration__TypeAssignment_2_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21070:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21071:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21054:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21055:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21071:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21072:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21055:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21056:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getTypeJvmTypeReferenceParserRuleCall_2_0_0_0_0()); 
@@ -68495,17 +68463,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XVariableDeclaration__NameAssignment_2_0_0_1"
-    // InternalDomainmodel.g:21081:1: rule__XVariableDeclaration__NameAssignment_2_0_0_1 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:21065:1: rule__XVariableDeclaration__NameAssignment_2_0_0_1 : ( ruleValidID ) ;
     public final void rule__XVariableDeclaration__NameAssignment_2_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21085:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:21086:2: ( ruleValidID )
+            // InternalDomainmodel.g:21069:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:21070:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:21086:2: ( ruleValidID )
-            // InternalDomainmodel.g:21087:3: ruleValidID
+            // InternalDomainmodel.g:21070:2: ( ruleValidID )
+            // InternalDomainmodel.g:21071:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_0_0_1_0()); 
@@ -68540,17 +68508,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XVariableDeclaration__NameAssignment_2_1"
-    // InternalDomainmodel.g:21096:1: rule__XVariableDeclaration__NameAssignment_2_1 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:21080:1: rule__XVariableDeclaration__NameAssignment_2_1 : ( ruleValidID ) ;
     public final void rule__XVariableDeclaration__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21100:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:21101:2: ( ruleValidID )
+            // InternalDomainmodel.g:21084:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:21085:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:21101:2: ( ruleValidID )
-            // InternalDomainmodel.g:21102:3: ruleValidID
+            // InternalDomainmodel.g:21085:2: ( ruleValidID )
+            // InternalDomainmodel.g:21086:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_1_0()); 
@@ -68585,17 +68553,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XVariableDeclaration__RightAssignment_3_1"
-    // InternalDomainmodel.g:21111:1: rule__XVariableDeclaration__RightAssignment_3_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21095:1: rule__XVariableDeclaration__RightAssignment_3_1 : ( ruleXExpression ) ;
     public final void rule__XVariableDeclaration__RightAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21115:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21116:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21099:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21100:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21116:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21117:3: ruleXExpression
+            // InternalDomainmodel.g:21100:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21101:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getRightXExpressionParserRuleCall_3_1_0()); 
@@ -68630,17 +68598,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmFormalParameter__ParameterTypeAssignment_0"
-    // InternalDomainmodel.g:21126:1: rule__JvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21110:1: rule__JvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmFormalParameter__ParameterTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21130:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21131:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21114:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21115:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21131:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21132:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21115:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21116:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
@@ -68675,17 +68643,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmFormalParameter__NameAssignment_1"
-    // InternalDomainmodel.g:21141:1: rule__JvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:21125:1: rule__JvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__JvmFormalParameter__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21145:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:21146:2: ( ruleValidID )
+            // InternalDomainmodel.g:21129:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:21130:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:21146:2: ( ruleValidID )
-            // InternalDomainmodel.g:21147:3: ruleValidID
+            // InternalDomainmodel.g:21130:2: ( ruleValidID )
+            // InternalDomainmodel.g:21131:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
@@ -68720,17 +68688,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__FullJvmFormalParameter__ParameterTypeAssignment_0"
-    // InternalDomainmodel.g:21156:1: rule__FullJvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21140:1: rule__FullJvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
     public final void rule__FullJvmFormalParameter__ParameterTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21160:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21161:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21144:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21145:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21161:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21162:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21145:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21146:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFullJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
@@ -68765,17 +68733,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__FullJvmFormalParameter__NameAssignment_1"
-    // InternalDomainmodel.g:21171:1: rule__FullJvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:21155:1: rule__FullJvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__FullJvmFormalParameter__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21175:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:21176:2: ( ruleValidID )
+            // InternalDomainmodel.g:21159:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:21160:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:21176:2: ( ruleValidID )
-            // InternalDomainmodel.g:21177:3: ruleValidID
+            // InternalDomainmodel.g:21160:2: ( ruleValidID )
+            // InternalDomainmodel.g:21161:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFullJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
@@ -68810,17 +68778,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__TypeArgumentsAssignment_1_1"
-    // InternalDomainmodel.g:21186:1: rule__XFeatureCall__TypeArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21170:1: rule__XFeatureCall__TypeArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XFeatureCall__TypeArgumentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21190:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21191:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21174:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21175:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21191:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21192:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21175:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21176:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
@@ -68855,17 +68823,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__TypeArgumentsAssignment_1_2_1"
-    // InternalDomainmodel.g:21201:1: rule__XFeatureCall__TypeArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21185:1: rule__XFeatureCall__TypeArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XFeatureCall__TypeArgumentsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21205:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21206:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21189:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21190:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21206:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21207:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21190:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21191:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
@@ -68900,23 +68868,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureAssignment_2"
-    // InternalDomainmodel.g:21216:1: rule__XFeatureCall__FeatureAssignment_2 : ( ( ruleIdOrSuper ) ) ;
+    // InternalDomainmodel.g:21200:1: rule__XFeatureCall__FeatureAssignment_2 : ( ( ruleIdOrSuper ) ) ;
     public final void rule__XFeatureCall__FeatureAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21220:1: ( ( ( ruleIdOrSuper ) ) )
-            // InternalDomainmodel.g:21221:2: ( ( ruleIdOrSuper ) )
+            // InternalDomainmodel.g:21204:1: ( ( ( ruleIdOrSuper ) ) )
+            // InternalDomainmodel.g:21205:2: ( ( ruleIdOrSuper ) )
             {
-            // InternalDomainmodel.g:21221:2: ( ( ruleIdOrSuper ) )
-            // InternalDomainmodel.g:21222:3: ( ruleIdOrSuper )
+            // InternalDomainmodel.g:21205:2: ( ( ruleIdOrSuper ) )
+            // InternalDomainmodel.g:21206:3: ( ruleIdOrSuper )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_2_0()); 
             }
-            // InternalDomainmodel.g:21223:3: ( ruleIdOrSuper )
-            // InternalDomainmodel.g:21224:4: ruleIdOrSuper
+            // InternalDomainmodel.g:21207:3: ( ruleIdOrSuper )
+            // InternalDomainmodel.g:21208:4: ruleIdOrSuper
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureJvmIdentifiableElementIdOrSuperParserRuleCall_2_0_1()); 
@@ -68957,23 +68925,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__ExplicitOperationCallAssignment_3_0"
-    // InternalDomainmodel.g:21235:1: rule__XFeatureCall__ExplicitOperationCallAssignment_3_0 : ( ( '(' ) ) ;
+    // InternalDomainmodel.g:21219:1: rule__XFeatureCall__ExplicitOperationCallAssignment_3_0 : ( ( '(' ) ) ;
     public final void rule__XFeatureCall__ExplicitOperationCallAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21239:1: ( ( ( '(' ) ) )
-            // InternalDomainmodel.g:21240:2: ( ( '(' ) )
+            // InternalDomainmodel.g:21223:1: ( ( ( '(' ) ) )
+            // InternalDomainmodel.g:21224:2: ( ( '(' ) )
             {
-            // InternalDomainmodel.g:21240:2: ( ( '(' ) )
-            // InternalDomainmodel.g:21241:3: ( '(' )
+            // InternalDomainmodel.g:21224:2: ( ( '(' ) )
+            // InternalDomainmodel.g:21225:3: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
             }
-            // InternalDomainmodel.g:21242:3: ( '(' )
-            // InternalDomainmodel.g:21243:4: '('
+            // InternalDomainmodel.g:21226:3: ( '(' )
+            // InternalDomainmodel.g:21227:4: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
@@ -69010,17 +68978,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0"
-    // InternalDomainmodel.g:21254:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0 : ( ruleXShortClosure ) ;
+    // InternalDomainmodel.g:21238:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21258:1: ( ( ruleXShortClosure ) )
-            // InternalDomainmodel.g:21259:2: ( ruleXShortClosure )
+            // InternalDomainmodel.g:21242:1: ( ( ruleXShortClosure ) )
+            // InternalDomainmodel.g:21243:2: ( ruleXShortClosure )
             {
-            // InternalDomainmodel.g:21259:2: ( ruleXShortClosure )
-            // InternalDomainmodel.g:21260:3: ruleXShortClosure
+            // InternalDomainmodel.g:21243:2: ( ruleXShortClosure )
+            // InternalDomainmodel.g:21244:3: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXShortClosureParserRuleCall_3_1_0_0()); 
@@ -69055,17 +69023,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0"
-    // InternalDomainmodel.g:21269:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21253:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21273:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21274:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21257:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21258:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21274:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21275:3: ruleXExpression
+            // InternalDomainmodel.g:21258:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21259:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_0_0()); 
@@ -69100,17 +69068,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1"
-    // InternalDomainmodel.g:21284:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21268:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21288:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21289:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21272:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21273:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21289:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21290:3: ruleXExpression
+            // InternalDomainmodel.g:21273:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21274:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_1_1_0()); 
@@ -69145,17 +69113,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_4"
-    // InternalDomainmodel.g:21299:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_4 : ( ruleXClosure ) ;
+    // InternalDomainmodel.g:21283:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_4 : ( ruleXClosure ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21303:1: ( ( ruleXClosure ) )
-            // InternalDomainmodel.g:21304:2: ( ruleXClosure )
+            // InternalDomainmodel.g:21287:1: ( ( ruleXClosure ) )
+            // InternalDomainmodel.g:21288:2: ( ruleXClosure )
             {
-            // InternalDomainmodel.g:21304:2: ( ruleXClosure )
-            // InternalDomainmodel.g:21305:3: ruleXClosure
+            // InternalDomainmodel.g:21288:2: ( ruleXClosure )
+            // InternalDomainmodel.g:21289:3: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXClosureParserRuleCall_4_0()); 
@@ -69190,23 +69158,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__ConstructorAssignment_2"
-    // InternalDomainmodel.g:21314:1: rule__XConstructorCall__ConstructorAssignment_2 : ( ( ruleQualifiedName ) ) ;
+    // InternalDomainmodel.g:21298:1: rule__XConstructorCall__ConstructorAssignment_2 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XConstructorCall__ConstructorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21318:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalDomainmodel.g:21319:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:21302:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalDomainmodel.g:21303:2: ( ( ruleQualifiedName ) )
             {
-            // InternalDomainmodel.g:21319:2: ( ( ruleQualifiedName ) )
-            // InternalDomainmodel.g:21320:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:21303:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:21304:3: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getConstructorJvmConstructorCrossReference_2_0()); 
             }
-            // InternalDomainmodel.g:21321:3: ( ruleQualifiedName )
-            // InternalDomainmodel.g:21322:4: ruleQualifiedName
+            // InternalDomainmodel.g:21305:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:21306:4: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getConstructorJvmConstructorQualifiedNameParserRuleCall_2_0_1()); 
@@ -69247,17 +69215,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__TypeArgumentsAssignment_3_1"
-    // InternalDomainmodel.g:21333:1: rule__XConstructorCall__TypeArgumentsAssignment_3_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21317:1: rule__XConstructorCall__TypeArgumentsAssignment_3_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XConstructorCall__TypeArgumentsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21337:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21338:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21321:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21322:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21338:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21339:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21322:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21323:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_1_0()); 
@@ -69292,17 +69260,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__TypeArgumentsAssignment_3_2_1"
-    // InternalDomainmodel.g:21348:1: rule__XConstructorCall__TypeArgumentsAssignment_3_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21332:1: rule__XConstructorCall__TypeArgumentsAssignment_3_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XConstructorCall__TypeArgumentsAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21352:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21353:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21336:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21337:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21353:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21354:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21337:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21338:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_2_1_0()); 
@@ -69337,23 +69305,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0"
-    // InternalDomainmodel.g:21363:1: rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0 : ( ( '(' ) ) ;
+    // InternalDomainmodel.g:21347:1: rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0 : ( ( '(' ) ) ;
     public final void rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21367:1: ( ( ( '(' ) ) )
-            // InternalDomainmodel.g:21368:2: ( ( '(' ) )
+            // InternalDomainmodel.g:21351:1: ( ( ( '(' ) ) )
+            // InternalDomainmodel.g:21352:2: ( ( '(' ) )
             {
-            // InternalDomainmodel.g:21368:2: ( ( '(' ) )
-            // InternalDomainmodel.g:21369:3: ( '(' )
+            // InternalDomainmodel.g:21352:2: ( ( '(' ) )
+            // InternalDomainmodel.g:21353:3: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
             }
-            // InternalDomainmodel.g:21370:3: ( '(' )
-            // InternalDomainmodel.g:21371:4: '('
+            // InternalDomainmodel.g:21354:3: ( '(' )
+            // InternalDomainmodel.g:21355:4: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
@@ -69390,17 +69358,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_0"
-    // InternalDomainmodel.g:21382:1: rule__XConstructorCall__ArgumentsAssignment_4_1_0 : ( ruleXShortClosure ) ;
+    // InternalDomainmodel.g:21366:1: rule__XConstructorCall__ArgumentsAssignment_4_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21386:1: ( ( ruleXShortClosure ) )
-            // InternalDomainmodel.g:21387:2: ( ruleXShortClosure )
+            // InternalDomainmodel.g:21370:1: ( ( ruleXShortClosure ) )
+            // InternalDomainmodel.g:21371:2: ( ruleXShortClosure )
             {
-            // InternalDomainmodel.g:21387:2: ( ruleXShortClosure )
-            // InternalDomainmodel.g:21388:3: ruleXShortClosure
+            // InternalDomainmodel.g:21371:2: ( ruleXShortClosure )
+            // InternalDomainmodel.g:21372:3: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXShortClosureParserRuleCall_4_1_0_0()); 
@@ -69435,17 +69403,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_1_0"
-    // InternalDomainmodel.g:21397:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_0 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21381:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21401:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21402:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21385:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21386:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21402:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21403:3: ruleXExpression
+            // InternalDomainmodel.g:21386:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21387:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_0_0()); 
@@ -69480,17 +69448,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1"
-    // InternalDomainmodel.g:21412:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21396:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21416:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21417:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21400:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21401:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21417:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21418:3: ruleXExpression
+            // InternalDomainmodel.g:21401:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21402:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_1_1_0()); 
@@ -69525,17 +69493,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_5"
-    // InternalDomainmodel.g:21427:1: rule__XConstructorCall__ArgumentsAssignment_5 : ( ruleXClosure ) ;
+    // InternalDomainmodel.g:21411:1: rule__XConstructorCall__ArgumentsAssignment_5 : ( ruleXClosure ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21431:1: ( ( ruleXClosure ) )
-            // InternalDomainmodel.g:21432:2: ( ruleXClosure )
+            // InternalDomainmodel.g:21415:1: ( ( ruleXClosure ) )
+            // InternalDomainmodel.g:21416:2: ( ruleXClosure )
             {
-            // InternalDomainmodel.g:21432:2: ( ruleXClosure )
-            // InternalDomainmodel.g:21433:3: ruleXClosure
+            // InternalDomainmodel.g:21416:2: ( ruleXClosure )
+            // InternalDomainmodel.g:21417:3: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXClosureParserRuleCall_5_0()); 
@@ -69570,23 +69538,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XBooleanLiteral__IsTrueAssignment_1_1"
-    // InternalDomainmodel.g:21442:1: rule__XBooleanLiteral__IsTrueAssignment_1_1 : ( ( 'true' ) ) ;
+    // InternalDomainmodel.g:21426:1: rule__XBooleanLiteral__IsTrueAssignment_1_1 : ( ( 'true' ) ) ;
     public final void rule__XBooleanLiteral__IsTrueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21446:1: ( ( ( 'true' ) ) )
-            // InternalDomainmodel.g:21447:2: ( ( 'true' ) )
+            // InternalDomainmodel.g:21430:1: ( ( ( 'true' ) ) )
+            // InternalDomainmodel.g:21431:2: ( ( 'true' ) )
             {
-            // InternalDomainmodel.g:21447:2: ( ( 'true' ) )
-            // InternalDomainmodel.g:21448:3: ( 'true' )
+            // InternalDomainmodel.g:21431:2: ( ( 'true' ) )
+            // InternalDomainmodel.g:21432:3: ( 'true' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
             }
-            // InternalDomainmodel.g:21449:3: ( 'true' )
-            // InternalDomainmodel.g:21450:4: 'true'
+            // InternalDomainmodel.g:21433:3: ( 'true' )
+            // InternalDomainmodel.g:21434:4: 'true'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
@@ -69623,17 +69591,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XNumberLiteral__ValueAssignment_1"
-    // InternalDomainmodel.g:21461:1: rule__XNumberLiteral__ValueAssignment_1 : ( ruleNumber ) ;
+    // InternalDomainmodel.g:21445:1: rule__XNumberLiteral__ValueAssignment_1 : ( ruleNumber ) ;
     public final void rule__XNumberLiteral__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21465:1: ( ( ruleNumber ) )
-            // InternalDomainmodel.g:21466:2: ( ruleNumber )
+            // InternalDomainmodel.g:21449:1: ( ( ruleNumber ) )
+            // InternalDomainmodel.g:21450:2: ( ruleNumber )
             {
-            // InternalDomainmodel.g:21466:2: ( ruleNumber )
-            // InternalDomainmodel.g:21467:3: ruleNumber
+            // InternalDomainmodel.g:21450:2: ( ruleNumber )
+            // InternalDomainmodel.g:21451:3: ruleNumber
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXNumberLiteralAccess().getValueNumberParserRuleCall_1_0()); 
@@ -69668,17 +69636,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XStringLiteral__ValueAssignment_1"
-    // InternalDomainmodel.g:21476:1: rule__XStringLiteral__ValueAssignment_1 : ( RULE_STRING ) ;
+    // InternalDomainmodel.g:21460:1: rule__XStringLiteral__ValueAssignment_1 : ( RULE_STRING ) ;
     public final void rule__XStringLiteral__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21480:1: ( ( RULE_STRING ) )
-            // InternalDomainmodel.g:21481:2: ( RULE_STRING )
+            // InternalDomainmodel.g:21464:1: ( ( RULE_STRING ) )
+            // InternalDomainmodel.g:21465:2: ( RULE_STRING )
             {
-            // InternalDomainmodel.g:21481:2: ( RULE_STRING )
-            // InternalDomainmodel.g:21482:3: RULE_STRING
+            // InternalDomainmodel.g:21465:2: ( RULE_STRING )
+            // InternalDomainmodel.g:21466:3: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0()); 
@@ -69709,23 +69677,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XTypeLiteral__TypeAssignment_3"
-    // InternalDomainmodel.g:21491:1: rule__XTypeLiteral__TypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
+    // InternalDomainmodel.g:21475:1: rule__XTypeLiteral__TypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XTypeLiteral__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21495:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalDomainmodel.g:21496:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:21479:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalDomainmodel.g:21480:2: ( ( ruleQualifiedName ) )
             {
-            // InternalDomainmodel.g:21496:2: ( ( ruleQualifiedName ) )
-            // InternalDomainmodel.g:21497:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:21480:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:21481:3: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getTypeJvmTypeCrossReference_3_0()); 
             }
-            // InternalDomainmodel.g:21498:3: ( ruleQualifiedName )
-            // InternalDomainmodel.g:21499:4: ruleQualifiedName
+            // InternalDomainmodel.g:21482:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:21483:4: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getTypeJvmTypeQualifiedNameParserRuleCall_3_0_1()); 
@@ -69766,17 +69734,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XTypeLiteral__ArrayDimensionsAssignment_4"
-    // InternalDomainmodel.g:21510:1: rule__XTypeLiteral__ArrayDimensionsAssignment_4 : ( ruleArrayBrackets ) ;
+    // InternalDomainmodel.g:21494:1: rule__XTypeLiteral__ArrayDimensionsAssignment_4 : ( ruleArrayBrackets ) ;
     public final void rule__XTypeLiteral__ArrayDimensionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21514:1: ( ( ruleArrayBrackets ) )
-            // InternalDomainmodel.g:21515:2: ( ruleArrayBrackets )
+            // InternalDomainmodel.g:21498:1: ( ( ruleArrayBrackets ) )
+            // InternalDomainmodel.g:21499:2: ( ruleArrayBrackets )
             {
-            // InternalDomainmodel.g:21515:2: ( ruleArrayBrackets )
-            // InternalDomainmodel.g:21516:3: ruleArrayBrackets
+            // InternalDomainmodel.g:21499:2: ( ruleArrayBrackets )
+            // InternalDomainmodel.g:21500:3: ruleArrayBrackets
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getArrayDimensionsArrayBracketsParserRuleCall_4_0()); 
@@ -69811,17 +69779,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XThrowExpression__ExpressionAssignment_2"
-    // InternalDomainmodel.g:21525:1: rule__XThrowExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21509:1: rule__XThrowExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XThrowExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21529:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21530:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21513:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21514:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21530:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21531:3: ruleXExpression
+            // InternalDomainmodel.g:21514:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21515:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXThrowExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
@@ -69856,17 +69824,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XReturnExpression__ExpressionAssignment_2"
-    // InternalDomainmodel.g:21540:1: rule__XReturnExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21524:1: rule__XReturnExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XReturnExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21544:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21545:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21528:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21529:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21545:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21546:3: ruleXExpression
+            // InternalDomainmodel.g:21529:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21530:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
@@ -69901,17 +69869,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__ExpressionAssignment_2"
-    // InternalDomainmodel.g:21555:1: rule__XTryCatchFinallyExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21539:1: rule__XTryCatchFinallyExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21559:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21560:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21543:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21544:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21560:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21561:3: ruleXExpression
+            // InternalDomainmodel.g:21544:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21545:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
@@ -69946,17 +69914,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0"
-    // InternalDomainmodel.g:21570:1: rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0 : ( ruleXCatchClause ) ;
+    // InternalDomainmodel.g:21554:1: rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0 : ( ruleXCatchClause ) ;
     public final void rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21574:1: ( ( ruleXCatchClause ) )
-            // InternalDomainmodel.g:21575:2: ( ruleXCatchClause )
+            // InternalDomainmodel.g:21558:1: ( ( ruleXCatchClause ) )
+            // InternalDomainmodel.g:21559:2: ( ruleXCatchClause )
             {
-            // InternalDomainmodel.g:21575:2: ( ruleXCatchClause )
-            // InternalDomainmodel.g:21576:3: ruleXCatchClause
+            // InternalDomainmodel.g:21559:2: ( ruleXCatchClause )
+            // InternalDomainmodel.g:21560:3: ruleXCatchClause
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getCatchClausesXCatchClauseParserRuleCall_3_0_0_0()); 
@@ -69991,17 +69959,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1"
-    // InternalDomainmodel.g:21585:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21569:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21589:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21590:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21573:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21574:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21590:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21591:3: ruleXExpression
+            // InternalDomainmodel.g:21574:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21575:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_0_1_1_0()); 
@@ -70036,17 +70004,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1"
-    // InternalDomainmodel.g:21600:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21584:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21604:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21605:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21588:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21589:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21605:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21606:3: ruleXExpression
+            // InternalDomainmodel.g:21589:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21590:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_1_1_0()); 
@@ -70081,17 +70049,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSynchronizedExpression__ParamAssignment_1"
-    // InternalDomainmodel.g:21615:1: rule__XSynchronizedExpression__ParamAssignment_1 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21599:1: rule__XSynchronizedExpression__ParamAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XSynchronizedExpression__ParamAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21619:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21620:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21603:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21604:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21620:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21621:3: ruleXExpression
+            // InternalDomainmodel.g:21604:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21605:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSynchronizedExpressionAccess().getParamXExpressionParserRuleCall_1_0()); 
@@ -70126,17 +70094,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XSynchronizedExpression__ExpressionAssignment_3"
-    // InternalDomainmodel.g:21630:1: rule__XSynchronizedExpression__ExpressionAssignment_3 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21614:1: rule__XSynchronizedExpression__ExpressionAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XSynchronizedExpression__ExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21634:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21635:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21618:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21619:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21635:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21636:3: ruleXExpression
+            // InternalDomainmodel.g:21619:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21620:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSynchronizedExpressionAccess().getExpressionXExpressionParserRuleCall_3_0()); 
@@ -70171,17 +70139,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XCatchClause__DeclaredParamAssignment_2"
-    // InternalDomainmodel.g:21645:1: rule__XCatchClause__DeclaredParamAssignment_2 : ( ruleFullJvmFormalParameter ) ;
+    // InternalDomainmodel.g:21629:1: rule__XCatchClause__DeclaredParamAssignment_2 : ( ruleFullJvmFormalParameter ) ;
     public final void rule__XCatchClause__DeclaredParamAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21649:1: ( ( ruleFullJvmFormalParameter ) )
-            // InternalDomainmodel.g:21650:2: ( ruleFullJvmFormalParameter )
+            // InternalDomainmodel.g:21633:1: ( ( ruleFullJvmFormalParameter ) )
+            // InternalDomainmodel.g:21634:2: ( ruleFullJvmFormalParameter )
             {
-            // InternalDomainmodel.g:21650:2: ( ruleFullJvmFormalParameter )
-            // InternalDomainmodel.g:21651:3: ruleFullJvmFormalParameter
+            // InternalDomainmodel.g:21634:2: ( ruleFullJvmFormalParameter )
+            // InternalDomainmodel.g:21635:3: ruleFullJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCatchClauseAccess().getDeclaredParamFullJvmFormalParameterParserRuleCall_2_0()); 
@@ -70216,17 +70184,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XCatchClause__ExpressionAssignment_4"
-    // InternalDomainmodel.g:21660:1: rule__XCatchClause__ExpressionAssignment_4 : ( ruleXExpression ) ;
+    // InternalDomainmodel.g:21644:1: rule__XCatchClause__ExpressionAssignment_4 : ( ruleXExpression ) ;
     public final void rule__XCatchClause__ExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21664:1: ( ( ruleXExpression ) )
-            // InternalDomainmodel.g:21665:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21648:1: ( ( ruleXExpression ) )
+            // InternalDomainmodel.g:21649:2: ( ruleXExpression )
             {
-            // InternalDomainmodel.g:21665:2: ( ruleXExpression )
-            // InternalDomainmodel.g:21666:3: ruleXExpression
+            // InternalDomainmodel.g:21649:2: ( ruleXExpression )
+            // InternalDomainmodel.g:21650:3: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCatchClauseAccess().getExpressionXExpressionParserRuleCall_4_0()); 
@@ -70261,17 +70229,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0"
-    // InternalDomainmodel.g:21675:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21659:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21679:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21680:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21663:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21664:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21680:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21681:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21664:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21665:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_0_0()); 
@@ -70306,17 +70274,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1"
-    // InternalDomainmodel.g:21690:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21674:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21694:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21695:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21678:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21679:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21695:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21696:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21679:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21680:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_1_1_0()); 
@@ -70351,17 +70319,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ReturnTypeAssignment_2"
-    // InternalDomainmodel.g:21705:1: rule__XFunctionTypeRef__ReturnTypeAssignment_2 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21689:1: rule__XFunctionTypeRef__ReturnTypeAssignment_2 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ReturnTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21709:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21710:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21693:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21694:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21710:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21711:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21694:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21695:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getReturnTypeJvmTypeReferenceParserRuleCall_2_0()); 
@@ -70396,23 +70364,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__TypeAssignment_0"
-    // InternalDomainmodel.g:21720:1: rule__JvmParameterizedTypeReference__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
+    // InternalDomainmodel.g:21704:1: rule__JvmParameterizedTypeReference__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
     public final void rule__JvmParameterizedTypeReference__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21724:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalDomainmodel.g:21725:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:21708:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalDomainmodel.g:21709:2: ( ( ruleQualifiedName ) )
             {
-            // InternalDomainmodel.g:21725:2: ( ( ruleQualifiedName ) )
-            // InternalDomainmodel.g:21726:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:21709:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:21710:3: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeCrossReference_0_0()); 
             }
-            // InternalDomainmodel.g:21727:3: ( ruleQualifiedName )
-            // InternalDomainmodel.g:21728:4: ruleQualifiedName
+            // InternalDomainmodel.g:21711:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:21712:4: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeQualifiedNameParserRuleCall_0_0_1()); 
@@ -70453,17 +70421,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1"
-    // InternalDomainmodel.g:21739:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21723:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21743:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21744:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21727:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21728:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21744:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21745:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21728:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21729:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
@@ -70498,17 +70466,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1"
-    // InternalDomainmodel.g:21754:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21738:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21758:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21759:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21742:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21743:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21759:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21760:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21743:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21744:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
@@ -70543,23 +70511,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1"
-    // InternalDomainmodel.g:21769:1: rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1 : ( ( ruleValidID ) ) ;
+    // InternalDomainmodel.g:21753:1: rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1 : ( ( ruleValidID ) ) ;
     public final void rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21773:1: ( ( ( ruleValidID ) ) )
-            // InternalDomainmodel.g:21774:2: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:21757:1: ( ( ( ruleValidID ) ) )
+            // InternalDomainmodel.g:21758:2: ( ( ruleValidID ) )
             {
-            // InternalDomainmodel.g:21774:2: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:21775:3: ( ruleValidID )
+            // InternalDomainmodel.g:21758:2: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:21759:3: ( ruleValidID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeCrossReference_1_4_1_0()); 
             }
-            // InternalDomainmodel.g:21776:3: ( ruleValidID )
-            // InternalDomainmodel.g:21777:4: ruleValidID
+            // InternalDomainmodel.g:21760:3: ( ruleValidID )
+            // InternalDomainmodel.g:21761:4: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeValidIDParserRuleCall_1_4_1_0_1()); 
@@ -70600,17 +70568,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1"
-    // InternalDomainmodel.g:21788:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21772:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21792:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21793:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21776:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21777:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21793:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21794:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21777:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21778:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_4_2_1_0()); 
@@ -70645,17 +70613,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1"
-    // InternalDomainmodel.g:21803:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // InternalDomainmodel.g:21787:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21807:1: ( ( ruleJvmArgumentTypeReference ) )
-            // InternalDomainmodel.g:21808:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21791:1: ( ( ruleJvmArgumentTypeReference ) )
+            // InternalDomainmodel.g:21792:2: ( ruleJvmArgumentTypeReference )
             {
-            // InternalDomainmodel.g:21808:2: ( ruleJvmArgumentTypeReference )
-            // InternalDomainmodel.g:21809:3: ruleJvmArgumentTypeReference
+            // InternalDomainmodel.g:21792:2: ( ruleJvmArgumentTypeReference )
+            // InternalDomainmodel.g:21793:3: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_4_2_2_1_0()); 
@@ -70690,17 +70658,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0"
-    // InternalDomainmodel.g:21818:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0 : ( ruleJvmUpperBound ) ;
+    // InternalDomainmodel.g:21802:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0 : ( ruleJvmUpperBound ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21822:1: ( ( ruleJvmUpperBound ) )
-            // InternalDomainmodel.g:21823:2: ( ruleJvmUpperBound )
+            // InternalDomainmodel.g:21806:1: ( ( ruleJvmUpperBound ) )
+            // InternalDomainmodel.g:21807:2: ( ruleJvmUpperBound )
             {
-            // InternalDomainmodel.g:21823:2: ( ruleJvmUpperBound )
-            // InternalDomainmodel.g:21824:3: ruleJvmUpperBound
+            // InternalDomainmodel.g:21807:2: ( ruleJvmUpperBound )
+            // InternalDomainmodel.g:21808:3: ruleJvmUpperBound
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmUpperBoundParserRuleCall_2_0_0_0()); 
@@ -70735,17 +70703,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1"
-    // InternalDomainmodel.g:21833:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1 : ( ruleJvmUpperBoundAnded ) ;
+    // InternalDomainmodel.g:21817:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1 : ( ruleJvmUpperBoundAnded ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21837:1: ( ( ruleJvmUpperBoundAnded ) )
-            // InternalDomainmodel.g:21838:2: ( ruleJvmUpperBoundAnded )
+            // InternalDomainmodel.g:21821:1: ( ( ruleJvmUpperBoundAnded ) )
+            // InternalDomainmodel.g:21822:2: ( ruleJvmUpperBoundAnded )
             {
-            // InternalDomainmodel.g:21838:2: ( ruleJvmUpperBoundAnded )
-            // InternalDomainmodel.g:21839:3: ruleJvmUpperBoundAnded
+            // InternalDomainmodel.g:21822:2: ( ruleJvmUpperBoundAnded )
+            // InternalDomainmodel.g:21823:3: ruleJvmUpperBoundAnded
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmUpperBoundAndedParserRuleCall_2_0_1_0()); 
@@ -70780,17 +70748,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0"
-    // InternalDomainmodel.g:21848:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0 : ( ruleJvmLowerBound ) ;
+    // InternalDomainmodel.g:21832:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0 : ( ruleJvmLowerBound ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21852:1: ( ( ruleJvmLowerBound ) )
-            // InternalDomainmodel.g:21853:2: ( ruleJvmLowerBound )
+            // InternalDomainmodel.g:21836:1: ( ( ruleJvmLowerBound ) )
+            // InternalDomainmodel.g:21837:2: ( ruleJvmLowerBound )
             {
-            // InternalDomainmodel.g:21853:2: ( ruleJvmLowerBound )
-            // InternalDomainmodel.g:21854:3: ruleJvmLowerBound
+            // InternalDomainmodel.g:21837:2: ( ruleJvmLowerBound )
+            // InternalDomainmodel.g:21838:3: ruleJvmLowerBound
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmLowerBoundParserRuleCall_2_1_0_0()); 
@@ -70825,17 +70793,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1"
-    // InternalDomainmodel.g:21863:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1 : ( ruleJvmLowerBoundAnded ) ;
+    // InternalDomainmodel.g:21847:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1 : ( ruleJvmLowerBoundAnded ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21867:1: ( ( ruleJvmLowerBoundAnded ) )
-            // InternalDomainmodel.g:21868:2: ( ruleJvmLowerBoundAnded )
+            // InternalDomainmodel.g:21851:1: ( ( ruleJvmLowerBoundAnded ) )
+            // InternalDomainmodel.g:21852:2: ( ruleJvmLowerBoundAnded )
             {
-            // InternalDomainmodel.g:21868:2: ( ruleJvmLowerBoundAnded )
-            // InternalDomainmodel.g:21869:3: ruleJvmLowerBoundAnded
+            // InternalDomainmodel.g:21852:2: ( ruleJvmLowerBoundAnded )
+            // InternalDomainmodel.g:21853:3: ruleJvmLowerBoundAnded
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmLowerBoundAndedParserRuleCall_2_1_1_0()); 
@@ -70870,17 +70838,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmUpperBound__TypeReferenceAssignment_1"
-    // InternalDomainmodel.g:21878:1: rule__JvmUpperBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21862:1: rule__JvmUpperBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmUpperBound__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21882:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21883:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21866:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21867:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21883:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21884:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21867:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21868:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmUpperBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
@@ -70915,17 +70883,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmUpperBoundAnded__TypeReferenceAssignment_1"
-    // InternalDomainmodel.g:21893:1: rule__JvmUpperBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21877:1: rule__JvmUpperBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmUpperBoundAnded__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21897:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21898:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21881:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21882:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21898:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21899:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21882:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21883:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmUpperBoundAndedAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
@@ -70960,17 +70928,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmLowerBound__TypeReferenceAssignment_1"
-    // InternalDomainmodel.g:21908:1: rule__JvmLowerBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21892:1: rule__JvmLowerBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmLowerBound__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21912:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21913:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21896:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21897:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21913:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21914:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21897:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21898:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmLowerBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
@@ -71005,17 +70973,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__JvmLowerBoundAnded__TypeReferenceAssignment_1"
-    // InternalDomainmodel.g:21923:1: rule__JvmLowerBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // InternalDomainmodel.g:21907:1: rule__JvmLowerBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmLowerBoundAnded__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21927:1: ( ( ruleJvmTypeReference ) )
-            // InternalDomainmodel.g:21928:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21911:1: ( ( ruleJvmTypeReference ) )
+            // InternalDomainmodel.g:21912:2: ( ruleJvmTypeReference )
             {
-            // InternalDomainmodel.g:21928:2: ( ruleJvmTypeReference )
-            // InternalDomainmodel.g:21929:3: ruleJvmTypeReference
+            // InternalDomainmodel.g:21912:2: ( ruleJvmTypeReference )
+            // InternalDomainmodel.g:21913:3: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmLowerBoundAndedAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
@@ -71050,17 +71018,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportSection__ImportDeclarationsAssignment"
-    // InternalDomainmodel.g:21938:1: rule__XImportSection__ImportDeclarationsAssignment : ( ruleXImportDeclaration ) ;
+    // InternalDomainmodel.g:21922:1: rule__XImportSection__ImportDeclarationsAssignment : ( ruleXImportDeclaration ) ;
     public final void rule__XImportSection__ImportDeclarationsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21942:1: ( ( ruleXImportDeclaration ) )
-            // InternalDomainmodel.g:21943:2: ( ruleXImportDeclaration )
+            // InternalDomainmodel.g:21926:1: ( ( ruleXImportDeclaration ) )
+            // InternalDomainmodel.g:21927:2: ( ruleXImportDeclaration )
             {
-            // InternalDomainmodel.g:21943:2: ( ruleXImportDeclaration )
-            // InternalDomainmodel.g:21944:3: ruleXImportDeclaration
+            // InternalDomainmodel.g:21927:2: ( ruleXImportDeclaration )
+            // InternalDomainmodel.g:21928:3: ruleXImportDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportSectionAccess().getImportDeclarationsXImportDeclarationParserRuleCall_0()); 
@@ -71095,23 +71063,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportDeclaration__StaticAssignment_1_0_0"
-    // InternalDomainmodel.g:21953:1: rule__XImportDeclaration__StaticAssignment_1_0_0 : ( ( 'static' ) ) ;
+    // InternalDomainmodel.g:21937:1: rule__XImportDeclaration__StaticAssignment_1_0_0 : ( ( 'static' ) ) ;
     public final void rule__XImportDeclaration__StaticAssignment_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21957:1: ( ( ( 'static' ) ) )
-            // InternalDomainmodel.g:21958:2: ( ( 'static' ) )
+            // InternalDomainmodel.g:21941:1: ( ( ( 'static' ) ) )
+            // InternalDomainmodel.g:21942:2: ( ( 'static' ) )
             {
-            // InternalDomainmodel.g:21958:2: ( ( 'static' ) )
-            // InternalDomainmodel.g:21959:3: ( 'static' )
+            // InternalDomainmodel.g:21942:2: ( ( 'static' ) )
+            // InternalDomainmodel.g:21943:3: ( 'static' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
             }
-            // InternalDomainmodel.g:21960:3: ( 'static' )
-            // InternalDomainmodel.g:21961:4: 'static'
+            // InternalDomainmodel.g:21944:3: ( 'static' )
+            // InternalDomainmodel.g:21945:4: 'static'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
@@ -71148,23 +71116,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportDeclaration__ExtensionAssignment_1_0_1"
-    // InternalDomainmodel.g:21972:1: rule__XImportDeclaration__ExtensionAssignment_1_0_1 : ( ( 'extension' ) ) ;
+    // InternalDomainmodel.g:21956:1: rule__XImportDeclaration__ExtensionAssignment_1_0_1 : ( ( 'extension' ) ) ;
     public final void rule__XImportDeclaration__ExtensionAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21976:1: ( ( ( 'extension' ) ) )
-            // InternalDomainmodel.g:21977:2: ( ( 'extension' ) )
+            // InternalDomainmodel.g:21960:1: ( ( ( 'extension' ) ) )
+            // InternalDomainmodel.g:21961:2: ( ( 'extension' ) )
             {
-            // InternalDomainmodel.g:21977:2: ( ( 'extension' ) )
-            // InternalDomainmodel.g:21978:3: ( 'extension' )
+            // InternalDomainmodel.g:21961:2: ( ( 'extension' ) )
+            // InternalDomainmodel.g:21962:3: ( 'extension' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
             }
-            // InternalDomainmodel.g:21979:3: ( 'extension' )
-            // InternalDomainmodel.g:21980:4: 'extension'
+            // InternalDomainmodel.g:21963:3: ( 'extension' )
+            // InternalDomainmodel.g:21964:4: 'extension'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
@@ -71201,23 +71169,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedTypeAssignment_1_0_2"
-    // InternalDomainmodel.g:21991:1: rule__XImportDeclaration__ImportedTypeAssignment_1_0_2 : ( ( ruleQualifiedNameInStaticImport ) ) ;
+    // InternalDomainmodel.g:21975:1: rule__XImportDeclaration__ImportedTypeAssignment_1_0_2 : ( ( ruleQualifiedNameInStaticImport ) ) ;
     public final void rule__XImportDeclaration__ImportedTypeAssignment_1_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:21995:1: ( ( ( ruleQualifiedNameInStaticImport ) ) )
-            // InternalDomainmodel.g:21996:2: ( ( ruleQualifiedNameInStaticImport ) )
+            // InternalDomainmodel.g:21979:1: ( ( ( ruleQualifiedNameInStaticImport ) ) )
+            // InternalDomainmodel.g:21980:2: ( ( ruleQualifiedNameInStaticImport ) )
             {
-            // InternalDomainmodel.g:21996:2: ( ( ruleQualifiedNameInStaticImport ) )
-            // InternalDomainmodel.g:21997:3: ( ruleQualifiedNameInStaticImport )
+            // InternalDomainmodel.g:21980:2: ( ( ruleQualifiedNameInStaticImport ) )
+            // InternalDomainmodel.g:21981:3: ( ruleQualifiedNameInStaticImport )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_0_2_0()); 
             }
-            // InternalDomainmodel.g:21998:3: ( ruleQualifiedNameInStaticImport )
-            // InternalDomainmodel.g:21999:4: ruleQualifiedNameInStaticImport
+            // InternalDomainmodel.g:21982:3: ( ruleQualifiedNameInStaticImport )
+            // InternalDomainmodel.g:21983:4: ruleQualifiedNameInStaticImport
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeQualifiedNameInStaticImportParserRuleCall_1_0_2_0_1()); 
@@ -71258,23 +71226,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportDeclaration__WildcardAssignment_1_0_3_0"
-    // InternalDomainmodel.g:22010:1: rule__XImportDeclaration__WildcardAssignment_1_0_3_0 : ( ( '*' ) ) ;
+    // InternalDomainmodel.g:21994:1: rule__XImportDeclaration__WildcardAssignment_1_0_3_0 : ( ( '*' ) ) ;
     public final void rule__XImportDeclaration__WildcardAssignment_1_0_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:22014:1: ( ( ( '*' ) ) )
-            // InternalDomainmodel.g:22015:2: ( ( '*' ) )
+            // InternalDomainmodel.g:21998:1: ( ( ( '*' ) ) )
+            // InternalDomainmodel.g:21999:2: ( ( '*' ) )
             {
-            // InternalDomainmodel.g:22015:2: ( ( '*' ) )
-            // InternalDomainmodel.g:22016:3: ( '*' )
+            // InternalDomainmodel.g:21999:2: ( ( '*' ) )
+            // InternalDomainmodel.g:22000:3: ( '*' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
             }
-            // InternalDomainmodel.g:22017:3: ( '*' )
-            // InternalDomainmodel.g:22018:4: '*'
+            // InternalDomainmodel.g:22001:3: ( '*' )
+            // InternalDomainmodel.g:22002:4: '*'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
@@ -71311,17 +71279,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportDeclaration__MemberNameAssignment_1_0_3_1"
-    // InternalDomainmodel.g:22029:1: rule__XImportDeclaration__MemberNameAssignment_1_0_3_1 : ( ruleValidID ) ;
+    // InternalDomainmodel.g:22013:1: rule__XImportDeclaration__MemberNameAssignment_1_0_3_1 : ( ruleValidID ) ;
     public final void rule__XImportDeclaration__MemberNameAssignment_1_0_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:22033:1: ( ( ruleValidID ) )
-            // InternalDomainmodel.g:22034:2: ( ruleValidID )
+            // InternalDomainmodel.g:22017:1: ( ( ruleValidID ) )
+            // InternalDomainmodel.g:22018:2: ( ruleValidID )
             {
-            // InternalDomainmodel.g:22034:2: ( ruleValidID )
-            // InternalDomainmodel.g:22035:3: ruleValidID
+            // InternalDomainmodel.g:22018:2: ( ruleValidID )
+            // InternalDomainmodel.g:22019:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getMemberNameValidIDParserRuleCall_1_0_3_1_0()); 
@@ -71356,23 +71324,23 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedTypeAssignment_1_1"
-    // InternalDomainmodel.g:22044:1: rule__XImportDeclaration__ImportedTypeAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
+    // InternalDomainmodel.g:22028:1: rule__XImportDeclaration__ImportedTypeAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XImportDeclaration__ImportedTypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:22048:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalDomainmodel.g:22049:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:22032:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalDomainmodel.g:22033:2: ( ( ruleQualifiedName ) )
             {
-            // InternalDomainmodel.g:22049:2: ( ( ruleQualifiedName ) )
-            // InternalDomainmodel.g:22050:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:22033:2: ( ( ruleQualifiedName ) )
+            // InternalDomainmodel.g:22034:3: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_1_0()); 
             }
-            // InternalDomainmodel.g:22051:3: ( ruleQualifiedName )
-            // InternalDomainmodel.g:22052:4: ruleQualifiedName
+            // InternalDomainmodel.g:22035:3: ( ruleQualifiedName )
+            // InternalDomainmodel.g:22036:4: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeQualifiedNameParserRuleCall_1_1_0_1()); 
@@ -71413,17 +71381,17 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedNamespaceAssignment_1_2"
-    // InternalDomainmodel.g:22063:1: rule__XImportDeclaration__ImportedNamespaceAssignment_1_2 : ( ruleQualifiedNameWithWildcard ) ;
+    // InternalDomainmodel.g:22047:1: rule__XImportDeclaration__ImportedNamespaceAssignment_1_2 : ( ruleQualifiedNameWithWildcard ) ;
     public final void rule__XImportDeclaration__ImportedNamespaceAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDomainmodel.g:22067:1: ( ( ruleQualifiedNameWithWildcard ) )
-            // InternalDomainmodel.g:22068:2: ( ruleQualifiedNameWithWildcard )
+            // InternalDomainmodel.g:22051:1: ( ( ruleQualifiedNameWithWildcard ) )
+            // InternalDomainmodel.g:22052:2: ( ruleQualifiedNameWithWildcard )
             {
-            // InternalDomainmodel.g:22068:2: ( ruleQualifiedNameWithWildcard )
-            // InternalDomainmodel.g:22069:3: ruleQualifiedNameWithWildcard
+            // InternalDomainmodel.g:22052:2: ( ruleQualifiedNameWithWildcard )
+            // InternalDomainmodel.g:22053:3: ruleQualifiedNameWithWildcard
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_2_0()); 
@@ -74949,15 +74917,16 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
             throw nvae;
         }
     }
-    static final String dfa_77s = "\120\uffff";
-    static final String dfa_78s = "\1\2\117\uffff";
-    static final String dfa_79s = "\1\4\1\0\116\uffff";
-    static final String dfa_80s = "\1\157\1\0\116\uffff";
-    static final String dfa_81s = "\2\uffff\1\2\114\uffff\1\1";
-    static final String dfa_82s = "\1\uffff\1\0\116\uffff}>";
+    static final String dfa_77s = "\121\uffff";
+    static final String dfa_78s = "\1\2\120\uffff";
+    static final String dfa_79s = "\1\4\1\0\117\uffff";
+    static final String dfa_80s = "\1\157\1\0\117\uffff";
+    static final String dfa_81s = "\2\uffff\1\2\115\uffff\1\1";
+    static final String dfa_82s = "\1\uffff\1\0\117\uffff}>";
     static final String[] dfa_83s = {
-            "\5\2\5\uffff\15\2\1\1\27\2\1\uffff\2\2\3\uffff\1\2\1\uffff\1\2\13\uffff\4\2\5\uffff\26\2\1\uffff\1\2\3\uffff\2\2\1\uffff\2\2",
+            "\5\2\5\uffff\15\2\1\1\27\2\1\uffff\2\2\3\uffff\1\2\1\uffff\1\2\6\uffff\1\2\4\uffff\4\2\5\uffff\26\2\1\uffff\1\2\3\uffff\2\2\1\uffff\2\2",
             "\1\uffff",
+            "",
             "",
             "",
             "",
@@ -75073,7 +75042,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
                         int index133_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred181_InternalDomainmodel()) ) {s = 79;}
+                        if ( (synpred181_InternalDomainmodel()) ) {s = 80;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -75117,7 +75086,7 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
                         int index136_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred184_InternalDomainmodel()) ) {s = 79;}
+                        if ( (synpred184_InternalDomainmodel()) ) {s = 80;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -75167,15 +75136,15 @@ public class InternalDomainmodelParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000000000L,0x0000070000000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000080000010L,0x0000000000000200L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000080000010L,0x0000000000000200L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000000000L,0x0000070000000000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0200000000000000L});
     public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
     public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000080000010L,0x0000000000000600L});
     public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0200000000000000L,0x0000000000000800L});

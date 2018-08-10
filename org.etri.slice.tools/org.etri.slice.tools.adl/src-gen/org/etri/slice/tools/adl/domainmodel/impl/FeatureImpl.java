@@ -23,11 +23,11 @@ import org.etri.slice.tools.adl.domainmodel.Feature;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.FeatureImpl#getName <em>Name</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

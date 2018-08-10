@@ -14,11 +14,11 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Context#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Context#getProperties <em>Properties</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getContext()
  * @model

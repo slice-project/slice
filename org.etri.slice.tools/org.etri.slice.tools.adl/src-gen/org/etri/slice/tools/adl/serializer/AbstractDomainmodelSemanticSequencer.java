@@ -479,7 +479,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     Call returns Call
 	 *
 	 * Constraint:
-	 *     (action='call' control=[Control|ID] method=ValidID)
+	 *     (action='call' control=[JvmType|ID] method=ValidID)
 	 */
 	protected void sequence_Call(ISerializationContext context, Call semanticObject) {
 		if (errorAcceptor != null) {
@@ -492,7 +492,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getCallAccess().getActionCallKeyword_0_0(), semanticObject.getAction());
-		feeder.accept(grammarAccess.getCallAccess().getControlControlIDTerminalRuleCall_1_0_1(), semanticObject.eGet(DomainmodelPackage.Literals.CALL__CONTROL, false));
+		feeder.accept(grammarAccess.getCallAccess().getControlJvmTypeIDTerminalRuleCall_1_0_1(), semanticObject.eGet(DomainmodelPackage.Literals.CALL__CONTROL, false));
 		feeder.accept(grammarAccess.getCallAccess().getMethodValidIDParserRuleCall_3_0(), semanticObject.getMethod());
 		feeder.finish();
 	}
@@ -503,7 +503,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     CommandContext returns CommandContext
 	 *
 	 * Constraint:
-	 *     (context=[Context|ID] property=ValidID)
+	 *     (context=[JvmType|ID] property=ValidID)
 	 */
 	protected void sequence_CommandContext(ISerializationContext context, CommandContext semanticObject) {
 		if (errorAcceptor != null) {
@@ -513,7 +513,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCommandContextAccess().getContextContextIDTerminalRuleCall_1_0_1(), semanticObject.eGet(DomainmodelPackage.Literals.COMMAND_CONTEXT__CONTEXT, false));
+		feeder.accept(grammarAccess.getCommandContextAccess().getContextJvmTypeIDTerminalRuleCall_1_0_1(), semanticObject.eGet(DomainmodelPackage.Literals.COMMAND_CONTEXT__CONTEXT, false));
 		feeder.accept(grammarAccess.getCommandContextAccess().getPropertyValidIDParserRuleCall_3_0(), semanticObject.getProperty());
 		feeder.finish();
 	}
@@ -524,7 +524,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     CommandSet returns CommandSet
 	 *
 	 * Constraint:
-	 *     (control=[Control|ID] commands+=Command+)
+	 *     (control=JvmTypeReference commands+=Command+)
 	 */
 	protected void sequence_CommandSet(ISerializationContext context, CommandSet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -536,7 +536,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     Command returns Command
 	 *
 	 * Constraint:
-	 *     (name=ValidID contexts+=CommandContext+ action=[Control|ID] method=ValidID)
+	 *     (name=ValidID contexts+=CommandContext+ action=[JvmType|ID] method=ValidID)
 	 */
 	protected void sequence_Command(ISerializationContext context, Command semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -687,7 +687,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     Publish returns Publish
 	 *
 	 * Constraint:
-	 *     (action='publish' event=[Event|ID])
+	 *     (action='publish' event=JvmTypeReference)
 	 */
 	protected void sequence_Publish(ISerializationContext context, Publish semanticObject) {
 		if (errorAcceptor != null) {
@@ -698,7 +698,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPublishAccess().getActionPublishKeyword_0_0(), semanticObject.getAction());
-		feeder.accept(grammarAccess.getPublishAccess().getEventEventIDTerminalRuleCall_1_0_1(), semanticObject.eGet(DomainmodelPackage.Literals.PUBLISH__EVENT, false));
+		feeder.accept(grammarAccess.getPublishAccess().getEventJvmTypeReferenceParserRuleCall_1_0(), semanticObject.getEvent());
 		feeder.finish();
 	}
 	
@@ -732,7 +732,7 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     Situation returns Situation
 	 *
 	 * Constraint:
-	 *     (types+=[DataType|ID] types+=[DataType|ID]*)
+	 *     (types+=JvmTypeReference types+=JvmTypeReference*)
 	 */
 	protected void sequence_Situation(ISerializationContext context, Situation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

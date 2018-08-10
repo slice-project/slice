@@ -21,11 +21,11 @@
          </property>
          <property
                name="aboutImage"
-               value="icons/about.png">
+               value="icons/SLICE-about.png">
          </property>
          <property
                name="windowImages"
-               value="icons/SLICE-16.png,icons/SLICE-32.png,icons/SLICE-48.png,icons/SLICE-64.png,icons/SLICE-128.png,icons/SLICE-256.png">
+               value="icons/SLICE_16.png,icons/SLICE_32.png,icons/SLICE_48.png,icons/SLICE_64.png,icons/SLICE_128.png,icons/SLICE_256.png">
          </property>
       </product>
    </extension>

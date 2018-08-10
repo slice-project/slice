@@ -55,6 +55,7 @@ import org.eclipse.xtext.xbase.typesystem.internal.LogicalContainerAwareBatchTyp
 import org.eclipse.xtext.xbase.typesystem.internal.LogicalContainerAwareReentrantTypeResolver;
 import org.eclipse.xtext.xbase.validation.FeatureNameValidator;
 import org.eclipse.xtext.xbase.validation.LogicalContainerAwareFeatureNameValidator;
+import org.eclipse.xtext.xbase.validation.XbaseConfigurableIssueCodes;
 import org.etri.slice.tools.adl.formatting2.DomainmodelFormatter;
 import org.etri.slice.tools.adl.jvmmodel.DomainmodelJvmModelInferrer;
 import org.etri.slice.tools.adl.parser.antlr.DomainmodelAntlrTokenFileProvider;
@@ -64,6 +65,7 @@ import org.etri.slice.tools.adl.scoping.DomainmodelScopeProvider;
 import org.etri.slice.tools.adl.serializer.DomainmodelSemanticSequencer;
 import org.etri.slice.tools.adl.serializer.DomainmodelSyntacticSequencer;
 import org.etri.slice.tools.adl.services.DomainmodelGrammarAccess;
+import org.etri.slice.tools.adl.validation.DomainmodelConfigurableIssueCodesProvider;
 import org.etri.slice.tools.adl.validation.DomainmodelValidator;
 
 /**
@@ -155,6 +157,11 @@ public abstract class AbstractDomainmodelRuntimeModule extends DefaultXbaseRunti
 	@SingletonBinding(eager=true)
 	public Class<? extends DomainmodelValidator> bindDomainmodelValidator() {
 		return DomainmodelValidator.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
+	public Class<? extends XbaseConfigurableIssueCodes> bindXbaseConfigurableIssueCodes() {
+		return DomainmodelConfigurableIssueCodesProvider.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2

@@ -16,11 +16,11 @@ class CommanderGenerator {
 	
 	def generateCommander(AgentDeclaration it, CommandSet commandSet, IFileSystemAccess fsa) {
 		
-		commandSet.control.generateControlWrapper(it, fsa)
-		commandSet.control.generateService(it, fsa)
+		commandSet.control.type.generateControlWrapper(it, fsa)
+		commandSet.control.type.generateService(it, fsa)
 		
 		var package = agentFullyQualifiedName.replace(".", "/")
-		var file = agentMavenSrcHome + package + "/wrapper/" + commandSet.control.name + "Commander.java"		
+		var file = agentMavenSrcHome + package + "/wrapper/" + commandSet.control.simpleName + "Commander.java"		
 		fsa.generateFile(file, compileCommandWrapper(commandSet))
 		
 		package = ruleFullyQualifiedName.replace(".", "/")
@@ -31,3 +31,4 @@ class CommanderGenerator {
 	}	
 
 }
+

@@ -12,13 +12,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.AgentDeclaration#getAgency <em>Agency</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.AgentDeclaration#getRuleSet <em>Rule Set</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.AgentDeclaration#getBehaviorSet <em>Behavior Set</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.AgentDeclaration#getCommandSets <em>Command Sets</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getAgentDeclaration()
  * @model

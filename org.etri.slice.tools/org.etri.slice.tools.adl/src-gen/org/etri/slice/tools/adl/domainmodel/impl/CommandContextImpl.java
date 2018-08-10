@@ -11,8 +11,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.xtext.common.types.JvmType;
+
 import org.etri.slice.tools.adl.domainmodel.CommandContext;
-import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 
 /**
@@ -21,11 +22,11 @@ import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandContextImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandContextImpl#getProperty <em>Property</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -39,7 +40,7 @@ public class CommandContextImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected Context context;
+  protected JvmType context;
 
   /**
    * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
@@ -87,12 +88,12 @@ public class CommandContextImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Context getContext()
+  public JvmType getContext()
   {
     if (context != null && context.eIsProxy())
     {
       InternalEObject oldContext = (InternalEObject)context;
-      context = (Context)eResolveProxy(oldContext);
+      context = (JvmType)eResolveProxy(oldContext);
       if (context != oldContext)
       {
         if (eNotificationRequired())
@@ -107,7 +108,7 @@ public class CommandContextImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Context basicGetContext()
+  public JvmType basicGetContext()
   {
     return context;
   }
@@ -117,9 +118,9 @@ public class CommandContextImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setContext(Context newContext)
+  public void setContext(JvmType newContext)
   {
-    Context oldContext = context;
+    JvmType oldContext = context;
     context = newContext;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.COMMAND_CONTEXT__CONTEXT, oldContext, context));
@@ -178,7 +179,7 @@ public class CommandContextImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case DomainmodelPackage.COMMAND_CONTEXT__CONTEXT:
-        setContext((Context)newValue);
+        setContext((JvmType)newValue);
         return;
       case DomainmodelPackage.COMMAND_CONTEXT__PROPERTY:
         setProperty((String)newValue);
@@ -198,7 +199,7 @@ public class CommandContextImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case DomainmodelPackage.COMMAND_CONTEXT__CONTEXT:
-        setContext((Context)null);
+        setContext((JvmType)null);
         return;
       case DomainmodelPackage.COMMAND_CONTEXT__PROPERTY:
         setProperty(PROPERTY_EDEFAULT);

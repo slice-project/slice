@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -21,7 +22,6 @@ import org.etri.slice.tools.adl.domainmodel.Command;
 import org.etri.slice.tools.adl.domainmodel.CommandSet;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Control;
-import org.etri.slice.tools.adl.domainmodel.DataType;
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.domainmodel.Publish;
@@ -62,6 +62,7 @@ public class DomainDependencyUtil {
   public String getDomain(final String packageName, final String prefix, final String suffix) {
     String _xblockexpression = null;
     {
+      System.out.println(("getDomain packageName = " + packageName));
       final String tmp = packageName.replace(prefix, "");
       String _xifexpression = null;
       if ((suffix != null)) {
@@ -162,11 +163,14 @@ public class DomainDependencyUtil {
     for (final AgentDeclaration agent : _filter_4) {
       {
         final Consumer<Behavior> _function_1 = (Behavior behavior) -> {
-          final Consumer<DataType> _function_2 = (DataType type) -> {
+          final Consumer<JvmTypeReference> _function_2 = (JvmTypeReference type) -> {
             boolean _matched = false;
             if (type instanceof Context) {
               _matched=true;
-              final String name = this._iQualifiedNameProvider.getFullyQualifiedName(type).toString();
+              final String name = type.getQualifiedName();
+              if ((name == "void")) {
+                return;
+              }
               final String depDomain_3 = name.substring(0, name.lastIndexOf("."));
               boolean _equals_4 = domainFQN.equals(depDomain_3);
               boolean _not_3 = (!_equals_4);
@@ -177,7 +181,10 @@ public class DomainDependencyUtil {
             if (!_matched) {
               if (type instanceof Event) {
                 _matched=true;
-                final String name = this._iQualifiedNameProvider.getFullyQualifiedName(type).toString();
+                final String name = type.getQualifiedName();
+                if ((name == "void")) {
+                  return;
+                }
                 final String depDomain_3 = name.substring(0, name.lastIndexOf("."));
                 boolean _equals_4 = domainFQN.equals(depDomain_3);
                 boolean _not_3 = (!_equals_4);
@@ -192,8 +199,17 @@ public class DomainDependencyUtil {
           boolean _matched = false;
           if (action instanceof Publish) {
             _matched=true;
-            final String name = this._iQualifiedNameProvider.getFullyQualifiedName(((Publish)action).getEvent()).toString();
-            final String depDomain_3 = name.substring(0, name.lastIndexOf("."));
+            JvmTypeReference _event = ((Publish)action).getEvent();
+            String _plus = ("action.event = " + _event);
+            System.out.println(_plus);
+            String _qualifiedName = ((Publish)action).getEvent().getType().getQualifiedName();
+            String _plus_1 = ("action.event.fullyQualifiedName = " + _qualifiedName);
+            System.out.println(_plus_1);
+            final String name = ((Publish)action).getEvent().getType().getQualifiedName();
+            if ((name == "void")) {
+              return;
+            }
+            final String depDomain_3 = this.getDomain(name, "org.etri.slice.commons", "event");
             boolean _equals_4 = domainFQN.equals(depDomain_3);
             boolean _not_3 = (!_equals_4);
             if (_not_3) {
@@ -203,8 +219,11 @@ public class DomainDependencyUtil {
           if (!_matched) {
             if (action instanceof Call) {
               _matched=true;
-              final String name = this._iQualifiedNameProvider.getFullyQualifiedName(((Call)action).getControl()).toString();
-              final String depDomain_3 = name.substring(0, name.lastIndexOf("."));
+              final String name = ((Call)action).getControl().getQualifiedName();
+              if ((name == "void")) {
+                return;
+              }
+              final String depDomain_3 = this.getDomain(name, "org.etri.slice.commons", "service");
               boolean _equals_4 = domainFQN.equals(depDomain_3);
               boolean _not_3 = (!_equals_4);
               if (_not_3) {
@@ -216,8 +235,8 @@ public class DomainDependencyUtil {
         agent.getBehaviorSet().getBehaviors().forEach(_function_1);
         final Consumer<CommandSet> _function_2 = (CommandSet commandSet) -> {
           final Consumer<Command> _function_3 = (Command command) -> {
-            final String name = this._iQualifiedNameProvider.getFullyQualifiedName(command.getAction()).toString();
-            final String depDomain_3 = name.substring(0, name.lastIndexOf("."));
+            final String name = command.getAction().getQualifiedName();
+            final String depDomain_3 = this.getDomain(name, "org.etri.slice.commons", "service");
             boolean _equals_4 = domainFQN.equals(depDomain_3);
             boolean _not_3 = (!_equals_4);
             if (_not_3) {

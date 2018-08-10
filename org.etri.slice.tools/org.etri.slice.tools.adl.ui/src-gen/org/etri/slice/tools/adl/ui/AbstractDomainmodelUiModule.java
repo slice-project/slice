@@ -84,11 +84,11 @@ import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
 import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.shared.Access;
+import org.eclipse.xtext.ui.validation.AbstractValidatorConfigurationBlock;
 import org.eclipse.xtext.xbase.imports.IUnresolvedTypeResolver;
 import org.eclipse.xtext.xbase.ui.DefaultXbaseUiModule;
 import org.eclipse.xtext.xbase.ui.contentassist.ImportingTypesProposalProvider;
 import org.eclipse.xtext.xbase.ui.editor.XbaseDocumentProvider;
-import org.eclipse.xtext.xbase.ui.editor.XbaseEditor;
 import org.eclipse.xtext.xbase.ui.generator.trace.XbaseOpenGeneratedFileHandler;
 import org.eclipse.xtext.xbase.ui.imports.InteractiveUnresolvedTypeResolver;
 import org.eclipse.xtext.xbase.ui.jvmmodel.findrefs.JvmModelFindReferenceHandler;
@@ -106,10 +106,12 @@ import org.etri.slice.tools.adl.ide.contentassist.antlr.DomainmodelParser;
 import org.etri.slice.tools.adl.ide.contentassist.antlr.PartialDomainmodelContentAssistParser;
 import org.etri.slice.tools.adl.ide.contentassist.antlr.internal.InternalDomainmodelLexer;
 import org.etri.slice.tools.adl.ui.contentassist.DomainmodelProposalProvider;
+import org.etri.slice.tools.adl.ui.editor.DomainmodelEditor;
 import org.etri.slice.tools.adl.ui.labeling.DomainmodelDescriptionLabelProvider;
 import org.etri.slice.tools.adl.ui.labeling.DomainmodelLabelProvider;
 import org.etri.slice.tools.adl.ui.outline.DomainmodelOutlineTreeProvider;
 import org.etri.slice.tools.adl.ui.quickfix.DomainmodelQuickfixProvider;
+import org.etri.slice.tools.adl.validation.DomainmodelValidatorConfigurationBlock;
 
 /**
  * Manual modifications go to {@link DomainmodelUiModule}.
@@ -124,11 +126,6 @@ public abstract class AbstractDomainmodelUiModule extends DefaultXbaseUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ImplicitFragment
 	public Provider<? extends IAllContainersState> provideIAllContainersState() {
 		return Access.getJavaProjectsState();
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ImplicitFragment
-	public Class<? extends XtextEditor> bindXtextEditor() {
-		return XbaseEditor.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.ImplicitFragment
@@ -180,6 +177,11 @@ public abstract class AbstractDomainmodelUiModule extends DefaultXbaseUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
 	public void configureContentAssistLexerProvider(Binder binder) {
 		binder.bind(InternalDomainmodelLexer.class).toProvider(LexerProvider.create(InternalDomainmodelLexer.class));
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
+	public Class<? extends AbstractValidatorConfigurationBlock> bindAbstractValidatorConfigurationBlock() {
+		return DomainmodelValidatorConfigurationBlock.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
@@ -362,6 +364,11 @@ public abstract class AbstractDomainmodelUiModule extends DefaultXbaseUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.xbase.XbaseGeneratorFragment2
 	public Class<? extends XtextTemplateContextType> bindXtextTemplateContextType() {
 		return XbaseTemplateContextType.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.xbase.XbaseGeneratorFragment2
+	public Class<? extends XtextEditor> bindXtextEditor() {
+		return DomainmodelEditor.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2

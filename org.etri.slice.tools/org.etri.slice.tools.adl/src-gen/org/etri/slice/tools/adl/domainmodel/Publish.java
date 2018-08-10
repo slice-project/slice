@@ -3,6 +3,7 @@
  */
 package org.etri.slice.tools.adl.domainmodel;
 
+import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,10 +12,10 @@ package org.etri.slice.tools.adl.domainmodel;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Publish#getEvent <em>Event</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getPublish()
  * @model
@@ -23,29 +24,29 @@ package org.etri.slice.tools.adl.domainmodel;
 public interface Publish extends Action
 {
   /**
-   * Returns the value of the '<em><b>Event</b></em>' reference.
+   * Returns the value of the '<em><b>Event</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Event</em>' reference isn't clear,
+   * If the meaning of the '<em>Event</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Event</em>' reference.
-   * @see #setEvent(Event)
+   * @return the value of the '<em>Event</em>' containment reference.
+   * @see #setEvent(JvmTypeReference)
    * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getPublish_Event()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  Event getEvent();
+  JvmTypeReference getEvent();
 
   /**
-   * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.Publish#getEvent <em>Event</em>}' reference.
+   * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.Publish#getEvent <em>Event</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Event</em>' reference.
+   * @param value the new value of the '<em>Event</em>' containment reference.
    * @see #getEvent()
    * @generated
    */
-  void setEvent(Event value);
+  void setEvent(JvmTypeReference value);
 
 } // Publish

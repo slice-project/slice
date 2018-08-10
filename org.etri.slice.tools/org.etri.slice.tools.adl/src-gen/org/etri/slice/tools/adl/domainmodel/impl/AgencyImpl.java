@@ -19,11 +19,11 @@ import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.AgencyImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.AgencyImpl#getPort <em>Port</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

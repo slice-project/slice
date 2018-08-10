@@ -27,10 +27,10 @@ import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.BehaviorSetImpl#getBehaviors <em>Behaviors</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

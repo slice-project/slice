@@ -59,7 +59,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 		val close = domain.regionFor.keyword("}")
 
 		domain.regionFor.feature(ABSTRACT_ELEMENT__NAME).surround[oneSpace]
-		
+
 		open.append[newLine]
 		interior(open, close)[indent]
 
@@ -83,10 +83,10 @@ class DomainmodelFormatter extends XbaseFormatter {
 		val close = element.regionFor.keyword("}")
 
 		element.regionFor.feature(ABSTRACT_ELEMENT__NAME).surround[oneSpace]
-		
+
 		open.append[newLine]
 		interior(open, close)[indent]
-				
+
 		if (element instanceof Context) {
 			element.regionFor.keyword("context").append[oneSpace]
 			element.superType?.prepend[oneSpace].append[noSpace]
@@ -97,11 +97,11 @@ class DomainmodelFormatter extends XbaseFormatter {
 			}
 		} else if (element instanceof Control) {
 			element.regionFor.keyword("control").append[oneSpace]
-			
+
 			for (JvmParameterizedTypeReference superType : element.superTypes) {
 				superType.prepend[oneSpace].append[noSpace]
 			}
-			
+
 			for (Feature feature : element.features) {
 				feature.format
 				feature.append[setNewLines(1)]
@@ -120,6 +120,13 @@ class DomainmodelFormatter extends XbaseFormatter {
 			element.superType?.prepend[oneSpace].append[noSpace]
 		} else if (element instanceof AgentDeclaration) {
 			element.regionFor.keyword("agent").append[oneSpace]
+
+			val open1 = element.regionFor.keyword("{")
+			val close1 = element.regionFor.keyword("}")
+
+			open1.append[newLine]
+			interior(open1, close1)[indent]
+
 			element.agency.format
 			element.ruleSet.format
 			element.behaviorSet.format
@@ -167,10 +174,12 @@ class DomainmodelFormatter extends XbaseFormatter {
 		open.append[newLine]
 		interior(open, close)[indent]
 
-		ruleSet.regionFor.keyword("hasRuleSet").append[oneSpace]
+		ruleSet.regionFor.keyword("hasRuleSet").prepend[noSpace].append[oneSpace]
 		ruleSet.regionFor.feature(RULE_SET__NAME).append[noSpace]
 		ruleSet.regionFor.feature(RULE_SET__GROUP_ID).prepend[oneSpace].append[newLine]
 		ruleSet.regionFor.feature(RULE_SET__ARTIFACT_ID).prepend[oneSpace].append[newLine]
+		
+		close.append[newLine]
 	}
 
 	/**
@@ -183,7 +192,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 		open.append[newLine]
 		interior(open, close)[indent]
 
-		behaviorSet.regionFor.keyword("hasBehaviors").append[oneSpace]
+		behaviorSet.regionFor.keyword("hasBehaviors").prepend[noSpace].append[oneSpace]
 
 		val lastElement = behaviorSet.behaviors.last
 
@@ -195,6 +204,8 @@ class DomainmodelFormatter extends XbaseFormatter {
 			else
 				behavior.append[setNewLines(2)]
 		}
+		
+		close.append[newLine]
 	}
 
 	/**
@@ -232,7 +243,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 		open.append[newLine]
 		interior(open, close)[indent]
 
-		commandSet.regionFor.keyword("hasCommandsOf").append[oneSpace]
+		commandSet.regionFor.keyword("hasCommandsOf").prepend[noSpace].append[oneSpace]
 		commandSet.regionFor.feature(COMMAND_SET__CONTROL).append[noSpace]
 
 		val lastElement = commandSet.commands.last
@@ -254,8 +265,10 @@ class DomainmodelFormatter extends XbaseFormatter {
 	def dispatch void format(Command command, extension IFormattableDocument document) {
 		val open = command.regionFor.keyword("{")
 		val close = command.regionFor.keyword("}")
-
+	
 		open.append[newLine]
+		close.prepend[noSpace]
+		
 		interior(open, close)[indent]
 
 		command.regionFor.keyword("command").append[oneSpace]
@@ -299,7 +312,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 
 		operation.type.prepend[oneSpace].append[oneSpace]
 		operation.type.format
-		
+
 		operation.name.format
 	}
 
@@ -308,7 +321,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 	 */
 	def dispatch void format(Property property, extension IFormattableDocument document) {
 		System.out.println("format Property");
-		
+
 		property.type.prepend[noSpace].append[oneSpace]
 		property.type.format
 

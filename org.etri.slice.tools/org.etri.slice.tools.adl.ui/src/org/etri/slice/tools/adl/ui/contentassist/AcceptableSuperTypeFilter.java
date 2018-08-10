@@ -1,13 +1,16 @@
 package org.etri.slice.tools.adl.ui.contentassist;
 
+import org.eclipse.jdt.core.Flags;
 import org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider;
+import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces;
 
 public class AcceptableSuperTypeFilter implements ITypesProposalProvider.Filter{
 
 	private String currentFQN;
 	private String baseFQN;
 	
-	public AcceptableSuperTypeFilter(String currentFQN, String baseFQN)	{
+	public AcceptableSuperTypeFilter(String currentFQN, String baseFQN)
+	{
 		this.currentFQN = currentFQN;
 		this.baseFQN = baseFQN;
 	}
@@ -19,7 +22,6 @@ public class AcceptableSuperTypeFilter implements ITypesProposalProvider.Filter{
 		
 		sb.append(packageName).append(".").append(simpleTypeName);	
 
-		System.out.println("Interface Name = " + sb.toString() + ", baseFQN = " + baseFQN);	
 		if(sb.toString().equals(currentFQN) || sb.toString().equals(baseFQN))
 			return false;
 		

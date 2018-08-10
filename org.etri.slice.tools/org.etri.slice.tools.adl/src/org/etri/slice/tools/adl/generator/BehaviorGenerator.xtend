@@ -1,17 +1,18 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import org.eclipse.xtext.common.types.JvmType
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Context
-import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.generator.compiler.AdaptorCompiler
 import org.etri.slice.tools.adl.generator.compiler.ControlWrapperCompiler
 import org.etri.slice.tools.adl.generator.compiler.EventWrapperCompiler
-import org.etri.slice.tools.adl.generator.compiler.StreamCompiler
 import org.etri.slice.tools.adl.generator.compiler.SensorCompiler
 import org.etri.slice.tools.adl.generator.compiler.ServiceCompiler
+import org.etri.slice.tools.adl.generator.compiler.StreamCompiler
 
 class BehaviorGenerator {
 	
@@ -41,18 +42,18 @@ class BehaviorGenerator {
 		fsa.generateFile(stream, compileStream(agent))				
 	}
 	
-	def generateEventWrapper(Event it, AgentDeclaration agent, IFileSystemAccess fsa) {
+	def generateEventWrapper(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {
 		val package = agent.agentFullyQualifiedName.replace(".", "/")
-		val wrapper = agent.agentMavenSrcHome + package + "/wrapper/" + name + "Channel.java"		
-		fsa.generateFile(wrapper, compileWrapper(agent))	
+		val wrapper = agent.agentMavenSrcHome + package + "/wrapper/" + simpleName + "Channel.java"		
+		fsa.generateFile(wrapper, it.type.compileEventWrapper(agent))	
 		
-		val stream = agent.agentMavenSrcHome + package + "/stream/" + name + "Stream.java"	
+		val stream = agent.agentMavenSrcHome + package + "/stream/" + simpleName + "Stream.java"	
 		fsa.generateFile(stream, compileStream(agent))				
 	}
 	
-	def generateControlWrapper(Control it, AgentDeclaration agent, IFileSystemAccess fsa) {
+	def generateControlWrapper(JvmType it, AgentDeclaration agent, IFileSystemAccess fsa) {
 		val package = agent.agentFullyQualifiedName.replace(".", "/")
-		val wrapper = agent.agentMavenSrcHome + package + "/wrapper/" + name + "Wrapper.java"		
+		val wrapper = agent.agentMavenSrcHome + package + "/wrapper/" + simpleName + "Wrapper.java"		
 		fsa.generateFile(wrapper, compileWrapper(agent))			
 	}
 	
@@ -62,9 +63,9 @@ class BehaviorGenerator {
 		fsa.generateFile(file, sensorCompile(agent))			
 	}		
 					
-	def generateService(Control it, AgentDeclaration agent, IFileSystemAccess fsa) {
+	def generateService(JvmType it, AgentDeclaration agent, IFileSystemAccess fsa) {
 		val package = agent.deviceFullyQualifiedName.replace(".", "/")
-		val file = agent.deviceMavenSrcHome + package + "/" + name + "Service.java"	
+		val file = agent.deviceMavenSrcHome + package + "/" + it.simpleName + "Service.java"	
 		fsa.generateFile(file, serviceCompile(agent))			
 	}	
 }

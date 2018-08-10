@@ -7,6 +7,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.common.types.JvmTypeReference;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Command Set</b></em>'.
@@ -14,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.CommandSet#getControl <em>Control</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.CommandSet#getCommands <em>Commands</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCommandSet()
  * @model
@@ -27,30 +29,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface CommandSet extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Control</b></em>' reference.
+   * Returns the value of the '<em><b>Control</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Control</em>' reference isn't clear,
+   * If the meaning of the '<em>Control</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Control</em>' reference.
-   * @see #setControl(Control)
+   * @return the value of the '<em>Control</em>' containment reference.
+   * @see #setControl(JvmTypeReference)
    * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCommandSet_Control()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  Control getControl();
+  JvmTypeReference getControl();
 
   /**
-   * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.CommandSet#getControl <em>Control</em>}' reference.
+   * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.CommandSet#getControl <em>Control</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Control</em>' reference.
+   * @param value the new value of the '<em>Control</em>' containment reference.
    * @see #getControl()
    * @generated
    */
-  void setControl(Control value);
+  void setControl(JvmTypeReference value);
 
   /**
    * Returns the value of the '<em><b>Commands</b></em>' containment reference list.

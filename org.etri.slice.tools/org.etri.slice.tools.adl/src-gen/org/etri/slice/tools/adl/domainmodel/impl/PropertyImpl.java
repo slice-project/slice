@@ -12,6 +12,8 @@ import org.etri.slice.tools.adl.domainmodel.Property;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Property</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * </p>
  *
  * @generated
  */

@@ -13,7 +13,6 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Command;
 import org.etri.slice.tools.adl.domainmodel.CommandContext;
-import org.etri.slice.tools.adl.generator.GeneratorUtils;
 
 @SuppressWarnings("all")
 public class CommandSetCompiler {
@@ -21,30 +20,23 @@ public class CommandSetCompiler {
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
   
-  @Inject
-  @Extension
-  private GeneratorUtils _generatorUtils;
-  
   public CharSequence compileCommand(final AgentDeclaration agent, final Command it) {
     CharSequence _xblockexpression = null;
     {
       final ImportManager importManager = new ImportManager(true);
       EList<CommandContext> _contexts = it.getContexts();
       for (final CommandContext c : _contexts) {
-        this._generatorUtils.shortName(c.getContext(), importManager);
+        c.getContext().getSimpleName();
       }
-      this._generatorUtils.shortName(it.getAction(), importManager);
+      it.getAction().getSimpleName();
       StringConcatenation _builder = new StringConcatenation();
       {
-        EObject _eContainer = it.eContainer();
+        EObject _eContainer = agent.eContainer();
         boolean _tripleNotEquals = (_eContainer != null);
         if (_tripleNotEquals) {
           _builder.append("package org.etri.slice.rules.");
           QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
           _builder.append(_fullyQualifiedName);
-          _builder.append(".");
-          String _lowerCase = agent.getName().toLowerCase();
-          _builder.append(_lowerCase);
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
@@ -62,10 +54,10 @@ public class CommandSetCompiler {
       _builder.append("\t");
       _builder.newLine();
       _builder.append("global ");
-      String _name = it.getAction().getName();
-      _builder.append(_name);
+      String _simpleName = it.getAction().getSimpleName();
+      _builder.append(_simpleName);
       _builder.append(" ");
-      String _firstLower = StringExtensions.toFirstLower(it.getAction().getName());
+      String _firstLower = StringExtensions.toFirstLower(it.getAction().getSimpleName());
       _builder.append(_firstLower);
       _builder.append(";");
       _builder.newLineIfNotEmpty();

@@ -268,6 +268,16 @@ public class DomainmodelFormatter extends XbaseFormatter {
                 it.oneSpace();
               };
               document.append(this.textRegionExtensions.regionFor(element).keyword("agent"), _function_15);
+              final ISemanticRegion open1 = this.textRegionExtensions.regionFor(element).keyword("{");
+              final ISemanticRegion close1 = this.textRegionExtensions.regionFor(element).keyword("}");
+              final Procedure1<IHiddenRegionFormatter> _function_16 = (IHiddenRegionFormatter it) -> {
+                it.newLine();
+              };
+              document.append(open1, _function_16);
+              final Procedure1<IHiddenRegionFormatter> _function_17 = (IHiddenRegionFormatter it) -> {
+                it.indent();
+              };
+              document.<ISemanticRegion, ISemanticRegion>interior(open1, close1, _function_17);
               document.<Agency>format(((AgentDeclaration)element).getAgency());
               document.<RuleSet>format(((AgentDeclaration)element).getRuleSet());
               document.<BehaviorSet>format(((AgentDeclaration)element).getBehaviorSet());
@@ -275,10 +285,10 @@ public class DomainmodelFormatter extends XbaseFormatter {
               for (final CommandSet commandSet : _commandSets) {
                 {
                   document.<CommandSet>format(commandSet);
-                  final Procedure1<IHiddenRegionFormatter> _function_16 = (IHiddenRegionFormatter it) -> {
+                  final Procedure1<IHiddenRegionFormatter> _function_18 = (IHiddenRegionFormatter it) -> {
                     it.setNewLines(1);
                   };
-                  document.<CommandSet>append(commandSet, _function_16);
+                  document.<CommandSet>append(commandSet, _function_18);
                 }
               }
             }
@@ -366,27 +376,34 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
     final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
-      it.oneSpace();
-    };
-    document.append(this.textRegionExtensions.regionFor(ruleSet).keyword("hasRuleSet"), _function_2);
-    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };
-    document.append(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__NAME), _function_3);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).keyword("hasRuleSet"), _function_2), _function_3);
     final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
-      it.oneSpace();
+      it.noSpace();
     };
+    document.append(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__NAME), _function_4);
     final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
-      it.newLine();
-    };
-    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__GROUP_ID), _function_4), _function_5);
-    final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
-    final Procedure1<IHiddenRegionFormatter> _function_7 = (IHiddenRegionFormatter it) -> {
+    final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
       it.newLine();
     };
-    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__ARTIFACT_ID), _function_6), _function_7);
+    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__GROUP_ID), _function_5), _function_6);
+    final Procedure1<IHiddenRegionFormatter> _function_7 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    final Procedure1<IHiddenRegionFormatter> _function_8 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__ARTIFACT_ID), _function_7), _function_8);
+    final Procedure1<IHiddenRegionFormatter> _function_9 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(close, _function_9);
   }
   
   /**
@@ -404,27 +421,34 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
     final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
-    document.append(this.textRegionExtensions.regionFor(behaviorSet).keyword("hasBehaviors"), _function_2);
+    document.append(document.prepend(this.textRegionExtensions.regionFor(behaviorSet).keyword("hasBehaviors"), _function_2), _function_3);
     final Behavior lastElement = IterableExtensions.<Behavior>last(behaviorSet.getBehaviors());
     EList<Behavior> _behaviors = behaviorSet.getBehaviors();
     for (final Behavior behavior : _behaviors) {
       {
         document.<Behavior>format(behavior);
         if ((behavior == lastElement)) {
-          final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+          final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
             it.setNewLines(1);
           };
-          document.<Behavior>append(behavior, _function_3);
+          document.<Behavior>append(behavior, _function_4);
         } else {
-          final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+          final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
             it.setNewLines(2);
           };
-          document.<Behavior>append(behavior, _function_4);
+          document.<Behavior>append(behavior, _function_5);
         }
       }
     }
+    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(close, _function_4);
   }
   
   /**
@@ -495,28 +519,31 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
     final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
-      it.oneSpace();
-    };
-    document.append(this.textRegionExtensions.regionFor(commandSet).keyword("hasCommandsOf"), _function_2);
-    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };
-    document.append(this.textRegionExtensions.regionFor(commandSet).feature(DomainmodelPackage.Literals.COMMAND_SET__CONTROL), _function_3);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(commandSet).keyword("hasCommandsOf"), _function_2), _function_3);
+    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(commandSet).feature(DomainmodelPackage.Literals.COMMAND_SET__CONTROL), _function_4);
     final Command lastElement = IterableExtensions.<Command>last(commandSet.getCommands());
     EList<Command> _commands = commandSet.getCommands();
     for (final Command command : _commands) {
       {
         document.<Command>format(command);
         if ((command == lastElement)) {
-          final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+          final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
             it.setNewLines(1);
           };
-          document.<Command>append(command, _function_4);
+          document.<Command>append(command, _function_5);
         } else {
-          final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
+          final Procedure1<IHiddenRegionFormatter> _function_6 = (IHiddenRegionFormatter it) -> {
             it.setNewLines(2);
           };
-          document.<Command>append(command, _function_5);
+          document.<Command>append(command, _function_6);
         }
       }
     }
@@ -533,31 +560,35 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.append(open, _function);
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.prepend(close, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
       it.indent();
     };
-    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
-    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
-      it.oneSpace();
-    };
-    document.append(this.textRegionExtensions.regionFor(command).keyword("command"), _function_2);
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_2);
     final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
-    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND__NAME), _function_3);
+    document.append(this.textRegionExtensions.regionFor(command).keyword("command"), _function_3);
+    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND__NAME), _function_4);
     EList<CommandContext> _contexts = command.getContexts();
     for (final CommandContext context : _contexts) {
       {
         document.<CommandContext>format(context);
-        final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+        final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
           it.setNewLines(1);
         };
-        document.<CommandContext>append(context, _function_4);
+        document.<CommandContext>append(context, _function_5);
       }
     }
-    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+    final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
       it.newLine();
     };
-    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY), _function_4);
+    document.append(this.textRegionExtensions.regionFor(command).feature(DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY), _function_5);
   }
   
   /**

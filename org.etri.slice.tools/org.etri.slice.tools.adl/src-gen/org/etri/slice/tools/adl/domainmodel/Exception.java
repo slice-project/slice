@@ -12,10 +12,10 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Exception#getSuperType <em>Super Type</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getException()
  * @model

@@ -10,8 +10,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.xtext.common.types.JvmType;
+
 import org.etri.slice.tools.adl.domainmodel.Call;
-import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 
 /**
@@ -20,11 +21,11 @@ import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CallImpl#getControl <em>Control</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CallImpl#getMethod <em>Method</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -38,7 +39,7 @@ public class CallImpl extends ActionImpl implements Call
    * @generated
    * @ordered
    */
-  protected Control control;
+  protected JvmType control;
 
   /**
    * The default value of the '{@link #getMethod() <em>Method</em>}' attribute.
@@ -86,12 +87,12 @@ public class CallImpl extends ActionImpl implements Call
    * <!-- end-user-doc -->
    * @generated
    */
-  public Control getControl()
+  public JvmType getControl()
   {
     if (control != null && control.eIsProxy())
     {
       InternalEObject oldControl = (InternalEObject)control;
-      control = (Control)eResolveProxy(oldControl);
+      control = (JvmType)eResolveProxy(oldControl);
       if (control != oldControl)
       {
         if (eNotificationRequired())
@@ -106,7 +107,7 @@ public class CallImpl extends ActionImpl implements Call
    * <!-- end-user-doc -->
    * @generated
    */
-  public Control basicGetControl()
+  public JvmType basicGetControl()
   {
     return control;
   }
@@ -116,9 +117,9 @@ public class CallImpl extends ActionImpl implements Call
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setControl(Control newControl)
+  public void setControl(JvmType newControl)
   {
-    Control oldControl = control;
+    JvmType oldControl = control;
     control = newControl;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.CALL__CONTROL, oldControl, control));
@@ -177,7 +178,7 @@ public class CallImpl extends ActionImpl implements Call
     switch (featureID)
     {
       case DomainmodelPackage.CALL__CONTROL:
-        setControl((Control)newValue);
+        setControl((JvmType)newValue);
         return;
       case DomainmodelPackage.CALL__METHOD:
         setMethod((String)newValue);
@@ -197,7 +198,7 @@ public class CallImpl extends ActionImpl implements Call
     switch (featureID)
     {
       case DomainmodelPackage.CALL__CONTROL:
-        setControl((Control)null);
+        setControl((JvmType)null);
         return;
       case DomainmodelPackage.CALL__METHOD:
         setMethod(METHOD_EDEFAULT);

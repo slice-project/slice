@@ -7,6 +7,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.common.types.JvmType;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Command</b></em>'.
@@ -14,13 +16,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Command#getName <em>Name</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Command#getContexts <em>Contexts</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Command#getAction <em>Action</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Command#getMethod <em>Method</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCommand()
  * @model
@@ -79,12 +81,12 @@ public interface Command extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Action</em>' reference.
-   * @see #setAction(Control)
+   * @see #setAction(JvmType)
    * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCommand_Action()
    * @model
    * @generated
    */
-  Control getAction();
+  JvmType getAction();
 
   /**
    * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.Command#getAction <em>Action</em>}' reference.
@@ -94,7 +96,7 @@ public interface Command extends EObject
    * @see #getAction()
    * @generated
    */
-  void setAction(Control value);
+  void setAction(JvmType value);
 
   /**
    * Returns the value of the '<em><b>Method</b></em>' attribute.

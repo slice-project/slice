@@ -3,17 +3,18 @@ package org.etri.slice.tools.adl.generator.compiler
 import com.google.inject.Inject
 import java.util.HashMap
 import java.util.Map
+import org.eclipse.xtext.common.types.JvmFeature
+import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.xtext.common.types.JvmType
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.impl.JvmGenericTypeImplCustom
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Command
 import org.etri.slice.tools.adl.domainmodel.CommandSet
-import org.etri.slice.tools.adl.domainmodel.Control
-import org.etri.slice.tools.adl.domainmodel.Feature
-import org.etri.slice.tools.adl.domainmodel.Operation
-import org.etri.slice.tools.adl.domainmodel.Property
 import org.etri.slice.tools.adl.generator.GeneratorUtils
 
 class CommandWrapperCompiler {
@@ -34,7 +35,7 @@ class CommandWrapperCompiler {
 		«val importManager = new ImportManager(true)» 
 		«val body = body(importManager)»
 		
-		«IF eContainer !== null»
+		«IF agent.eContainer !== null»
 			package org.etri.slice.agents.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
 		«ENDIF»
 
@@ -58,12 +59,13 @@ class CommandWrapperCompiler {
 		«body»
 	'''
  
-	private def body(CommandSet it, ImportManager importManager) '''
-		public class «control.name»Commander implements «control.shortName(importManager)» {
-			private static Logger s_logger = LoggerFactory.getLogger(«control.name»Commander.class);
+	private def body(CommandSet it, ImportManager importManager)
+		'''
+		public class «control.simpleName»Commander implements «control.shortName(importManager)» {
+			private static Logger s_logger = LoggerFactory.getLogger(«control.simpleName»Commander.class);
 			
 			@Requires
-			private «control.name» m_proxy;
+			private «control.simpleName» m_proxy;
 			
 			@Requires
 			private ActionLogger m_logger;
@@ -71,17 +73,19 @@ class CommandWrapperCompiler {
 			@Requires
 			private Agent m_agent;
 			
-			public «control.name»Commander() {
+			public «control.simpleName»Commander() {
 				ControlService control = m_agent.getService(ControlService.class);
-				control.registerControl(this.getClass().getSimpleName(), «control.name».id, null, «control.name».class, this);
+				control.registerControl(this.getClass().getSimpleName(), «control.simpleName».id, null, «control.simpleName».class, this);
 			}
 			
-			«IF control.superTypes.size > 0»
-				«control.toInterface.compileSuperType(importManager)»
+			«IF (control.type as JvmGenericType).superTypes.size > 0»
+				«(control.type as JvmGenericType).compileSuperType(importManager)»
 			«ENDIF»
-			«FOR f : control.features»
+			«FOR f : (control.type as JvmGenericType).declaredFields»
 				«f.compileFeature(control, importManager)»
-				
+			«ENDFOR»
+			«FOR o : (control.type as JvmGenericType).declaredOperations»
+				«o.compileFeature(control, importManager)»								
 			«ENDFOR»
 			private void logAction(Action action) {
 				try {
@@ -114,47 +118,47 @@ class CommandWrapperCompiler {
     	«ENDFOR»    
     '''
  
-  	private def compileFeature(Feature it, Control control, ImportManager importManager) { 
+  	private def compileFeature(JvmFeature it, JvmTypeReference control, ImportManager importManager) { 
 		switch it {
-			Property : '''
+			JvmField : '''
 				@Override
-				public «type.shortName(importManager)» get«name.toFirstUpper»() {
-					return m_proxy.get«name.toFirstUpper»();
+				public «type.shortName(importManager)» get«simpleName.toFirstUpper»() {
+					return m_proxy.get«simpleName.toFirstUpper»();
 				}
 				
-				«val methodName = "set" + name.toFirstUpper»
-				«val actionKey = toKey(control, methodName)»
+				«val methodName = "set" + simpleName.toFirstUpper»
+				«val actionKey = toKey(control.type, methodName)»
 				@Override		        
-				public void «methodName»(«type.shortName(importManager)» «name») {
-					m_proxy.«methodName»(«name»);
+				public void «methodName»(«type.shortName(importManager)» «simpleName») {
+					m_proxy.«methodName»(«simpleName»);
 					
 					«actionLog(actionKey, importManager)»
 				}
 			'''
 		
-			Operation :  '''
+			JvmOperation :  '''
 				@Override
-				public «type.shortName(importManager)» «name»«parameters(importManager)»«exceptions(importManager)» {
-					«IF !type.type.simpleName.equals("void")»return «ENDIF»m_proxy.«name»(«FOR p : params SEPARATOR ', '» «p.name»«ENDFOR»);
+				public «returnType.shortName(importManager)» «simpleName»«parameters(importManager)»«exceptions(importManager)» {
+					«IF !returnType.type.simpleName.equals("void")»return «ENDIF»m_proxy.«simpleName»(«FOR p : parameters SEPARATOR ', '» «p.name»«ENDFOR»);
 				}
 			'''
 		}
    	}
    	
-   	private def actionLog(Property it, CharSequence actionKey, ImportManager importManager) '''
+   	private def actionLog(JvmField it, CharSequence actionKey, ImportManager importManager) '''
 		«IF m_commands.containsKey(actionKey)»
 			«val command = m_commands.get(actionKey)»
 			ActionBuilder builder = Action.builder();
 			builder.setRelation("«command.name»");
 			«FOR c : command.contexts»
-			builder.addContext(«importManager.serialize(c.context.toJvmGenericType(c.context.fullyQualifiedName, "context"))».Field.«c.property»);
+			builder.addContext(«importManager.serialize(c.context as JvmGenericType)».Field.«c.property»);
 			«ENDFOR»
-			builder.setAction(«actionKey», «name»);
+			builder.setAction(«actionKey», «simpleName»);
 			logAction(builder.build());		
 		«ENDIF»   	
    	'''
 
- 	private def toKey(Control it, String method)  {
- 		return name + "." + method;
+ 	private def toKey(JvmType it, String method)  {
+ 		return it.simpleName + "." + method;
  	}
 }

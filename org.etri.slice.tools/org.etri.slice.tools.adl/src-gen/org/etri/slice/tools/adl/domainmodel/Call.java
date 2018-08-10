@@ -3,6 +3,7 @@
  */
 package org.etri.slice.tools.adl.domainmodel;
 
+import org.eclipse.xtext.common.types.JvmType;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,11 +12,11 @@ package org.etri.slice.tools.adl.domainmodel;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Call#getControl <em>Control</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Call#getMethod <em>Method</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCall()
  * @model
@@ -32,12 +33,12 @@ public interface Call extends Action
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Control</em>' reference.
-   * @see #setControl(Control)
+   * @see #setControl(JvmType)
    * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCall_Control()
    * @model
    * @generated
    */
-  Control getControl();
+  JvmType getControl();
 
   /**
    * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.Call#getControl <em>Control</em>}' reference.
@@ -47,7 +48,7 @@ public interface Call extends Action
    * @see #getControl()
    * @generated
    */
-  void setControl(Control value);
+  void setControl(JvmType value);
 
   /**
    * Returns the value of the '<em><b>Method</b></em>' attribute.

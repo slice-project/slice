@@ -7,14 +7,13 @@ import org.eclipse.emf.ecore.EObject
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 
 class Domain {
-	
 	public String domain	
 	public EObject eObject
 	public List<Domain> dependencies = new ArrayList<Domain>()
 	
 	new(String domain)
 	{
-		this.domain = domain 
+		this.domain = domain
 	}
 	
 	new(DomainDeclaration domain, String domainFQN)

@@ -6,10 +6,14 @@ package org.etri.slice.tools.adl.ui.contentassist;
 import com.google.inject.Inject;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
@@ -22,16 +26,18 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.etri.slice.tools.adl.domainmodel.Call;
 import org.etri.slice.tools.adl.domainmodel.Command;
 import org.etri.slice.tools.adl.domainmodel.CommandContext;
+import org.etri.slice.tools.adl.domainmodel.CommandSet;
 import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.Event;
-import org.etri.slice.tools.adl.domainmodel.Feature;
-import org.etri.slice.tools.adl.domainmodel.Operation;
 import org.etri.slice.tools.adl.domainmodel.Property;
+import org.etri.slice.tools.adl.domainmodel.Publish;
+import org.etri.slice.tools.adl.domainmodel.Situation;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
 import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces;
 import org.etri.slice.tools.adl.ui.contentassist.AbstractDomainmodelProposalProvider;
 import org.etri.slice.tools.adl.ui.contentassist.AcceptInterfaceFilter;
+import org.etri.slice.tools.adl.ui.contentassist.AcceptableInstanceFilter;
 import org.etri.slice.tools.adl.ui.contentassist.AcceptableSuperTypeFilter;
 import org.etri.slice.tools.adl.utils.DomainnodeUtil;
 
@@ -67,12 +73,53 @@ public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProv
   
   @Override
   public void completeJvmParameterizedTypeReference_Type(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    System.out.println(("element = " + element));
+    Property _containerOfType = EcoreUtil2.<Property>getContainerOfType(element, Property.class);
+    boolean _tripleNotEquals = (_containerOfType != null);
+    if (_tripleNotEquals) {
+      System.out.println(("element instanceof Property **********************" + Boolean.valueOf((element instanceof Property))));
+    }
     boolean _matched = false;
     if (element instanceof Control) {
       _matched=true;
       final String fqn = this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(element), "service").toString();
       AcceptInterfaceFilter _acceptInterfaceFilter = new AcceptInterfaceFilter(fqn);
-      this.provider.createTypeProposals(this, context, TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptInterfaceFilter, acceptor);
+      this.provider.createTypeProposals(this, context, 
+        TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptInterfaceFilter, acceptor);
+    }
+    if (!_matched) {
+      if (element instanceof Call) {
+        _matched=true;
+      }
+      if (!_matched) {
+        if (element instanceof CommandSet) {
+          _matched=true;
+        }
+      }
+      if (_matched) {
+        AcceptInterfaceFilter _acceptInterfaceFilter = new AcceptInterfaceFilter();
+        this.provider.createTypeProposals(this, context, 
+          TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptInterfaceFilter, acceptor);
+      }
+    }
+    if (!_matched) {
+      if (element instanceof Situation) {
+        _matched=true;
+        System.out.println("Situation .......................");
+        final IJvmTypeProvider typeProvider = this._factory.createTypeProvider(((Situation)element).eResource().getResourceSet());
+        final Consumer<Resource> _function = (Resource it) -> {
+          System.out.println(("resource = " + it));
+        };
+        ((Situation)element).eResource().getResourceSet().getResources().forEach(_function);
+        final JvmType contextBase = typeProvider.findTypeByName(CommonInterfaces.CONTEXT_BASE);
+        AcceptableInstanceFilter _acceptableInstanceFilter = new AcceptableInstanceFilter();
+        this.provider.createSubTypeProposals(contextBase, this, context, 
+          TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptableInstanceFilter, acceptor);
+        final JvmType eventBase = typeProvider.findTypeByName(CommonInterfaces.EVENT_BASE);
+        AcceptableInstanceFilter _acceptableInstanceFilter_1 = new AcceptableInstanceFilter();
+        this.provider.createSubTypeProposals(eventBase, this, context, 
+          TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptableInstanceFilter_1, acceptor);
+      }
     }
     if (!_matched) {
       if (element instanceof Context) {
@@ -86,8 +133,27 @@ public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProv
       }
     }
     if (!_matched) {
+      if (element instanceof Publish) {
+        _matched=true;
+        final IJvmTypeProvider typeProvider = this._factory.createTypeProvider(((Publish)element).eResource().getResourceSet());
+        final JvmType eventBase = typeProvider.findTypeByName(CommonInterfaces.EVENT_BASE);
+        AcceptableInstanceFilter _acceptableInstanceFilter = new AcceptableInstanceFilter();
+        this.provider.createSubTypeProposals(eventBase, this, context, 
+          TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptableInstanceFilter, acceptor);
+      }
+    }
+    if (!_matched) {
       if (element instanceof Event) {
         _matched=true;
+        System.out.println("Event .......................");
+        System.out.println(("Event element = " + element));
+        String _feature = assignment.getFeature();
+        String _plus = ("Event assignment feature = " + _feature);
+        System.out.println(_plus);
+        EObject _rootModel = context.getRootModel();
+        String _plus_1 = ("Event context rootModel = " + _rootModel);
+        System.out.println(_plus_1);
+        System.out.println(("Event context = " + context));
         final String fqn = this._generatorUtils.adaptToSlice(this._iQualifiedNameProvider.getFullyQualifiedName(element), "event").toString();
         final IJvmTypeProvider typeProvider = this._factory.createTypeProvider(((Event)element).eResource().getResourceSet());
         final JvmType eventBase = typeProvider.findTypeByName(CommonInterfaces.EVENT_BASE);
@@ -116,36 +182,37 @@ public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProv
    * AgentDeclaration/CommandSet/Context/property
    */
   @Override
+  public void completeCommandContext_Context(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    System.out.println("completeCommandContext_Context .......................");
+    final IJvmTypeProvider typeProvider = this._factory.createTypeProvider(element.eResource().getResourceSet());
+    final JvmType contextBase = typeProvider.findTypeByName(CommonInterfaces.CONTEXT_BASE);
+    AcceptableInstanceFilter _acceptableInstanceFilter = new AcceptableInstanceFilter();
+    this.provider.createSubTypeProposals(contextBase, this, context, 
+      TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, _acceptableInstanceFilter, acceptor);
+  }
+  
+  /**
+   * AgentDeclaration/CommandSet/Context/property
+   */
+  @Override
   public void completeCommandContext_Property(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    System.out.println("completeCommandContext_Property .......................");
     if ((element instanceof CommandContext)) {
-      final Consumer<Property> _function = (Property property) -> {
-        String _name = property.getName();
-        String _name_1 = property.getName();
-        String _plus = (_name_1 + ":");
-        String _simpleName = property.getType().getSimpleName();
-        String _plus_1 = (_plus + _simpleName);
-        String _plus_2 = (_plus_1 + " - ");
-        String _name_2 = ((CommandContext)element).getContext().getName();
-        String _plus_3 = (_plus_2 + _name_2);
-        acceptor.accept(
-          this.createCompletionProposal(_name, _plus_3, this.getImage(property), context));
+      JvmType _context = ((CommandContext)element).getContext();
+      final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
+        boolean _matched = false;
+        if (feature instanceof JvmField) {
+          _matched=true;
+          String _simpleName = ((JvmField)feature).getSimpleName();
+          String _simpleName_1 = ((JvmField)feature).getSimpleName();
+          String _plus = (_simpleName_1 + " - ");
+          String _identifier = ((CommandContext)element).getContext().getIdentifier();
+          String _plus_1 = (_plus + _identifier);
+          acceptor.accept(
+            this.createCompletionProposal(_simpleName, _plus_1, this.getImage(feature), context));
+        }
       };
-      ((CommandContext)element).getContext().getProperties().forEach(_function);
-      final Consumer<JvmField> _function_1 = (JvmField field) -> {
-        String _simpleName = field.getSimpleName();
-        String _simpleName_1 = field.getSimpleName();
-        String _plus = (_simpleName_1 + ":");
-        String _simpleName_2 = field.getType().getSimpleName();
-        String _plus_1 = (_plus + _simpleName_2);
-        String _plus_2 = (_plus_1 + " - ");
-        EObject _eContainer = field.eContainer();
-        String _simpleName_3 = ((JvmGenericType) _eContainer).getSimpleName();
-        String _plus_3 = (_plus_2 + _simpleName_3);
-        acceptor.accept(
-          this.createCompletionProposal(_simpleName, _plus_3, 
-            this.labelProvider.getImage(field), context));
-      };
-      this._domainnodeUtil.classHierarchyFields(((CommandContext)element).getContext()).forEach(_function_1);
+      ((JvmGenericType) _context).getAllFeatures().forEach(_function);
     }
   }
   
@@ -155,48 +222,33 @@ public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProv
   @Override
   public void completeCommand_Method(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     if ((element instanceof Command)) {
-      final Consumer<Feature> _function = (Feature feature) -> {
-        if ((feature instanceof Operation)) {
-          String _name = ((Operation)feature).getName();
-          String _name_1 = ((Operation)feature).getName();
-          String _plus = (_name_1 + " - ");
-          String _name_2 = ((Command)element).getAction().getName();
-          String _plus_1 = (_plus + _name_2);
+      JvmType _action = ((Command)element).getAction();
+      final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
+        boolean _matched = false;
+        if (feature instanceof JvmOperation) {
+          _matched=true;
+          String _simpleName = ((JvmOperation)feature).getSimpleName();
+          String _simpleName_1 = ((JvmOperation)feature).getSimpleName();
+          String _plus = (_simpleName_1 + " - ");
+          String _identifier = ((Command)element).getAction().getIdentifier();
+          String _plus_1 = (_plus + _identifier);
           acceptor.accept(
-            this.createCompletionProposal(_name, _plus_1, null, context));
-        } else {
-          String _firstUpper = StringExtensions.toFirstUpper(feature.getName());
-          final String setter = ("set" + _firstUpper);
-          String _name_3 = ((Command)element).getAction().getName();
-          String _plus_2 = ((setter + " - ") + _name_3);
-          acceptor.accept(
-            this.createCompletionProposal(setter, _plus_2, this.getImage(feature), context));
+            this.createCompletionProposal(_simpleName, _plus_1, this.getImage(feature), context));
+        }
+        if (!_matched) {
+          if (feature instanceof JvmField) {
+            _matched=true;
+            String _simpleName = ((JvmField)feature).getSimpleName();
+            String _simpleName_1 = ((JvmField)feature).getSimpleName();
+            String _plus = (_simpleName_1 + " - ");
+            String _simpleName_2 = ((Command)element).getAction().getSimpleName();
+            String _plus_1 = (_plus + _simpleName_2);
+            acceptor.accept(
+              this.createCompletionProposal(_simpleName, _plus_1, this.getImage(feature), context));
+          }
         }
       };
-      ((Command)element).getAction().getFeatures().forEach(_function);
-      final Consumer<Feature> _function_1 = (Feature field) -> {
-        String _firstUpper = StringExtensions.toFirstUpper(field.getName());
-        final String setter = ("set" + _firstUpper);
-        EObject _eContainer = field.eContainer();
-        String _name = ((Control) _eContainer).getName();
-        String _plus = ((setter + " - ") + _name);
-        acceptor.accept(
-          this.createCompletionProposal(setter, _plus, 
-            this.getImage(field), context));
-      };
-      this._domainnodeUtil.classHierarchyFields(((Command)element).getAction()).forEach(_function_1);
-      final Consumer<Feature> _function_2 = (Feature operation) -> {
-        String _name = operation.getName();
-        String _name_1 = operation.getName();
-        String _plus = (_name_1 + " - ");
-        EObject _eContainer = operation.eContainer();
-        String _name_2 = ((Control) _eContainer).getName();
-        String _plus_1 = (_plus + _name_2);
-        acceptor.accept(
-          this.createCompletionProposal(_name, _plus_1, 
-            this.getImage(operation), context));
-      };
-      this._domainnodeUtil.classHierarchyMethods(((Command)element).getAction()).forEach(_function_2);
+      ((JvmGenericType) _action).getAllFeatures().forEach(_function);
     }
   }
   
@@ -206,21 +258,28 @@ public class DomainmodelProposalProvider extends AbstractDomainmodelProposalProv
   @Override
   public void completeCall_Method(final EObject element, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     if ((element instanceof Call)) {
-      final Consumer<Feature> _function = (Feature feature) -> {
-        if ((feature instanceof Operation)) {
-          String _name = ((Operation)feature).getName();
-          String _name_1 = ((Operation)feature).getName();
-          String _plus = (_name_1 + " - Operation");
+      JvmType _control = ((Call)element).getControl();
+      final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
+        boolean _matched = false;
+        if (feature instanceof JvmOperation) {
+          _matched=true;
+          String _simpleName = ((JvmOperation)feature).getSimpleName();
+          String _simpleName_1 = ((JvmOperation)feature).getSimpleName();
+          String _plus = (_simpleName_1 + " - Operation");
           acceptor.accept(
-            this.createCompletionProposal(_name, _plus, null, context));
-        } else {
-          String _firstUpper = StringExtensions.toFirstUpper(feature.getName());
-          final String setter = ("set" + _firstUpper);
-          acceptor.accept(
-            this.createCompletionProposal(setter, (setter + " - Field"), null, context));
+            this.createCompletionProposal(_simpleName, _plus, this.getImage(feature), context));
+        }
+        if (!_matched) {
+          if (feature instanceof JvmField) {
+            _matched=true;
+            String _firstUpper = StringExtensions.toFirstUpper(((JvmField)feature).getSimpleName());
+            final String setter = ("set" + _firstUpper);
+            acceptor.accept(
+              this.createCompletionProposal(setter, (setter + " - Field"), this.getImage(feature), context));
+          }
         }
       };
-      ((Call)element).getControl().getFeatures().forEach(_function);
+      ((JvmGenericType) _control).getAllFeatures().forEach(_function);
     }
   }
 }

@@ -4,7 +4,7 @@
 <product name="ADL" uid="ADL" id="org.etri.slice.tools.adl.product.product" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
-      <image path="/org.etri.slice.tools.adl.product/icons/about.png"/>
+      <image path="/org.etri.slice.tools.adl.product/icons/SLICE-about.png"/>
       <text>
          SLICE Tools
       </text>
@@ -28,13 +28,13 @@
       </vmArgsWin>
    </launcherArgs>
 
-   <windowImages i16="/org.etri.slice.tools.adl.product/icons/SLICE-16.png" i32="/org.etri.slice.tools.adl.product/icons/SLICE-32.png" i48="/org.etri.slice.tools.adl.product/icons/SLICE-48.png" i64="/org.etri.slice.tools.adl.product/icons/SLICE-64.png" i128="/org.etri.slice.tools.adl.product/icons/SLICE-128.png" i256="/org.etri.slice.tools.adl.product/icons/SLICE-256.png"/>
+   <windowImages i16="/org.etri.slice.tools.adl.product/icons/SLICE_16.png" i32="/org.etri.slice.tools.adl.product/icons/SLICE_32.png" i48="/org.etri.slice.tools.adl.product/icons/SLICE_48.png" i64="/org.etri.slice.tools.adl.product/icons/SLICE_64.png" i128="/org.etri.slice.tools.adl.product/icons/SLICE_128.png" i256="/org.etri.slice.tools.adl.product/icons/SLICE_256.png"/>
 
    <splash
       location="org.etri.slice.tools.adl.ui" />
    <launcher name="slice-tools">
       <win useIco="true">
-         <ico path="/org.etri.slice.tools.adl.ui/icons/SLICE2.ico"/>
+         <ico path="/org.etri.slice.tools.adl.ui/icons/SLICE_ETRI.ico"/>
          <bmp/>
       </win>
    </launcher>

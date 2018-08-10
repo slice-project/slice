@@ -4,14 +4,16 @@
 package org.etri.slice.tools.adl.domainmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.xtext.common.types.JvmTypeReference;
+
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
-import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.domainmodel.Publish;
 
 /**
@@ -20,24 +22,24 @@ import org.etri.slice.tools.adl.domainmodel.Publish;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.PublishImpl#getEvent <em>Event</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
 public class PublishImpl extends ActionImpl implements Publish
 {
   /**
-   * The cached value of the '{@link #getEvent() <em>Event</em>}' reference.
+   * The cached value of the '{@link #getEvent() <em>Event</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getEvent()
    * @generated
    * @ordered
    */
-  protected Event event;
+  protected JvmTypeReference event;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,27 +67,7 @@ public class PublishImpl extends ActionImpl implements Publish
    * <!-- end-user-doc -->
    * @generated
    */
-  public Event getEvent()
-  {
-    if (event != null && event.eIsProxy())
-    {
-      InternalEObject oldEvent = (InternalEObject)event;
-      event = (Event)eResolveProxy(oldEvent);
-      if (event != oldEvent)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomainmodelPackage.PUBLISH__EVENT, oldEvent, event));
-      }
-    }
-    return event;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Event basicGetEvent()
+  public JvmTypeReference getEvent()
   {
     return event;
   }
@@ -95,12 +77,53 @@ public class PublishImpl extends ActionImpl implements Publish
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEvent(Event newEvent)
+  public NotificationChain basicSetEvent(JvmTypeReference newEvent, NotificationChain msgs)
   {
-    Event oldEvent = event;
+    JvmTypeReference oldEvent = event;
     event = newEvent;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.PUBLISH__EVENT, oldEvent, event));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DomainmodelPackage.PUBLISH__EVENT, oldEvent, newEvent);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setEvent(JvmTypeReference newEvent)
+  {
+    if (newEvent != event)
+    {
+      NotificationChain msgs = null;
+      if (event != null)
+        msgs = ((InternalEObject)event).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DomainmodelPackage.PUBLISH__EVENT, null, msgs);
+      if (newEvent != null)
+        msgs = ((InternalEObject)newEvent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DomainmodelPackage.PUBLISH__EVENT, null, msgs);
+      msgs = basicSetEvent(newEvent, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.PUBLISH__EVENT, newEvent, newEvent));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case DomainmodelPackage.PUBLISH__EVENT:
+        return basicSetEvent(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -114,8 +137,7 @@ public class PublishImpl extends ActionImpl implements Publish
     switch (featureID)
     {
       case DomainmodelPackage.PUBLISH__EVENT:
-        if (resolve) return getEvent();
-        return basicGetEvent();
+        return getEvent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -131,7 +153,7 @@ public class PublishImpl extends ActionImpl implements Publish
     switch (featureID)
     {
       case DomainmodelPackage.PUBLISH__EVENT:
-        setEvent((Event)newValue);
+        setEvent((JvmTypeReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,7 +170,7 @@ public class PublishImpl extends ActionImpl implements Publish
     switch (featureID)
     {
       case DomainmodelPackage.PUBLISH__EVENT:
-        setEvent((Event)null);
+        setEvent((JvmTypeReference)null);
         return;
     }
     super.eUnset(featureID);

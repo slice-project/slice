@@ -27,11 +27,11 @@ import org.etri.slice.tools.adl.domainmodel.Operation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.OperationImpl#getParams <em>Params</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.OperationImpl#getExceptions <em>Exceptions</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

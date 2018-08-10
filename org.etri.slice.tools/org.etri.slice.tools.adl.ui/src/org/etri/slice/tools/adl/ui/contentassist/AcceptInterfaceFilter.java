@@ -4,10 +4,15 @@ import org.eclipse.jdt.core.Flags;
 import org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider;
 
 public class AcceptInterfaceFilter  implements ITypesProposalProvider.Filter{
-	
 	private String currentFQN;
 	
-	public AcceptInterfaceFilter(String currentFQN) {
+	public AcceptInterfaceFilter()
+	{
+		this.currentFQN = null;
+	}
+	
+	public AcceptInterfaceFilter(String currentFQN)
+	{
 		this.currentFQN = currentFQN;
 	}
 	
@@ -17,7 +22,10 @@ public class AcceptInterfaceFilter  implements ITypesProposalProvider.Filter{
 		StringBuilder sb = new StringBuilder();		
 		sb.append(packageName).append(".").append(simpleTypeName);	
 
-		return !sb.toString().equals(currentFQN) && Flags.isInterface(modifiers) && !Flags.isAnnotation(modifiers);
+		if(null != currentFQN)
+			return !sb.toString().equals(currentFQN) && Flags.isInterface(modifiers) && !Flags.isAnnotation(modifiers);
+		else
+			return Flags.isInterface(modifiers) && !Flags.isAnnotation(modifiers);
 	}
 
 	@Override

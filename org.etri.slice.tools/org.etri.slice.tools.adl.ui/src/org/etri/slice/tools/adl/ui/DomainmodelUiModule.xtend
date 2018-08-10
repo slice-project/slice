@@ -28,10 +28,5 @@ class DomainmodelUiModule extends AbstractDomainmodelUiModule {
 	def Class<? extends DomainManager> bindDomainManager(){
     	return DomainManager
     }
-    
-    override def Class<? extends IShouldGenerate> bindIShouldGenerate()
-    {
-    	return SLICEShouldGenerate;
-    }
 }
 

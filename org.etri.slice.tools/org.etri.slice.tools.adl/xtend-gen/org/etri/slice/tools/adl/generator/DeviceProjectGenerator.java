@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
@@ -19,7 +20,6 @@ import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Behavior;
 import org.etri.slice.tools.adl.domainmodel.Call;
 import org.etri.slice.tools.adl.domainmodel.Context;
-import org.etri.slice.tools.adl.domainmodel.DataType;
 import org.etri.slice.tools.adl.generator.BehaviorGenerator;
 import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
@@ -73,10 +73,10 @@ public class DeviceProjectGenerator implements IGeneratorForMultiInput {
     EList<Behavior> _behaviors = it.getBehaviorSet().getBehaviors();
     for (final Behavior b : _behaviors) {
       {
-        EList<DataType> _types = b.getSituation().getTypes();
-        for (final DataType t : _types) {
+        EList<JvmTypeReference> _types = b.getSituation().getTypes();
+        for (final JvmTypeReference t : _types) {
           {
-            DataType type = t;
+            JvmTypeReference type = t;
             if ((type instanceof Context)) {
               this._behaviorGenerator.generateSensor(((Context)type), it, fsa);
             }

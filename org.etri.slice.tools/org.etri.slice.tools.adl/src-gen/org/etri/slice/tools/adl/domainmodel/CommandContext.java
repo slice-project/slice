@@ -5,6 +5,8 @@ package org.etri.slice.tools.adl.domainmodel;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.common.types.JvmType;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Command Context</b></em>'.
@@ -12,11 +14,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.CommandContext#getContext <em>Context</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.CommandContext#getProperty <em>Property</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCommandContext()
  * @model
@@ -33,12 +35,12 @@ public interface CommandContext extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Context</em>' reference.
-   * @see #setContext(Context)
+   * @see #setContext(JvmType)
    * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getCommandContext_Context()
    * @model
    * @generated
    */
-  Context getContext();
+  JvmType getContext();
 
   /**
    * Sets the value of the '{@link org.etri.slice.tools.adl.domainmodel.CommandContext#getContext <em>Context</em>}' reference.
@@ -48,7 +50,7 @@ public interface CommandContext extends EObject
    * @see #getContext()
    * @generated
    */
-  void setContext(Context value);
+  void setContext(JvmType value);
 
   /**
    * Returns the value of the '<em><b>Property</b></em>' attribute.

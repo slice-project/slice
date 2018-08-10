@@ -33,4 +33,11 @@ public interface IssueCodes {
 	public static final String EXCEPTION_MUST_EXTENDS_EXCEPTION = PREFIX + "ExceptionMustExtendsException";
 	
 	public static final String DOMAIN_DEPENDENCY_CYCLE = PREFIX + "DomainDependencyCycle";
+	
+	public static final String INVALID_COMMAND_CONTEXT_PROPERTY = PREFIX + "InvalidCommandContextProperty";
+	
+	public static final String INVALID_COMMAND_METHOD = PREFIX + "InvalidCommandMethod";
+	
+	public static final String INVALID_CALL_METHOD = PREFIX + "InvalidCallMethod";
+	
 }

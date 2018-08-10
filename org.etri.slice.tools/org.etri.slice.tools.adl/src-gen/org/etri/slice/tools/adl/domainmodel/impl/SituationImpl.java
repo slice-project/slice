@@ -5,15 +5,20 @@ package org.etri.slice.tools.adl.domainmodel.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.etri.slice.tools.adl.domainmodel.DataType;
+import org.eclipse.xtext.common.types.JvmTypeReference;
+
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 import org.etri.slice.tools.adl.domainmodel.Situation;
 
@@ -23,24 +28,24 @@ import org.etri.slice.tools.adl.domainmodel.Situation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.SituationImpl#getTypes <em>Types</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
 public class SituationImpl extends MinimalEObjectImpl.Container implements Situation
 {
   /**
-   * The cached value of the '{@link #getTypes() <em>Types</em>}' reference list.
+   * The cached value of the '{@link #getTypes() <em>Types</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTypes()
    * @generated
    * @ordered
    */
-  protected EList<DataType> types;
+  protected EList<JvmTypeReference> types;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,13 +73,29 @@ public class SituationImpl extends MinimalEObjectImpl.Container implements Situa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<DataType> getTypes()
+  public EList<JvmTypeReference> getTypes()
   {
     if (types == null)
     {
-      types = new EObjectResolvingEList<DataType>(DataType.class, this, DomainmodelPackage.SITUATION__TYPES);
+      types = new EObjectContainmentEList<JvmTypeReference>(JvmTypeReference.class, this, DomainmodelPackage.SITUATION__TYPES);
     }
     return types;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case DomainmodelPackage.SITUATION__TYPES:
+        return ((InternalEList<?>)getTypes()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -106,7 +127,7 @@ public class SituationImpl extends MinimalEObjectImpl.Container implements Situa
     {
       case DomainmodelPackage.SITUATION__TYPES:
         getTypes().clear();
-        getTypes().addAll((Collection<? extends DataType>)newValue);
+        getTypes().addAll((Collection<? extends JvmTypeReference>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

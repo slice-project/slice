@@ -14,7 +14,6 @@ import org.etri.slice.tools.adl.domainmodel.Exception
 import org.etri.slice.tools.adl.domainmodel.Publish
 
 class DomainDependencyUtil {
-	
 	@Inject extension IQualifiedNameProvider
 	@Inject DomainManager domainManager
 	
@@ -34,6 +33,8 @@ class DomainDependencyUtil {
 
 
 	def getDomain(String packageName, String prefix, String suffix) {
+		System.out.println("getDomain packageName = " + packageName)
+		
 		val tmp = packageName.replace(prefix, "")
 
 		if (suffix !== null)
@@ -42,7 +43,7 @@ class DomainDependencyUtil {
 			tmp.substring(1)
 	}
 
-	def getDomain(String qName, String suffix) {
+	def getDomain(String qName, String suffix) {		
 		if (suffix !== null)
 			qName.substring(1, qName.lastIndexOf(suffix) - 1)
 		else
@@ -64,7 +65,7 @@ class DomainDependencyUtil {
 					
 				val package = qualifiedName.substring(0, qualifiedName.lastIndexOf("."))
 				val depDomain = getDomain(package, "org.etri.slice.commons", "context")
-
+			
 				if (!domainFQN.equals(depDomain))
 					domainManager.addRef(domain, domainFQN, depDomain)
 			}
@@ -93,7 +94,6 @@ class DomainDependencyUtil {
 				val package = qualifiedName.substring(0, qualifiedName.lastIndexOf("."))
 
 				val depDomain = getDomain(package, "org.etri.slice.commons", "event")
-
 				if (!domainFQN.equals(depDomain))
 					domainManager.addRef(domain, domainFQN, depDomain)
 			}
@@ -105,7 +105,6 @@ class DomainDependencyUtil {
 				val package = qualifiedName.substring(0, qualifiedName.lastIndexOf("."))
 
 				val depDomain = getDomain(package, "org.etri.slice.commons", null)
-
 				if (!domainFQN.equals(depDomain))
 					domainManager.addRef(domain, domainFQN, depDomain)
 			}
@@ -118,16 +117,22 @@ class DomainDependencyUtil {
 				behavior.situation.types.forEach [ type |
 					switch type {
 						Context: {
-							val name = type.fullyQualifiedName.toString
+							val name = type.qualifiedName
+							
+							if(name === "void")
+								return;
+							
 							val depDomain = name.substring(0, name.lastIndexOf("."))
-
 							if (!domainFQN.equals(depDomain))
 								domainManager.addRef(domain, domainFQN, depDomain)
 						}
 						Event: {
-							val name = type.fullyQualifiedName.toString
+							val name = type.qualifiedName
+							
+							if(name === "void")
+								return;
+							
 							val depDomain = name.substring(0, name.lastIndexOf("."))
-
 							if (!domainFQN.equals(depDomain))
 								domainManager.addRef(domain, domainFQN, depDomain)
 						}
@@ -139,16 +144,26 @@ class DomainDependencyUtil {
 
 				switch action {
 					Publish: {
-						val name = action.event.fullyQualifiedName.toString
-						val depDomain = name.substring(0, name.lastIndexOf("."))
-
+						System.out.println("action.event = " + action.event)
+						System.out.println("action.event.fullyQualifiedName = " + action.event.type.qualifiedName)
+						
+						val name = action.event.type.qualifiedName
+						
+						if(name === "void")
+							return;
+							
+						val depDomain = getDomain(name, "org.etri.slice.commons", "event")
+//						
 						if (!domainFQN.equals(depDomain))
 							domainManager.addRef(domain, domainFQN, depDomain)
 					}
 					Call: {
-						val name = action.control.fullyQualifiedName.toString
-						val depDomain = name.substring(0, name.lastIndexOf("."))
-
+						val name = action.control.qualifiedName
+						
+						if(name === "void")
+							return;
+						
+						val depDomain = getDomain(name, "org.etri.slice.commons", "service")
 						if (!domainFQN.equals(depDomain))
 							domainManager.addRef(domain, domainFQN, depDomain)
 					}
@@ -158,9 +173,10 @@ class DomainDependencyUtil {
 			// hasCommandsOf
 			agent.commandSets.forEach [ commandSet |
 				commandSet.commands.forEach [ command |
-					val name = command.action.fullyQualifiedName.toString
-					val depDomain = name.substring(0, name.lastIndexOf("."))
-
+					val name = command.action.qualifiedName
+					
+					val depDomain = getDomain(name, "org.etri.slice.commons", "service")
+					
 					if (!domainFQN.equals(depDomain))
 						domainManager.addRef(domain, domainFQN, depDomain)
 				]

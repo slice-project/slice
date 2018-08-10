@@ -7,6 +7,8 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmOperation;
@@ -22,10 +24,6 @@ import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Command;
 import org.etri.slice.tools.adl.domainmodel.CommandContext;
 import org.etri.slice.tools.adl.domainmodel.CommandSet;
-import org.etri.slice.tools.adl.domainmodel.Control;
-import org.etri.slice.tools.adl.domainmodel.Feature;
-import org.etri.slice.tools.adl.domainmodel.Operation;
-import org.etri.slice.tools.adl.domainmodel.Property;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
 
 @SuppressWarnings("all")
@@ -62,7 +60,7 @@ public class CommandWrapperCompiler {
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
-      EObject _eContainer = it.eContainer();
+      EObject _eContainer = agent.eContainer();
       boolean _tripleNotEquals = (_eContainer != null);
       if (_tripleNotEquals) {
         _builder.append("package org.etri.slice.agents.");
@@ -119,17 +117,17 @@ public class CommandWrapperCompiler {
   private CharSequence body(final CommandSet it, final ImportManager importManager) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class ");
-    String _name = it.getControl().getName();
-    _builder.append(_name);
+    String _simpleName = it.getControl().getSimpleName();
+    _builder.append(_simpleName);
     _builder.append("Commander implements ");
-    CharSequence _shortName = this._generatorUtils.shortName(it.getControl(), importManager);
+    String _shortName = this._generatorUtils.shortName(it.getControl(), importManager);
     _builder.append(_shortName);
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private static Logger s_logger = LoggerFactory.getLogger(");
-    String _name_1 = it.getControl().getName();
-    _builder.append(_name_1, "\t");
+    String _simpleName_1 = it.getControl().getSimpleName();
+    _builder.append(_simpleName_1, "\t");
     _builder.append("Commander.class);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -139,8 +137,8 @@ public class CommandWrapperCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("private ");
-    String _name_2 = it.getControl().getName();
-    _builder.append(_name_2, "\t");
+    String _simpleName_2 = it.getControl().getSimpleName();
+    _builder.append(_simpleName_2, "\t");
     _builder.append(" m_proxy;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -163,8 +161,8 @@ public class CommandWrapperCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public ");
-    String _name_3 = it.getControl().getName();
-    _builder.append(_name_3, "\t");
+    String _simpleName_3 = it.getControl().getSimpleName();
+    _builder.append(_simpleName_3, "\t");
     _builder.append("Commander() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -172,11 +170,11 @@ public class CommandWrapperCompiler {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("control.registerControl(this.getClass().getSimpleName(), ");
-    String _name_4 = it.getControl().getName();
-    _builder.append(_name_4, "\t\t");
+    String _simpleName_4 = it.getControl().getSimpleName();
+    _builder.append(_simpleName_4, "\t\t");
     _builder.append(".id, null, ");
-    String _name_5 = it.getControl().getName();
-    _builder.append(_name_5, "\t\t");
+    String _simpleName_5 = it.getControl().getSimpleName();
+    _builder.append(_simpleName_5, "\t\t");
     _builder.append(".class, this);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -185,24 +183,36 @@ public class CommandWrapperCompiler {
     _builder.append("\t");
     _builder.newLine();
     {
-      int _size = it.getControl().getSuperTypes().size();
+      JvmType _type = it.getControl().getType();
+      int _size = ((JvmGenericType) _type).getSuperTypes().size();
       boolean _greaterThan = (_size > 0);
       if (_greaterThan) {
         _builder.append("\t");
-        CharSequence _compileSuperType = this.compileSuperType(this._generatorUtils.toInterface(it.getControl()), importManager);
+        JvmType _type_1 = it.getControl().getType();
+        CharSequence _compileSuperType = this.compileSuperType(((JvmGenericType) _type_1), importManager);
         _builder.append(_compileSuperType, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
     {
-      EList<Feature> _features = it.getControl().getFeatures();
-      for(final Feature f : _features) {
+      JvmType _type_2 = it.getControl().getType();
+      Iterable<JvmField> _declaredFields = ((JvmGenericType) _type_2).getDeclaredFields();
+      for(final JvmField f : _declaredFields) {
         _builder.append("\t");
         CharSequence _compileFeature = this.compileFeature(f, it.getControl(), importManager);
         _builder.append(_compileFeature, "\t");
         _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      JvmType _type_3 = it.getControl().getType();
+      Iterable<JvmOperation> _declaredOperations = ((JvmGenericType) _type_3).getDeclaredOperations();
+      for(final JvmOperation o : _declaredOperations) {
         _builder.append("\t");
-        _builder.newLine();
+        CharSequence _compileFeature_1 = this.compileFeature(o, it.getControl(), importManager);
+        _builder.append(_compileFeature_1, "\t");
+        _builder.append("\t\t\t\t\t\t\t\t");
+        _builder.newLineIfNotEmpty();
       }
     }
     _builder.append("\t");
@@ -313,60 +323,60 @@ public class CommandWrapperCompiler {
     return _builder;
   }
   
-  private CharSequence compileFeature(final Feature it, final Control control, final ImportManager importManager) {
+  private CharSequence compileFeature(final JvmFeature it, final JvmTypeReference control, final ImportManager importManager) {
     CharSequence _switchResult = null;
     boolean _matched = false;
-    if (it instanceof Property) {
+    if (it instanceof JvmField) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("@Override");
       _builder.newLine();
       _builder.append("public ");
-      String _shortName = this._generatorUtils.shortName(((Property)it).getType(), importManager);
+      String _shortName = this._generatorUtils.shortName(((JvmField)it).getType(), importManager);
       _builder.append(_shortName);
       _builder.append(" get");
-      String _firstUpper = StringExtensions.toFirstUpper(((Property)it).getName());
+      String _firstUpper = StringExtensions.toFirstUpper(((JvmField)it).getSimpleName());
       _builder.append(_firstUpper);
       _builder.append("() {");
       _builder.newLineIfNotEmpty();
       _builder.append("\t");
       _builder.append("return m_proxy.get");
-      String _firstUpper_1 = StringExtensions.toFirstUpper(((Property)it).getName());
+      String _firstUpper_1 = StringExtensions.toFirstUpper(((JvmField)it).getSimpleName());
       _builder.append(_firstUpper_1, "\t");
       _builder.append("();");
       _builder.newLineIfNotEmpty();
       _builder.append("}");
       _builder.newLine();
       _builder.newLine();
-      String _firstUpper_2 = StringExtensions.toFirstUpper(((Property)it).getName());
+      String _firstUpper_2 = StringExtensions.toFirstUpper(((JvmField)it).getSimpleName());
       final String methodName = ("set" + _firstUpper_2);
       _builder.newLineIfNotEmpty();
-      final String actionKey = this.toKey(control, methodName);
+      final String actionKey = this.toKey(control.getType(), methodName);
       _builder.newLineIfNotEmpty();
       _builder.append("@Override\t\t        ");
       _builder.newLine();
       _builder.append("public void ");
       _builder.append(methodName);
       _builder.append("(");
-      String _shortName_1 = this._generatorUtils.shortName(((Property)it).getType(), importManager);
+      String _shortName_1 = this._generatorUtils.shortName(((JvmField)it).getType(), importManager);
       _builder.append(_shortName_1);
       _builder.append(" ");
-      String _name = ((Property)it).getName();
-      _builder.append(_name);
+      String _simpleName = ((JvmField)it).getSimpleName();
+      _builder.append(_simpleName);
       _builder.append(") {");
       _builder.newLineIfNotEmpty();
       _builder.append("\t");
       _builder.append("m_proxy.");
       _builder.append(methodName, "\t");
       _builder.append("(");
-      String _name_1 = ((Property)it).getName();
-      _builder.append(_name_1, "\t");
+      String _simpleName_1 = ((JvmField)it).getSimpleName();
+      _builder.append(_simpleName_1, "\t");
       _builder.append(");");
       _builder.newLineIfNotEmpty();
       _builder.append("\t");
       _builder.newLine();
       _builder.append("\t");
-      CharSequence _actionLog = this.actionLog(((Property)it), actionKey, importManager);
+      CharSequence _actionLog = this.actionLog(((JvmField)it), actionKey, importManager);
       _builder.append(_actionLog, "\t");
       _builder.newLineIfNotEmpty();
       _builder.append("}");
@@ -374,47 +384,47 @@ public class CommandWrapperCompiler {
       _switchResult = _builder;
     }
     if (!_matched) {
-      if (it instanceof Operation) {
+      if (it instanceof JvmOperation) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("@Override");
         _builder.newLine();
         _builder.append("public ");
-        String _shortName = this._generatorUtils.shortName(((Operation)it).getType(), importManager);
+        String _shortName = this._generatorUtils.shortName(((JvmOperation)it).getReturnType(), importManager);
         _builder.append(_shortName);
         _builder.append(" ");
-        String _name = ((Operation)it).getName();
-        _builder.append(_name);
-        CharSequence _parameters = this._generatorUtils.parameters(((Operation)it), importManager);
+        String _simpleName = ((JvmOperation)it).getSimpleName();
+        _builder.append(_simpleName);
+        CharSequence _parameters = this._generatorUtils.parameters(((JvmOperation)it), importManager);
         _builder.append(_parameters);
-        CharSequence _exceptions = this._generatorUtils.exceptions(((Operation)it), importManager);
+        CharSequence _exceptions = this._generatorUtils.exceptions(((JvmOperation)it), importManager);
         _builder.append(_exceptions);
         _builder.append(" {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         {
-          boolean _equals = ((Operation)it).getType().getType().getSimpleName().equals("void");
+          boolean _equals = ((JvmOperation)it).getReturnType().getType().getSimpleName().equals("void");
           boolean _not = (!_equals);
           if (_not) {
             _builder.append("return ");
           }
         }
         _builder.append("m_proxy.");
-        String _name_1 = ((Operation)it).getName();
-        _builder.append(_name_1, "\t");
+        String _simpleName_1 = ((JvmOperation)it).getSimpleName();
+        _builder.append(_simpleName_1, "\t");
         _builder.append("(");
         {
-          EList<JvmFormalParameter> _params = ((Operation)it).getParams();
+          EList<JvmFormalParameter> _parameters_1 = ((JvmOperation)it).getParameters();
           boolean _hasElements = false;
-          for(final JvmFormalParameter p : _params) {
+          for(final JvmFormalParameter p : _parameters_1) {
             if (!_hasElements) {
               _hasElements = true;
             } else {
               _builder.appendImmediate(", ", "\t");
             }
             _builder.append(" ");
-            String _name_2 = p.getName();
-            _builder.append(_name_2, "\t");
+            String _name = p.getName();
+            _builder.append(_name, "\t");
           }
         }
         _builder.append(");");
@@ -427,7 +437,7 @@ public class CommandWrapperCompiler {
     return _switchResult;
   }
   
-  private CharSequence actionLog(final Property it, final CharSequence actionKey, final ImportManager importManager) {
+  private CharSequence actionLog(final JvmField it, final CharSequence actionKey, final ImportManager importManager) {
     StringConcatenation _builder = new StringConcatenation();
     {
       boolean _containsKey = this.m_commands.containsKey(actionKey);
@@ -445,7 +455,8 @@ public class CommandWrapperCompiler {
           EList<CommandContext> _contexts = command.getContexts();
           for(final CommandContext c : _contexts) {
             _builder.append("builder.addContext(");
-            CharSequence _serialize = importManager.serialize(this._generatorUtils.toJvmGenericType(c.getContext(), this._iQualifiedNameProvider.getFullyQualifiedName(c.getContext()), "context"));
+            JvmType _context = c.getContext();
+            CharSequence _serialize = importManager.serialize(((JvmGenericType) _context));
             _builder.append(_serialize);
             _builder.append(".Field.");
             String _property = c.getProperty();
@@ -457,8 +468,8 @@ public class CommandWrapperCompiler {
         _builder.append("builder.setAction(");
         _builder.append(actionKey);
         _builder.append(", ");
-        String _name_1 = it.getName();
-        _builder.append(_name_1);
+        String _simpleName = it.getSimpleName();
+        _builder.append(_simpleName);
         _builder.append(");");
         _builder.newLineIfNotEmpty();
         _builder.append("logAction(builder.build());\t\t");
@@ -468,9 +479,9 @@ public class CommandWrapperCompiler {
     return _builder;
   }
   
-  private String toKey(final Control it, final String method) {
-    String _name = it.getName();
-    String _plus = (_name + ".");
+  private String toKey(final JvmType it, final String method) {
+    String _simpleName = it.getSimpleName();
+    String _plus = (_simpleName + ".");
     return (_plus + method);
   }
 }

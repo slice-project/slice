@@ -31,12 +31,12 @@ import org.etri.slice.tools.adl.domainmodel.Topic;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.EventImpl#getTopic <em>Topic</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.EventImpl#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.EventImpl#getProperties <em>Properties</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

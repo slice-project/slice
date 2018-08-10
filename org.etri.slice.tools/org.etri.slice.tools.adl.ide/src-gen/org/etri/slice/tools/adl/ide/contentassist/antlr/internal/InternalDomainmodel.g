@@ -19385,13 +19385,9 @@ rule__CommandSet__ControlAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getCommandSetAccess().getControlControlCrossReference_1_0()); }
-		(
-			{ before(grammarAccess.getCommandSetAccess().getControlControlIDTerminalRuleCall_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getCommandSetAccess().getControlControlIDTerminalRuleCall_1_0_1()); }
-		)
-		{ after(grammarAccess.getCommandSetAccess().getControlControlCrossReference_1_0()); }
+		{ before(grammarAccess.getCommandSetAccess().getControlJvmTypeReferenceParserRuleCall_1_0()); }
+		ruleJvmTypeReference
+		{ after(grammarAccess.getCommandSetAccess().getControlJvmTypeReferenceParserRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -19449,13 +19445,13 @@ rule__Command__ActionAssignment_5
 	}
 :
 	(
-		{ before(grammarAccess.getCommandAccess().getActionControlCrossReference_5_0()); }
+		{ before(grammarAccess.getCommandAccess().getActionJvmTypeCrossReference_5_0()); }
 		(
-			{ before(grammarAccess.getCommandAccess().getActionControlIDTerminalRuleCall_5_0_1()); }
+			{ before(grammarAccess.getCommandAccess().getActionJvmTypeIDTerminalRuleCall_5_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getCommandAccess().getActionControlIDTerminalRuleCall_5_0_1()); }
+			{ after(grammarAccess.getCommandAccess().getActionJvmTypeIDTerminalRuleCall_5_0_1()); }
 		)
-		{ after(grammarAccess.getCommandAccess().getActionControlCrossReference_5_0()); }
+		{ after(grammarAccess.getCommandAccess().getActionJvmTypeCrossReference_5_0()); }
 	)
 ;
 finally {
@@ -19483,13 +19479,13 @@ rule__CommandContext__ContextAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getCommandContextAccess().getContextContextCrossReference_1_0()); }
+		{ before(grammarAccess.getCommandContextAccess().getContextJvmTypeCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getCommandContextAccess().getContextContextIDTerminalRuleCall_1_0_1()); }
+			{ before(grammarAccess.getCommandContextAccess().getContextJvmTypeIDTerminalRuleCall_1_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getCommandContextAccess().getContextContextIDTerminalRuleCall_1_0_1()); }
+			{ after(grammarAccess.getCommandContextAccess().getContextJvmTypeIDTerminalRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getCommandContextAccess().getContextContextCrossReference_1_0()); }
+		{ after(grammarAccess.getCommandContextAccess().getContextJvmTypeCrossReference_1_0()); }
 	)
 ;
 finally {
@@ -19517,13 +19513,9 @@ rule__Situation__TypesAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_1_0()); }
-		(
-			{ before(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_1_0_1()); }
-		)
-		{ after(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_1_0()); }
+		{ before(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_1_0()); }
+		ruleJvmTypeReference
+		{ after(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -19536,13 +19528,9 @@ rule__Situation__TypesAssignment_2_1
 	}
 :
 	(
-		{ before(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_2_1_0()); }
-		(
-			{ before(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_2_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getSituationAccess().getTypesDataTypeIDTerminalRuleCall_2_1_0_1()); }
-		)
-		{ after(grammarAccess.getSituationAccess().getTypesDataTypeCrossReference_2_1_0()); }
+		{ before(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_2_1_0()); }
+		ruleJvmTypeReference
+		{ after(grammarAccess.getSituationAccess().getTypesJvmTypeReferenceParserRuleCall_2_1_0()); }
 	)
 ;
 finally {
@@ -19574,13 +19562,9 @@ rule__Publish__EventAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getPublishAccess().getEventEventCrossReference_1_0()); }
-		(
-			{ before(grammarAccess.getPublishAccess().getEventEventIDTerminalRuleCall_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getPublishAccess().getEventEventIDTerminalRuleCall_1_0_1()); }
-		)
-		{ after(grammarAccess.getPublishAccess().getEventEventCrossReference_1_0()); }
+		{ before(grammarAccess.getPublishAccess().getEventJvmTypeReferenceParserRuleCall_1_0()); }
+		ruleJvmTypeReference
+		{ after(grammarAccess.getPublishAccess().getEventJvmTypeReferenceParserRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -19631,13 +19615,13 @@ rule__Call__ControlAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getCallAccess().getControlControlCrossReference_1_0()); }
+		{ before(grammarAccess.getCallAccess().getControlJvmTypeCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getCallAccess().getControlControlIDTerminalRuleCall_1_0_1()); }
+			{ before(grammarAccess.getCallAccess().getControlJvmTypeIDTerminalRuleCall_1_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getCallAccess().getControlControlIDTerminalRuleCall_1_0_1()); }
+			{ after(grammarAccess.getCallAccess().getControlJvmTypeIDTerminalRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getCallAccess().getControlControlCrossReference_1_0()); }
+		{ after(grammarAccess.getCallAccess().getControlJvmTypeCrossReference_1_0()); }
 	)
 ;
 finally {

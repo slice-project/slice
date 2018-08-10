@@ -2,10 +2,11 @@ package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
 import java.util.UUID
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmType
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.generator.GeneratorUtils
 
 class EventWrapperCompiler {
@@ -13,7 +14,7 @@ class EventWrapperCompiler {
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
 	
-	def compileWrapper(Event it, AgentDeclaration agent) '''
+	def compileEventWrapper(JvmType it, AgentDeclaration agent) '''
 		«val importManager = new ImportManager(true)» 
 		«val body = body(agent, importManager)»
 		«IF eContainer !== null»
@@ -30,7 +31,7 @@ class EventWrapperCompiler {
 		import org.etri.slice.api.inference.WorkingMemory;
 		import org.etri.slice.api.perception.EventStream;
 		import org.etri.slice.core.perception.MqttEventPublisher;
-		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«name»Stream;
+		import org.etri.slice.agents.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«simpleName»Stream;
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
@@ -39,14 +40,14 @@ class EventWrapperCompiler {
 		
 	'''	
 	
-	def body(Event it, AgentDeclaration agent, ImportManager importManager) '''
+	def body(JvmType it, AgentDeclaration agent, ImportManager importManager) '''
 		@Component
 		@Instantiate
-		public class «name»Channel extends MqttEventPublisher<«importManager.serialize(toJvmGenericType(fullyQualifiedName, "event"))»> {
+		public class «simpleName»Channel extends MqttEventPublisher<«importManager.serialize(it as JvmGenericType)»> {
 		
 			private static final long serialVersionUID = «UUID.randomUUID.mostSignificantBits»L;
 		
-			@Property(name="topic", value=«name».TOPIC)
+			@Property(name="topic", value=«simpleName».TOPIC)
 			private String m_topic;
 			
 			@Property(name="url", value="tcp://«agent.agency.ip»:«agent.agency.port»")
@@ -58,8 +59,8 @@ class EventWrapperCompiler {
 			@Requires
 			private Agent m_agent;
 			
-			@Requires(from=«name»Stream.SERVICE_NAME)
-			private EventStream<«name»> m_streaming;		
+			@Requires(from=«simpleName»Stream.SERVICE_NAME)
+			private EventStream<«simpleName»> m_streaming;		
 			
 			protected  String getTopicName() {
 				return m_topic;
@@ -77,7 +78,7 @@ class EventWrapperCompiler {
 				return m_agent;
 			}
 			
-			protected EventStream<«name»> getEventStream() {
+			protected EventStream<«simpleName»> getEventStream() {
 				return m_streaming;
 			}	
 				

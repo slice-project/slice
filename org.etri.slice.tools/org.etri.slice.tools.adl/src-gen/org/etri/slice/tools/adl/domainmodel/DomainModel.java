@@ -16,11 +16,11 @@ import org.eclipse.xtext.xtype.XImportSection;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.DomainModel#getImportSection <em>Import Section</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.DomainModel#getElements <em>Elements</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getDomainModel()
  * @model

@@ -67,7 +67,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommandSet">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="control" eType="#//Control"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="control" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//Command" containment="true"/>
   </eClassifiers>
@@ -75,27 +76,29 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
         eType="#//CommandContext" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="#//Control"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommandContext">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//Context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Situation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="types" unique="false" upperBound="-1"
-        eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Publish" eSuperTypes="#//Action">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="#//Event"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NoOp" eSuperTypes="#//Action"/>
   <eClassifiers xsi:type="ecore:EClass" name="Call" eSuperTypes="#//Action">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="control" eType="#//Control"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="control" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature">

@@ -9,6 +9,7 @@ import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1
+import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.Event
@@ -19,7 +20,7 @@ import org.etri.slice.tools.adl.generator.GeneratorUtils
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
- *
+ * 
  * <p>The JVM model should contain all elements that would appear in the Java code 
  * which is generated from the source model. Other models link against the JVM model rather than the source model.</p>     
  */
@@ -30,20 +31,21 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension GeneratorUtils
 
 	def dispatch infer(Context context, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-//		if ( context.name === null) return;
-		accept(context.toClass( context.fullyQualifiedName.adaptToSlice("context") )) [
+
+		accept(context.toClass(context.fullyQualifiedName.adaptToSlice("context"))) [
+
 			documentation = context.documentation
-						
+
 			if (context.superType !== null)
 				superTypes += context.superType.cloneWithProxies
 			else
 				superTypes += typeRef(CommonInterfaces.CONTEXT_BASE)
-				
+
 			// let's add a default constructor
-			members += context.toConstructor []
-			
+			members += context.toConstructor[]
+
 			// and one which can be called with a lambda for initialization.
-			val procedureType = typeRef(Procedure1, typeRef(it)) /* Procedure<MyEntity> */ 
+			val procedureType = typeRef(Procedure1, typeRef(it)) /* Procedure<MyEntity> */
 			members += context.toConstructor [
 				parameters += context.toParameter("initializer", procedureType)
 				// here we implement the body using black box Java code.
@@ -51,32 +53,32 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 					initializer.apply(this);
 				'''
 			]
-			
+
 			// now let's go over the features
-			for ( p : context.properties ) {
+			for (p : context.properties) {
 				val field = p.toField(p.name, p.type)
 				members += field
 			}
-			
+
 			// finally we want to have a nice toString methods.
 			members += context.toToStringMethod(it)
 		]
 	}
-	
+
 	def dispatch infer(Exception exc, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-//		if ( exc.name === null) return;
-		accept(exc.toClass( exc.fullyQualifiedName.adaptToSlice("") )) [
+
+		accept(exc.toClass(exc.fullyQualifiedName.adaptToSlice(""))) [
 			documentation = exc.documentation
 			if (exc.superType !== null)
 				superTypes += exc.superType.cloneWithProxies
 			else
 				superTypes += typeRef(CommonInterfaces.EXCEPTION_INTERFACE)
-				
+
 			// let's add a default constructor
-			members += exc.toConstructor []
-			
+			members += exc.toConstructor[]
+
 			// and one which can be called with a lambda for initialization.
-			val procedureType = typeRef(Procedure1, typeRef(it)) /* Procedure<MyEntity> */ 
+			val procedureType = typeRef(Procedure1, typeRef(it)) /* Procedure<MyEntity> */
 			members += exc.toConstructor [
 				parameters += exc.toParameter("initializer", procedureType)
 				// here we implement the body using black box Java code.
@@ -85,22 +87,22 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 				'''
 			]
 		]
-	}	
-	
+	}
+
 	def dispatch infer(Event event, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-//		if ( event.name === null) return;
-		accept(event.toClass( event.fullyQualifiedName.adaptToSlice("event") )) [
+		
+		accept(event.toClass(event.fullyQualifiedName.adaptToSlice("event"))) [
 			documentation = event.documentation
 			if (event.superType !== null)
 				superTypes += event.superType.cloneWithProxies
 			else
 				superTypes += typeRef(CommonInterfaces.EVENT_BASE)
-			
+
 			// let's add a default constructor
-			members += event.toConstructor []
-			
+			members += event.toConstructor[]
+
 			// and one which can be called with a lambda for initialization.
-			val procedureType = typeRef(Procedure1, typeRef(it)) /* Procedure<MyEntity> */ 
+			val procedureType = typeRef(Procedure1, typeRef(it)) /* Procedure<MyEntity> */
 			members += event.toConstructor [
 				parameters += event.toParameter("initializer", procedureType)
 				// here we implement the body using black box Java code.
@@ -108,48 +110,46 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 					initializer.apply(this);
 				'''
 			]
-			
+
 			// now let's go over the features
-			for ( p : event.properties ) {
+			for (p : event.properties) {
 				val field = p.toField(p.name, p.type)
 				members += field
 			}
-			
+
 			// finally we want to have a nice toString methods.
 			members += event.toToStringMethod(it)
 		]
 	}
-	
+
 	def dispatch infer(Control control, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-		if ( control.name === null) return;
-		accept(control.toInterface( control.fullyQualifiedName.adaptToSlice("service").toString )[]) [
+		
+		accept(control.toInterface(control.fullyQualifiedName.adaptToSlice("service").toString) [
 			documentation = control.documentation
-			
-			if(control.superTypes.size() > 0)
-			{
-				for (superType : control.superTypes ) {
+
+			if (control.superTypes.size() > 0) {
+				for (superType : control.superTypes) {
 					superTypes += superType.cloneWithProxies
 				}
-			}				
+			}
 			
 			// now let's go over the features
-			for ( f : control.features ) {
+			for (f : control.features) {
 				switch f {
-			
 					// for properties we create a field, a getter and a setter
-					Property : {
-						members += f.toGetter(f.name, f.type)
-						members += f.toSetter(f.name, f.type)
+					Property: {
+						val member = f.toField(f.name, f.type)
+						member.static = true
+						members += member
 					}
-			
 					// operations are mapped to methods
-					Operation : {
+					Operation: {
 						members += f.toMethod(f.name, f.type ?: inferredType) [
 							documentation = f.documentation
 							for (p : f.params) {
 								parameters += p.toParameter(p.name, p.parameterType)
 							}
-							
+
 							for (e : f.exceptions) {
 								exceptions += e.cloneWithProxies;
 							}
@@ -157,7 +157,9 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 					}
 				}
 			}
-		]
-	}		
+		])
+	}
 
+	def dispatch infer(AgentDeclaration agent, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {		
+	}
 }

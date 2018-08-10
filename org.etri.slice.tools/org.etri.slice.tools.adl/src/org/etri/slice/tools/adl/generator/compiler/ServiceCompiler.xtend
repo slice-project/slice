@@ -1,15 +1,15 @@
 package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
+import org.eclipse.xtext.common.types.JvmFeature
+import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.xtext.common.types.JvmType
 import org.eclipse.xtext.common.types.impl.JvmGenericTypeImplCustom
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.domainmodel.Control
-import org.etri.slice.tools.adl.domainmodel.Feature
-import org.etri.slice.tools.adl.domainmodel.Operation
-import org.etri.slice.tools.adl.domainmodel.Property
 import org.etri.slice.tools.adl.generator.GeneratorUtils
 
 class ServiceCompiler {
@@ -17,10 +17,11 @@ class ServiceCompiler {
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
 	
-	def serviceCompile(Control it, AgentDeclaration agent) '''
+	def serviceCompile(JvmType it, AgentDeclaration agent) '''
+	
 		«val importManager = new ImportManager(true)» 
 		«val body = compile(importManager)»
-		«IF eContainer !== null»
+		«IF agent.eContainer !== null»
 			package org.etri.slice.devices.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»;
 		«ENDIF»
 		
@@ -42,12 +43,16 @@ class ServiceCompiler {
 		«body»
 	'''
  
-	def compile(Control it, ImportManager importManager) '''
-		public class «shortName(importManager)»Service implements «name» {
+	def compile(JvmType it, ImportManager importManager) 
+	{
+		importManager.addImportFor(it)
+	'''
+	
+		public class «simpleName»Service implements «simpleName» {
 			
-			private static Logger s_logger = LoggerFactory.getLogger(«name»Service.class);	
+			private static Logger s_logger = LoggerFactory.getLogger(«simpleName»Service.class);	
 			
-			private «name» m_service;	
+			private «simpleName» m_service;	
 			
 			@Validate
 			public void init() throws SliceException {
@@ -59,15 +64,20 @@ class ServiceCompiler {
 				
 			}
 			
-			«IF superTypes.size > 0»
-				«toInterface.compileSuperType(importManager)»
+			«IF (it as JvmGenericType).superTypes.size > 0»
+				«(it as JvmGenericType).compileSuperType(importManager)»
 			«ENDIF»
-			«FOR f : features»
-				«f.compile(importManager)»
+			«FOR f : (it as JvmGenericType).declaredFields»
+				«f.compileFeature(importManager)»
 				
-			«ENDFOR»			
+			«ENDFOR»		
+			«FOR o : (it as JvmGenericType).declaredOperations»
+				«o.compileFeature(importManager)»
+						
+			«ENDFOR»		
 		}
 	'''
+	}
 
 	private def compileSuperType(JvmGenericType it, ImportManager importManager) '''
 		«FOR superType : superTypes»
@@ -83,30 +93,30 @@ class ServiceCompiler {
     	«FOR method : declaredOperations»
     		@Override
     		public «method.returnType.shortName(importManager)» «method.simpleName»«method.parameters(importManager)»«method.exceptions(importManager)» {
-    			«IF !method.returnType.type.simpleName.equals("void")»return «ENDIF»m_service.«method.simpleName»(«FOR p : method.parameters SEPARATOR ', '»«p.name»«ENDFOR»);
+    			«IF !method.returnType.type.simpleName.equals("void")»return «ENDIF»m_proxy.«method.simpleName»(«FOR p : method.parameters SEPARATOR ', '»«p.name»«ENDFOR»);
     		}
     		
     	«ENDFOR»    
     '''
           
-  	private def compile(Feature it, ImportManager importManager) { 
+  	private def compileFeature(JvmFeature it, ImportManager importManager) { 
 		switch it {
-			Property : '''
+			JvmField : '''
 				@Override
-				public «type.shortName(importManager)» get«name.toFirstUpper»() {
-					return m_service.get«name.toFirstUpper»();
+				public «type.shortName(importManager)» get«simpleName.toFirstUpper»() {
+					return m_service.get«simpleName.toFirstUpper»();
 				}
 				
 				@Override		        
-				public void set«name.toFirstUpper»(«type.shortName(importManager)» «name») {
-					m_service.set«name.toFirstUpper»(«name»);
+				public void set«simpleName.toFirstUpper»(«type.shortName(importManager)» «simpleName») {
+					m_service.set«simpleName.toFirstUpper»(«simpleName»);
 				}
 			'''
 		
-			Operation :  '''
+			JvmOperation :  '''
 				@Override
-				public «type.shortName(importManager)» «name»«parameters(importManager)»«exceptions(importManager)» {
-					«IF !type.type.simpleName.equals("void")»return «ENDIF»m_service.«name»(«FOR p : params SEPARATOR ', '» «p.name»«ENDFOR»);
+				public «returnType.shortName(importManager)» «simpleName»«parameters(importManager)»«exceptions(importManager)» {
+					«IF !returnType.type.simpleName.equals("void")»return «ENDIF»m_service.«simpleName»(«FOR p : parameters SEPARATOR ', '» «p.name»«ENDFOR»);
 				}
 			'''
 		}

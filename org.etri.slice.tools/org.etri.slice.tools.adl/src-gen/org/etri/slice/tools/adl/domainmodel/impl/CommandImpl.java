@@ -19,9 +19,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xtext.common.types.JvmType;
+
 import org.etri.slice.tools.adl.domainmodel.Command;
 import org.etri.slice.tools.adl.domainmodel.CommandContext;
-import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 
 /**
@@ -30,13 +31,13 @@ import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandImpl#getContexts <em>Contexts</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandImpl#getMethod <em>Method</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -80,7 +81,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
    * @generated
    * @ordered
    */
-  protected Control action;
+  protected JvmType action;
 
   /**
    * The default value of the '{@link #getMethod() <em>Method</em>}' attribute.
@@ -165,12 +166,12 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
    * <!-- end-user-doc -->
    * @generated
    */
-  public Control getAction()
+  public JvmType getAction()
   {
     if (action != null && action.eIsProxy())
     {
       InternalEObject oldAction = (InternalEObject)action;
-      action = (Control)eResolveProxy(oldAction);
+      action = (JvmType)eResolveProxy(oldAction);
       if (action != oldAction)
       {
         if (eNotificationRequired())
@@ -185,7 +186,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
    * <!-- end-user-doc -->
    * @generated
    */
-  public Control basicGetAction()
+  public JvmType basicGetAction()
   {
     return action;
   }
@@ -195,9 +196,9 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAction(Control newAction)
+  public void setAction(JvmType newAction)
   {
-    Control oldAction = action;
+    JvmType oldAction = action;
     action = newAction;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.COMMAND__ACTION, oldAction, action));
@@ -284,7 +285,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
         getContexts().addAll((Collection<? extends CommandContext>)newValue);
         return;
       case DomainmodelPackage.COMMAND__ACTION:
-        setAction((Control)newValue);
+        setAction((JvmType)newValue);
         return;
       case DomainmodelPackage.COMMAND__METHOD:
         setMethod((String)newValue);
@@ -310,7 +311,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
         getContexts().clear();
         return;
       case DomainmodelPackage.COMMAND__ACTION:
-        setAction((Control)null);
+        setAction((JvmType)null);
         return;
       case DomainmodelPackage.COMMAND__METHOD:
         setMethod(METHOD_EDEFAULT);

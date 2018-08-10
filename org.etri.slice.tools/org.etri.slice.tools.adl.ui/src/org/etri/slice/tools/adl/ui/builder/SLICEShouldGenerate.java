@@ -19,17 +19,19 @@ public class SLICEShouldGenerate implements IShouldGenerate {
 	@Override
 	public boolean shouldGenerate(Resource resource, CancelIndicator cancelIndicator) 
 	{		
-		List<Issue> issues = resourceValidator.validate(resource, CheckMode.FAST_ONLY, cancelIndicator);
+//		List<Issue> issues = resourceValidator.validate(resource, CheckMode.FAST_ONLY, cancelIndicator);
+//		
+//		int errors = 0;
+//		
+//		for(Issue issue: issues)
+//		{
+//			if(issue.getSeverity() == Severity.ERROR)
+//				errors ++;
+//		}
+//		
+//		return (errors == 0);
 		
-		int errors = 0;
-		
-		for(Issue issue: issues)
-		{
-			if(issue.getSeverity() == Severity.ERROR)
-				errors ++;
-		}
-		
-		return (errors == 0);
+		return true;
 	}
 
 }

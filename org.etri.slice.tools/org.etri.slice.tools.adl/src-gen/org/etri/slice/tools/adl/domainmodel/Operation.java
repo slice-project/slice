@@ -15,11 +15,11 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Operation#getParams <em>Params</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.Operation#getExceptions <em>Exceptions</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.etri.slice.tools.adl.domainmodel.DomainmodelPackage#getOperation()
  * @model

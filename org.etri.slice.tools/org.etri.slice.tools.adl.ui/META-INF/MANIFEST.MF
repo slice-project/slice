@@ -25,5 +25,6 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.etri.slice.tools.adl.ui.contentassist,
  org.etri.slice.tools.adl.ui.internal,
- org.etri.slice.tools.adl.ui.quickfix
+ org.etri.slice.tools.adl.ui.quickfix,
+ org.etri.slice.tools.adl.ui.editor
 Bundle-Activator: org.etri.slice.tools.adl.ui.internal.AdlActivator

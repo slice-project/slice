@@ -31,13 +31,13 @@ import org.etri.slice.tools.adl.domainmodel.RuleSet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.AgentDeclarationImpl#getAgency <em>Agency</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.AgentDeclarationImpl#getRuleSet <em>Rule Set</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.AgentDeclarationImpl#getBehaviorSet <em>Behavior Set</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.AgentDeclarationImpl#getCommandSets <em>Command Sets</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

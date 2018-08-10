@@ -3,9 +3,19 @@ package org.etri.slice.tools.adl.ui.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.xtext.builder.BuilderParticipant;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.resource.IContainer;
@@ -13,15 +23,25 @@ import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescription.Delta;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
+import org.etri.slice.tools.adl.DomainModelOutputConfigurationProvider;
 import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager;
 
 import com.google.inject.Inject;
 
 public class BuilderParticipantForMultiInput extends BuilderParticipant {
-	
-	@Inject	private ResourceDescriptionsProvider resourceDescriptionsProvider;
-	@Inject private IContainer.Manager containerManager;
-	@Inject(optional = true) private IGeneratorForMultiInput generator;
+	@Inject
+	private ResourceDescriptionsProvider resourceDescriptionsProvider;
+
+	@Inject
+	private IContainer.Manager containerManager;
+
+	@Inject(optional = true)
+	private IGeneratorForMultiInput generator;
+
+	@Inject
+	private DomainManager domainManager;
+
 	protected ThreadLocal<Boolean> buildSemaphor = new ThreadLocal<Boolean>();
 
 	@Override

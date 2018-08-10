@@ -19,9 +19,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xtext.common.types.JvmTypeReference;
+
 import org.etri.slice.tools.adl.domainmodel.Command;
 import org.etri.slice.tools.adl.domainmodel.CommandSet;
-import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 
 /**
@@ -30,25 +31,25 @@ import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandSetImpl#getControl <em>Control</em>}</li>
  *   <li>{@link org.etri.slice.tools.adl.domainmodel.impl.CommandSetImpl#getCommands <em>Commands</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
 public class CommandSetImpl extends MinimalEObjectImpl.Container implements CommandSet
 {
   /**
-   * The cached value of the '{@link #getControl() <em>Control</em>}' reference.
+   * The cached value of the '{@link #getControl() <em>Control</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getControl()
    * @generated
    * @ordered
    */
-  protected Control control;
+  protected JvmTypeReference control;
 
   /**
    * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
@@ -86,27 +87,7 @@ public class CommandSetImpl extends MinimalEObjectImpl.Container implements Comm
    * <!-- end-user-doc -->
    * @generated
    */
-  public Control getControl()
-  {
-    if (control != null && control.eIsProxy())
-    {
-      InternalEObject oldControl = (InternalEObject)control;
-      control = (Control)eResolveProxy(oldControl);
-      if (control != oldControl)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomainmodelPackage.COMMAND_SET__CONTROL, oldControl, control));
-      }
-    }
-    return control;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Control basicGetControl()
+  public JvmTypeReference getControl()
   {
     return control;
   }
@@ -116,12 +97,37 @@ public class CommandSetImpl extends MinimalEObjectImpl.Container implements Comm
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setControl(Control newControl)
+  public NotificationChain basicSetControl(JvmTypeReference newControl, NotificationChain msgs)
   {
-    Control oldControl = control;
+    JvmTypeReference oldControl = control;
     control = newControl;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.COMMAND_SET__CONTROL, oldControl, control));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DomainmodelPackage.COMMAND_SET__CONTROL, oldControl, newControl);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setControl(JvmTypeReference newControl)
+  {
+    if (newControl != control)
+    {
+      NotificationChain msgs = null;
+      if (control != null)
+        msgs = ((InternalEObject)control).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DomainmodelPackage.COMMAND_SET__CONTROL, null, msgs);
+      if (newControl != null)
+        msgs = ((InternalEObject)newControl).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DomainmodelPackage.COMMAND_SET__CONTROL, null, msgs);
+      msgs = basicSetControl(newControl, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DomainmodelPackage.COMMAND_SET__CONTROL, newControl, newControl));
   }
 
   /**
@@ -148,6 +154,8 @@ public class CommandSetImpl extends MinimalEObjectImpl.Container implements Comm
   {
     switch (featureID)
     {
+      case DomainmodelPackage.COMMAND_SET__CONTROL:
+        return basicSetControl(null, msgs);
       case DomainmodelPackage.COMMAND_SET__COMMANDS:
         return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
     }
@@ -165,8 +173,7 @@ public class CommandSetImpl extends MinimalEObjectImpl.Container implements Comm
     switch (featureID)
     {
       case DomainmodelPackage.COMMAND_SET__CONTROL:
-        if (resolve) return getControl();
-        return basicGetControl();
+        return getControl();
       case DomainmodelPackage.COMMAND_SET__COMMANDS:
         return getCommands();
     }
@@ -185,7 +192,7 @@ public class CommandSetImpl extends MinimalEObjectImpl.Container implements Comm
     switch (featureID)
     {
       case DomainmodelPackage.COMMAND_SET__CONTROL:
-        setControl((Control)newValue);
+        setControl((JvmTypeReference)newValue);
         return;
       case DomainmodelPackage.COMMAND_SET__COMMANDS:
         getCommands().clear();
@@ -206,7 +213,7 @@ public class CommandSetImpl extends MinimalEObjectImpl.Container implements Comm
     switch (featureID)
     {
       case DomainmodelPackage.COMMAND_SET__CONTROL:
-        setControl((Control)null);
+        setControl((JvmTypeReference)null);
         return;
       case DomainmodelPackage.COMMAND_SET__COMMANDS:
         getCommands().clear();
