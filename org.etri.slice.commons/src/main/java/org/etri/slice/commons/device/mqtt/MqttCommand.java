@@ -35,8 +35,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class MqttReply {
+public class MqttCommand {
 	
 	private String method;
-	private Object reply;
+	private Object args[];
 }

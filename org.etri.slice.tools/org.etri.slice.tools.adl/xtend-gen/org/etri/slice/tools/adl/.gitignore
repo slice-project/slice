@@ -4,3 +4,6 @@
 /DomainModelOutputConfigurationProvider.java
 /DomainmodelRuntimeModule.java
 /DomainmodelStandaloneSetup.java
+/.DomainModelOutputConfigurationProvider.xtendbin
+/.DomainmodelRuntimeModule.xtendbin
+/.DomainmodelStandaloneSetup.xtendbin

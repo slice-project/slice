@@ -24,3 +24,16 @@
 /SensorCompiler.java
 /ServiceCompiler.java
 /StreamCompiler.java
+/.AdaptorCompiler.xtendbin
+/.AgentCompiler.xtendbin
+/.CommandSetCompiler.xtendbin
+/.CommandWrapperCompiler.xtendbin
+/.ControlWrapperCompiler.xtendbin
+/.EventWrapperCompiler.xtendbin
+/.LogbackCompiler.xtendbin
+/.MetaDataCompiler.xtendbin
+/.POMCompiler.xtendbin
+/.RuleSetCompiler.xtendbin
+/.SensorCompiler.xtendbin
+/.ServiceCompiler.xtendbin
+/.StreamCompiler.xtendbin
