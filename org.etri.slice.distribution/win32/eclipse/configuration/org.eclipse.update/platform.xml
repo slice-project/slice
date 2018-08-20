@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config date="1531469180324" transient="false">
-	<site updateable="true" url="platform:/base/" enabled="true" policy="USER-EXCLUDE">
-		<feature id="org.etri.slice.tools.adl.platform.feature" version="1.0.0.201807131704" url="features/org.etri.slice.tools.adl.platform.feature_1.0.0.201807131704/">
-		</feature>
-		<feature id="org.etri.slice.tools.adl.feature" version="1.0.0.201807131704" url="features/org.etri.slice.tools.adl.feature_1.0.0.201807131704/">
-		</feature>
-	</site>
-</config>
