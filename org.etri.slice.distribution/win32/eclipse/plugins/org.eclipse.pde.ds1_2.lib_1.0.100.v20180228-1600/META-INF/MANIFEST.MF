@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.pde.ds1_2.lib
+Bundle-SymbolicName: org.eclipse.pde.ds1_2.lib
+Built-By: genie.releng
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Eclipse-SourceReferences: scm:git:git://git.eclipse.org/gitroot/pde/ec
+ lipse.pde.ui.git;path="ds/org.eclipse.pde.ds1_2.lib";tag="I20180228-2
+ 000";commitId=636b92ef80c4d111f146142d51185f86027590a5
+Bundle-Vendor: %Bundle-Vendor
+Import-Package: org.osgi.service.component.annotations;version="[1.2.0
+ ,1.3.0)"
+Export-Package: org.osgi.service.component.annotations;version="1.2.0"
+Bundle-Name: %Bundle-Name
+Bundle-Version: 1.0.100.v20180228-1600
+Bundle-ClassPath: annotations.jar
+Created-By: Apache Maven 3.3.3
+Build-Jdk: 1.8.0_162
+Eclipse-BundleShape: dir
+
+Name: about.html
+SHA-256-Digest: LOONRnh+GjrXUy2vzOBJHNE7EQBk4Q/QMWBWqz36udM=
+
+Name: about_files/LICENSE-2.0.txt
+SHA-256-Digest: z8d0m5b2O9McPEK1xHG/dWgUBT6EfBDz6wA0F7xSPTA=
+
+Name: annotations.jar
+SHA-256-Digest: K0NKHcYY2dRMuhZ1MdnpOqy5vqEuBZvHN9aBzBXBhys=
+
+Name: OSGI-INF/l10n/bundle.properties
+SHA-256-Digest: 5xm5uctUnu/8ixku6165Nm4BsnPsaxAOy1QYIEOiKw8=
+
