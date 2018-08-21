@@ -21,7 +21,6 @@ class ControlWrapperCompiler {
 	
 	public def compileWrapper(JvmType it, AgentDeclaration agent) 
 	{
-		System.out.println(">>>>>>>>>>>>>>>>>> FQN : " + it.fullyQualifiedName.toString())
 		val domain = it.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "service")
 		
 		'''

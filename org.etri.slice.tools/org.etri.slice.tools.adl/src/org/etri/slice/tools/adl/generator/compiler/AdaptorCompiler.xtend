@@ -2,6 +2,7 @@ package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
 import java.util.UUID
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
@@ -14,9 +15,9 @@ class AdaptorCompiler {
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
 	
-	dispatch def compileAdaptor(Context it, AgentDeclaration agent) '''
+	dispatch def compileContextAdaptor(JvmTypeReference it, AgentDeclaration agent) '''
 		«val importManager = new ImportManager(true)» 
-		«val body = body(importManager)»
+		«val body = contextBody(importManager)»
 		«IF eContainer !== null»
 			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».adaptor;
 		«ENDIF»
@@ -32,7 +33,7 @@ class AdaptorCompiler {
 		import org.etri.slice.api.inference.WorkingMemory;
 		import org.etri.slice.api.perception.EventStream;
 		import org.etri.slice.core.perception.EventSubscriber;
-		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«name»Stream;
+		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«simpleName»Stream;
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
@@ -41,14 +42,14 @@ class AdaptorCompiler {
 		
 	'''	
 	
-	def body(Context it, ImportManager importManager) '''
+	def contextBody(JvmTypeReference it, ImportManager importManager) '''
 		@Component
 		@Instantiate
-		public class «name»Adaptor extends EventSubscriber<«shortName(importManager)»> {
+		public class «simpleName»Adaptor extends EventSubscriber<«shortName(importManager)»> {
 			
 			private static final long serialVersionUID = «UUID.randomUUID.mostSignificantBits»L;
 		
-			@Property(name="topic", value=«name».topic)
+			@Property(name="topic", value=«simpleName».topic)
 			private String m_topic;
 			
 			@Requires
@@ -57,8 +58,8 @@ class AdaptorCompiler {
 			@Requires
 			private Agent m_agent;
 			
-			@Requires(from=«name»Stream.SERVICE_NAME)
-			private EventStream<«name»> m_streaming;	
+			@Requires(from=«simpleName»Stream.SERVICE_NAME)
+			private EventStream<«simpleName»> m_streaming;	
 			
 			protected  String getTopicName() {
 				return m_topic;
@@ -72,13 +73,13 @@ class AdaptorCompiler {
 				return m_agent;
 			}
 			
-			protected EventStream<«name»> getEventStream() {
+			protected EventStream<«simpleName»> getEventStream() {
 				return m_streaming;
 			}
 				
-			@Subscriber(name="«name»Adaptor", topics=«name».topic,
-					dataKey=«name».dataKey, dataType=«name».dataType)
-			public void receive(«name» event) {
+			@Subscriber(name="«simpleName»Adaptor", topics=«simpleName».topic,
+					dataKey=«simpleName».dataKey, dataType=«simpleName».dataType)
+			public void receive(«simpleName» event) {
 				super.subscribe(event);
 			}
 			
@@ -94,9 +95,9 @@ class AdaptorCompiler {
 		}		
 	'''		
 	
-	dispatch def compileAdaptor(Event it, AgentDeclaration agent) '''
+	dispatch def compileEventAdaptor(JvmTypeReference it, AgentDeclaration agent) '''
 		«val importManager = new ImportManager(true)» 
-		«val body = body(agent, importManager)»
+		«val body = eventBody(agent, importManager)»
 		«IF eContainer !== null»
 			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».adaptor;
 		«ENDIF»
@@ -111,7 +112,7 @@ class AdaptorCompiler {
 		import org.etri.slice.api.inference.WorkingMemory;
 		import org.etri.slice.api.perception.EventStream;
 		import org.etri.slice.core.perception.MqttEventSubscriber;
-		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«name»Stream;
+		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«simpleName»Stream;
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
@@ -120,14 +121,14 @@ class AdaptorCompiler {
 		
 	'''		
 
-	def body(Event it, AgentDeclaration agent, ImportManager importManager) '''
+	def eventBody(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) '''
 		@Component
 		@Instantiate
-		public class «name»Adaptor extends MqttEventSubscriber<«shortName(importManager)»> {
+		public class «simpleName»Adaptor extends MqttEventSubscriber<«shortName(importManager)»> {
 			
 			private static final long serialVersionUID = «UUID.randomUUID.mostSignificantBits»L;
 		
-			@Property(name="topic", value=«name».TOPIC)
+			@Property(name="topic", value=«simpleName».TOPIC)
 			private String m_topic;
 			
 			@Property(name="url", value="tcp://«agent.agency.ip»:«agent.agency.port»")
@@ -139,8 +140,8 @@ class AdaptorCompiler {
 			@Requires
 			private Agent m_agent;
 			
-			@Requires(from=«name»Stream.SERVICE_NAME)
-			private EventStream<«name»> m_streaming;	
+			@Requires(from=«simpleName»Stream.SERVICE_NAME)
+			private EventStream<«simpleName»> m_streaming;	
 			
 			protected  String getTopicName() {
 				return m_topic;
@@ -159,10 +160,10 @@ class AdaptorCompiler {
 			}
 			
 			protected Class<?> getEventType() {
-				return «name».class;
+				return «simpleName».class;
 			}
 			
-			protected EventStream<«name»> getEventStream() {
+			protected EventStream<«simpleName»> getEventStream() {
 				return m_streaming;
 			}	
 				

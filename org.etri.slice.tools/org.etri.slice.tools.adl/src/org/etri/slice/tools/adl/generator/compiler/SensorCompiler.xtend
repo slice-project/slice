@@ -1,6 +1,7 @@
 package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
@@ -12,7 +13,7 @@ class SensorCompiler {
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
 	
-	def sensorCompile(Context it, AgentDeclaration agent) '''
+	def sensorCompile(JvmTypeReference it, AgentDeclaration agent) '''
 		«val importManager = new ImportManager(true)» 
 		«val body = compile(importManager)»
 		«IF eContainer !== null»
@@ -40,12 +41,12 @@ class SensorCompiler {
 		«body»
 	'''
  
-	def compile(Context it, ImportManager importManager) '''
+	def compile(JvmTypeReference it, ImportManager importManager) '''
 		public class «shortName(importManager)»Sensor implements Sensor {
 			
-			private static Logger s_logger = LoggerFactory.getLogger(«name»Sensor.class);	
+			private static Logger s_logger = LoggerFactory.getLogger(«simpleName»Sensor.class);	
 				
-			@Publishes(name="«name»Sensor", topics=«name».topic, dataKey=«name».dataKey)
+			@Publishes(name="«simpleName»Sensor", topics=«simpleName».topic, dataKey=«simpleName».dataKey)
 			private Publisher m_publisher;
 			
 			@Override

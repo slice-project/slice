@@ -33,9 +33,10 @@ class DeviceProjectGenerator implements IGeneratorForMultiInput {
 	def generateDevice(AgentDeclaration it, IFileSystemAccess fsa) {
 		for ( b: behaviorSet.behaviors ) {
 			for ( t: b.situation.types ) {
-				var type = t
-				if ( type instanceof Context ) {
-					generateSensor(type, it, fsa)
+				System.out.println(">>>>>>>>>>> type = " + t)
+				
+				if (t.type.fullyQualifiedName.toString().indexOf(".context") > 0) {
+					generateSensor(t, it, fsa)
 				}
 			}
 			

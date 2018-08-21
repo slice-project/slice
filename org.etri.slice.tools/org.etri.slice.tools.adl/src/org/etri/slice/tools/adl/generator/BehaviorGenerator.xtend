@@ -24,21 +24,22 @@ class BehaviorGenerator {
 	@Inject extension SensorCompiler	
 	@Inject extension OutputPathUtils
 	
-	dispatch def generateAdaptor(Context it, AgentDeclaration agent, IFileSystemAccess fsa) {	
+	// it : Context
+	dispatch def generateContextAdaptor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {	
 		val package = agent.agentFullyQualifiedName.replace(".", "/")
-		val adaptor = agent.agentMavenSrcHome + package + "/adaptor/" + name + "Adaptor.java"	
-		fsa.generateFile(adaptor, compileAdaptor(agent))
+		val adaptor = agent.agentMavenSrcHome + package + "/adaptor/" + simpleName + "Adaptor.java"	
+		fsa.generateFile(adaptor, compileContextAdaptor(agent))
 
-		val stream = agent.agentMavenSrcHome + package + "/stream/" + name + "Stream.java"		
+		val stream = agent.agentMavenSrcHome + package + "/stream/" + simpleName + "Stream.java"		
 		fsa.generateFile(stream, compileStream(agent))				
 	}
 	
-	dispatch def generateAdaptor(Event it, AgentDeclaration agent, IFileSystemAccess fsa) {
+	dispatch def generateEventAdaptor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {
 		val package = agent.agentFullyQualifiedName.replace(".", "/")
-		val adaptor = agent.agentMavenSrcHome + package + "/adaptor/" + name + "Adaptor.java"			
-		fsa.generateFile(adaptor, compileAdaptor(agent))
+		val adaptor = agent.agentMavenSrcHome + package + "/adaptor/" + simpleName + "Adaptor.java"			
+		fsa.generateFile(adaptor, compileEventAdaptor(agent))
 		
-		val stream = agent.agentMavenSrcHome + package + "/stream/" + name + "Stream.java"	
+		val stream = agent.agentMavenSrcHome + package + "/stream/" + simpleName + "Stream.java"	
 		fsa.generateFile(stream, compileStream(agent))				
 	}
 	
@@ -57,9 +58,9 @@ class BehaviorGenerator {
 		fsa.generateFile(wrapper, compileWrapper(agent))			
 	}
 	
-	def generateSensor(Context it, AgentDeclaration agent, IFileSystemAccess fsa) {
+	def generateSensor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {
 		val package = agent.deviceFullyQualifiedName.replace(".", "/")
-		val file = agent.deviceMavenSrcHome + package + "/" + name + "Sensor.java"	
+		val file = agent.deviceMavenSrcHome + package + "/" + simpleName + "Sensor.java"	
 		fsa.generateFile(file, sensorCompile(agent))			
 	}		
 					

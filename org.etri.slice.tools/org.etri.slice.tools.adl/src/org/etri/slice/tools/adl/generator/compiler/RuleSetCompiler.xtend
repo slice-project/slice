@@ -59,7 +59,7 @@ class RuleSetCompiler {
 	def ruleBody(AgentDeclaration it, ImportManager importManager) '''
 		«FOR b: it.behaviorSet.behaviors»
 			«IF !b.action.action.equals("no-op")»«b.compileBody(it, importManager)»
-			«ELSE»«FOR context: b.situation.types»«context.generateAdaptor(it, m_fsa)»«ENDFOR»
+			«ELSE»«FOR context: b.situation.types»«context.generateContextAdaptor(it, m_fsa)»«ENDFOR»
 			«ENDIF»
 			
 		«ENDFOR»		
@@ -85,40 +85,34 @@ class RuleSetCompiler {
 		«ENDIF»
 	'''	
 	
-	def compileDataType( JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
+	def compileDataType( JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {		
+		val genericType = type as JvmGenericType;
 		
-//		val jvmTypeReferenceBuilder = create(agent.eResource().getResourceSet()); 
-//		
-//		val contextBaseType = jvmTypeReferenceBuilder.typeRef(CommonInterfaces.CONTEXT_BASE)
-//		val eventBaseType = jvmTypeReferenceBuilder.typeRef(CommonInterfaces.EVENT_BASE)
-//		val genericType = type as JvmGenericType;
-//		
-//		
-//		if(genericType.superTypes.contains(contextBaseType))
-//		{
-//			'''«compileContextAdaptor(agent, importManager)»(/* */)'''
-//		}
-//		else if(genericType.superTypes.contains(eventBaseType))
-//		{
-//			'''«compileEventAdaptor(agent, importManager)»(/* */)'''
-//		}
+		if(genericType.fullyQualifiedName.toString().indexOf(".context") > 0)
+		{
+			'''«compileContextAdaptor(agent, importManager)»(/* */)'''
+		}
+		else if(genericType.fullyQualifiedName.toString().indexOf(".event") > 0)
+		{
+			'''«compileEventAdaptor(agent, importManager)»(/* */)'''
+		}
 //		
 //
-		switch ( it ) {
-			case Context : '''«compileContextAdaptor(agent, importManager)»(/* */)'''
-			case Event : '''«compileEventAdaptor(agent, importManager)»(/* */)'''
-		}
+//		switch ( it ) {
+//			case Context : '''«compileContextAdaptor(agent, importManager)»(/* */)'''
+//			case Event : '''«compileEventAdaptor(agent, importManager)»(/* */)'''
+//		}
 	}
 	
 	def compileContextAdaptor(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
 		//val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "context")
-		(it as Context).generateAdaptor(agent, m_fsa)
+		generateContextAdaptor(agent, m_fsa)
 		importManager.serialize(type)
 	}
 	
 	def compileEventAdaptor(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
 		//val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "event")
-		(it as Event).generateAdaptor(agent, m_fsa)
+		generateEventAdaptor(agent, m_fsa)
 		importManager.serialize(type)
 	}	
 		
