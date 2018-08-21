@@ -10,7 +10,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
-import org.etri.slice.tools.adl.domainmodel.AbstractElement
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.etri.slice.tools.adl.domainmodel.Action
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Behavior
@@ -22,6 +22,7 @@ import org.etri.slice.tools.adl.domainmodel.Publish
 import org.etri.slice.tools.adl.domainmodel.Situation
 import org.etri.slice.tools.adl.generator.BehaviorGenerator
 import org.etri.slice.tools.adl.generator.GeneratorUtils
+import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces
 
 class RuleSetCompiler {
 	
@@ -30,8 +31,8 @@ class RuleSetCompiler {
 	@Inject extension GeneratorUtils
 	@Inject extension IQualifiedNameProvider	
 	@Inject extension BehaviorGenerator
-	
 	@Inject extension JvmModelAssociator
+    @Inject extension JvmTypeReferenceBuilder.Factory
 	
 	def compileRuleSet(AgentDeclaration it, IFileSystemAccess fsa) {
 		m_fsa = fsa
@@ -85,20 +86,38 @@ class RuleSetCompiler {
 	'''	
 	
 	def compileDataType( JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
+		
+//		val jvmTypeReferenceBuilder = create(agent.eResource().getResourceSet()); 
+//		
+//		val contextBaseType = jvmTypeReferenceBuilder.typeRef(CommonInterfaces.CONTEXT_BASE)
+//		val eventBaseType = jvmTypeReferenceBuilder.typeRef(CommonInterfaces.EVENT_BASE)
+//		val genericType = type as JvmGenericType;
+//		
+//		
+//		if(genericType.superTypes.contains(contextBaseType))
+//		{
+//			'''«compileContextAdaptor(agent, importManager)»(/* */)'''
+//		}
+//		else if(genericType.superTypes.contains(eventBaseType))
+//		{
+//			'''«compileEventAdaptor(agent, importManager)»(/* */)'''
+//		}
+//		
+//
 		switch ( it ) {
-			Context : '''«compileContextAdaptor(agent, importManager)»(/* */)'''
-			Event : '''«compileEventAdaptor(agent, importManager)»(/* */)'''
+			case Context : '''«compileContextAdaptor(agent, importManager)»(/* */)'''
+			case Event : '''«compileEventAdaptor(agent, importManager)»(/* */)'''
 		}
 	}
 	
-	def compileContextAdaptor(AbstractElement it, AgentDeclaration agent, ImportManager importManager) {
-		val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "context")
+	def compileContextAdaptor(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
+		//val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "context")
 		(it as Context).generateAdaptor(agent, m_fsa)
 		importManager.serialize(type)
 	}
 	
-	def compileEventAdaptor(AbstractElement it, AgentDeclaration agent, ImportManager importManager) {
-		val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "event")
+	def compileEventAdaptor(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) {
+		//val JvmGenericType type = toJvmGenericType(fullyQualifiedName, "event")
 		(it as Event).generateAdaptor(agent, m_fsa)
 		importManager.serialize(type)
 	}	

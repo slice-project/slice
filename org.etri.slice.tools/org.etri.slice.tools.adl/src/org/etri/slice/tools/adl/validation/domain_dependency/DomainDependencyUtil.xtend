@@ -32,9 +32,7 @@ class DomainDependencyUtil {
 	}
 
 
-	def getDomain(String packageName, String prefix, String suffix) {
-		System.out.println("getDomain packageName = " + packageName)
-		
+	def getDomain(String packageName, String prefix, String suffix) {		
 		val tmp = packageName.replace(prefix, "")
 
 		if (suffix !== null)

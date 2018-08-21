@@ -2,23 +2,31 @@ package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
 import java.util.UUID
+import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmType
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
+import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 import org.etri.slice.tools.adl.generator.GeneratorUtils
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil
 
 class EventWrapperCompiler {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
+	@Inject extension DomainDependencyUtil
 	
-	def compileEventWrapper(JvmType it, AgentDeclaration agent) '''
+	def compileEventWrapper(JvmType it, AgentDeclaration agent)
+	{
+		val domain = it.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "event")
+				
+		'''
 		«val importManager = new ImportManager(true)» 
 		«val body = body(agent, importManager)»
-		«IF eContainer !== null»
-			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
+		«IF domain !== null»
+			package org.etri.slice.agents.«domain».«agent.name.toLowerCase».wrapper;
 		«ENDIF»
 		
 		import org.apache.felix.ipojo.annotations.Component;
@@ -38,7 +46,8 @@ class EventWrapperCompiler {
 		
 		«body»
 		
-	'''	
+		'''
+	}
 	
 	def body(JvmType it, AgentDeclaration agent, ImportManager importManager) '''
 		@Component

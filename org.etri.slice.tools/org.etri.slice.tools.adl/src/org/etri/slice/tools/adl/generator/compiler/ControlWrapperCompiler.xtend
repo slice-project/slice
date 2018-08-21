@@ -2,30 +2,34 @@ package org.etri.slice.tools.adl.generator.compiler
 
 import com.google.inject.Inject
 import org.eclipse.xtext.common.types.JvmFeature
+import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmType
-import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.impl.JvmGenericTypeImplCustom
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.domainmodel.Operation
-import org.etri.slice.tools.adl.domainmodel.Property
 import org.etri.slice.tools.adl.generator.GeneratorUtils
-import org.eclipse.xtext.common.types.JvmField
-import org.eclipse.xtext.common.types.JvmOperation
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil
 
 class ControlWrapperCompiler {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
+	@Inject extension DomainDependencyUtil
 	
-	public def compileWrapper(JvmType it, AgentDeclaration agent) '''
+	public def compileWrapper(JvmType it, AgentDeclaration agent) 
+	{
+		System.out.println(">>>>>>>>>>>>>>>>>> FQN : " + it.fullyQualifiedName.toString())
+		val domain = it.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "service")
+		
+		'''
 		«val importManager = new ImportManager(true)» 
 		«val body = body(importManager)»
 		
-		«IF agent.eContainer !== null»
-			package org.etri.slice.agents.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase».wrapper;
+		«IF domain !== null»
+			package org.etri.slice.agents.«domain».«agent.name.toLowerCase».wrapper;
 		«ENDIF»
 		
 		import org.apache.felix.ipojo.annotations.Component;
@@ -40,8 +44,8 @@ class ControlWrapperCompiler {
 		@Component
 		@Instantiate
 		«body»
-	'''
- 
+		'''
+ 	}
 	private def body(JvmType it, ImportManager importManager)
 	{
 		importManager.addImportFor(it)

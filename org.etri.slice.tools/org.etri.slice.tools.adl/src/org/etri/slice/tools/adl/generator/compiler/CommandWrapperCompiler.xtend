@@ -21,6 +21,7 @@ class CommandWrapperCompiler {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
+	
 	Map<String, Command> m_commands = new HashMap<String, Command>();	
 	
 	def compileCommandWrapper(AgentDeclaration it, CommandSet commandSet) {
