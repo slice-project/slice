@@ -142,9 +142,6 @@ class DomainDependencyUtil {
 
 				switch action {
 					Publish: {
-						System.out.println("action.event = " + action.event)
-						System.out.println("action.event.fullyQualifiedName = " + action.event.type.qualifiedName)
-						
 						val name = action.event.type.qualifiedName
 						
 						if(name === "void")

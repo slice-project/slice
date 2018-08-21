@@ -6,20 +6,23 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.domainmodel.Context
-import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.generator.GeneratorUtils
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil
 
 class AdaptorCompiler {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension GeneratorUtils
+	@Inject extension DomainDependencyUtil
 	
-	dispatch def compileContextAdaptor(JvmTypeReference it, AgentDeclaration agent) '''
+	dispatch def compileContextAdaptor(JvmTypeReference it, AgentDeclaration agent) 
+	{
+		val domain = type.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "context")
+	'''
 		«val importManager = new ImportManager(true)» 
 		«val body = contextBody(importManager)»
-		«IF eContainer !== null»
-			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».adaptor;
+		«IF domain !== null»
+			package org.etri.slice.agents.«domain».«agent.name.toLowerCase».adaptor;
 		«ENDIF»
 		
 		import org.apache.felix.ipojo.annotations.Component;
@@ -33,7 +36,7 @@ class AdaptorCompiler {
 		import org.etri.slice.api.inference.WorkingMemory;
 		import org.etri.slice.api.perception.EventStream;
 		import org.etri.slice.core.perception.EventSubscriber;
-		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«simpleName»Stream;
+		import org.etri.slice.agents.«domain».«agent.name.toLowerCase».stream.«simpleName»Stream;
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
@@ -41,6 +44,7 @@ class AdaptorCompiler {
 		«body»
 		
 	'''	
+	}
 	
 	def contextBody(JvmTypeReference it, ImportManager importManager) '''
 		@Component
@@ -95,11 +99,14 @@ class AdaptorCompiler {
 		}		
 	'''		
 	
-	dispatch def compileEventAdaptor(JvmTypeReference it, AgentDeclaration agent) '''
+	dispatch def compileEventAdaptor(JvmTypeReference it, AgentDeclaration agent) 
+	{
+		val domain = type.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "event")
+	'''
 		«val importManager = new ImportManager(true)» 
 		«val body = eventBody(agent, importManager)»
-		«IF eContainer !== null»
-			package org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».adaptor;
+		«IF domain !== null»
+			package org.etri.slice.agents.«domain».«agent.name.toLowerCase».adaptor;
 		«ENDIF»
 		
 		import org.apache.felix.ipojo.annotations.Component;
@@ -112,7 +119,7 @@ class AdaptorCompiler {
 		import org.etri.slice.api.inference.WorkingMemory;
 		import org.etri.slice.api.perception.EventStream;
 		import org.etri.slice.core.perception.MqttEventSubscriber;
-		import org.etri.slice.agents.«eContainer.fullyQualifiedName».«agent.name.toLowerCase».stream.«simpleName»Stream;
+		import org.etri.slice.agents.«domain».«agent.name.toLowerCase».stream.«simpleName»Stream;
 		«FOR i:importManager.imports»
 			import «i»;
 		«ENDFOR»
@@ -120,6 +127,7 @@ class AdaptorCompiler {
 		«body»
 		
 	'''		
+	}
 
 	def eventBody(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) '''
 		@Component
