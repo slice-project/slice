@@ -11,7 +11,7 @@
       <view
             name="SLICE Web Console"
             inject="true"
-            icon="icons/sample.png"
+            icon="icons/Sample.png"
             category="org.etri.slice.tools.console"
             class="org.etri.slice.tools.console.views.SLICEConsoleView"
             id="org.etri.slice.tools.console.views.SLICEConsoleView">
