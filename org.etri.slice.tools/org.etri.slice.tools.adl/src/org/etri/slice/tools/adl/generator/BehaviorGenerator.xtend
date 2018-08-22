@@ -1,12 +1,12 @@
 package org.etri.slice.tools.adl.generator
 
 import com.google.inject.Inject
+import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmType
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.domainmodel.Context
-import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.generator.compiler.AdaptorCompiler
 import org.etri.slice.tools.adl.generator.compiler.ControlWrapperCompiler
 import org.etri.slice.tools.adl.generator.compiler.EventWrapperCompiler
@@ -23,9 +23,9 @@ class BehaviorGenerator {
 	@Inject extension ServiceCompiler
 	@Inject extension SensorCompiler	
 	@Inject extension OutputPathUtils
+	@Inject extension IQualifiedNameProvider
 	
-	// it : Context
-	dispatch def generateContextAdaptor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {	
+	def generateContextAdaptor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {	
 		val package = agent.agentFullyQualifiedName.replace(".", "/")
 		val adaptor = agent.agentMavenSrcHome + package + "/adaptor/" + simpleName + "Adaptor.java"	
 		fsa.generateFile(adaptor, compileContextAdaptor(agent))
@@ -34,13 +34,24 @@ class BehaviorGenerator {
 		fsa.generateFile(stream, compileStream(agent))				
 	}
 	
-	dispatch def generateEventAdaptor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {
+	def generateEventAdaptor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {
 		val package = agent.agentFullyQualifiedName.replace(".", "/")
 		val adaptor = agent.agentMavenSrcHome + package + "/adaptor/" + simpleName + "Adaptor.java"			
 		fsa.generateFile(adaptor, compileEventAdaptor(agent))
 		
 		val stream = agent.agentMavenSrcHome + package + "/stream/" + simpleName + "Stream.java"	
 		fsa.generateFile(stream, compileStream(agent))				
+	}
+	
+	def generateAdaptor(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {
+		val genericType = type as JvmGenericType;
+		
+		if ( genericType.fullyQualifiedName.toString().indexOf(".context") > 0 ) {
+			generateContextAdaptor(it, agent, fsa)
+		}
+		else if ( genericType.fullyQualifiedName.toString().indexOf(".event") > 0 ) {
+			generateEventAdaptor(it, agent, fsa)
+		}
 	}
 	
 	def generateEventWrapper(JvmTypeReference it, AgentDeclaration agent, IFileSystemAccess fsa) {

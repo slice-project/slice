@@ -10,29 +10,24 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.etri.slice.tools.adl.domainmodel.Action
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Behavior
 import org.etri.slice.tools.adl.domainmodel.Call
-import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.domainmodel.Publish
 import org.etri.slice.tools.adl.domainmodel.Situation
 import org.etri.slice.tools.adl.generator.BehaviorGenerator
-import org.etri.slice.tools.adl.generator.GeneratorUtils
-import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces
 
 class RuleSetCompiler {
 	
 	IFileSystemAccess m_fsa
 	extension Set<Control> m_globals = new HashSet<Control>();	
-	@Inject extension GeneratorUtils
+
 	@Inject extension IQualifiedNameProvider	
 	@Inject extension BehaviorGenerator
 	@Inject extension JvmModelAssociator
-    @Inject extension JvmTypeReferenceBuilder.Factory
 	
 	def compileRuleSet(AgentDeclaration it, IFileSystemAccess fsa) {
 		m_fsa = fsa
@@ -59,7 +54,7 @@ class RuleSetCompiler {
 	def ruleBody(AgentDeclaration it, ImportManager importManager) '''
 		«FOR b: it.behaviorSet.behaviors»
 			«IF !b.action.action.equals("no-op")»«b.compileBody(it, importManager)»
-			«ELSE»«FOR context: b.situation.types»«context.generateContextAdaptor(it, m_fsa)»«ENDFOR»
+			«ELSE»«FOR context: b.situation.types»«context.generateAdaptor(it, m_fsa)»«ENDFOR»
 			«ENDIF»
 			
 		«ENDFOR»		

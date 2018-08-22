@@ -5,7 +5,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
-import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.generator.GeneratorUtils
 
 class SensorCompiler {

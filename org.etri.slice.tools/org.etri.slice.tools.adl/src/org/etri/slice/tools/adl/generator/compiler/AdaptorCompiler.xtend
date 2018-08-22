@@ -15,7 +15,7 @@ class AdaptorCompiler {
 	@Inject extension GeneratorUtils
 	@Inject extension DomainDependencyUtil
 	
-	dispatch def compileContextAdaptor(JvmTypeReference it, AgentDeclaration agent) 
+	def compileContextAdaptor(JvmTypeReference it, AgentDeclaration agent) 
 	{
 		val domain = type.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "context")
 	'''
@@ -99,7 +99,7 @@ class AdaptorCompiler {
 		}		
 	'''		
 	
-	dispatch def compileEventAdaptor(JvmTypeReference it, AgentDeclaration agent) 
+	def compileEventAdaptor(JvmTypeReference it, AgentDeclaration agent) 
 	{
 		val domain = type.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "event")
 	'''

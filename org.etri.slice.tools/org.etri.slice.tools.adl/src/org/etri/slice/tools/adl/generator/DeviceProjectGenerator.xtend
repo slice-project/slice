@@ -7,7 +7,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.Call
-import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.generator.compiler.LogbackCompiler
 import org.etri.slice.tools.adl.generator.compiler.MetaDataCompiler
 import org.etri.slice.tools.adl.generator.compiler.POMCompiler
