@@ -23,5 +23,15 @@
             name="SLICE Project"
             project="true">
       </wizard>
+      <wizard
+            canFinishEarly="true"
+            category="org.etri.slice.tools.adl.project"
+            class="org.etri.slice.tools.adl.project.wizards.examples.SLICECarSampleProjectWizard"
+            hasPages="false"
+            icon="icons/slice_new_project.png"
+            id="org.etri.slice.tools.adl.project.carsamplewizard"
+            name="Car Sample Project"
+            project="true">
+      </wizard>
    </extension>
 </plugin>
