@@ -5,10 +5,10 @@
          point="org.eclipse.ui.newWizards">
       <category
             name="SLICE"
-            id="org.etri.slice.tools.adl.project">
+            id="org.etri.slice.tools.adl.project.SLICE">
       </category>
       <wizard
-            category="org.etri.slice.tools.adl.project"
+            category="org.etri.slice.tools.adl.project.SLICE"
             class="org.etri.slice.tools.adl.project.wizards.SLICENewFileWizard"
             hasPages="true"
             icon="icons/slice_new_file.png"
@@ -16,21 +16,29 @@
             name="SLICE New ADL File">
       </wizard>
       <wizard
-            category="org.etri.slice.tools.adl.project"
+            category="org.etri.slice.tools.adl.project.SLICE"
             class="org.etri.slice.tools.adl.project.wizards.SLICENewProjectWizard"
             icon="icons/slice_new_project.png"
             id="org.etri.slice.tools.adl.project.wizards.SLICEProjectWizard"
             name="SLICE Project"
             project="true">
       </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.etri.slice.tools.adl.project.SLICE.examples"
+            name="Examples"
+            parentCategory="org.etri.slice.tools.adl.project.SLICE">
+      </category>
       <wizard
             canFinishEarly="true"
-            category="org.etri.slice.tools.adl.project"
+            category="org.etri.slice.tools.adl.project.SLICE/org.etri.slice.tools.adl.project.SLICE.examples"
             class="org.etri.slice.tools.adl.project.wizards.examples.SLICECarSampleProjectWizard"
             hasPages="false"
             icon="icons/slice_new_project.png"
             id="org.etri.slice.tools.adl.project.carsamplewizard"
-            name="Car Sample Project"
+            name="SLICE Car Example Project"
             project="true">
       </wizard>
    </extension>
