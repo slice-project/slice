@@ -329,10 +329,8 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 			if(!properties.contains(commandContext.property))
 			{
 				error("command context property '" + commandContext.property + "' is not feature of context " + commandContext.context.simpleName, commandContext,
-						DomainmodelPackage.Literals::COMMAND_CONTEXT__PROPERTY, IssueCodes::INVALID_COMMAND_CONTEXT_PROPERTY)
+						DomainmodelPackage.Literals::COMMAND_CONTEXT__PROPERTY, IssueCodes::INVALID_COMMAND_CONTEXT_PROPERTY, properties)
 			}
-			
-
 		}
 	} 
 	
@@ -341,8 +339,12 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 		{
 			
 			val methods = new ArrayList<String>
-			var cmd = command.action as JvmGenericType
 			
+			if(!(command.action instanceof JvmGenericType))
+				return;
+				
+			var cmd = command.action as JvmGenericType
+				
 			cmd.allFeatures.forEach [ feature |
 				switch feature
 				{
@@ -361,7 +363,7 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 			if(!methods.contains(command.method))
 			{
 				error("command method '" + command.method + "' is not method of action " + command.action.simpleName, command,
-						DomainmodelPackage.Literals::COMMAND__METHOD, IssueCodes::INVALID_COMMAND_METHOD)
+						DomainmodelPackage.Literals::COMMAND__METHOD, IssueCodes::INVALID_COMMAND_METHOD, methods)
 			}
 		}
 	} 
@@ -371,6 +373,10 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 		{
 			
 			val methods = new ArrayList<String>
+			
+			if(null === call.control || !(call.control instanceof JvmGenericType))
+				return
+				
 			var control = call.control as JvmGenericType
 			
 			control.allFeatures.forEach [ feature |
@@ -391,7 +397,7 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 			if(!methods.contains(call.method))
 			{
 				error("call method '" + call.method + "' is not method of control " + call.control.simpleName, call,
-						DomainmodelPackage.Literals::CALL__METHOD, IssueCodes::INVALID_CALL_METHOD)
+						DomainmodelPackage.Literals::CALL__METHOD, IssueCodes::INVALID_CALL_METHOD, methods)
 			}
 		}
 	} 

@@ -3,6 +3,7 @@
  */
 package org.etri.slice.tools.adl.ui.quickfix
 
+import java.util.ArrayList
 import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
@@ -130,4 +131,69 @@ class DomainmodelQuickfixProvider extends XbaseQuickfixProvider {
 		acceptor.accept(issue, 'Remove supertype', '''Remove supertype '<<issue.data.get(0)>>' ''', 'delete_obj.gif') [
 			element, context | (element as Exception).superType = null]
 	}
+	
+	@Fix(IssueCodes::CONTEXT_MUST_EXTENDS_CONTEXT)
+	def removeContextSuperType(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Remove supertype', '''Remove supertype '<<issue.data.get(0)>>' ''', 'delete_obj.gif') [
+			element, context | (element as Context).superType = null]
+	}
+	
+	@Fix(IssueCodes::EVENT_MUST_EXTENDS_EVENT)
+	def removeEventSuperType(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Remove supertype', '''Remove supertype '<<issue.data.get(0)>>' ''', 'delete_obj.gif') [
+			element, context | (element as Event).superType = null]
+	}
+	
+	@Fix(IssueCodes::EXCEPTION_MUST_EXTENDS_EXCEPTION)
+	def removeExceptionSuperType(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Remove supertype', '''Remove supertype '<<issue.data.get(0)>>' ''', 'delete_obj.gif') [
+			element, context | (element as Exception).superType = null]
+	}
+	
+	@Fix(IssueCodes::INVALID_CALL_METHOD)
+	def assistCallMethod(Issue issue, IssueResolutionAcceptor acceptor)
+	{
+		val methods = issue.data
+		
+		methods.forEach[mothod|
+			acceptor.accept(issue, mothod, mothod, 'Operation.gif') [
+			context |
+			val xtextDocument = context.xtextDocument
+			xtextDocument.replace(issue.offset, issue.length, mothod)
+			]
+		]
+	}
+	
+	
+	@Fix(IssueCodes::INVALID_COMMAND_CONTEXT_PROPERTY)
+	def assistCommandContextProperty(Issue issue, IssueResolutionAcceptor acceptor)
+	{
+		val properties = issue.data
+		
+		properties.forEach[property|
+			acceptor.accept(issue, property, property, 'Attribute.gif') [
+			context |
+			val xtextDocument = context.xtextDocument
+			xtextDocument.replace(issue.offset, issue.length, property)
+			]
+		]
+	}
+	
+	@Fix(IssueCodes::INVALID_COMMAND_METHOD)
+	def assistCommandMethod(Issue issue, IssueResolutionAcceptor acceptor)
+	{
+		val methods = issue.data
+		
+		methods.forEach[mothod|
+			acceptor.accept(issue, mothod, mothod, 'Operation.gif') [
+			context |
+			val xtextDocument = context.xtextDocument
+			xtextDocument.replace(issue.offset, issue.length, mothod)
+			]
+		]
+	}
+//	
+//	def operator_lessThan(ArrayList list, Class<String> class1) {
+//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+//	}	
 }

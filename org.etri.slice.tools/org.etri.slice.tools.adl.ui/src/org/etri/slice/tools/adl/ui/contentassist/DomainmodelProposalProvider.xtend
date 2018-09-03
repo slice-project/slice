@@ -32,6 +32,8 @@ import org.etri.slice.tools.adl.jvmmodel.CommonInterfaces
 import org.etri.slice.tools.adl.utils.DomainnodeUtil
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmField
+import org.eclipse.xtext.RuleCall
+import org.eclipse.xtext.CrossReference
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
@@ -159,7 +161,7 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 //							));
 //	}
 	/**
-	 * AgentDeclaration/CommandSet/Context/property
+	 * AgentDeclaration/CommandSet/Context
 	 */
 	override completeCommandContext_Context(EObject element, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
@@ -181,6 +183,17 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 
 	}
 
+	override completeCall_Control(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		
+		provider.createTypeProposals(
+					this,
+					context,
+					TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE,
+					new AcceptInterfaceFilter(""),
+					acceptor
+				)
+	}
+	
 	/**
 	 * AgentDeclaration/CommandSet/Context/property
 	 */
@@ -204,6 +217,16 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 		}
 	}
 
+	override completeCommand_Action(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		provider.createTypeProposals(
+			this,
+			context,
+			TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE,
+			new AcceptInterfaceFilter(""),
+			acceptor
+		)
+	}
+	
 	/**
 	 * AgentDeclaration/CommandSet/Command/method
 	 */
@@ -223,8 +246,10 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 						
 						JvmField:
 						{
+							val setter = "set" + feature.simpleName.toFirstUpper
+							
 							acceptor.accept(
-								createCompletionProposal(feature.simpleName, feature.simpleName + " - " + element.action.simpleName, getImage(feature), context));		
+								createCompletionProposal(setter, setter + " - " + element.action.simpleName, getImage(feature), context));		
 						}						
 					}
 
