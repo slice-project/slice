@@ -12,11 +12,13 @@ class CommandSetCompiler {
 	
 	def compileCommand(AgentDeclaration agent, Command it)  {
 		val importManager = new ImportManager(true)
+		
 		for ( c : it.contexts ) {
-			c.context.simpleName
+			importManager.addImportFor(c.context)
 		}
 		
-		action.simpleName
+		importManager.addImportFor(action)		
+		
 		'''
 		«IF agent.eContainer !== null»
 			package org.etri.slice.rules.«agent.eContainer.fullyQualifiedName»;

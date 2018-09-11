@@ -26,9 +26,9 @@ public class CommandSetCompiler {
       final ImportManager importManager = new ImportManager(true);
       EList<CommandContext> _contexts = it.getContexts();
       for (final CommandContext c : _contexts) {
-        c.getContext().getSimpleName();
+        importManager.addImportFor(c.getContext());
       }
-      it.getAction().getSimpleName();
+      importManager.addImportFor(it.getAction());
       StringConcatenation _builder = new StringConcatenation();
       {
         EObject _eContainer = agent.eContainer();
