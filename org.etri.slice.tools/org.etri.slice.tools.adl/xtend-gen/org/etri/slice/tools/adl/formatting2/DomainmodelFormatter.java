@@ -368,24 +368,23 @@ public class DomainmodelFormatter extends XbaseFormatter {
     final ISemanticRegion open = this.textRegionExtensions.regionFor(ruleSet).keyword("{");
     final ISemanticRegion close = this.textRegionExtensions.regionFor(ruleSet).keyword("}");
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
-      it.newLine();
-    };
-    document.append(open, _function);
-    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
-      it.indent();
-    };
-    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
-    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
-      it.noSpace();
-    };
-    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
-    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).keyword("hasRuleSet"), _function_2), _function_3);
-    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(document.prepend(open, _function), _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.indent();
+    };
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_2);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };
-    document.append(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__NAME), _function_4);
+    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
+      it.oneSpace();
+    };
+    document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).keyword("hasRuleSet"), _function_3), _function_4);
     final Procedure1<IHiddenRegionFormatter> _function_5 = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
@@ -401,7 +400,7 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.append(document.prepend(this.textRegionExtensions.regionFor(ruleSet).feature(DomainmodelPackage.Literals.RULE_SET__ARTIFACT_ID), _function_7), _function_8);
     final Procedure1<IHiddenRegionFormatter> _function_9 = (IHiddenRegionFormatter it) -> {
-      it.newLine();
+      it.setNewLines(2);
     };
     document.append(close, _function_9);
   }
@@ -410,23 +409,23 @@ public class DomainmodelFormatter extends XbaseFormatter {
    * BehaviorSet formatting
    */
   protected void _format(final BehaviorSet behaviorSet, @Extension final IFormattableDocument document) {
-    final ISemanticRegion open = this.textRegionExtensions.regionFor(behaviorSet).keyword("{");
-    final ISemanticRegion close = this.textRegionExtensions.regionFor(behaviorSet).keyword("}");
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
-      it.newLine();
-    };
-    document.append(open, _function);
-    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
-      it.indent();
-    };
-    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
-    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };
-    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
     };
-    document.append(document.prepend(this.textRegionExtensions.regionFor(behaviorSet).keyword("hasBehaviors"), _function_2), _function_3);
+    document.append(document.prepend(this.textRegionExtensions.regionFor(behaviorSet).keyword("hasBehaviors"), _function), _function_1);
+    final ISemanticRegion open = this.textRegionExtensions.regionFor(behaviorSet).keyword("{");
+    final ISemanticRegion close = this.textRegionExtensions.regionFor(behaviorSet).keyword("}");
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.append(open, _function_2);
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.indent();
+    };
+    document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_3);
     final Behavior lastElement = IterableExtensions.<Behavior>last(behaviorSet.getBehaviors());
     EList<Behavior> _behaviors = behaviorSet.getBehaviors();
     for (final Behavior behavior : _behaviors) {
@@ -445,10 +444,6 @@ public class DomainmodelFormatter extends XbaseFormatter {
         }
       }
     }
-    final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
-      it.newLine();
-    };
-    document.append(close, _function_4);
   }
   
   /**
@@ -465,8 +460,16 @@ public class DomainmodelFormatter extends XbaseFormatter {
       it.indent();
     };
     document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.noSpace();
+    };
+    document.prepend(this.textRegionExtensions.regionFor(behavior).keyword("behavior"), _function_2);
     document.<Situation>format(behavior.getSituation());
     document.<Action>format(behavior.getAction());
+    final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+      it.newLine();
+    };
+    document.<Action>append(behavior.getAction(), _function_3);
   }
   
   protected void _format(final Situation situation, @Extension final IFormattableDocument document) {
@@ -477,30 +480,35 @@ public class DomainmodelFormatter extends XbaseFormatter {
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
       it.newLine();
     };
-    document.append(IterableExtensions.<ISemanticRegion>last(this.textRegionExtensions.regionFor(situation).features(DomainmodelPackage.Literals.SITUATION__TYPES)), _function_1);
+    document.<JvmTypeReference>append(IterableExtensions.<JvmTypeReference>last(situation.getTypes()), _function_1);
   }
   
   protected void _format(final Action action, @Extension final IFormattableDocument document) {
-    ISemanticRegion _feature = this.textRegionExtensions.regionFor(action).feature(DomainmodelPackage.Literals.CALL__METHOD);
-    if (_feature!=null) {
+    String _action = action.getAction();
+    boolean _tripleEquals = (_action == "call");
+    if (_tripleEquals) {
       final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
         it.newLine();
       };
-      document.append(_feature, _function);
-    }
-    ISemanticRegion _feature_1 = this.textRegionExtensions.regionFor(action).feature(DomainmodelPackage.Literals.PUBLISH__EVENT);
-    if (_feature_1!=null) {
-      final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
-        it.newLine();
-      };
-      document.append(_feature_1, _function_1);
-    }
-    ISemanticRegion _keyword = this.textRegionExtensions.regionFor(action).keyword("no-op");
-    if (_keyword!=null) {
-      final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
-        it.newLine();
-      };
-      document.append(_keyword, _function_2);
+      document.append(this.textRegionExtensions.regionFor(action).feature(DomainmodelPackage.Literals.CALL__METHOD), _function);
+    } else {
+      String _action_1 = action.getAction();
+      boolean _tripleEquals_1 = (_action_1 == "publish");
+      if (_tripleEquals_1) {
+        final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+          it.newLine();
+        };
+        document.append(this.textRegionExtensions.regionFor(action).feature(DomainmodelPackage.Literals.PUBLISH__EVENT), _function_1);
+      } else {
+        String _action_2 = action.getAction();
+        boolean _tripleEquals_2 = (_action_2 == "no-op");
+        if (_tripleEquals_2) {
+          final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+            it.newLine();
+          };
+          document.append(this.textRegionExtensions.regionFor(action).keyword("no-op"), _function_2);
+        }
+      }
     }
   }
   
@@ -519,7 +527,7 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.<ISemanticRegion, ISemanticRegion>interior(open, close, _function_1);
     final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
-      it.noSpace();
+      it.setNewLines(2);
     };
     final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
       it.oneSpace();
@@ -528,7 +536,7 @@ public class DomainmodelFormatter extends XbaseFormatter {
     final Procedure1<IHiddenRegionFormatter> _function_4 = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };
-    document.append(this.textRegionExtensions.regionFor(commandSet).feature(DomainmodelPackage.Literals.COMMAND_SET__CONTROL), _function_4);
+    document.<JvmTypeReference>append(commandSet.getControl(), _function_4);
     final Command lastElement = IterableExtensions.<Command>last(commandSet.getCommands());
     EList<Command> _commands = commandSet.getCommands();
     for (final Command command : _commands) {
@@ -560,7 +568,7 @@ public class DomainmodelFormatter extends XbaseFormatter {
     };
     document.append(open, _function);
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
-      it.noSpace();
+      it.newLine();
     };
     document.prepend(close, _function_1);
     final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
@@ -659,7 +667,6 @@ public class DomainmodelFormatter extends XbaseFormatter {
    * Property formatting
    */
   protected void _format(final Property property, @Extension final IFormattableDocument document) {
-    System.out.println("format Property");
     final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
       it.noSpace();
     };

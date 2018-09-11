@@ -18,18 +18,15 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.etri.slice.tools.adl.domainmodel.AbstractElement;
 import org.etri.slice.tools.adl.domainmodel.Action;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Behavior;
 import org.etri.slice.tools.adl.domainmodel.Call;
-import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.domainmodel.Control;
 import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.domainmodel.Publish;
 import org.etri.slice.tools.adl.domainmodel.Situation;
 import org.etri.slice.tools.adl.generator.BehaviorGenerator;
-import org.etri.slice.tools.adl.generator.GeneratorUtils;
 
 @SuppressWarnings("all")
 public class RuleSetCompiler {
@@ -37,10 +34,6 @@ public class RuleSetCompiler {
   
   @Extension
   private Set<Control> m_globals = new HashSet<Control>();
-  
-  @Inject
-  @Extension
-  private GeneratorUtils _generatorUtils;
   
   @Inject
   @Extension
@@ -193,45 +186,51 @@ public class RuleSetCompiler {
   }
   
   public CharSequence compileDataType(final JvmTypeReference it, final AgentDeclaration agent, final ImportManager importManager) {
-    CharSequence _switchResult = null;
-    boolean _matched = false;
-    if (it instanceof Context) {
-      _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      CharSequence _compileContextAdaptor = this.compileContextAdaptor(((Context)it), agent, importManager);
-      _builder.append(_compileContextAdaptor);
-      _builder.append("(/* */)");
-      _switchResult = _builder;
-    }
-    if (!_matched) {
-      if (it instanceof Event) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        CharSequence _compileEventAdaptor = this.compileEventAdaptor(((Event)it), agent, importManager);
-        _builder.append(_compileEventAdaptor);
-        _builder.append("(/* */)");
-        _switchResult = _builder;
-      }
-    }
-    return _switchResult;
-  }
-  
-  public CharSequence compileContextAdaptor(final AbstractElement it, final AgentDeclaration agent, final ImportManager importManager) {
     CharSequence _xblockexpression = null;
     {
-      final JvmGenericType type = this._generatorUtils.toJvmGenericType(it, this._iQualifiedNameProvider.getFullyQualifiedName(it), "context");
-      this._behaviorGenerator.generateAdaptor(((Context) it), agent, this.m_fsa);
-      _xblockexpression = importManager.serialize(type);
+      JvmType _type = it.getType();
+      final JvmGenericType genericType = ((JvmGenericType) _type);
+      CharSequence _xifexpression = null;
+      int _indexOf = this._iQualifiedNameProvider.getFullyQualifiedName(genericType).toString().indexOf(".context");
+      boolean _greaterThan = (_indexOf > 0);
+      if (_greaterThan) {
+        StringConcatenation _builder = new StringConcatenation();
+        CharSequence _compileContextAdaptor = this.compileContextAdaptor(it, agent, importManager);
+        _builder.append(_compileContextAdaptor);
+        _builder.append("(/* */)");
+        _xifexpression = _builder;
+      } else {
+        CharSequence _xifexpression_1 = null;
+        int _indexOf_1 = this._iQualifiedNameProvider.getFullyQualifiedName(genericType).toString().indexOf(".event");
+        boolean _greaterThan_1 = (_indexOf_1 > 0);
+        if (_greaterThan_1) {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          CharSequence _compileEventAdaptor = this.compileEventAdaptor(it, agent, importManager);
+          _builder_1.append(_compileEventAdaptor);
+          _builder_1.append("(/* */)");
+          _xifexpression_1 = _builder_1;
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }
   
-  public CharSequence compileEventAdaptor(final AbstractElement it, final AgentDeclaration agent, final ImportManager importManager) {
+  public CharSequence compileContextAdaptor(final JvmTypeReference it, final AgentDeclaration agent, final ImportManager importManager) {
     CharSequence _xblockexpression = null;
     {
-      final JvmGenericType type = this._generatorUtils.toJvmGenericType(it, this._iQualifiedNameProvider.getFullyQualifiedName(it), "event");
-      this._behaviorGenerator.generateAdaptor(((Event) it), agent, this.m_fsa);
-      _xblockexpression = importManager.serialize(type);
+      this._behaviorGenerator.generateContextAdaptor(it, agent, this.m_fsa);
+      _xblockexpression = importManager.serialize(it.getType());
+    }
+    return _xblockexpression;
+  }
+  
+  public CharSequence compileEventAdaptor(final JvmTypeReference it, final AgentDeclaration agent, final ImportManager importManager) {
+    CharSequence _xblockexpression = null;
+    {
+      this._behaviorGenerator.generateEventAdaptor(it, agent, this.m_fsa);
+      _xblockexpression = importManager.serialize(it.getType());
     }
     return _xblockexpression;
   }

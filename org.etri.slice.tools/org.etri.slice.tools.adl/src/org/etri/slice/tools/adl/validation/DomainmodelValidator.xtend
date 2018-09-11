@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.xtext.common.types.JvmVoid
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.Strings
@@ -61,6 +62,9 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	
 
 	@Check def void checkTypeNameStartsWithCapital(Context context) {
+		if(context.getName() === null)
+			return;
+			
 		if (!Character::isUpperCase(context.getName().charAt(0))) {
 			warning("Name should start with a capital", DomainmodelPackage.Literals::ABSTRACT_ELEMENT__NAME,
 				ValidationMessageAcceptor::INSIGNIFICANT_INDEX, IssueCodes::INVALID_TYPE_NAME, context.getName())
@@ -68,6 +72,9 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	}
 
 	@Check def void checkFeatureNameStartsWithLowercase(Feature feature) {
+		if(feature.getName() === null)
+			return;
+		
 		if (!Character::isLowerCase(feature.getName().charAt(0))) {
 			warning("Name should start with a lowercase", DomainmodelPackage.Literals::FEATURE__NAME,
 				ValidationMessageAcceptor::INSIGNIFICANT_INDEX, IssueCodes::INVALID_FEATURE_NAME, feature.getName())
@@ -75,6 +82,9 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	}
 
 	@Check def void checkPackage(DomainDeclaration domains) {
+		if(domains.getName() === null)
+			return;
+			
 		if (Strings::isEmpty(domains.getName())) {
 			error("Name cannot be empty", DomainmodelPackage.Literals::ABSTRACT_ELEMENT__NAME)
 		}
@@ -83,7 +93,10 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 		}
 	}
 
-	@Check def void checkExternalDuplicatedControls(Control control) {
+	@Check def void checkExternalDuplicatedControls(Control control) {		
+		if(null === control.name)
+			return
+			
 		// external
 		val externalControls = control.visibleExternalControlDescriptions
 		val controlName = control.fullyQualifiedName
@@ -204,6 +217,9 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	}
 
 	@Check def void checkTopicName(Topic topic) {
+		if(null === topic.name)
+			return
+			
 		var name = topic.name
 
 		if (name.length == 0) {
@@ -310,9 +326,8 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	} 
 	
 	@Check def void checkCommandContextProperty(CommandContext  commandContext) {
-		if(commandContext.context !== null && commandContext.property !== null)
+		if(commandContext.context !== null && !(commandContext.context instanceof JvmVoid) && commandContext.property !== null)
 		{
-			
 			val properties = new ArrayList<String>
 			var context = commandContext.context as JvmGenericType
 			
@@ -337,7 +352,6 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	@Check def void checkCommandMethod(Command  command) {
 		if(command.action !== null && command.method !== null)
 		{
-			
 			val methods = new ArrayList<String>
 			
 			if(!(command.action instanceof JvmGenericType))
@@ -371,7 +385,6 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	@Check def void checkCallMethod(Call  call) {
 		if(call.control !== null && call.method !== null)
 		{
-			
 			val methods = new ArrayList<String>
 			
 			if(null === call.control || !(call.control instanceof JvmGenericType))
@@ -404,6 +417,9 @@ class DomainmodelValidator extends AbstractDomainmodelValidator {
 	
 	@Check(CheckType.EXPENSIVE) 
 	def void checkDomainCrossReference(DomainDeclaration domain) {
+		if(null === domain.name)
+			return;
+		
 		if(domainManager.getDomain(domain.fullyQualifiedName.toString).hasCycle)
 		{
 				error("control '" + domainManager.getDomain(domain.fullyQualifiedName.toString).domain + "' has cycle in dependency of domain.", domain,

@@ -104,6 +104,11 @@ public class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final org.etri.slice.tools.adl.domainmodel.Exception exc, @Extension final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
+    String _name = exc.getName();
+    boolean _tripleEquals = (null == _name);
+    if (_tripleEquals) {
+      return;
+    }
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       this._jvmTypesBuilder.setDocumentation(it, this._jvmTypesBuilder.getDocumentation(exc));
       JvmParameterizedTypeReference _superType = exc.getSuperType();

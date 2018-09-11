@@ -19,7 +19,6 @@ import org.etri.slice.tools.adl.domainmodel.Action;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.domainmodel.Behavior;
 import org.etri.slice.tools.adl.domainmodel.Call;
-import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.generator.BehaviorGenerator;
 import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.generator.OutputPathUtils;
@@ -75,11 +74,10 @@ public class DeviceProjectGenerator implements IGeneratorForMultiInput {
       {
         EList<JvmTypeReference> _types = b.getSituation().getTypes();
         for (final JvmTypeReference t : _types) {
-          {
-            JvmTypeReference type = t;
-            if ((type instanceof Context)) {
-              this._behaviorGenerator.generateSensor(((Context)type), it, fsa);
-            }
+          int _indexOf = this._iQualifiedNameProvider.getFullyQualifiedName(t.getType()).toString().indexOf(".context");
+          boolean _greaterThan = (_indexOf > 0);
+          if (_greaterThan) {
+            this._behaviorGenerator.generateSensor(t, it, fsa);
           }
         }
         Action action = b.getAction();

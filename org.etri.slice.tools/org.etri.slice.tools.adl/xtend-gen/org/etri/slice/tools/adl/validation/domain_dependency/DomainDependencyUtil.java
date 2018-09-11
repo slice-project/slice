@@ -62,7 +62,6 @@ public class DomainDependencyUtil {
   public String getDomain(final String packageName, final String prefix, final String suffix) {
     String _xblockexpression = null;
     {
-      System.out.println(("getDomain packageName = " + packageName));
       final String tmp = packageName.replace(prefix, "");
       String _xifexpression = null;
       if ((suffix != null)) {
@@ -199,12 +198,6 @@ public class DomainDependencyUtil {
           boolean _matched = false;
           if (action instanceof Publish) {
             _matched=true;
-            JvmTypeReference _event = ((Publish)action).getEvent();
-            String _plus = ("action.event = " + _event);
-            System.out.println(_plus);
-            String _qualifiedName = ((Publish)action).getEvent().getType().getQualifiedName();
-            String _plus_1 = ("action.event.fullyQualifiedName = " + _qualifiedName);
-            System.out.println(_plus_1);
             final String name = ((Publish)action).getEvent().getType().getQualifiedName();
             if ((name == "void")) {
               return;

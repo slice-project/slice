@@ -21,6 +21,7 @@ import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.common.types.JvmVoid;
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
@@ -31,6 +32,7 @@ import org.eclipse.xtext.validation.CheckType;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -90,6 +92,11 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
   
   @Check
   public void checkTypeNameStartsWithCapital(final Context context) {
+    String _name = context.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
+      return;
+    }
     boolean _isUpperCase = Character.isUpperCase(context.getName().charAt(0));
     boolean _not = (!_isUpperCase);
     if (_not) {
@@ -100,6 +107,11 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
   
   @Check
   public void checkFeatureNameStartsWithLowercase(final Feature feature) {
+    String _name = feature.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
+      return;
+    }
     boolean _isLowerCase = Character.isLowerCase(feature.getName().charAt(0));
     boolean _not = (!_isLowerCase);
     if (_not) {
@@ -110,6 +122,11 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
   
   @Check
   public void checkPackage(final DomainDeclaration domains) {
+    String _name = domains.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
+      return;
+    }
     boolean _isEmpty = Strings.isEmpty(domains.getName());
     if (_isEmpty) {
       this.error("Name cannot be empty", DomainmodelPackage.Literals.ABSTRACT_ELEMENT__NAME);
@@ -122,6 +139,11 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
   
   @Check
   public void checkExternalDuplicatedControls(final Control control) {
+    String _name = control.getName();
+    boolean _tripleEquals = (null == _name);
+    if (_tripleEquals) {
+      return;
+    }
     final Map<QualifiedName, IEObjectDescription> externalControls = this._domainModeIndex.getVisibleExternalControlDescriptions(control);
     final QualifiedName controlName = this._iQualifiedNameProvider.getFullyQualifiedName(control);
     boolean _containsKey = externalControls.containsKey(controlName);
@@ -246,6 +268,11 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
   
   @Check
   public void checkTopicName(final Topic topic) {
+    String _name = topic.getName();
+    boolean _tripleEquals = (null == _name);
+    if (_tripleEquals) {
+      return;
+    }
     String name = topic.getName();
     int _length = name.length();
     boolean _equals = (_length == 0);
@@ -396,7 +423,7 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
   
   @Check
   public void checkCommandContextProperty(final CommandContext commandContext) {
-    if (((commandContext.getContext() != null) && (commandContext.getProperty() != null))) {
+    if ((((commandContext.getContext() != null) && (!(commandContext.getContext() instanceof JvmVoid))) && (commandContext.getProperty() != null))) {
       final ArrayList<String> properties = new ArrayList<String>();
       JvmType _context = commandContext.getContext();
       JvmGenericType context = ((JvmGenericType) _context);
@@ -417,7 +444,7 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
         String _simpleName = commandContext.getContext().getSimpleName();
         String _plus_2 = (_plus_1 + _simpleName);
         this.error(_plus_2, commandContext, 
-          DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY, IssueCodes.INVALID_COMMAND_CONTEXT_PROPERTY);
+          DomainmodelPackage.Literals.COMMAND_CONTEXT__PROPERTY, IssueCodes.INVALID_COMMAND_CONTEXT_PROPERTY, ((String[])Conversions.unwrapArray(properties, String.class)));
       }
     }
   }
@@ -427,7 +454,12 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
     if (((command.getAction() != null) && (command.getMethod() != null))) {
       final ArrayList<String> methods = new ArrayList<String>();
       JvmType _action = command.getAction();
-      JvmGenericType cmd = ((JvmGenericType) _action);
+      boolean _not = (!(_action instanceof JvmGenericType));
+      if (_not) {
+        return;
+      }
+      JvmType _action_1 = command.getAction();
+      JvmGenericType cmd = ((JvmGenericType) _action_1);
       final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
         boolean _matched = false;
         if (feature instanceof JvmOperation) {
@@ -445,15 +477,15 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
       };
       cmd.getAllFeatures().forEach(_function);
       boolean _contains = methods.contains(command.getMethod());
-      boolean _not = (!_contains);
-      if (_not) {
+      boolean _not_1 = (!_contains);
+      if (_not_1) {
         String _method = command.getMethod();
         String _plus = ("command method \'" + _method);
         String _plus_1 = (_plus + "\' is not method of action ");
         String _simpleName = command.getAction().getSimpleName();
         String _plus_2 = (_plus_1 + _simpleName);
         this.error(_plus_2, command, 
-          DomainmodelPackage.Literals.COMMAND__METHOD, IssueCodes.INVALID_COMMAND_METHOD);
+          DomainmodelPackage.Literals.COMMAND__METHOD, IssueCodes.INVALID_COMMAND_METHOD, ((String[])Conversions.unwrapArray(methods, String.class)));
       }
     }
   }
@@ -462,6 +494,9 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
   public void checkCallMethod(final Call call) {
     if (((call.getControl() != null) && (call.getMethod() != null))) {
       final ArrayList<String> methods = new ArrayList<String>();
+      if (((null == call.getControl()) || (!(call.getControl() instanceof JvmGenericType)))) {
+        return;
+      }
       JvmType _control = call.getControl();
       JvmGenericType control = ((JvmGenericType) _control);
       final Consumer<JvmFeature> _function = (JvmFeature feature) -> {
@@ -489,13 +524,18 @@ public class DomainmodelValidator extends AbstractDomainmodelValidator {
         String _simpleName = call.getControl().getSimpleName();
         String _plus_2 = (_plus_1 + _simpleName);
         this.error(_plus_2, call, 
-          DomainmodelPackage.Literals.CALL__METHOD, IssueCodes.INVALID_CALL_METHOD);
+          DomainmodelPackage.Literals.CALL__METHOD, IssueCodes.INVALID_CALL_METHOD, ((String[])Conversions.unwrapArray(methods, String.class)));
       }
     }
   }
   
   @Check(CheckType.EXPENSIVE)
   public void checkDomainCrossReference(final DomainDeclaration domain) {
+    String _name = domain.getName();
+    boolean _tripleEquals = (null == _name);
+    if (_tripleEquals) {
+      return;
+    }
     boolean _hasCycle = this.domainManager.getDomain(this._iQualifiedNameProvider.getFullyQualifiedName(domain).toString()).hasCycle();
     if (_hasCycle) {
       this.error((("control \'" + this.domainManager.getDomain(this._iQualifiedNameProvider.getFullyQualifiedName(domain).toString()).domain) + "\' has cycle in dependency of domain."), domain, 

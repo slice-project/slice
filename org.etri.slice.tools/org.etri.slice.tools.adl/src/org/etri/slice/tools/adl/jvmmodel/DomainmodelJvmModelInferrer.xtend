@@ -66,6 +66,9 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch infer(Exception exc, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
 
+		if(null === exc.name)
+			return;
+			
 		accept(exc.toClass(exc.fullyQualifiedName.adaptToSlice(""))) [
 			documentation = exc.documentation
 			if (exc.superType !== null)

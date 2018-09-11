@@ -3,7 +3,6 @@ package org.etri.slice.tools.adl.generator.compiler;
 import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmField;
@@ -14,12 +13,12 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.impl.JvmGenericTypeImplCustom;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil;
 
 @SuppressWarnings("all")
 public class ControlWrapperCompiler {
@@ -31,55 +30,61 @@ public class ControlWrapperCompiler {
   @Extension
   private GeneratorUtils _generatorUtils;
   
+  @Inject
+  @Extension
+  private DomainDependencyUtil _domainDependencyUtil;
+  
   public CharSequence compileWrapper(final JvmType it, final AgentDeclaration agent) {
-    StringConcatenation _builder = new StringConcatenation();
-    final ImportManager importManager = new ImportManager(true);
-    _builder.append(" ");
-    _builder.newLineIfNotEmpty();
-    final CharSequence body = this.body(it, importManager);
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
+    CharSequence _xblockexpression = null;
     {
-      EObject _eContainer = agent.eContainer();
-      boolean _tripleNotEquals = (_eContainer != null);
-      if (_tripleNotEquals) {
-        _builder.append("package org.etri.slice.agents.");
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(agent.eContainer());
-        _builder.append(_fullyQualifiedName);
-        _builder.append(".");
-        String _lowerCase = agent.getName().toLowerCase();
-        _builder.append(_lowerCase);
-        _builder.append(".wrapper;");
-        _builder.newLineIfNotEmpty();
+      final String domain = this._domainDependencyUtil.getDomain(this._iQualifiedNameProvider.getFullyQualifiedName(it).toString(), "org.etri.slice.commons", "service");
+      StringConcatenation _builder = new StringConcatenation();
+      final ImportManager importManager = new ImportManager(true);
+      _builder.append(" ");
+      _builder.newLineIfNotEmpty();
+      final CharSequence body = this.body(it, importManager);
+      _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      {
+        if ((domain != null)) {
+          _builder.append("package org.etri.slice.agents.");
+          _builder.append(domain);
+          _builder.append(".");
+          String _lowerCase = agent.getName().toLowerCase();
+          _builder.append(_lowerCase);
+          _builder.append(".wrapper;");
+          _builder.newLineIfNotEmpty();
+        }
       }
-    }
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Component;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Instantiate;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Requires;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.api.inference.WorkingMemory;");
-    _builder.newLine();
-    _builder.newLine();
-    {
-      List<String> _imports = importManager.getImports();
-      for(final String i : _imports) {
-        _builder.append("import ");
-        _builder.append(i);
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Component;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Instantiate;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Requires;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.api.inference.WorkingMemory;");
+      _builder.newLine();
+      _builder.newLine();
+      {
+        List<String> _imports = importManager.getImports();
+        for(final String i : _imports) {
+          _builder.append("import ");
+          _builder.append(i);
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
       }
+      _builder.newLine();
+      _builder.append("@Component");
+      _builder.newLine();
+      _builder.append("@Instantiate");
+      _builder.newLine();
+      _builder.append(body);
+      _builder.newLineIfNotEmpty();
+      _xblockexpression = _builder;
     }
-    _builder.newLine();
-    _builder.append("@Component");
-    _builder.newLine();
-    _builder.append("@Instantiate");
-    _builder.newLine();
-    _builder.append(body);
-    _builder.newLineIfNotEmpty();
-    return _builder;
+    return _xblockexpression;
   }
   
   private CharSequence body(final JvmType it, final ImportManager importManager) {

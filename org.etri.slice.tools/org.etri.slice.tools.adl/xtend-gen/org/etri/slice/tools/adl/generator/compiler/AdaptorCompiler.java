@@ -1,19 +1,16 @@
 package org.etri.slice.tools.adl.generator.compiler;
 
 import com.google.inject.Inject;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
-import org.etri.slice.tools.adl.domainmodel.Context;
-import org.etri.slice.tools.adl.domainmodel.Event;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
+import org.etri.slice.tools.adl.validation.domain_dependency.DomainDependencyUtil;
 
 @SuppressWarnings("all")
 public class AdaptorCompiler {
@@ -25,88 +22,93 @@ public class AdaptorCompiler {
   @Extension
   private GeneratorUtils _generatorUtils;
   
-  protected CharSequence _compileAdaptor(final Context it, final AgentDeclaration agent) {
-    StringConcatenation _builder = new StringConcatenation();
-    final ImportManager importManager = new ImportManager(true);
-    _builder.append(" ");
-    _builder.newLineIfNotEmpty();
-    final CharSequence body = this.body(it, importManager);
-    _builder.newLineIfNotEmpty();
+  @Inject
+  @Extension
+  private DomainDependencyUtil _domainDependencyUtil;
+  
+  public CharSequence compileContextAdaptor(final JvmTypeReference it, final AgentDeclaration agent) {
+    CharSequence _xblockexpression = null;
     {
-      EObject _eContainer = it.eContainer();
-      boolean _tripleNotEquals = (_eContainer != null);
-      if (_tripleNotEquals) {
-        _builder.append("package org.etri.slice.agents.");
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
-        _builder.append(_fullyQualifiedName);
-        _builder.append(".");
-        String _lowerCase = agent.getName().toLowerCase();
-        _builder.append(_lowerCase);
-        _builder.append(".adaptor;");
-        _builder.newLineIfNotEmpty();
+      final String domain = this._domainDependencyUtil.getDomain(this._iQualifiedNameProvider.getFullyQualifiedName(it.getType()).toString(), "org.etri.slice.commons", "context");
+      StringConcatenation _builder = new StringConcatenation();
+      final ImportManager importManager = new ImportManager(true);
+      _builder.append(" ");
+      _builder.newLineIfNotEmpty();
+      final CharSequence body = this.contextBody(it, importManager);
+      _builder.newLineIfNotEmpty();
+      {
+        if ((domain != null)) {
+          _builder.append("package org.etri.slice.agents.");
+          _builder.append(domain);
+          _builder.append(".");
+          String _lowerCase = agent.getName().toLowerCase();
+          _builder.append(_lowerCase);
+          _builder.append(".adaptor;");
+          _builder.newLineIfNotEmpty();
+        }
       }
-    }
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Component;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Instantiate;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Invalidate;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Property;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Requires;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Validate;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.handlers.event.Subscriber;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.api.agent.Agent;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.api.inference.WorkingMemory;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.api.perception.EventStream;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.core.perception.EventSubscriber;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.agents.");
-    QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
-    _builder.append(_fullyQualifiedName_1);
-    _builder.append(".");
-    String _lowerCase_1 = agent.getName().toLowerCase();
-    _builder.append(_lowerCase_1);
-    _builder.append(".stream.");
-    String _name = it.getName();
-    _builder.append(_name);
-    _builder.append("Stream;");
-    _builder.newLineIfNotEmpty();
-    {
-      List<String> _imports = importManager.getImports();
-      for(final String i : _imports) {
-        _builder.append("import ");
-        _builder.append(i);
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Component;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Instantiate;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Invalidate;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Property;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Requires;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Validate;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.handlers.event.Subscriber;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.api.agent.Agent;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.api.inference.WorkingMemory;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.api.perception.EventStream;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.core.perception.EventSubscriber;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.agents.");
+      _builder.append(domain);
+      _builder.append(".");
+      String _lowerCase_1 = agent.getName().toLowerCase();
+      _builder.append(_lowerCase_1);
+      _builder.append(".stream.");
+      String _simpleName = it.getSimpleName();
+      _builder.append(_simpleName);
+      _builder.append("Stream;");
+      _builder.newLineIfNotEmpty();
+      {
+        List<String> _imports = importManager.getImports();
+        for(final String i : _imports) {
+          _builder.append("import ");
+          _builder.append(i);
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
       }
+      _builder.newLine();
+      _builder.append(body);
+      _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _xblockexpression = _builder;
     }
-    _builder.newLine();
-    _builder.append(body);
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    return _builder;
+    return _xblockexpression;
   }
   
-  public CharSequence body(final Context it, final ImportManager importManager) {
+  public CharSequence contextBody(final JvmTypeReference it, final ImportManager importManager) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("@Component");
     _builder.newLine();
     _builder.append("@Instantiate");
     _builder.newLine();
     _builder.append("public class ");
-    String _name = it.getName();
-    _builder.append(_name);
+    String _simpleName = it.getSimpleName();
+    _builder.append(_simpleName);
     _builder.append("Adaptor extends EventSubscriber<");
-    CharSequence _shortName = this._generatorUtils.shortName(it, importManager);
+    String _shortName = this._generatorUtils.shortName(it, importManager);
     _builder.append(_shortName);
     _builder.append("> {");
     _builder.newLineIfNotEmpty();
@@ -121,8 +123,8 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Property(name=\"topic\", value=");
-    String _name_1 = it.getName();
-    _builder.append(_name_1, "\t");
+    String _simpleName_1 = it.getSimpleName();
+    _builder.append(_simpleName_1, "\t");
     _builder.append(".topic)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -147,14 +149,14 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Requires(from=");
-    String _name_2 = it.getName();
-    _builder.append(_name_2, "\t");
+    String _simpleName_2 = it.getSimpleName();
+    _builder.append(_simpleName_2, "\t");
     _builder.append("Stream.SERVICE_NAME)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private EventStream<");
-    String _name_3 = it.getName();
-    _builder.append(_name_3, "\t");
+    String _simpleName_3 = it.getSimpleName();
+    _builder.append(_simpleName_3, "\t");
     _builder.append("> m_streaming;\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -194,8 +196,8 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("protected EventStream<");
-    String _name_4 = it.getName();
-    _builder.append(_name_4, "\t");
+    String _simpleName_4 = it.getSimpleName();
+    _builder.append(_simpleName_4, "\t");
     _builder.append("> getEventStream() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -208,26 +210,26 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Subscriber(name=\"");
-    String _name_5 = it.getName();
-    _builder.append(_name_5, "\t");
+    String _simpleName_5 = it.getSimpleName();
+    _builder.append(_simpleName_5, "\t");
     _builder.append("Adaptor\", topics=");
-    String _name_6 = it.getName();
-    _builder.append(_name_6, "\t");
+    String _simpleName_6 = it.getSimpleName();
+    _builder.append(_simpleName_6, "\t");
     _builder.append(".topic,");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     _builder.append("dataKey=");
-    String _name_7 = it.getName();
-    _builder.append(_name_7, "\t\t\t");
+    String _simpleName_7 = it.getSimpleName();
+    _builder.append(_simpleName_7, "\t\t\t");
     _builder.append(".dataKey, dataType=");
-    String _name_8 = it.getName();
-    _builder.append(_name_8, "\t\t\t");
+    String _simpleName_8 = it.getSimpleName();
+    _builder.append(_simpleName_8, "\t\t\t");
     _builder.append(".dataType)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("public void receive(");
-    String _name_9 = it.getName();
-    _builder.append(_name_9, "\t");
+    String _simpleName_9 = it.getSimpleName();
+    _builder.append(_simpleName_9, "\t");
     _builder.append(" event) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -269,86 +271,87 @@ public class AdaptorCompiler {
     return _builder;
   }
   
-  protected CharSequence _compileAdaptor(final Event it, final AgentDeclaration agent) {
-    StringConcatenation _builder = new StringConcatenation();
-    final ImportManager importManager = new ImportManager(true);
-    _builder.append(" ");
-    _builder.newLineIfNotEmpty();
-    final CharSequence body = this.body(it, agent, importManager);
-    _builder.newLineIfNotEmpty();
+  public CharSequence compileEventAdaptor(final JvmTypeReference it, final AgentDeclaration agent) {
+    CharSequence _xblockexpression = null;
     {
-      EObject _eContainer = it.eContainer();
-      boolean _tripleNotEquals = (_eContainer != null);
-      if (_tripleNotEquals) {
-        _builder.append("package org.etri.slice.agents.");
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
-        _builder.append(_fullyQualifiedName);
-        _builder.append(".");
-        String _lowerCase = agent.getName().toLowerCase();
-        _builder.append(_lowerCase);
-        _builder.append(".adaptor;");
-        _builder.newLineIfNotEmpty();
+      final String domain = this._domainDependencyUtil.getDomain(this._iQualifiedNameProvider.getFullyQualifiedName(it.getType()).toString(), "org.etri.slice.commons", "event");
+      StringConcatenation _builder = new StringConcatenation();
+      final ImportManager importManager = new ImportManager(true);
+      _builder.append(" ");
+      _builder.newLineIfNotEmpty();
+      final CharSequence body = this.eventBody(it, agent, importManager);
+      _builder.newLineIfNotEmpty();
+      {
+        if ((domain != null)) {
+          _builder.append("package org.etri.slice.agents.");
+          _builder.append(domain);
+          _builder.append(".");
+          String _lowerCase = agent.getName().toLowerCase();
+          _builder.append(_lowerCase);
+          _builder.append(".adaptor;");
+          _builder.newLineIfNotEmpty();
+        }
       }
-    }
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Component;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Instantiate;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Invalidate;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Property;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Requires;");
-    _builder.newLine();
-    _builder.append("import org.apache.felix.ipojo.annotations.Validate;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.api.agent.Agent;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.api.inference.WorkingMemory;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.api.perception.EventStream;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.core.perception.MqttEventSubscriber;");
-    _builder.newLine();
-    _builder.append("import org.etri.slice.agents.");
-    QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(it.eContainer());
-    _builder.append(_fullyQualifiedName_1);
-    _builder.append(".");
-    String _lowerCase_1 = agent.getName().toLowerCase();
-    _builder.append(_lowerCase_1);
-    _builder.append(".stream.");
-    String _name = it.getName();
-    _builder.append(_name);
-    _builder.append("Stream;");
-    _builder.newLineIfNotEmpty();
-    {
-      List<String> _imports = importManager.getImports();
-      for(final String i : _imports) {
-        _builder.append("import ");
-        _builder.append(i);
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Component;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Instantiate;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Invalidate;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Property;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Requires;");
+      _builder.newLine();
+      _builder.append("import org.apache.felix.ipojo.annotations.Validate;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.api.agent.Agent;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.api.inference.WorkingMemory;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.api.perception.EventStream;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.core.perception.MqttEventSubscriber;");
+      _builder.newLine();
+      _builder.append("import org.etri.slice.agents.");
+      _builder.append(domain);
+      _builder.append(".");
+      String _lowerCase_1 = agent.getName().toLowerCase();
+      _builder.append(_lowerCase_1);
+      _builder.append(".stream.");
+      String _simpleName = it.getSimpleName();
+      _builder.append(_simpleName);
+      _builder.append("Stream;");
+      _builder.newLineIfNotEmpty();
+      {
+        List<String> _imports = importManager.getImports();
+        for(final String i : _imports) {
+          _builder.append("import ");
+          _builder.append(i);
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
       }
+      _builder.newLine();
+      _builder.append(body);
+      _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _xblockexpression = _builder;
     }
-    _builder.newLine();
-    _builder.append(body);
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    return _builder;
+    return _xblockexpression;
   }
   
-  public CharSequence body(final Event it, final AgentDeclaration agent, final ImportManager importManager) {
+  public CharSequence eventBody(final JvmTypeReference it, final AgentDeclaration agent, final ImportManager importManager) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("@Component");
     _builder.newLine();
     _builder.append("@Instantiate");
     _builder.newLine();
     _builder.append("public class ");
-    String _name = it.getName();
-    _builder.append(_name);
+    String _simpleName = it.getSimpleName();
+    _builder.append(_simpleName);
     _builder.append("Adaptor extends MqttEventSubscriber<");
-    CharSequence _shortName = this._generatorUtils.shortName(it, importManager);
+    String _shortName = this._generatorUtils.shortName(it, importManager);
     _builder.append(_shortName);
     _builder.append("> {");
     _builder.newLineIfNotEmpty();
@@ -363,8 +366,8 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Property(name=\"topic\", value=");
-    String _name_1 = it.getName();
-    _builder.append(_name_1, "\t");
+    String _simpleName_1 = it.getSimpleName();
+    _builder.append(_simpleName_1, "\t");
     _builder.append(".TOPIC)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -403,14 +406,14 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Requires(from=");
-    String _name_2 = it.getName();
-    _builder.append(_name_2, "\t");
+    String _simpleName_2 = it.getSimpleName();
+    _builder.append(_simpleName_2, "\t");
     _builder.append("Stream.SERVICE_NAME)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private EventStream<");
-    String _name_3 = it.getName();
-    _builder.append(_name_3, "\t");
+    String _simpleName_3 = it.getSimpleName();
+    _builder.append(_simpleName_3, "\t");
     _builder.append("> m_streaming;\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -464,8 +467,8 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("return ");
-    String _name_4 = it.getName();
-    _builder.append(_name_4, "\t\t");
+    String _simpleName_4 = it.getSimpleName();
+    _builder.append(_simpleName_4, "\t\t");
     _builder.append(".class;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -475,8 +478,8 @@ public class AdaptorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("protected EventStream<");
-    String _name_5 = it.getName();
-    _builder.append(_name_5, "\t");
+    String _simpleName_5 = it.getSimpleName();
+    _builder.append(_simpleName_5, "\t");
     _builder.append("> getEventStream() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -516,16 +519,5 @@ public class AdaptorCompiler {
     _builder.append("}");
     _builder.newLine();
     return _builder;
-  }
-  
-  public CharSequence compileAdaptor(final EObject it, final AgentDeclaration agent) {
-    if (it instanceof Context) {
-      return _compileAdaptor((Context)it, agent);
-    } else if (it instanceof Event) {
-      return _compileAdaptor((Event)it, agent);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(it, agent).toString());
-    }
   }
 }

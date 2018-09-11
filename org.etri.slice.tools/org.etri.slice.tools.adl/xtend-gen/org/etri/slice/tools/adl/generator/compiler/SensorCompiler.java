@@ -4,12 +4,12 @@ import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration;
-import org.etri.slice.tools.adl.domainmodel.Context;
 import org.etri.slice.tools.adl.generator.GeneratorUtils;
 
 @SuppressWarnings("all")
@@ -22,7 +22,7 @@ public class SensorCompiler {
   @Extension
   private GeneratorUtils _generatorUtils;
   
-  public CharSequence sensorCompile(final Context it, final AgentDeclaration agent) {
+  public CharSequence sensorCompile(final JvmTypeReference it, final AgentDeclaration agent) {
     StringConcatenation _builder = new StringConcatenation();
     final ImportManager importManager = new ImportManager(true);
     _builder.append(" ");
@@ -87,10 +87,10 @@ public class SensorCompiler {
     return _builder;
   }
   
-  public CharSequence compile(final Context it, final ImportManager importManager) {
+  public CharSequence compile(final JvmTypeReference it, final ImportManager importManager) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class ");
-    CharSequence _shortName = this._generatorUtils.shortName(it, importManager);
+    String _shortName = this._generatorUtils.shortName(it, importManager);
     _builder.append(_shortName);
     _builder.append("Sensor implements Sensor {");
     _builder.newLineIfNotEmpty();
@@ -98,22 +98,22 @@ public class SensorCompiler {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("private static Logger s_logger = LoggerFactory.getLogger(");
-    String _name = it.getName();
-    _builder.append(_name, "\t");
+    String _simpleName = it.getSimpleName();
+    _builder.append(_simpleName, "\t");
     _builder.append("Sensor.class);\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Publishes(name=\"");
-    String _name_1 = it.getName();
-    _builder.append(_name_1, "\t");
+    String _simpleName_1 = it.getSimpleName();
+    _builder.append(_simpleName_1, "\t");
     _builder.append("Sensor\", topics=");
-    String _name_2 = it.getName();
-    _builder.append(_name_2, "\t");
+    String _simpleName_2 = it.getSimpleName();
+    _builder.append(_simpleName_2, "\t");
     _builder.append(".topic, dataKey=");
-    String _name_3 = it.getName();
-    _builder.append(_name_3, "\t");
+    String _simpleName_3 = it.getSimpleName();
+    _builder.append(_simpleName_3, "\t");
     _builder.append(".dataKey)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
