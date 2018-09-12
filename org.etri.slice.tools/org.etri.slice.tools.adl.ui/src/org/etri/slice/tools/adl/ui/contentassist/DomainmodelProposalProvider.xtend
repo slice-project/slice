@@ -73,7 +73,7 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 					acceptor
 				)
 			}
-			Call,
+			Call, 
 			CommandSet: {
 				provider.createTypeProposals(
 					this,
@@ -105,6 +105,8 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 					new AcceptableInstanceFilter(), acceptor)
 			}
 			Context: {
+				System.out.println("Context .......................");
+				
 				val fqn = element.fullyQualifiedName.adaptToSlice("context").toString
 
 				val typeProvider = createTypeProvider(element.eResource.resourceSet)
