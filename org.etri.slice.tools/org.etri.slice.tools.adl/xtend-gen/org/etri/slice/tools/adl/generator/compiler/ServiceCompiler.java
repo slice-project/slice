@@ -39,73 +39,56 @@ public class ServiceCompiler {
     {
       final String domain = this._domainDependencyUtil.getDomain(this._iQualifiedNameProvider.getFullyQualifiedName(it).toString(), "org.etri.slice.commons", "service");
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\t");
       final ImportManager importManager = new ImportManager(true);
       _builder.append(" ");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t");
       final CharSequence body = this.compile(it, importManager);
       _builder.newLineIfNotEmpty();
       {
         if ((domain != null)) {
-          _builder.append("\t");
           _builder.append("package org.etri.slice.devices.");
-          _builder.append(domain, "\t");
+          _builder.append(domain);
           _builder.append(".");
           String _lowerCase = agent.getName().toLowerCase();
-          _builder.append(_lowerCase, "\t");
+          _builder.append(_lowerCase);
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append("\t");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("import org.apache.felix.ipojo.annotations.Component;");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("import org.apache.felix.ipojo.annotations.Instantiate;");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("import org.apache.felix.ipojo.annotations.Invalidate;");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("import org.apache.felix.ipojo.annotations.Provides;");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("import org.apache.felix.ipojo.annotations.Validate;");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("import org.etri.slice.commons.SliceException;");
       _builder.newLine();
       {
         List<String> _imports = importManager.getImports();
         for(final String i : _imports) {
-          _builder.append("\t");
           _builder.append("import ");
-          _builder.append(i, "\t");
+          _builder.append(i);
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append("\t");
       _builder.append("import org.slf4j.Logger;");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("import org.slf4j.LoggerFactory;\t\t");
       _builder.newLine();
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("@Component(publicFactory=false, immediate=true)");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("@Provides");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("@Instantiate");
       _builder.newLine();
-      _builder.append("\t");
-      _builder.append(body, "\t");
+      _builder.append(body);
       _builder.newLineIfNotEmpty();
       _xblockexpression = _builder;
     }
@@ -117,56 +100,56 @@ public class ServiceCompiler {
     {
       importManager.addImportFor(it);
       StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t\t");
       _builder.newLine();
-      _builder.append("\t");
       _builder.append("public class ");
       String _simpleName = it.getSimpleName();
-      _builder.append(_simpleName, "\t");
+      _builder.append(_simpleName);
       _builder.append("Service implements ");
       String _simpleName_1 = it.getSimpleName();
-      _builder.append(_simpleName_1, "\t");
+      _builder.append(_simpleName_1);
       _builder.append(" {");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.newLine();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.append("private static Logger s_logger = LoggerFactory.getLogger(");
       String _simpleName_2 = it.getSimpleName();
-      _builder.append(_simpleName_2, "\t\t");
+      _builder.append(_simpleName_2, "\t");
       _builder.append("Service.class);\t");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.newLine();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.append("private ");
       String _simpleName_3 = it.getSimpleName();
-      _builder.append(_simpleName_3, "\t\t");
+      _builder.append(_simpleName_3, "\t");
       _builder.append(" m_service;\t");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
+      _builder.append("\t\t\t");
       _builder.newLine();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.append("@Validate");
       _builder.newLine();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.append("public void init() throws SliceException {");
       _builder.newLine();
       _builder.append("\t\t\t");
       _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("}");
-      _builder.newLine();
       _builder.append("\t");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("@Invalidate");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("public void fini() throws SliceException {");
+      _builder.append("}");
       _builder.newLine();
       _builder.append("\t\t\t");
       _builder.newLine();
+      _builder.append("\t");
+      _builder.append("@Invalidate");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("public void fini() throws SliceException {");
+      _builder.newLine();
       _builder.append("\t\t");
+      _builder.newLine();
+      _builder.append("\t");
       _builder.append("}");
       _builder.newLine();
       _builder.append("\t\t");
@@ -175,36 +158,34 @@ public class ServiceCompiler {
         int _size = ((JvmGenericType) it).getSuperTypes().size();
         boolean _greaterThan = (_size > 0);
         if (_greaterThan) {
-          _builder.append("\t\t");
+          _builder.append("\t");
           CharSequence _compileSuperType = this.compileSuperType(((JvmGenericType) it), importManager);
-          _builder.append(_compileSuperType, "\t\t");
+          _builder.append(_compileSuperType, "\t");
           _builder.newLineIfNotEmpty();
         }
       }
       {
         Iterable<JvmField> _declaredFields = ((JvmGenericType) it).getDeclaredFields();
         for(final JvmField f : _declaredFields) {
-          _builder.append("\t\t");
+          _builder.append("\t");
           CharSequence _compileFeature = this.compileFeature(f, importManager);
-          _builder.append(_compileFeature, "\t\t");
+          _builder.append(_compileFeature, "\t");
           _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
+          _builder.append("\t");
           _builder.newLine();
         }
       }
       {
         Iterable<JvmOperation> _declaredOperations = ((JvmGenericType) it).getDeclaredOperations();
         for(final JvmOperation o : _declaredOperations) {
-          _builder.append("\t\t");
+          _builder.append("\t");
           CharSequence _compileFeature_1 = this.compileFeature(o, importManager);
-          _builder.append(_compileFeature_1, "\t\t");
+          _builder.append(_compileFeature_1, "\t");
           _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
+          _builder.append("\t");
           _builder.newLine();
         }
       }
-      _builder.append("\t");
       _builder.append("}");
       _builder.newLine();
       _xblockexpression = _builder;

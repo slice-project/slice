@@ -24,28 +24,28 @@ class ServiceCompiler {
 		val domain = it.fullyQualifiedName.toString().getDomain("org.etri.slice.commons", "service")
 		
 		'''
-			«val importManager = new ImportManager(true)» 
-			«val body = compile(importManager)»
-			«IF domain !== null»
-				package org.etri.slice.devices.«domain».«agent.name.toLowerCase»;
-			«ENDIF»
-			
-			import org.apache.felix.ipojo.annotations.Component;
-			import org.apache.felix.ipojo.annotations.Instantiate;
-			import org.apache.felix.ipojo.annotations.Invalidate;
-			import org.apache.felix.ipojo.annotations.Provides;
-			import org.apache.felix.ipojo.annotations.Validate;
-			import org.etri.slice.commons.SliceException;
-			«FOR i : importManager.imports»
-				import «i»;
-			«ENDFOR»
-			import org.slf4j.Logger;
-			import org.slf4j.LoggerFactory;		
+		«val importManager = new ImportManager(true)» 
+		«val body = compile(importManager)»
+		«IF domain !== null»
+			package org.etri.slice.devices.«domain».«agent.name.toLowerCase»;
+		«ENDIF»
 		
-			@Component(publicFactory=false, immediate=true)
-			@Provides
-			@Instantiate
-			«body»
+		import org.apache.felix.ipojo.annotations.Component;
+		import org.apache.felix.ipojo.annotations.Instantiate;
+		import org.apache.felix.ipojo.annotations.Invalidate;
+		import org.apache.felix.ipojo.annotations.Provides;
+		import org.apache.felix.ipojo.annotations.Validate;
+		import org.etri.slice.commons.SliceException;
+		«FOR i : importManager.imports»
+			import «i»;
+		«ENDFOR»
+		import org.slf4j.Logger;
+		import org.slf4j.LoggerFactory;		
+		
+		@Component(publicFactory=false, immediate=true)
+		@Provides
+		@Instantiate
+		«body»
 	'''
 	}
 	
@@ -53,34 +53,34 @@ class ServiceCompiler {
 		importManager.addImportFor(it)
 	'''
 			
-				public class «simpleName»Service implements «simpleName» {
-					
-					private static Logger s_logger = LoggerFactory.getLogger(«simpleName»Service.class);	
-					
-					private «simpleName» m_service;	
-					
-					@Validate
-					public void init() throws SliceException {
-						
-					}
+	public class «simpleName»Service implements «simpleName» {
+		
+		private static Logger s_logger = LoggerFactory.getLogger(«simpleName»Service.class);	
+		
+		private «simpleName» m_service;	
 				
-					@Invalidate
-					public void fini() throws SliceException {
-						
-					}
-					
-					«IF (it as JvmGenericType).superTypes.size > 0»
-						«(it as JvmGenericType).compileSuperType(importManager)»
-					«ENDIF»
-					«FOR f : (it as JvmGenericType).declaredFields»
-						«f.compileFeature(importManager)»
-						
-					«ENDFOR»		
-					«FOR o : (it as JvmGenericType).declaredOperations»
-						«o.compileFeature(importManager)»
-								
-					«ENDFOR»		
-				}
+		@Validate
+		public void init() throws SliceException {
+				
+		}
+				
+		@Invalidate
+		public void fini() throws SliceException {
+			
+		}
+			
+		«IF (it as JvmGenericType).superTypes.size > 0»
+			«(it as JvmGenericType).compileSuperType(importManager)»
+		«ENDIF»
+		«FOR f : (it as JvmGenericType).declaredFields»
+			«f.compileFeature(importManager)»
+			
+		«ENDFOR»		
+		«FOR o : (it as JvmGenericType).declaredOperations»
+			«o.compileFeature(importManager)»
+			
+		«ENDFOR»		
+	}
 	'''
 	}
 
