@@ -23,7 +23,7 @@ public class ADLGenerator implements IGeneratorForMultiInput {
 
 	@Inject extension DomainDependencyUtil
 	@Inject DomainManager domainManager
-
+	
 	override void doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
 		resources.checkDomainDependencies
 

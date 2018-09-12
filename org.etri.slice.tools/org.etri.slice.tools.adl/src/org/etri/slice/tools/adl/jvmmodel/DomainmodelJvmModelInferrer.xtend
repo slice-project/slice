@@ -10,12 +10,15 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
+import org.etri.slice.tools.adl.domainmodel.Call
 import org.etri.slice.tools.adl.domainmodel.Context
 import org.etri.slice.tools.adl.domainmodel.Control
 import org.etri.slice.tools.adl.domainmodel.Event
 import org.etri.slice.tools.adl.domainmodel.Exception
 import org.etri.slice.tools.adl.domainmodel.Operation
 import org.etri.slice.tools.adl.domainmodel.Property
+import org.etri.slice.tools.adl.domainmodel.Publish
+import org.etri.slice.tools.adl.generator.ADLGenerator
 import org.etri.slice.tools.adl.generator.GeneratorUtils
 
 /**
@@ -66,9 +69,9 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch infer(Exception exc, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
 
-		if(null === exc.name)
+		if (null === exc.name)
 			return;
-			
+
 		accept(exc.toClass(exc.fullyQualifiedName.adaptToSlice(""))) [
 			documentation = exc.documentation
 			if (exc.superType !== null)
@@ -91,8 +94,8 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 
-	def dispatch infer(Event event, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {		
-		
+	def dispatch infer(Event event, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
+
 		accept(event.toClass(event.fullyQualifiedName.adaptToSlice("event"))) [
 			documentation = event.documentation
 			if (event.superType !== null)
@@ -125,7 +128,7 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def dispatch infer(Control control, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-		
+
 		accept(control.toInterface(control.fullyQualifiedName.adaptToSlice("service").toString) [
 			documentation = control.documentation
 
@@ -134,7 +137,7 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 					superTypes += superType.cloneWithProxies
 				}
 			}
-			
+
 			// now let's go over the features
 			for (f : control.features) {
 				switch f {
@@ -162,6 +165,66 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 		])
 	}
 
-	def dispatch infer(AgentDeclaration agent, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {		
+	def dispatch infer(AgentDeclaration agent, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
+
+//		accept(agent.toClass(agent.fullyQualifiedName.adaptToSlice("Agent$$$"))) [
+//			documentation = agent.documentation
+//
+//			if (!prelinkingPhase) {
+//				// Behavior
+//				for (behavior : agent.behaviorSet.behaviors) {
+//					val situation = behavior.situation
+//
+//					for (type : situation.types) {
+//						val field = type.toField(type.simpleName.toLowerCase, type)
+//						members += field
+//
+////					System.out.println(">>> situation field " + field);
+////					System.out.println(">>> situation type " + type);
+//					}
+//
+//					val action = behavior.action
+//					switch action {
+//						Publish: {
+//							val field = action.toField(action.event.simpleName.toLowerCase, action.event)
+//							members += field
+//						}
+//						Call: {
+////						System.out.println(">>> Call " + action.control.simpleName);
+//							val field = action.toField(action.control.simpleName.toLowerCase, action.control.typeRef())
+//							members += field
+//
+////						System.out.println(">>> Call typeRef " + action.control.typeRef());
+////						System.out.println(">>> Call field " + field);
+//						}
+//					}
+//				}
+//
+//				// Commands
+//				for (commandSet : agent.commandSets) {
+//
+//					var field = commandSet.control.toField(commandSet.control.simpleName.toLowerCase,
+//						commandSet.control)
+//
+//					if (!members.contains(field))
+//						members += field
+//
+//					for (command : commandSet.commands) {
+//						for (commandContext : command.contexts) {
+//							field = commandSet.control.toField(commandContext.context.simpleName,
+//								commandContext.context.typeRef())
+//
+//							if (!members.contains(field))
+//								members += field
+//						}
+//
+//						field = commandSet.control.toField(command.action.simpleName, command.action.typeRef)
+//
+//						if (!members.contains(field))
+//							members += field
+//					}
+//				}
+//			}
+//		]
 	}
 }

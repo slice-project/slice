@@ -26,6 +26,12 @@ Event:
 	'event' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{'
 		properties+=Property*
 	'}';
+
+EventBody:
+	topic=Topic
+	'event' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{'
+		properties+=Property*
+	'}';
 	
 Exception:
 	'exception' name=ValidID ('extends' superType=JvmParameterizedTypeReference)?';';	
