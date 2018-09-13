@@ -34,6 +34,10 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension GeneratorUtils
 
 	def dispatch infer(Context context, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
+		
+		if(null === context.name)
+			return;
+			
 		accept(context.toClass(context.fullyQualifiedName.adaptToSlice("context"))) [
 
 			documentation = context.documentation
@@ -58,8 +62,11 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 
 			// now let's go over the features
 			for (p : context.properties) {
-				val field = p.toField(p.name, p.type)
-				members += field
+				if(null !== p.name)
+				{
+					val field = p.toField(p.name, p.type)
+					members += field
+				}
 			}
 
 			// finally we want to have a nice toString methods.
@@ -96,6 +103,9 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 
 	def dispatch infer(Event event, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
 
+		if (null === event.name)
+			return;
+			
 		accept(event.toClass(event.fullyQualifiedName.adaptToSlice("event"))) [
 			documentation = event.documentation
 			if (event.superType !== null)
@@ -118,8 +128,11 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 
 			// now let's go over the features
 			for (p : event.properties) {
-				val field = p.toField(p.name, p.type)
-				members += field
+				if(null !== p.name)
+				{
+					val field = p.toField(p.name, p.type)
+					members += field
+				}
 			}
 
 			// finally we want to have a nice toString methods.
@@ -128,7 +141,9 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 	}
 
 	def dispatch infer(Control control, extension IJvmDeclaredTypeAcceptor acceptor, boolean prelinkingPhase) {
-
+		if(null === control.name)
+			return;
+			
 		accept(control.toInterface(control.fullyQualifiedName.adaptToSlice("service").toString) [
 			documentation = control.documentation
 
@@ -143,22 +158,28 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 				switch f {
 					// for properties we create a field, a getter and a setter
 					Property: {
-						val member = f.toField(f.name, f.type)
-						member.static = true
-						members += member
+						if(null !== f.name)
+						{
+							val member = f.toField(f.name, f.type)
+							member.static = true
+							members += member
+						}
 					}
 					// operations are mapped to methods
 					Operation: {
-						members += f.toMethod(f.name, f.type ?: inferredType) [
-							documentation = f.documentation
-							for (p : f.params) {
-								parameters += p.toParameter(p.name, p.parameterType)
-							}
-
-							for (e : f.exceptions) {
-								exceptions += e.cloneWithProxies;
-							}
-						]
+						if(null !== f.name)
+						{
+							members += f.toMethod(f.name, f.type ?: inferredType) [
+								documentation = f.documentation
+								for (p : f.params) {
+									parameters += p.toParameter(p.name, p.parameterType)
+								}
+	
+								for (e : f.exceptions) {
+									exceptions += e.cloneWithProxies;
+								}
+							]
+						}
 					}
 				}
 			}

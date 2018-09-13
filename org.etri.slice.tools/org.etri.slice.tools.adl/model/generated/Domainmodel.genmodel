@@ -25,6 +25,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domainmodel.ecore#//Event/superType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domainmodel.ecore#//Event/properties"/>
     </genClasses>
+    <genClasses ecoreClass="Domainmodel.ecore#//EventBody">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domainmodel.ecore#//EventBody/topic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Domainmodel.ecore#//EventBody/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domainmodel.ecore#//EventBody/superType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domainmodel.ecore#//EventBody/properties"/>
+    </genClasses>
     <genClasses ecoreClass="Domainmodel.ecore#//Exception">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domainmodel.ecore#//Exception/superType"/>
     </genClasses>

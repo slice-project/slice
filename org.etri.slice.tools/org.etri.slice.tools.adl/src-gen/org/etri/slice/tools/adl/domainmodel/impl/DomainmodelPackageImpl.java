@@ -32,6 +32,7 @@ import org.etri.slice.tools.adl.domainmodel.DomainModel;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelFactory;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 import org.etri.slice.tools.adl.domainmodel.Event;
+import org.etri.slice.tools.adl.domainmodel.EventBody;
 import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.NoOp;
 import org.etri.slice.tools.adl.domainmodel.Operation;
@@ -83,6 +84,13 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
    * @generated
    */
   private EClass eventEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass eventBodyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -428,6 +436,56 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
   public EReference getEvent_Properties()
   {
     return (EReference)eventEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEventBody()
+  {
+    return eventBodyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEventBody_Topic()
+  {
+    return (EReference)eventBodyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEventBody_Name()
+  {
+    return (EAttribute)eventBodyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEventBody_SuperType()
+  {
+    return (EReference)eventBodyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEventBody_Properties()
+  {
+    return (EReference)eventBodyEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1019,6 +1077,12 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     createEReference(eventEClass, EVENT__SUPER_TYPE);
     createEReference(eventEClass, EVENT__PROPERTIES);
 
+    eventBodyEClass = createEClass(EVENT_BODY);
+    createEReference(eventBodyEClass, EVENT_BODY__TOPIC);
+    createEAttribute(eventBodyEClass, EVENT_BODY__NAME);
+    createEReference(eventBodyEClass, EVENT_BODY__SUPER_TYPE);
+    createEReference(eventBodyEClass, EVENT_BODY__PROPERTIES);
+
     exceptionEClass = createEClass(EXCEPTION);
     createEReference(exceptionEClass, EXCEPTION__SUPER_TYPE);
 
@@ -1160,6 +1224,12 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     initEReference(getEvent_Topic(), this.getTopic(), null, "topic", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEvent_SuperType(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superType", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEvent_Properties(), this.getProperty(), null, "properties", null, 0, -1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(eventBodyEClass, EventBody.class, "EventBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEventBody_Topic(), this.getTopic(), null, "topic", null, 0, 1, EventBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEventBody_Name(), ecorePackage.getEString(), "name", null, 0, 1, EventBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEventBody_SuperType(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superType", null, 0, 1, EventBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEventBody_Properties(), this.getProperty(), null, "properties", null, 0, -1, EventBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exceptionEClass, org.etri.slice.tools.adl.domainmodel.Exception.class, "Exception", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getException_SuperType(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superType", null, 0, 1, org.etri.slice.tools.adl.domainmodel.Exception.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

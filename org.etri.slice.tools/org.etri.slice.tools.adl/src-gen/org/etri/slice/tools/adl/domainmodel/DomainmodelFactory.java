@@ -69,6 +69,15 @@ public interface DomainmodelFactory extends EFactory
   Event createEvent();
 
   /**
+   * Returns a new object of class '<em>Event Body</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Event Body</em>'.
+   * @generated
+   */
+  EventBody createEventBody();
+
+  /**
    * Returns a new object of class '<em>Exception</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

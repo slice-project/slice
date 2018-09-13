@@ -73,6 +73,7 @@ import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 import org.etri.slice.tools.adl.domainmodel.DomainModel;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 import org.etri.slice.tools.adl.domainmodel.Event;
+import org.etri.slice.tools.adl.domainmodel.EventBody;
 import org.etri.slice.tools.adl.domainmodel.NoOp;
 import org.etri.slice.tools.adl.domainmodel.Operation;
 import org.etri.slice.tools.adl.domainmodel.Property;
@@ -134,6 +135,9 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 				return; 
 			case DomainmodelPackage.EVENT:
 				sequence_Event(context, (Event) semanticObject); 
+				return; 
+			case DomainmodelPackage.EVENT_BODY:
+				sequence_EventBody(context, (EventBody) semanticObject); 
 				return; 
 			case DomainmodelPackage.EXCEPTION:
 				sequence_Exception(context, (org.etri.slice.tools.adl.domainmodel.Exception) semanticObject); 
@@ -591,6 +595,18 @@ public abstract class AbstractDomainmodelSemanticSequencer extends XbaseSemantic
 	 *     ((importSection=XImportSection elements+=AbstractElement+) | elements+=AbstractElement+)?
 	 */
 	protected void sequence_DomainModel(ISerializationContext context, DomainModel semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EventBody returns EventBody
+	 *
+	 * Constraint:
+	 *     (topic=Topic name=ValidID superType=JvmParameterizedTypeReference? properties+=Property*)
+	 */
+	protected void sequence_EventBody(ISerializationContext context, EventBody semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

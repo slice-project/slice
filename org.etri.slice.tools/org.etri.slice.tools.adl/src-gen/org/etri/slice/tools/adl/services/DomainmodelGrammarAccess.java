@@ -251,6 +251,72 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
+	public class EventBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.etri.slice.tools.adl.Domainmodel.EventBody");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTopicAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTopicTopicParserRuleCall_0_0 = (RuleCall)cTopicAssignment_0.eContents().get(0);
+		private final Keyword cEventKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameValidIDParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cExtendsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSuperTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSuperTypeJvmParameterizedTypeReferenceParserRuleCall_3_1_0 = (RuleCall)cSuperTypeAssignment_3_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cPropertiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cPropertiesPropertyParserRuleCall_5_0 = (RuleCall)cPropertiesAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//EventBody:
+		//	topic=Topic
+		//	'event' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{'
+		//	properties+=Property*
+		//	'}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//topic=Topic 'event' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{' properties+=Property* '}'
+		public Group getGroup() { return cGroup; }
+		
+		//topic=Topic
+		public Assignment getTopicAssignment_0() { return cTopicAssignment_0; }
+		
+		//Topic
+		public RuleCall getTopicTopicParserRuleCall_0_0() { return cTopicTopicParserRuleCall_0_0; }
+		
+		//'event'
+		public Keyword getEventKeyword_1() { return cEventKeyword_1; }
+		
+		//name=ValidID
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_2_0() { return cNameValidIDParserRuleCall_2_0; }
+		
+		//('extends' superType=JvmParameterizedTypeReference)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//'extends'
+		public Keyword getExtendsKeyword_3_0() { return cExtendsKeyword_3_0; }
+		
+		//superType=JvmParameterizedTypeReference
+		public Assignment getSuperTypeAssignment_3_1() { return cSuperTypeAssignment_3_1; }
+		
+		//JvmParameterizedTypeReference
+		public RuleCall getSuperTypeJvmParameterizedTypeReferenceParserRuleCall_3_1_0() { return cSuperTypeJvmParameterizedTypeReferenceParserRuleCall_3_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+		
+		//properties+=Property*
+		public Assignment getPropertiesAssignment_5() { return cPropertiesAssignment_5; }
+		
+		//Property
+		public RuleCall getPropertiesPropertyParserRuleCall_5_0() { return cPropertiesPropertyParserRuleCall_5_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+	}
 	public class ExceptionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.etri.slice.tools.adl.Domainmodel.Exception");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1150,6 +1216,7 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 	private final DomainDeclarationElements pDomainDeclaration;
 	private final ContextElements pContext;
 	private final EventElements pEvent;
+	private final EventBodyElements pEventBody;
 	private final ExceptionElements pException;
 	private final ControlElements pControl;
 	private final AgentDeclarationElements pAgentDeclaration;
@@ -1189,6 +1256,7 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDomainDeclaration = new DomainDeclarationElements();
 		this.pContext = new ContextElements();
 		this.pEvent = new EventElements();
+		this.pEventBody = new EventBodyElements();
 		this.pException = new ExceptionElements();
 		this.pControl = new ControlElements();
 		this.pAgentDeclaration = new AgentDeclarationElements();
@@ -1298,6 +1366,19 @@ public class DomainmodelGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEventRule() {
 		return getEventAccess().getRule();
+	}
+	
+	//EventBody:
+	//	topic=Topic
+	//	'event' name=ValidID ('extends' superType=JvmParameterizedTypeReference)? '{'
+	//	properties+=Property*
+	//	'}';
+	public EventBodyElements getEventBodyAccess() {
+		return pEventBody;
+	}
+	
+	public ParserRule getEventBodyRule() {
+		return getEventBodyAccess().getRule();
 	}
 	
 	//Exception:

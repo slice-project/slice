@@ -261,6 +261,61 @@ public interface DomainmodelPackage extends EPackage
   int EVENT_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link org.etri.slice.tools.adl.domainmodel.impl.EventBodyImpl <em>Event Body</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.etri.slice.tools.adl.domainmodel.impl.EventBodyImpl
+   * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getEventBody()
+   * @generated
+   */
+  int EVENT_BODY = 5;
+
+  /**
+   * The feature id for the '<em><b>Topic</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_BODY__TOPIC = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_BODY__NAME = 1;
+
+  /**
+   * The feature id for the '<em><b>Super Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_BODY__SUPER_TYPE = 2;
+
+  /**
+   * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_BODY__PROPERTIES = 3;
+
+  /**
+   * The number of structural features of the '<em>Event Body</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_BODY_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.etri.slice.tools.adl.domainmodel.impl.ExceptionImpl <em>Exception</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -268,7 +323,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getException()
    * @generated
    */
-  int EXCEPTION = 5;
+  int EXCEPTION = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -305,7 +360,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getControl()
    * @generated
    */
-  int CONTROL = 6;
+  int CONTROL = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -351,7 +406,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getAgentDeclaration()
    * @generated
    */
-  int AGENT_DECLARATION = 7;
+  int AGENT_DECLARATION = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -415,7 +470,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getRuleSet()
    * @generated
    */
-  int RULE_SET = 8;
+  int RULE_SET = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -461,7 +516,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getBehaviorSet()
    * @generated
    */
-  int BEHAVIOR_SET = 9;
+  int BEHAVIOR_SET = 10;
 
   /**
    * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
@@ -489,7 +544,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getBehavior()
    * @generated
    */
-  int BEHAVIOR = 10;
+  int BEHAVIOR = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -535,7 +590,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getCommandSet()
    * @generated
    */
-  int COMMAND_SET = 11;
+  int COMMAND_SET = 12;
 
   /**
    * The feature id for the '<em><b>Control</b></em>' containment reference.
@@ -572,7 +627,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getCommand()
    * @generated
    */
-  int COMMAND = 12;
+  int COMMAND = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -627,7 +682,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getCommandContext()
    * @generated
    */
-  int COMMAND_CONTEXT = 13;
+  int COMMAND_CONTEXT = 14;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -664,7 +719,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 14;
+  int DATA_TYPE = 15;
 
   /**
    * The number of structural features of the '<em>Data Type</em>' class.
@@ -683,7 +738,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getSituation()
    * @generated
    */
-  int SITUATION = 15;
+  int SITUATION = 16;
 
   /**
    * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -711,7 +766,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 16;
+  int ACTION = 17;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' attribute.
@@ -739,7 +794,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getPublish()
    * @generated
    */
-  int PUBLISH = 17;
+  int PUBLISH = 18;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' attribute.
@@ -776,7 +831,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getNoOp()
    * @generated
    */
-  int NO_OP = 18;
+  int NO_OP = 19;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' attribute.
@@ -804,7 +859,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getCall()
    * @generated
    */
-  int CALL = 19;
+  int CALL = 20;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' attribute.
@@ -850,7 +905,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getFeature()
    * @generated
    */
-  int FEATURE = 20;
+  int FEATURE = 21;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -887,7 +942,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 21;
+  int PROPERTY = 22;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -924,7 +979,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getOperation()
    * @generated
    */
-  int OPERATION = 22;
+  int OPERATION = 23;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -979,7 +1034,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getTopic()
    * @generated
    */
-  int TOPIC = 23;
+  int TOPIC = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1007,7 +1062,7 @@ public interface DomainmodelPackage extends EPackage
    * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getAgency()
    * @generated
    */
-  int AGENCY = 24;
+  int AGENCY = 25;
 
   /**
    * The feature id for the '<em><b>Ip</b></em>' attribute.
@@ -1185,6 +1240,60 @@ public interface DomainmodelPackage extends EPackage
    * @generated
    */
   EReference getEvent_Properties();
+
+  /**
+   * Returns the meta object for class '{@link org.etri.slice.tools.adl.domainmodel.EventBody <em>Event Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Event Body</em>'.
+   * @see org.etri.slice.tools.adl.domainmodel.EventBody
+   * @generated
+   */
+  EClass getEventBody();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.etri.slice.tools.adl.domainmodel.EventBody#getTopic <em>Topic</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Topic</em>'.
+   * @see org.etri.slice.tools.adl.domainmodel.EventBody#getTopic()
+   * @see #getEventBody()
+   * @generated
+   */
+  EReference getEventBody_Topic();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.etri.slice.tools.adl.domainmodel.EventBody#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.etri.slice.tools.adl.domainmodel.EventBody#getName()
+   * @see #getEventBody()
+   * @generated
+   */
+  EAttribute getEventBody_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.etri.slice.tools.adl.domainmodel.EventBody#getSuperType <em>Super Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Super Type</em>'.
+   * @see org.etri.slice.tools.adl.domainmodel.EventBody#getSuperType()
+   * @see #getEventBody()
+   * @generated
+   */
+  EReference getEventBody_SuperType();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.etri.slice.tools.adl.domainmodel.EventBody#getProperties <em>Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Properties</em>'.
+   * @see org.etri.slice.tools.adl.domainmodel.EventBody#getProperties()
+   * @see #getEventBody()
+   * @generated
+   */
+  EReference getEventBody_Properties();
 
   /**
    * Returns the meta object for class '{@link org.etri.slice.tools.adl.domainmodel.Exception <em>Exception</em>}'.
@@ -1904,6 +2013,48 @@ public interface DomainmodelPackage extends EPackage
      * @generated
      */
     EReference EVENT__PROPERTIES = eINSTANCE.getEvent_Properties();
+
+    /**
+     * The meta object literal for the '{@link org.etri.slice.tools.adl.domainmodel.impl.EventBodyImpl <em>Event Body</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.etri.slice.tools.adl.domainmodel.impl.EventBodyImpl
+     * @see org.etri.slice.tools.adl.domainmodel.impl.DomainmodelPackageImpl#getEventBody()
+     * @generated
+     */
+    EClass EVENT_BODY = eINSTANCE.getEventBody();
+
+    /**
+     * The meta object literal for the '<em><b>Topic</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EVENT_BODY__TOPIC = eINSTANCE.getEventBody_Topic();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EVENT_BODY__NAME = eINSTANCE.getEventBody_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Super Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EVENT_BODY__SUPER_TYPE = eINSTANCE.getEventBody_SuperType();
+
+    /**
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EVENT_BODY__PROPERTIES = eINSTANCE.getEventBody_Properties();
 
     /**
      * The meta object literal for the '{@link org.etri.slice.tools.adl.domainmodel.impl.ExceptionImpl <em>Exception</em>}' class.

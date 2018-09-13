@@ -55,7 +55,6 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 
 	override completeJvmParameterizedTypeReference_Type(EObject element, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		System.out.println("element = " + element);
 
 		if (EcoreUtil2.getContainerOfType(element, Property) !== null) {
 			System.out.println("element instanceof Property **********************" + (element instanceof Property));
@@ -84,14 +83,7 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 				)
 			}
 			Situation: {
-				System.out.println("Situation .......................")
-				val typeProvider = createTypeProvider(element.eResource.resourceSet)
-				
-				element.eResource.resourceSet.resources.forEach[
-					
-					System.out.println("resource = " + it);
-				]
-				
+				val typeProvider = createTypeProvider(element.eResource.resourceSet)				
 				val contextBase = typeProvider.findTypeByName(CommonInterfaces.CONTEXT_BASE);
 
 				provider.createSubTypeProposals(contextBase, this, context,
@@ -104,9 +96,7 @@ class DomainmodelProposalProvider extends AbstractDomainmodelProposalProvider {
 					TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE,
 					new AcceptableInstanceFilter(), acceptor)
 			}
-			Context: {
-				System.out.println("Context .......................");
-				
+			Context: {				
 				val fqn = element.fullyQualifiedName.adaptToSlice("context").toString
 
 				val typeProvider = createTypeProvider(element.eResource.resourceSet)

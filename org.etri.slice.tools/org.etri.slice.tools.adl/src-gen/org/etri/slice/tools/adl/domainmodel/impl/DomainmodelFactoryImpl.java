@@ -29,6 +29,7 @@ import org.etri.slice.tools.adl.domainmodel.DomainModel;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelFactory;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 import org.etri.slice.tools.adl.domainmodel.Event;
+import org.etri.slice.tools.adl.domainmodel.EventBody;
 import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.NoOp;
 import org.etri.slice.tools.adl.domainmodel.Operation;
@@ -95,6 +96,7 @@ public class DomainmodelFactoryImpl extends EFactoryImpl implements DomainmodelF
       case DomainmodelPackage.DOMAIN_DECLARATION: return createDomainDeclaration();
       case DomainmodelPackage.CONTEXT: return createContext();
       case DomainmodelPackage.EVENT: return createEvent();
+      case DomainmodelPackage.EVENT_BODY: return createEventBody();
       case DomainmodelPackage.EXCEPTION: return createException();
       case DomainmodelPackage.CONTROL: return createControl();
       case DomainmodelPackage.AGENT_DECLARATION: return createAgentDeclaration();
@@ -173,6 +175,17 @@ public class DomainmodelFactoryImpl extends EFactoryImpl implements DomainmodelF
   {
     EventImpl event = new EventImpl();
     return event;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EventBody createEventBody()
+  {
+    EventBodyImpl eventBody = new EventBodyImpl();
+    return eventBody;
   }
 
   /**

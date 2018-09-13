@@ -25,6 +25,7 @@ import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 import org.etri.slice.tools.adl.domainmodel.DomainModel;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 import org.etri.slice.tools.adl.domainmodel.Event;
+import org.etri.slice.tools.adl.domainmodel.EventBody;
 import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.NoOp;
 import org.etri.slice.tools.adl.domainmodel.Operation;
@@ -134,6 +135,13 @@ public class DomainmodelSwitch<T> extends Switch<T>
         T result = caseEvent(event);
         if (result == null) result = caseAbstractElement(event);
         if (result == null) result = caseDataType(event);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DomainmodelPackage.EVENT_BODY:
+      {
+        EventBody eventBody = (EventBody)theEObject;
+        T result = caseEventBody(eventBody);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -365,6 +373,22 @@ public class DomainmodelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEvent(Event object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Event Body</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Event Body</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEventBody(EventBody object)
   {
     return null;
   }

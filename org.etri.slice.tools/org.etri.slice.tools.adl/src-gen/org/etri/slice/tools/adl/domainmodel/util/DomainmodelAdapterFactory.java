@@ -27,6 +27,7 @@ import org.etri.slice.tools.adl.domainmodel.DomainDeclaration;
 import org.etri.slice.tools.adl.domainmodel.DomainModel;
 import org.etri.slice.tools.adl.domainmodel.DomainmodelPackage;
 import org.etri.slice.tools.adl.domainmodel.Event;
+import org.etri.slice.tools.adl.domainmodel.EventBody;
 import org.etri.slice.tools.adl.domainmodel.Feature;
 import org.etri.slice.tools.adl.domainmodel.NoOp;
 import org.etri.slice.tools.adl.domainmodel.Operation;
@@ -123,6 +124,11 @@ public class DomainmodelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseEvent(Event object)
       {
         return createEventAdapter();
+      }
+      @Override
+      public Adapter caseEventBody(EventBody object)
+      {
+        return createEventBodyAdapter();
       }
       @Override
       public Adapter caseException(org.etri.slice.tools.adl.domainmodel.Exception object)
@@ -317,6 +323,21 @@ public class DomainmodelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEventAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.etri.slice.tools.adl.domainmodel.EventBody <em>Event Body</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.etri.slice.tools.adl.domainmodel.EventBody
+   * @generated
+   */
+  public Adapter createEventBodyAdapter()
   {
     return null;
   }
