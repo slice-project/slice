@@ -125,7 +125,7 @@ class DomainmodelFormatter extends XbaseFormatter {
 			val close1 = element.regionFor.keyword("}")
 
 			open1.append[newLine]
-			interior(open1, close1)[indent]
+//			interior(open1, close1)[indent]
 
 			element.agency.format
 			element.ruleSet.format
