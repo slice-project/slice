@@ -274,10 +274,6 @@ public class DomainmodelFormatter extends XbaseFormatter {
                 it.newLine();
               };
               document.append(open1, _function_16);
-              final Procedure1<IHiddenRegionFormatter> _function_17 = (IHiddenRegionFormatter it) -> {
-                it.indent();
-              };
-              document.<ISemanticRegion, ISemanticRegion>interior(open1, close1, _function_17);
               document.<Agency>format(((AgentDeclaration)element).getAgency());
               document.<RuleSet>format(((AgentDeclaration)element).getRuleSet());
               document.<BehaviorSet>format(((AgentDeclaration)element).getBehaviorSet());
@@ -285,10 +281,10 @@ public class DomainmodelFormatter extends XbaseFormatter {
               for (final CommandSet commandSet : _commandSets) {
                 {
                   document.<CommandSet>format(commandSet);
-                  final Procedure1<IHiddenRegionFormatter> _function_18 = (IHiddenRegionFormatter it) -> {
+                  final Procedure1<IHiddenRegionFormatter> _function_17 = (IHiddenRegionFormatter it) -> {
                     it.setNewLines(1);
                   };
-                  document.<CommandSet>append(commandSet, _function_18);
+                  document.<CommandSet>append(commandSet, _function_17);
                 }
               }
             }
