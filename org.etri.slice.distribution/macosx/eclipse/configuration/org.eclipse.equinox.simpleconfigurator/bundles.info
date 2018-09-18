@@ -4,6 +4,7 @@ ch.qos.logback.classic,1.0.7.v20121108-1250,plugins/ch.qos.logback.classic_1.0.7
 ch.qos.logback.core,1.0.7.v20121108-1250,plugins/ch.qos.logback.core_1.0.7.v20121108-1250.jar,4,false
 ch.qos.logback.slf4j,1.0.7.v201505121915,plugins/ch.qos.logback.slf4j_1.0.7.v201505121915.jar,4,false
 com.google.guava,21.0.0.v20170206-1425,plugins/com.google.guava_21.0.0.v20170206-1425.jar,4,false
+com.google.guava,15.0.0.v201403281430,plugins/com.google.guava_15.0.0.v201403281430.jar,4,false
 com.google.inject,3.0.0.v201312141243,plugins/com.google.inject_3.0.0.v201312141243.jar,4,false
 com.ibm.icu,58.2.0.v20170418-1837,plugins/com.ibm.icu_58.2.0.v20170418-1837.jar,4,false
 com.jcraft.jsch,0.1.54.v20170116-1932,plugins/com.jcraft.jsch_0.1.54.v20170116-1932.jar,4,false
@@ -99,7 +100,7 @@ org.eclipse.equinox.app,1.3.400.v20150715-1528,plugins/org.eclipse.equinox.app_1
 org.eclipse.equinox.bidi,1.1.0.v20160728-1031,plugins/org.eclipse.equinox.bidi_1.1.0.v20160728-1031.jar,4,false
 org.eclipse.equinox.common,3.9.0.v20170207-1454,plugins/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar,2,true
 org.eclipse.equinox.ds,1.5.0.v20170307-1429,plugins/org.eclipse.equinox.ds_1.5.0.v20170307-1429.jar,2,true
-org.eclipse.equinox.event,1.4.0.v20170105-1446,plugins/org.eclipse.equinox.event_1.4.0.v20170105-1446.jar,4,false
+org.eclipse.equinox.event,1.4.0.v20170105-1446,plugins/org.eclipse.equinox.event_1.4.0.v20170105-1446.jar,2,true
 org.eclipse.equinox.frameworkadmin,2.0.300.v20160504-1450,plugins/org.eclipse.equinox.frameworkadmin_2.0.300.v20160504-1450.jar,4,false
 org.eclipse.equinox.frameworkadmin.equinox,1.0.800.v20170524-1345,plugins/org.eclipse.equinox.frameworkadmin.equinox_1.0.800.v20170524-1345.jar,4,false
 org.eclipse.equinox.http.jetty,3.4.0.v20170503-2025,plugins/org.eclipse.equinox.http.jetty_3.4.0.v20170503-2025.jar,4,false
@@ -216,7 +217,7 @@ org.eclipse.ui.views.log,1.2.100.v20170515-1458,plugins/org.eclipse.ui.views.log
 org.eclipse.ui.views.properties.tabbed,3.8.1.v20170713-0803,plugins/org.eclipse.ui.views.properties.tabbed_3.8.1.v20170713-0803.jar,4,false
 org.eclipse.ui.workbench,3.110.1.v20170704-1208,plugins/org.eclipse.ui.workbench_3.110.1.v20170704-1208.jar,4,false
 org.eclipse.ui.workbench.texteditor,3.10.100.v20170426-2021,plugins/org.eclipse.ui.workbench.texteditor_3.10.100.v20170426-2021.jar,4,false
-org.eclipse.update.configurator,3.3.400.v20160506-0750,plugins/org.eclipse.update.configurator_3.3.400.v20160506-0750.jar,4,true
+org.eclipse.update.configurator,3.3.400.v20160506-0750,plugins/org.eclipse.update.configurator_3.3.400.v20160506-0750.jar,4,false
 org.eclipse.wst.common.core,1.2.0.v200908251833,plugins/org.eclipse.wst.common.core_1.2.0.v200908251833.jar,4,false
 org.eclipse.wst.common.emf,1.2.501.v201803221834,plugins/org.eclipse.wst.common.emf_1.2.501.v201803221834.jar,4,false
 org.eclipse.wst.common.emfworkbench.integration,1.2.101.v201107081800,plugins/org.eclipse.wst.common.emfworkbench.integration_1.2.101.v201107081800.jar,4,false
@@ -260,13 +261,13 @@ org.eclipse.xtext.xbase.ide,2.13.0.v20171020-0717,plugins/org.eclipse.xtext.xbas
 org.eclipse.xtext.xbase.lib,2.13.0.v20171020-0659,plugins/org.eclipse.xtext.xbase.lib_2.13.0.v20171020-0659.jar,4,false
 org.eclipse.xtext.xbase.ui,2.13.0.v20171020-0732,plugins/org.eclipse.xtext.xbase.ui_2.13.0.v20171020-0732.jar,4,false
 org.eclipse.xtext.xtext.generator,2.13.0.v20171020-0708,plugins/org.eclipse.xtext.xtext.generator_2.13.0.v20171020-0708.jar,4,false
-org.etri.slice.tools.adl,2.13.0.201807121527,plugins/org.etri.slice.tools.adl_2.13.0.201807121527.jar,4,false
-org.etri.slice.tools.adl.ide,2.13.0.201807121527,plugins/org.etri.slice.tools.adl.ide_2.13.0.201807121527.jar,4,false
-org.etri.slice.tools.adl.product,1.0.0.201807121527,plugins/org.etri.slice.tools.adl.product_1.0.0.201807121527.jar,4,false
-org.etri.slice.tools.adl.project,1.0.0.201807121527,plugins/org.etri.slice.tools.adl.project_1.0.0.201807121527.jar,4,false
-org.etri.slice.tools.adl.ui,2.13.0.201807121527,plugins/org.etri.slice.tools.adl.ui_2.13.0.201807121527.jar,4,false
-org.etri.slice.tools.console,1.0.0.201807121527,plugins/org.etri.slice.tools.console_1.0.0.201807121527.jar,4,false
-org.etri.slice.tools.jmxconsole,1.0.0.201807121527,plugins/org.etri.slice.tools.jmxconsole_1.0.0.201807121527.jar,4,false
+org.etri.slice.tools.adl,2.13.0.201809181716,plugins/org.etri.slice.tools.adl_2.13.0.201809181716.jar,4,false
+org.etri.slice.tools.adl.ide,2.13.0.201809181716,plugins/org.etri.slice.tools.adl.ide_2.13.0.201809181716.jar,4,false
+org.etri.slice.tools.adl.product,1.0.0.201809181716,plugins/org.etri.slice.tools.adl.product_1.0.0.201809181716.jar,4,false
+org.etri.slice.tools.adl.project,1.0.0.201809181716,plugins/org.etri.slice.tools.adl.project_1.0.0.201809181716.jar,4,false
+org.etri.slice.tools.adl.ui,2.13.0.201809181716,plugins/org.etri.slice.tools.adl.ui_2.13.0.201809181716.jar,4,false
+org.etri.slice.tools.console,1.0.0.201809181716,plugins/org.etri.slice.tools.console_1.0.0.201809181716.jar,4,false
+org.etri.slice.tools.jmxconsole,1.0.0.201809181716,plugins/org.etri.slice.tools.jmxconsole_1.0.0.201809181716.jar,4,false
 org.hamcrest.core,1.3.0.v201303031735,plugins/org.hamcrest.core_1.3.0.v201303031735.jar,4,false
 org.junit,4.12.0.v201504281640,plugins/org.junit_4.12.0.v201504281640/,4,false
 org.objectweb.asm,6.0.0.v20180116-1719,plugins/org.objectweb.asm_6.0.0.v20180116-1719.jar,4,false
