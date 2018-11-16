@@ -10,7 +10,7 @@
 
 > SLICE source-code without distribution [slice-source](https://github.com/slice-project/slice-source)
 
-> SLICE Framework distribution (win32) [slice-win32-dist](https://github.com/slice-project/slice-win32-dist) (macosx) [slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist)
+> SLICE Framework distribution [slice-win32-dist](https://github.com/slice-project/slice-win32-dist)(win32)[slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist)(macosx) 
 
 > SLICE Engine distribution [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
 
