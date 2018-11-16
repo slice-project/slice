@@ -36,20 +36,20 @@
 ## Contact ##
 
 > Project Leader:
->> Donghwan Park,  Electronics and Telecommunication Research Institute (ETRI),  
+>> DongHwan Park,  Electronics and Telecommunication Research Institute (ETRI),  
 
 >> Principal Member of Engineering Staff
 
 >> dhpark@etri.re.kr
 
 > Maintainer:
->> Youngho Suh, Electronics and Telecommunication Research Institute (ETRI)
+>> YoungHo Suh, Electronics and Telecommunication Research Institute (ETRI)
 
 >> Principal Member of Engineering Staff 
 
 >> yhsuh@etri.re.kr
 
->> Sungpil Woo, Electronics and Telecommunication Research Institute (ETRI), 
+>> SungPil Woo, Electronics and Telecommunication Research Institute (ETRI), 
 
 >> Researcher
 
