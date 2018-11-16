@@ -50,7 +50,7 @@
 > Maintainer:
 >> YoungHo Suh, Electronics and Telecommunication Research Institute (ETRI)
 
->> Principal Member of Engineering Staff 
+>> Senior Researcher
 
 >> yhsuh@etri.re.kr
 
