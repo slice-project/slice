@@ -6,15 +6,15 @@
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the categories..
 
-> SLICE main repository (this) [slice](https://github.com/slice-project/slice)
+> SLICE main repository (this) :: [slice](https://github.com/slice-project/slice)
 
-> SLICE Source Code without distribution [slice-source](https://github.com/slice-project/slice-source)
+> SLICE Source Code without distribution :: [slice-source](https://github.com/slice-project/slice-source)
 
-> SLICE Framework distribution [slice-win32-dist](https://github.com/slice-project/slice-win32-dist) // [slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist) 
+> SLICE Framework distribution :: [slice-win32-dist](https://github.com/slice-project/slice-win32-dist) // [slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist) 
 
-> SLICE Engine distribution [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
+> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
 
-> SLICE Example implementations [slice-examples](https://github.com/slice-project/slice-examples)
+> SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
 
 ## SLICE References ##
 > [SLICE White Paper](https://github.com/slice-project/slice-win32-dist) - will be soon...
