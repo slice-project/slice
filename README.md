@@ -20,6 +20,17 @@
 > YoungHo Suh, SungPil Woo, DongHwan Park. 
 - "SLICE : Self-Learnable IoT Common Software Engine" IoT2018, The 8th International Conference on Internet of Things (IoT 2018), Santa Barbara, USA, Oct. 2018. [URL](https://dl.acm.org/citation.cfm?doid=3277593.3277603).
 
+## Documentation ##
+> SLICE White Paper (Concept) [URL](https://github.com/slice-project/slice-win32-dist)
+
+> SLICE Presentation Material (Concept) [URL](https://github.com/slice-project/slice-win32-dist)
+
+> SLICE UserGuide - Getting Started (Win32) [URL](https://github.com/slice-project/slice-win32-dist)
+
+> SLICE UserGuide - Getting Started (Mac) [URL](https://github.com/slice-project/slice-win32-dist)
+
+> SLICE Presentation Material (Example Implmentation) [URL](https://github.com/slice-project/slice-win32-dist)
+
 ## Contact ##
 
 > Project Leader:
