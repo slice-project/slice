@@ -6,7 +6,7 @@
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the categories..
 
-> SLICE main repository (this repository) [slice](https://github.com/slice-project/slice)
+> SLICE main repository (this) [slice](https://github.com/slice-project/slice)
 
 > SLICE source-code without distribution [slice-source](https://github.com/slice-project/slice-source)
 
