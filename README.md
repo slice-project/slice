@@ -18,8 +18,7 @@
 
 ### Paper Publication ###
 - YoungHo Suh, SungPil Woo, DongHwan Park. 
-- "SLICE : Self-Learnable IoT Common Software Engine" IoT2018, The 8th International Conference on Internet of Things (IoT 2018), Santa Barbara, USA, Oct. 2018. 
-- [URL](https://dl.acm.org/citation.cfm?doid=3277593.3277603).
+-- "SLICE : Self-Learnable IoT Common Software Engine" IoT2018, The 8th International Conference on Internet of Things (IoT 2018), Santa Barbara, USA, Oct. 2018. [URL](https://dl.acm.org/citation.cfm?doid=3277593.3277603).
 
 ### Specification ###
 > Java 1.8
