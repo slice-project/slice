@@ -1,12 +1,24 @@
 ### SLICE Github Repository ###
-> This project is full source code repository of SLICE project
+> This is full source code repository of SLICE project
 
 > SLICE is acronym of "Self-Learnable IoT Common Software Engine".
 
 ### Structure of SLICE github Repository ###
-> [Server](http://14.63.168.75:8080/epcis/)
-> [Server](http://14.63.168.75:8080/epcis/)
-> [Server](http://14.63.168.75:8080/epcis/)
+> We devide our source code based on the category like following.
+
+> SLICE main repository (this repository) [slice](https://github.com/slice-project/slice)
+
+> SLICE source-code without distribution [slice-source](https://github.com/slice-project/slice-source)
+
+> SLICE Framework distribution (win32) [slice-win32-dist](https://github.com/slice-project/slice-win32-dist)
+
+> SLICE Framework distribution (mac) [slice-win32-dist](https://github.com/slice-project/slice-macosx-dist)
+
+> SLICE Framework distribution (mac) [slice-win32-dist](https://github.com/slice-project/slice-macosx-dist)
+
+> SLICE Engine distribution [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
+
+> SLICE example implementations [slice-examples](https://github.com/slice-project/slice-examples)
 
 ### Paper Publication ###
 - Youngho Suh, Sungpil Woo, Donghwan Park. "SLICE : Self-Learnable IoT Common Software Engine" IoT2018, The 8th International Conference on Internet of Things (IoT 2018), Santa Barbara, USA, Oct. 2018. 
