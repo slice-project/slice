@@ -25,11 +25,11 @@
 
 > [SLICE Presentation Material (Concept)](https://github.com/slice-project/slice-win32-dist)
 
-> [SLICE UserGuide - Getting Started (Win32)](https://github.com/slice-project/slice-win32-dist)
+> [SLICE UserGuide - Getting Started (Win32)](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
-> [SLICE UserGuide - Getting Started (Mac)](https://github.com/slice-project/slice-win32-dist)
+> [SLICE UserGuide - Getting Started (Mac)](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
-> [SLICE Presentation Material (Example Implmentation)](https://github.com/slice-project/slice-win32-dist)
+> [SLICE Presentation Material (Example Implmentation)](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
 ## Contact ##
 
