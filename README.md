@@ -1,5 +1,6 @@
 ### SLICE Github Repository ###
 > This project is full source code repository of SLICE project
+
 > SLICE is acronym of "Self-Learnable IoT Common Software Engine".
 
 ### Structure of SLICE github Repository ###
