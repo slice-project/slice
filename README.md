@@ -4,7 +4,7 @@
 > SLICE is acronym of "Self-Learnable IoT Common Software Engine".
 
 ## Structure of SLICE github Repository ##
-> We devide our source code based on the category like following.
+> We devide our source code based on the categories..
 
 > SLICE main repository (this repository) [slice](https://github.com/slice-project/slice)
 
