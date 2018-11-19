@@ -11,10 +11,8 @@
 >> SLICE Source Code without distribution :: [slice-source](https://github.com/slice-project/slice-source)
 
 >> SLICE Framework distribution :: [slice-win32-dist](https://github.com/slice-project/slice-win32-dist) // [slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist) 
->>> SLICE Framework is a software framework to support fastand easy development of agent-based applications.
 
 >> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
->>> SLICE Engine is a running instance on thing.
 
 >> SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
 
