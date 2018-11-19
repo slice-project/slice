@@ -31,7 +31,7 @@
 
 > [SLICE Video Material (Example Implmentation) - Kor](https://youtu.be/5AvXvftUwOc)
 
-> [SLICE Video Material (Example Implmentation) - Eng](https://github.com/slice-project/slice-win32-dist) - will be soon...
+> [SLICE Video Material (Example Implmentation) - Eng](https://youtu.be/B9qoI7IWeTU)
 
 
 ## Paper Publication ##
