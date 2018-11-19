@@ -6,17 +6,17 @@
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the following categories..
 
-> SLICE main repository (this) :: [slice](https://github.com/slice-project/slice)
+>> SLICE main repository (this) :: [slice](https://github.com/slice-project/slice)
 
-> SLICE Source Code without distribution :: [slice-source](https://github.com/slice-project/slice-source)
+>> SLICE Source Code without distribution :: [slice-source](https://github.com/slice-project/slice-source)
 
-> SLICE Framework distribution :: [slice-win32-dist](https://github.com/slice-project/slice-win32-dist) // [slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist) 
->> SLICE Framework is a software framework to support fastand easy development of agent-based applications.
+>> SLICE Framework distribution :: [slice-win32-dist](https://github.com/slice-project/slice-win32-dist) // [slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist) 
+>>> SLICE Framework is a software framework to support fastand easy development of agent-based applications.
 
-> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
->> SLICE Engine is a running instance on thing.
+>> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
+>>> SLICE Engine is a running instance on thing.
 
-> SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
+>> SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
 
 ## SLICE References ##
 > [SLICE White Paper](https://drive.google.com/file/d/1klG-sSC9CUARe_iGRZLlavRafgsR03wQ/view?usp=sharing)
