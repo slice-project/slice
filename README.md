@@ -17,7 +17,7 @@
 > SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
 
 ## SLICE References ##
-> [SLICE White Paper](https://github.com/slice-project/slice-win32-dist) - will be soon...
+> [SLICE White Paper](https://drive.google.com/file/d/1n0IkYx5YhBOR-4OvOvHAbUfyOxdvwhdE/view?usp=sharing)
 
 > [SLICE Concept Presentation Material](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
