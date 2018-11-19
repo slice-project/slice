@@ -21,7 +21,7 @@
 
 > [SLICE Concept Presentation Material](https://drive.google.com/file/d/1OMlsQNcGXu4tvnquqarzwyaWQE0bTrR1/view?usp=sharing)
 
-> [SLICE Concept Video Material - Kor](https://youtu.be/jMma32jpf7I)
+> [SLICE Video Material :: SLICE Concept - Kor](https://youtu.be/jMma32jpf7I)
 
 > [SLICE Video Material :: Example Implmentation 1 - Kor](https://youtu.be/5AvXvftUwOc)
 
