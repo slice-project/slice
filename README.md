@@ -6,7 +6,7 @@
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the following categories..
 
->> SLICE main repository (this) :: [slice](https://github.com/slice-project/slice)
+>> SLICE main repository with guide and reference (this) :: [slice](https://github.com/slice-project/slice)
 
 >> SLICE Source Code without distribution :: [slice-source](https://github.com/slice-project/slice-source)
 
@@ -29,9 +29,9 @@
 
 > [SLICE Presentation Material (Example Implmentation)](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
-> [SLICE Video Material (Example Implmentation) - Kor](https://youtu.be/5AvXvftUwOc)
+> [SLICE Video Material (Example Implmentation 1) - Kor](https://youtu.be/5AvXvftUwOc)
 
-> [SLICE Video Material (Example Implmentation) - Eng](https://youtu.be/B9qoI7IWeTU)
+> [SLICE Video Material (Example Implmentation 1) - Eng](https://youtu.be/B9qoI7IWeTU)
 
 
 ## Paper Publication ##
