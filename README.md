@@ -12,7 +12,7 @@
 
 >> SLICE Framework distribution :: [slice-win32-dist](https://github.com/slice-project/slice-win32-dist) // [slice-macosx-dist](https://github.com/slice-project/slice-macosx-dist) 
 
->> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-macosx-dist)
+>> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-engine-dist.git)
 
 >> SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
 
