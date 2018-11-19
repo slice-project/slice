@@ -19,9 +19,9 @@
 ## SLICE References ##
 > [SLICE White Paper](https://drive.google.com/file/d/1klG-sSC9CUARe_iGRZLlavRafgsR03wQ/view?usp=sharing)
 
-> [SLICE Presentation Material :: SLICE Concept](https://drive.google.com/file/d/1OMlsQNcGXu4tvnquqarzwyaWQE0bTrR1/view?usp=sharing)
-
 > [SLICE Video Material :: SLICE Concept - Kor](https://youtu.be/jMma32jpf7I)
+
+> [SLICE Presentation Material :: SLICE Concept & Example Implementation 1](https://drive.google.com/file/d/1OMlsQNcGXu4tvnquqarzwyaWQE0bTrR1/view?usp=sharing)
 
 > [SLICE Video Material :: Example Implmentation 1 - Kor](https://youtu.be/5AvXvftUwOc)
 
