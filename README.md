@@ -29,7 +29,7 @@
 
 > [SLICE Presentation Material :: Sample Implmentation for UserGuide ](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
-> [SLICE DevelopmentGuide - Kor]
+> [SLICE DevelopmentGuide - Kor](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
 
 ## Paper Publication ##
