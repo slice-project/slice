@@ -17,9 +17,10 @@
 >> SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
 
 ## SLICE References ##
-> [SLICE UserGuide - Kor](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
 > [SLICE White Paper](https://drive.google.com/file/d/1klG-sSC9CUARe_iGRZLlavRafgsR03wQ/view?usp=sharing)
+
+> [SLICE UserGuide - Kor](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
 > [SLICE Video Material :: SLICE Concept - Kor](https://youtu.be/jMma32jpf7I)
 
