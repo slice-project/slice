@@ -17,6 +17,8 @@
 >> SLICE Example implementations :: [slice-examples](https://github.com/slice-project/slice-examples)
 
 ## SLICE References ##
+> [SLICE UserGuide - Kor](https://github.com/slice-project/slice-win32-dist) - will be soon...
+
 > [SLICE White Paper](https://drive.google.com/file/d/1klG-sSC9CUARe_iGRZLlavRafgsR03wQ/view?usp=sharing)
 
 > [SLICE Video Material :: SLICE Concept - Kor](https://youtu.be/jMma32jpf7I)
@@ -26,8 +28,6 @@
 > [SLICE Video Material :: Example Implmentation 1 - Eng](https://youtu.be/B9qoI7IWeTU)
 
 > [SLICE Presentation Material :: SLICE Concept & Example Implementation 1](https://drive.google.com/file/d/1OMlsQNcGXu4tvnquqarzwyaWQE0bTrR1/view?usp=sharing)
-
-> [SLICE UserGuide - Kor](https://github.com/slice-project/slice-win32-dist) - will be soon...
 
 
 ## Paper Publication ##
