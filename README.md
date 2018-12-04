@@ -20,7 +20,7 @@
 
 > [SLICE White Paper](https://drive.google.com/file/d/1klG-sSC9CUARe_iGRZLlavRafgsR03wQ/view?usp=sharing)
 
-> [SLICE UserGuide - Kor](https://github.com/slice-project/slice-win32-dist) - will be soon...
+> [SLICE UserGuide 1.0v - Kor](https://drive.google.com/open?id=1CL5cl_RCin-mirDujZK09vdiTCTd0479)
 
 > [SLICE Video Material :: SLICE Concept - Kor](https://youtu.be/jMma32jpf7I)
 
