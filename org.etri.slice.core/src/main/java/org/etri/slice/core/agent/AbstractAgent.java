@@ -41,7 +41,7 @@ public abstract class AbstractAgent implements Agent {
 	
 	public AbstractAgent() {
 		m_provider.getServices().addService(ControlService.class,
-	                new JMXControlService(JMX_DOMAIN, new Hashtable<>()));
+                new JMXControlService(JMX_DOMAIN, new Hashtable<>()));		
 	}
 	
 	@Override

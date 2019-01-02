@@ -38,7 +38,7 @@ class AgentGenerator implements IGeneratorForMultiInput {
 			<parent>
 				<groupId>org.etri.slice</groupId>
 				<artifactId>org.etri.slice</artifactId>
-				<version>0.9.1</version>
+				<version>«ADLGenerator.Version»</version>
 				<relativePath>../pom.xml</relativePath>
 			</parent>
 			
@@ -61,7 +61,7 @@ class AgentGenerator implements IGeneratorForMultiInput {
 			<modelVersion>4.0.0</modelVersion>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.rules</artifactId>
-			<version>0.9.1</version>
+			<version>«ADLGenerator.Version»</version>
 		
 			<packaging>pom</packaging>
 			<name>The SLICE rules</name>

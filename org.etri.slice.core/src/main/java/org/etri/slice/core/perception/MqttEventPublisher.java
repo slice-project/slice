@@ -21,6 +21,10 @@
  */
 package org.etri.slice.core.perception;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import org.apache.edgent.connectors.mqtt.MqttStreams;
 import org.apache.edgent.function.Consumer;
 import org.apache.edgent.topology.TStream;
@@ -42,6 +46,8 @@ public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Ch
 	private Topology m_topology;
 	private TStream<T> m_events;
 	private Consumer<T> m_eventSubmitter;
+	private AtomicBoolean m_started = new AtomicBoolean(false);
+	private Lock m_lock = new ReentrantLock();	
 	
 	protected abstract WorkingMemory getWorkingMemory();
 	protected abstract Agent getAgent();
@@ -49,7 +55,72 @@ public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Ch
 	protected abstract String getMqttURL();
 	protected abstract EventStream<T> getEventStream();
 	
-	public void start() {	
+	public void start() {
+		m_lock.lock();
+		if ( m_started.get() == true ) {
+			m_lock.unlock();
+			return;
+		}
+		
+		String topicName = getTopicName();
+		getWorkingMemory().addEventAdaptor(topicName, this);		
+		
+		m_topology = getAgent().newTopology(topicName);
+		TStream<T> events = m_topology.events(this);
+		m_events = getEventStream().process(events);		
+		
+		TStream<String> jsonStream = m_events.map(event -> {
+			try {
+				return ((SliceEvent)event).toJSON();
+			} 
+			catch ( SliceException e ) {
+				s_logger.error("ERROR: " + e.getDetails());
+			}
+			return null;
+		});
+		jsonStream.filter(event -> event != null);
+		m_mqtt = new MqttStreams(m_topology, getMqttURL().trim(), null);
+		m_mqtt.publish(jsonStream, topicName, 0, false);
+		
+		getAgent().submit(m_topology);
+		m_started.set(true);		
+		s_logger.info("STARTED: MqttEventPublisher[" + topicName + "]");
+		m_lock.unlock();
+	}
+	
+	public void stop() { 
+		m_lock.lock();
+		if ( m_started.get() == false ) {
+			m_lock.unlock();
+			return;
+		}
+		m_started.set(false);		
+		s_logger.info("STOPPED: MqttEventPublisher[" + getTopicName() + "]");
+		m_lock.unlock();
+	}
+	
+	public void restart() {
+		m_lock.lock();
+		stop();
+		start();
+		m_lock.unlock();
+	}
+
+	@Override
+	public synchronized void accept(Consumer<T> eventSubmitter) {
+		m_eventSubmitter = eventSubmitter;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void send(Object object) {
+		if ( m_eventSubmitter != null ) {
+			m_eventSubmitter.accept((T)object);
+			s_logger.info("PUBLISHED(MQTT Event): " + object);	
+		}
+	}
+	
+	private synchronized void initialize() {
 		String topicName = getTopicName();
 		getWorkingMemory().addEventAdaptor(topicName, this);		
 		
@@ -71,24 +142,6 @@ public abstract class MqttEventPublisher<T> implements Consumer<Consumer<T>>, Ch
 		m_mqtt.publish(jsonStream, topicName, 0, false);
 		
 		getAgent().submit(m_topology);		
-		s_logger.info("STARTED: MqttEventPublisher[" + topicName + "]");
+		s_logger.info("STARTED: MqttEventPublisher[" + topicName + "]");		
 	}
-	
-	public void stop() { 
-		s_logger.info("STOPPED: MqttEventPublisher[" + getTopicName() + "]");
-	}
-
-	@Override
-	public synchronized void accept(Consumer<T> eventSubmitter) {
-		m_eventSubmitter = eventSubmitter;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void send(Object object) {
-		if ( m_eventSubmitter != null ) {
-			m_eventSubmitter.accept((T)object);
-			s_logger.info("PUBLISHED(MQTT Event): " + object);	
-		}
-	}	
 }

@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -51,7 +52,7 @@ import org.etri.slice.tools.adl.project.wizards.SLICEPomContants;
 /**
  * @author Administrator
  *
- */
+ */ 
 public class SLICECarSampleProjectWizard extends Wizard implements INewWizard {
 
 	private static final String SAMPLE_CAR_PROJECT_NAME = "org.etri.slice.examples.car";
@@ -59,7 +60,7 @@ public class SLICECarSampleProjectWizard extends Wizard implements INewWizard {
 	private static final String SAMPLE_CAR_PROJECT_DOMAIN = "car";
 	
 	/**
-	 * 
+	 *  
 	 */
 	public SLICECarSampleProjectWizard() {
 		super();		
@@ -134,6 +135,7 @@ public class SLICECarSampleProjectWizard extends Wizard implements INewWizard {
 		// Because we need a java project/xtest/maven, we have to set the Java nature to the created project:
 		IProjectDescription description = project.getDescription();
 		description.setNatureIds(new String[] { JavaCore.NATURE_ID, XtextProjectHelper.NATURE_ID});
+		
 		project.setDescription(description, null);
 		
 		// Now we can create our Java project
@@ -141,9 +143,10 @@ public class SLICECarSampleProjectWizard extends Wizard implements INewWizard {
 						
 		// However, it's not enough if we want to add Java source code to the project. We have to set the Java build path:
 		// 1) We first specify the output location of the compiler (the bin folder):
-		IFolder binFolder = project.getFolder("bin");
-		binFolder.create(false, true, null);
-		javaProject.setOutputLocation(binFolder.getFullPath(), null);
+//		IFolder binFolder = project.getFolder("bin");
+//		binFolder.create(false, true, null);
+				
+		javaProject.setOutputLocation(project.getFullPath(), null);
 		
 		// 2) Define the class path entries. Class path entries define the roots of package fragments. Note that you might have to include the necessary plugin "org.eclipse.jdt.launching".
 		List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>();
@@ -157,16 +160,16 @@ public class SLICECarSampleProjectWizard extends Wizard implements INewWizard {
 		javaProject.setRawClasspath(entries.toArray(new IClasspathEntry[entries.size()]), null);
 		
 		// (3) We have not yet the source folder created:
-		IFolder sourceFolder = project.getFolder("src");
-		sourceFolder.create(false, true, null);
+//		IFolder sourceFolder = project.getFolder("src");
+//		sourceFolder.create(false, true, null);
 		
 		// (4) Now the created source folder should be added to the class entries of the project, otherwise compilation will fail:
-		IPackageFragmentRoot rootPackage = javaProject.getPackageFragmentRoot(sourceFolder);
-		IClasspathEntry[] oldEntries = javaProject.getRawClasspath();
-		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-		newEntries[oldEntries.length] = JavaCore.newSourceEntry(rootPackage.getPath());
-		javaProject.setRawClasspath(newEntries, null);
+//		IPackageFragmentRoot rootPackage = javaProject.getPackageFragmentRoot(sourceFolder);
+//		IClasspathEntry[] oldEntries = javaProject.getRawClasspath();
+//		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
+//		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
+//		newEntries[oldEntries.length] = JavaCore.newSourceEntry(rootPackage.getPath());
+//		javaProject.setRawClasspath(newEntries, null);
 			
 		monitor.worked(1);
 		
@@ -195,8 +198,9 @@ public class SLICECarSampleProjectWizard extends Wizard implements INewWizard {
 		if (!resource.exists() || !(resource instanceof IContainer)) {
 			throwCoreException("Container \"" + projectName + "\" does not exist.");
 		}
-		
+				
 		IContainer container = (IContainer) resource;
+
 		final IFile adlFile = container.getFile(new Path(fileNameWithExt));
 		
 		try {

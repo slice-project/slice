@@ -1,16 +1,11 @@
 package org.etri.slice.tools.adl.project.wizards;
 
-public class ADLSampleContstants {
-	public static final String SIMPLE_ADL_CONTENTS = "import org.etri.slice.commons.SliceException\n" + 
-	"\n";
-	
-	public static final String SIMPLE_ADL_CONTENTS_WITH_DOMAIN = "import org.etri.slice.commons.SliceException\n" + 
-			"\n" + 
-			"domain {0}\n" + 
+public class ADLSampleContstants {	
+	public static final String SIMPLE_ADL_CONTENTS_WITH_DOMAIN = 
+			"\ndomain {0}\n" + 
 			"'{'\n" + 
-			"\n" +
-			"\n" + 
-			"}";
+			"\n\n" + 
+			"}"; 
 	
 	public static final String SAMPLE_ADL_CONTENTS = 
 	"import org.etri.slice.commons.SliceException\n" + 

@@ -6,98 +6,107 @@ package org.etri.slice.tools.adl.project.wizards;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.internal.ui.JavaPlugin;
-import org.eclipse.jdt.internal.ui.JavaPluginImages;
-import org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart;
-import org.eclipse.jdt.internal.ui.wizards.NewElementWizard;
-import org.eclipse.jdt.ui.IPackagesViewPart;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.internal.ui.wizards.buildpaths.BuildPathsBlock;
+import org.eclipse.jdt.launching.IVMInstall;
+import org.eclipse.jdt.launching.JavaRuntime;
+import org.eclipse.jdt.launching.LibraryLocation;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.ResolverConfiguration;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.IWorkingSet;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 import org.eclipse.xtext.ui.XtextProjectHelper;
 
 /**
  * @author Administrator
  *
  */
-public class SLICENewProjectWizard extends NewElementWizard implements IExecutableExtension {
+public class SLICENewProjectWizard extends Wizard implements INewWizard {
 
-	private final static String TITLE = "New SLICE Project";
-		
-	private SLICENewProjectWizardPageOne fFirstPage;
-	private SLICENewProjectWizardPageTwo fSecondPage;
-
-	private IConfigurationElement fConfigElement;
+	private SLICENewProjectWizardPage page;
 	
+	/**
+	 * 
+	 */
 	public SLICENewProjectWizard() {
-		this(null, null);
-	}
-
-	public SLICENewProjectWizard(SLICENewProjectWizardPageOne pageOne, SLICENewProjectWizardPageTwo pageTwo) {
-		setDefaultPageImageDescriptor(JavaPluginImages.DESC_WIZBAN_NEWJPRJ);
-		setDialogSettings(JavaPlugin.getDefault().getDialogSettings());
-		setWindowTitle(TITLE);
-
-		fFirstPage= pageOne;
-		fSecondPage= pageTwo;
+		super();		
+		setNeedsProgressMonitor(true);
 	}
 
 	/**
 	 * Adding the page to the wizard.
 	 */
 	@Override
-	public void addPages() {
-		if (fFirstPage == null)
-			fFirstPage = new SLICENewProjectWizardPageOne();
-		addPage(fFirstPage);
-
-		if (fSecondPage == null)
-			fSecondPage = new SLICENewProjectWizardPageTwo(fFirstPage);
-		addPage(fSecondPage);
-		
-		fFirstPage.init(getSelection(), getActivePart());
+	public void addPages() {		
+		page = new SLICENewProjectWizardPage();
+		addPage(page);
 	}
-
-	private IWorkbenchPart getActivePart() {
-		IWorkbenchWindow activeWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (activeWindow != null) {
-			IWorkbenchPage activePage = activeWindow.getActivePage();
-			if (activePage != null) {
-				return activePage.getActivePart();
-			}
-		}
-		return null;
-	}
-
+	
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 
+	}
+
+	/**
+	 * This method is called when 'Finish' button is pressed in
+	 * the wizard. We will create an operation and run it
+	 * using wizard as execution context.
+	 */
+	@Override
+	public boolean performFinish() {
+		final String projectName = page.getProjectName();
+		final String domain = page.getDomain();
+		final String location = page.getLocation();
+		final boolean isDefaultLocation = page.isDefaultLocation();
+		
+		IRunnableWithProgress op = new IRunnableWithProgress() {
+			public void run(IProgressMonitor monitor) throws InvocationTargetException {
+				try {
+					doFinish(projectName, domain, location, isDefaultLocation, monitor);
+				} catch (CoreException e) {
+					throw new InvocationTargetException(e);
+				} finally {
+					monitor.done();
+				}
+			}
+		};
+		try {
+			getContainer().run(true, false, op);
+		} catch (InterruptedException e) {
+			return false;
+		} catch (InvocationTargetException e) {
+			Throwable realException = e.getTargetException();
+			MessageDialog.openError(getShell(), "Error", realException.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	private boolean addXtextNature(IProject project) {
@@ -151,106 +160,7 @@ public class SLICENewProjectWizard extends NewElementWizard implements IExecutab
 
 		return false;
 	}
-
-	private String getADLFileName(String domain)
-	{
-		return domain.length() == 0 ? "sample.adl" : domain + ".adl";
-	}
 	
-	private IFile getADLFile(IContainer container, String domain)
-	{
-		return container.getFile(new Path(getADLFileName(domain)));
-	}
-	
-	private boolean createADLFileContents(IProject project, String domain) {
-		IContainer container = (IContainer) project;
-		
-		String adlFileName = getADLFileName(domain);
-		
-		final IFile adlFile = container.getFile(new Path(adlFileName));
-
-		try {
-			InputStream stream = openADLContentStream(domain);
-			if (adlFile.exists()) {
-				adlFile.setContents(stream, true, true, new NullProgressMonitor());
-			} else {
-				adlFile.create(stream, true, new NullProgressMonitor());
-			}
-			stream.close();
-			
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
-
-	@Override
-	public boolean performFinish() {
-		String domain = fFirstPage.getDomain();
-		
-		boolean res = super.performFinish();
-
-		if (res) {
-			final IJavaProject newElement = (IJavaProject) getCreatedElement();
-
-			if (!addXtextNature(newElement.getProject()))
-				return false;
-
-			if (!addMavenNature(newElement.getProject()))
-				return false;
-			
-			if(!createADLFileContents(newElement.getProject(), domain))
-				return false;
-			
-			IWorkingSet[] workingSets = fFirstPage.getWorkingSets();
-			
-			if (workingSets.length > 0) {
-				PlatformUI.getWorkbench().getWorkingSetManager().addToWorkingSets(newElement, workingSets);
-			}
-
-			BasicNewProjectResourceWizard.updatePerspective(fConfigElement);
-
-			Display.getDefault().asyncExec(new Runnable() {
-				@Override
-				public void run() {
-					IWorkbenchPart activePart = getActivePart();
-					if (activePart instanceof IPackagesViewPart) {
-						PackageExplorerPart view = PackageExplorerPart.openInActivePerspective();
-						view.tryToReveal(newElement);
-					}
-					
-					IWorkbenchPage page =
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-						try {
-							IDE.openEditor(page, getADLFile(newElement.getProject(), domain), true);
-						} catch (PartInitException e) {
-						}
-				}
-			});
-		}
-		
-		return res;
-	}
-
-	/**
-	 * We will initialize adl file contents.
-	 */
-	private InputStream openADLContentStream(String domain) {
-
-		String contents = null;
-
-		if(domain.trim().length() > 0)
-			contents = MessageFormat.format(ADLSampleContstants.SIMPLE_ADL_CONTENTS_WITH_DOMAIN, domain);
-		else
-			contents = ADLSampleContstants.SIMPLE_ADL_CONTENTS;
-		
-		return new ByteArrayInputStream(contents.getBytes());
-	}
-
 	/**
 	 * We will initialize pom.xml file contents.
 	 */
@@ -262,31 +172,138 @@ public class SLICENewProjectWizard extends NewElementWizard implements IExecutab
 
 		return new ByteArrayInputStream(contents.getBytes());
 	}
+	
+	/**
+	 * The worker method. It will find the container, create the
+	 * file if missing or just replace its contents, and open
+	 * the editor on the newly created file.
+	 */
+
+	@SuppressWarnings("restriction")
+	private void doFinish(
+		String projectName,
+		String domain, String location,
+		boolean isDefaultLocation,
+		IProgressMonitor monitor)
+		throws CoreException {
+		
+		String fileNameWithExt = "sample.adl";
+		
+		if(null != domain && domain.length() != 0)
+			fileNameWithExt = domain + ".adl";
+		
+		// create a sample file
+		monitor.beginTask("Creating " + projectName + "...", 6);
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		
+		// First create a simple project of type org.eclipse.core.resources.IProject:
+		IProject project = root.getProject(projectName);
+
+		if(!isDefaultLocation)
+		{
+			BuildPathsBlock.createProject(project, URIUtil.toURI(location), monitor);
+		}
+		else
+		{
+			project.create(monitor);	
+		}
+
+		project.open(monitor);	
+		
+		// Because we need a java project, we have to set the Java nature to the created project:
+		IProjectDescription description = project.getDescription();
+		description.setNatureIds(new String[] { JavaCore.NATURE_ID, XtextProjectHelper.NATURE_ID });
+		project.setDescription(description, null);
+		
+		// Now we can create our Java project
+		IJavaProject javaProject = JavaCore.create(project); 
+		
+		// However, it's not enough if we want to add Java source code to the project. We have to set the Java build path:
+		// 1) We first specify the output location of the compiler (the bin folder):
+//		IFolder binFolder = project.getFolder("bin");
+//		binFolder.create(false, true, null);
+//		javaProject.setOutputLocation(binFolder.getFullPath(), null);
+		
+		javaProject.setOutputLocation(project.getFullPath(), null);
+
+		// 2) Define the class path entries. Class path entries define the roots of package fragments. Note that you might have to include the necessary plugin "org.eclipse.jdt.launching".
+		List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>();
+		IVMInstall vmInstall = JavaRuntime.getDefaultVMInstall();
+		LibraryLocation[] locations = JavaRuntime.getLibraryLocations(vmInstall);
+		
+		for (LibraryLocation element : locations) {
+		 entries.add(JavaCore.newLibraryEntry(element.getSystemLibraryPath(), null, null));
+		}
+		//add libs to project class path
+		javaProject.setRawClasspath(entries.toArray(new IClasspathEntry[entries.size()]), null);
+		
+		// (3) We have not yet the source folder created:
+//		IFolder sourceFolder = project.getFolder("src");
+//		sourceFolder.create(false, true, null);
+		
+		// (4) Now the created source folder should be added to the class entries of the project, otherwise compilation will fail:
+//		IPackageFragmentRoot rootPackage = javaProject.getPackageFragmentRoot(sourceFolder);
+//		IClasspathEntry[] oldEntries = javaProject.getRawClasspath();
+//		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
+//		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
+//		newEntries[oldEntries.length] = JavaCore.newSourceEntry(rootPackage.getPath());
+//		javaProject.setRawClasspath(newEntries, null);
+		
+		monitor.worked(1);
+		addXtextNature(project);
+		monitor.worked(1);
+		addMavenNature(project);
+		monitor.worked(1);		
+								
+		monitor.setTaskName("Creating " + fileNameWithExt + "...");
+							
+		final IFile file = project.getFile(new Path(fileNameWithExt));
+				
+		try {
+			InputStream stream = openContentStream(domain);
+			if (file.exists()) {
+				file.setContents(stream, true, true, monitor);
+			} else {
+				file.create(stream, true, monitor);
+			}
+			stream.close();
+		} catch (IOException e) {
+		}
+		monitor.worked(1);
+		monitor.setTaskName("Opening file for editing...");
+		
+		getShell().getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				IWorkbenchPage page =
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				try {
+					IDE.openEditor(page, file, true);
+				} catch (PartInitException e) {
+				}
+			}
+		});
+		
+		monitor.worked(1);
+	}
+	
+	/**
+	 * We will initialize file contents with a sample text.
+	 */
+	private InputStream openContentStream(String domain) {
+		
+		String contents = null;
+		
+		if(null != domain && domain.length() > 0)
+			contents = MessageFormat.format(ADLSampleContstants.SIMPLE_ADL_CONTENTS_WITH_DOMAIN, domain);
+		else
+			contents = "";
+		
+		return new ByteArrayInputStream(contents.getBytes());
+	}
 
 	private void throwCoreException(String message) throws CoreException {
-		IStatus status = new Status(IStatus.ERROR, "org.etri.slice.tools.adl.project", IStatus.OK, message, null);
+		IStatus status =
+			new Status(IStatus.ERROR, "org.etri.slice.tools.adl.project", IStatus.OK, message, null);
 		throw new CoreException(status);
-	}
-
-	@Override
-	public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
-			throws CoreException {
-		fConfigElement = config;
-	}
-
-	@Override
-	protected void finishPage(IProgressMonitor monitor) throws InterruptedException, CoreException {
-		fSecondPage.performFinish(monitor); // use the full progress monitor
-	}
-
-	@Override
-	public boolean performCancel() {
-		fSecondPage.performCancel();
-		return super.performCancel();
-	}
-
-	@Override
-	public IJavaElement getCreatedElement() {
-		return fSecondPage.getJavaProject();
 	}
 }

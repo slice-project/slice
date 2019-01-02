@@ -67,17 +67,15 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.instance.Randomize;
 
 
-@Component(publicFactory=false, immediate=true)
+@Component(publicFactory=false, immediate=true, managedservice="org.etri.slice.core")
 @Provides
 @Instantiate
 public class ActionRuleLearnerImpl implements ActionRuleLearner {
 
 	private static Logger s_logger = LoggerFactory.getLogger(ActionRuleLearnerImpl.class);		
 	
-	@Property(name="actionrulelearner.minnumofrules", value="1")
+	@Property(name="core.minimum.rules.count", value="1")
 	public long MIN_NUM_OF_RULES;
-	@Property(name="actionrulelearner.loggingintervalbetweenlearnings", value="10")
-	private int LOGGING_INTERVAL_BETWEEN_LEARNINGS;
 	
 	@Requires
 	private ProductionMemory m_pm;
@@ -89,6 +87,15 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	@GuardedBy("m_lock") private Filter m_filter;
 	private Lock m_lock = new ReentrantLock();
 		
+	
+	@Property(name="core.minimum.rules.count")
+	public void setMinimumRulesNumber(long number) {
+		m_lock.lock();
+		MIN_NUM_OF_RULES = number;
+		s_logger.info("SET: Property[core.minimum.rules.count=" + number + "]" );
+		m_lock.unlock();
+	}
+	
 	@Validate
 	public void init() throws Exception {
 		m_ruleModule = m_pm.getRuleModule();
@@ -115,6 +122,7 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 	
 	@Invalidate
 	public void finalize() {
+		
 	}	
 	
 	@Override
@@ -134,11 +142,18 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 			for ( Future<Integer> future : futures ) {
 				learnedRulesCount += future.get();
 			}
-			if ( learnedRulesCount >= MIN_NUM_OF_RULES ) {
-				m_ruleModule.setVersion(m_pm.getNewVersion());
-				m_pm.update(m_ruleModule);
-				
-				return true;
+			
+			m_lock.lock();
+			try {
+				if ( learnedRulesCount >= MIN_NUM_OF_RULES ) {
+					m_ruleModule.setVersion(m_pm.getNewVersion());
+					m_pm.update(m_ruleModule);
+					
+					return true;
+				}
+			}
+			finally {
+				m_lock.unlock();
 			}
 		}
 		catch (Exception ex) {
@@ -169,18 +184,19 @@ public class ActionRuleLearnerImpl implements ActionRuleLearner {
 				Attribute classAttribute = trainingData.classAttribute();
 				String classAttributeName = classAttribute.name();
 				String classAttributeType = Attribute.typeToString(classAttribute);
-				m_lock.lock();
 				String classificationRuleTree = null;
+				
+				m_lock.lock();
 				try {	
 					Instances filteredData = applyFilter(m_filter, trainingData);
 					m_classifier.buildClassifier(filteredData); // train classifier on complete file for tree
 					classificationRuleTree = m_classifier.toString();
+					constructedRules = contructActionRules(classAttributeName, classAttributeType, classificationRuleTree);
+					s_logger.info("Number of Action Rules learned : {}/{}", constructedRules.size(), MIN_NUM_OF_RULES);					
 				}
 				finally {
 					m_lock.unlock();
 				}
-				constructedRules = contructActionRules(classAttributeName, classAttributeType, classificationRuleTree);
-				s_logger.info("Number of Action Rules learned : {}/{}", constructedRules.size(), MIN_NUM_OF_RULES);
 			}
 			catch ( Exception e ) {
 				s_logger.error("ERR: " + e.getMessage());

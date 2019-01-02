@@ -6,6 +6,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.etri.slice.tools.adl.domainmodel.AgentDeclaration
 import org.etri.slice.tools.adl.domainmodel.DomainDeclaration
 import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager
+import org.etri.slice.tools.adl.generator.ADLGenerator
 
 class POMCompiler {	
 	
@@ -20,7 +21,7 @@ class POMCompiler {
 			<parent>
 				<groupId>org.etri.slice</groupId>
 				<artifactId>org.etri.slice.models</artifactId>
-				<version>0.9.1</version>
+				<version>«ADLGenerator.Version»</version>
 				<relativePath>../pom.xml</relativePath>
 			</parent>
 			
@@ -34,13 +35,13 @@ class POMCompiler {
 				<dependency>
 					<groupId>org.etri.slice</groupId>
 					<artifactId>org.etri.slice.commons</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>				
 				«FOR d : domainManager.getDomain(fullyQualifiedName.toString).dependencies»
 				<dependency>
 					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«d.domain»</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				«ENDFOR»
 			</dependencies>
@@ -116,7 +117,7 @@ class POMCompiler {
 			<parent>
 				<groupId>org.etri.slice</groupId>
 				<artifactId>org.etri.slice.agents</artifactId>
-				<version>0.9.1</version>
+				<version>«ADLGenerator.Version»</version>
 				<relativePath>../pom.xml</relativePath>
 			</parent>
 			
@@ -129,18 +130,18 @@ class POMCompiler {
 				<dependency>
 					<groupId>org.etri.slice</groupId>
 					<artifactId>org.etri.slice.core</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				<dependency>
 					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				«FOR d : domainManager.getDomain(domainFQN).dependencies»
 				<dependency>
 					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«d.domain»</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				«ENDFOR»			
 			</dependencies>
@@ -194,7 +195,7 @@ class POMCompiler {
 			<parent>
 				<groupId>org.etri.slice.devices</groupId>
 				<artifactId>org.etri.slice.devices</artifactId>
-				<version>0.9.1</version>
+				<version>«ADLGenerator.Version»</version>
 				<relativePath>../pom.xml</relativePath>
 			</parent>
 			
@@ -207,13 +208,13 @@ class POMCompiler {
 				<dependency>
 					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«eContainer.fullyQualifiedName»</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				«FOR d : domainManager.getDomain(domainFQN).dependencies»
 				<dependency>
 					<groupId>org.etri.slice.commons</groupId>
 					<artifactId>org.etri.slice.commons.«d.domain»</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				«ENDFOR»		
 			</dependencies>
@@ -268,11 +269,10 @@ class POMCompiler {
 			<parent>
 				<groupId>org.etri.slice</groupId>
 				<artifactId>org.etri.slice.rules</artifactId>
-				<version>0.9.1</version>
+				<version>«ADLGenerator.Version»</version>
 			</parent>
 		
 			<artifactId>org.etri.slice.rules.«eContainer.fullyQualifiedName».«name.toLowerCase»</artifactId>
-			<version>0.9.1</version>
 			<name>... rules for a «eContainer.fullyQualifiedName».«name.toLowerCase» agent </name>
 		
 		</project>

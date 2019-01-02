@@ -24,13 +24,13 @@ package org.etri.slice.core.inference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.apache.felix.ipojo.annotations.Bind;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
-import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Requires;
-import org.apache.felix.ipojo.annotations.Validate;
+import org.apache.felix.ipojo.annotations.Unbind;
 import org.eclipse.aether.version.Version;
 import org.etri.slice.api.agent.Agent;
 import org.etri.slice.api.perception.ContextMemory;
@@ -43,7 +43,7 @@ import org.kie.scanner.MavenRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(publicFactory=false, immediate=true)
+@Component(publicFactory=false, immediate=false)
 @Provides
 @Instantiate
 public class DroolsRuleEngineImpl implements DroolsRuleEngine {
@@ -53,7 +53,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 	@Property(name="scan", value="10000")
 	public long m_scanInterval;
 
-	@Requires
+	@Requires(id="agent")
 	private Agent m_device;
 	@Requires
 	private ContextMemory m_cm;
@@ -113,7 +113,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 		return m_sessionLock;
 	}	
 	
-	@Validate
+	@Bind(id="agent")
 	public void start() {
 		m_groupId = m_device.getGroupId();
 		m_artifactId = m_device.getArtifactId();
@@ -137,7 +137,7 @@ public class DroolsRuleEngineImpl implements DroolsRuleEngine {
 		fireUntilHalt();
 	}
 	
-	@Invalidate
+	@Unbind(id="agent")
 	public void stop() {
 		m_scanner.stop();
 		m_session.halt();

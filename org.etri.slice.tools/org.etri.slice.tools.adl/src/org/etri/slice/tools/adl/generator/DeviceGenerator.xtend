@@ -28,7 +28,7 @@ class DeviceGenerator implements IGeneratorForMultiInput {
 			<parent>
 				<groupId>org.etri.slice</groupId>
 				<artifactId>org.etri.slice</artifactId>
-				<version>0.9.1</version>
+				<version>«ADLGenerator.Version»</version>
 				<relativePath>../pom.xml</relativePath>
 			</parent>
 			

@@ -26,6 +26,9 @@ import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
 import org.etri.slice.tools.adl.DomainModelOutputConfigurationProvider;
 import org.etri.slice.tools.adl.generator.IGeneratorForMultiInput;
 import org.etri.slice.tools.adl.validation.domain_dependency.DomainManager;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 
 import com.google.inject.Inject;
 
@@ -59,10 +62,43 @@ public class BuilderParticipantForMultiInput extends BuilderParticipant {
 
 	private void invokeGenerator (Delta delta, IBuildContext context, IFileSystemAccess fileSystemAccess) {  
     buildSemaphor.set(true);
-    Resource resource = context.getResourceSet().getResource(delta.getUri(), true);
     
-    System.out.println("BuilderParticipantForMultiInput invokeGenerator resource " + resource);
+    IProject project = context.getBuiltProject();
+    
+    try {
+		if (project.hasNature(JavaCore.NATURE_ID)) {
+			IJavaProject javaProject = JavaCore.create(project);
+			
+			IClasspathEntry[] classPath = javaProject.getRawClasspath();			
+						
+			// exclude path start with '/org.etri.slice.generated', at next step we will create new domain model path
+			ArrayList<IClasspathEntry> tmpClassPath = new ArrayList<IClasspathEntry>();
+			
+			for(IClasspathEntry entry : classPath)
+			{
+				if(entry.getEntryKind() == IClasspathEntry.CPE_SOURCE 
+						&& entry.getPath().toString().contains("/org.etri.slice.generated"))
+					continue;
+				else
+					tmpClassPath.add(entry);
+			}		
+			
+			IClasspathEntry[] newClassPath = new IClasspathEntry[tmpClassPath.size()];
+			
+			for(int i = 0; i < tmpClassPath.size(); i++)
+			{
+				newClassPath[i] = tmpClassPath.get(i);
+			}
+			
+			javaProject.setRawClasspath(newClassPath, null);
+			
+		}
+	} catch (CoreException e) {
+		e.printStackTrace();
+	}
         
+    Resource resource = context.getResourceSet().getResource(delta.getUri(), true);
+            
     if (shouldGenerate(resource, context)) {  	
       IResourceDescriptions index = resourceDescriptionsProvider.createResourceDescriptions();
       IResourceDescription resDesc = index.getResourceDescription(resource.getURI());
@@ -71,25 +107,16 @@ public class BuilderParticipantForMultiInput extends BuilderParticipant {
       List<Resource> resources = new ArrayList<Resource>();
       
       for (IContainer c : visibleContainers) {
-    	  System.out.println("\t visibleContainer " + c);
         for (IResourceDescription rd : c.getResourceDescriptions()) {
-        	System.out.println("\t ResourceDescription " + rd);
         	resources.add(context.getResourceSet().getResource(rd.getURI(), true));
         }
       }
  
       generator.doGenerate(resources, fileSystemAccess);
-            
-//      val xtextDocument = context.xtextDocument
-//    	        val firstLetter = xtextDocument.get(issue.offset, 1)
-//    	        xtextDocument.replace(issue.offset, 1, firstLetter.toUpperCase)
-//    	        (xtextDocument as XtextDocument).validationJob.schedule
     }
     else
     {
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("not shouldGenerate");
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+    	// not shouldGenerate
     }
   }
 }

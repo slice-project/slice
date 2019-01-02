@@ -39,16 +39,19 @@ import org.etri.slice.api.learning.ActionRuleLearner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(publicFactory=false, immediate=true)
+@Component(publicFactory=false, immediate=true, managedservice="org.etri.slice.core")
 @Instantiate
 public class RuleLearningScheduler implements Runnable {
 
-	private static Logger s_logger = LoggerFactory.getLogger(RuleLearningScheduler.class);	
+	private static Logger s_logger = LoggerFactory.getLogger(RuleLearningScheduler.class);
+	private static final String LogInterval = "core.scanning.logs.interval";
+	private static final String LogCount = "core.minimum.logs.count";
 	
-	@Property(name="loggig.scan.interval", value="3")
+	
+	@Property(name=LogInterval, value="3")
 	public long m_interval;
 	
-	@Property(name="minimum.logging.count", value="20")
+	@Property(name=LogCount, value="20")
 	public long m_minimumLogCount;
 	
 	@Requires
@@ -59,6 +62,22 @@ public class RuleLearningScheduler implements Runnable {
 	private Lock m_lock = new ReentrantLock();
 	@GuardedBy("m_lock") private Condition m_stopCondition = m_lock.newCondition();
 	@GuardedBy("m_lock") private volatile boolean m_stopRequested = false;
+	
+	@Property(name=LogInterval)
+	public void setLogScanInterval(long interval) {
+		m_lock.lock();
+		m_interval = interval;
+		s_logger.info("SET: Property[core.scanning.logs.interval=" + interval + "]" );
+		m_lock.unlock();
+	}
+	
+	@Property(name=LogCount)
+	public void setMinimunLoggingCount(long count) {
+		m_lock.lock();
+		m_minimumLogCount = count;
+		s_logger.info("SET: Property[core.minimum.logs.count=" + count + "]" );
+		m_lock.unlock();
+	}	
 	
 	@Validate
 	public void init() throws Exception {

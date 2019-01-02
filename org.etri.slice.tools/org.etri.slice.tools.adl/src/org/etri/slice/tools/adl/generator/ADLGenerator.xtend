@@ -24,6 +24,8 @@ public class ADLGenerator implements IGeneratorForMultiInput {
 	@Inject extension DomainDependencyUtil
 	@Inject DomainManager domainManager
 	
+	public static val Version = "1.1.0"
+	
 	override void doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
 		resources.checkDomainDependencies
 
@@ -85,7 +87,7 @@ public class ADLGenerator implements IGeneratorForMultiInput {
 			<modelVersion>4.0.0</modelVersion>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice</artifactId>
-			<version>0.9.1</version>
+			<version>«ADLGenerator.Version»</version>
 		
 			<packaging>pom</packaging>
 			<name>The ROOT project of SLICE components and applications</name>

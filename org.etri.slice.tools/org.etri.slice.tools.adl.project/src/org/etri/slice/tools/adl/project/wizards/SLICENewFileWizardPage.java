@@ -24,14 +24,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 
 public class SLICENewFileWizardPage extends WizardPage {
-	private Text containerText;
-
-	private Text fileText;
-
-	private Text domainText;
 	
+	private Text containerText;
+	private Text fileText;
+	private Text domainText;	
 	private ISelection selection;
-
 	private Button checkButton;
 
 	public SLICENewFileWizardPage(ISelection selection) {
@@ -125,9 +122,7 @@ public class SLICENewFileWizardPage extends WizardPage {
 	private void initialize() {	
 		if (selection != null && selection.isEmpty() == false
 				&& selection instanceof IStructuredSelection) 
-		{
-			System.out.println("selection IStructuredSelection =======> " + selection);
-			
+		{			
 			IStructuredSelection ssel = (IStructuredSelection) selection;
 			
 			if (ssel.size() > 1)
@@ -135,7 +130,6 @@ public class SLICENewFileWizardPage extends WizardPage {
 		
 			
 			Object obj = ssel.getFirstElement();
-			System.out.println("selection first = " + obj.getClass().getName());
 			
 			if (obj instanceof IResource) {
 				IContainer container;
@@ -150,19 +144,13 @@ public class SLICENewFileWizardPage extends WizardPage {
 			else if(obj instanceof JavaProject) {
 				JavaProject project = (JavaProject)obj;
 				containerText.setText(project.getPath().toString());
-
-				System.out.println("project dir = " + project.getPath().toString());
 			}
 			else if(obj instanceof PackageFragmentRoot) {
 				PackageFragmentRoot root = (PackageFragmentRoot) obj;
-				
-				System.out.println("root dir = " + root.getPath().toString());
 				containerText.setText(root.getPath().toString());
 			}
 			else if(obj instanceof PackageFragment) {
 				PackageFragment pkg = (PackageFragment) obj;
-				
-				System.out.println("package dir = " + pkg.getPath().toString());
 				containerText.setText(pkg.getPath().toString());
 			}
 			

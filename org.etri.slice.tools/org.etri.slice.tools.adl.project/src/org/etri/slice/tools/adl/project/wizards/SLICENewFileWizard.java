@@ -115,6 +115,7 @@ public class SLICENewFileWizard extends Wizard implements INewWizard {
 		}
 		
 		IContainer container = (IContainer) resource;
+		
 		final IFile file = container.getFile(new Path(fileNameWithExt));
 		
 		try {
@@ -150,12 +151,7 @@ public class SLICENewFileWizard extends Wizard implements INewWizard {
 	 */
 	private InputStream openContentStream(String domain, boolean isCreateSample) {
 		
-		String contents = null;
-		
-//		if(isCreateSample)
-//			contents = MessageFormat.format(SAMPLE_ADL_CONTENTS, domain);
-//		else
-			contents = MessageFormat.format(ADLSampleContstants.SIMPLE_ADL_CONTENTS_WITH_DOMAIN, domain);
+		String contents = MessageFormat.format(ADLSampleContstants.SIMPLE_ADL_CONTENTS_WITH_DOMAIN, domain);
 		
 		return new ByteArrayInputStream(contents.getBytes());
 	}

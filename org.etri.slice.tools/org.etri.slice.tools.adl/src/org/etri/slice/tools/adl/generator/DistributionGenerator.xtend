@@ -15,7 +15,8 @@ class DistributionGenerator implements IGeneratorForMultiInput {
 	override doGenerate(List<Resource> resources, IFileSystemAccess fsa) {
 		fsa.generateFile(OutputPathUtils.sliceDistribution + "/pom.xml", compileDistributionPOM(resources))
 		fsa.generateFile(OutputPathUtils.sliceDistribution + "/run_slice.bat", compileRunBatch)
-		fsa.generateFile(OutputPathUtils.sliceDistribution + "/run_slice.sh", compileRunShell)		
+		fsa.generateFile(OutputPathUtils.sliceDistribution + "/run_slice.sh", compileRunShell)
+		fsa.generateFile(OutputPathUtils.sliceDistribution + "/slice.properties", compileSliceProperties)
 	}
 	
 	def compileDistributionPOM(List<Resource> resources) '''
@@ -26,7 +27,7 @@ class DistributionGenerator implements IGeneratorForMultiInput {
 			<parent>
 				<groupId>org.etri.slice</groupId>
 				<artifactId>org.etri.slice</artifactId>
-				<version>0.9.1</version>
+				<version>«ADLGenerator.Version»</version>
 				<relativePath>../pom.xml</relativePath>
 			</parent>
 		
@@ -100,23 +101,23 @@ class DistributionGenerator implements IGeneratorForMultiInput {
 				<dependency>
 					<groupId>org.etri.slice</groupId>
 					<artifactId>org.etri.slice.api</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				<dependency>
 					<groupId>org.etri.slice</groupId>
 					<artifactId>org.etri.slice.core</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				<dependency>
 					<groupId>org.etri.slice</groupId>
 					<artifactId>org.etri.slice.commons</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>										
 				«FOR e: resources.map[allContents.toIterable.filter(typeof(DomainDeclaration))].flatten»
 					<dependency>
 						<groupId>org.etri.slice.commons</groupId>
 						<artifactId>org.etri.slice.commons.«e.fullyQualifiedName»</artifactId>
-						<version>0.9.1</version>
+						<version>«ADLGenerator.Version»</version>
 					</dependency>
 				«ENDFOR»
 				
@@ -125,12 +126,12 @@ class DistributionGenerator implements IGeneratorForMultiInput {
 				<dependency>
 					<groupId>org.etri.slice</groupId>
 					<artifactId>org.etri.slice.agents.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				<dependency>
 					<groupId>org.etri.slice.devices</groupId>
 					<artifactId>org.etri.slice.devices.«agent.eContainer.fullyQualifiedName».«agent.name.toLowerCase»</artifactId>
-					<version>0.9.1</version>
+					<version>«ADLGenerator.Version»</version>
 				</dependency>
 				«ENDIF»
 				«IF resources.map[allContents.toIterable.filter(typeof(AgentDeclaration))].flatten.size > 1»
@@ -139,12 +140,12 @@ class DistributionGenerator implements IGeneratorForMultiInput {
 					<dependency>
 						<groupId>org.etri.slice</groupId>
 						<artifactId>org.etri.slice.agents.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</artifactId>
-						<version>0.9.1</version>
+						<version>«ADLGenerator.Version»</version>
 					</dependency>
 					<dependency>
 						<groupId>org.etri.slice.devices</groupId>
 						<artifactId>org.etri.slice.devices.«e.eContainer.fullyQualifiedName».«e.name.toLowerCase»</artifactId>
-						<version>0.9.1</version>
+						<version>«ADLGenerator.Version»</version>
 					</dependency>										
 				«ENDFOR»	
 		-->
@@ -223,6 +224,24 @@ class DistributionGenerator implements IGeneratorForMultiInput {
 									</resources>
 								</configuration>
 							</execution>
+							<execution>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<phase>compile</phase>
+								<id>copy-configuration</id>
+								<configuration>
+									<outputDirectory>${project.build.directory}/conf</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${project.basedir}</directory>
+											<includes>
+												<include>slice.properties</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>							
 						</executions>
 					</plugin>
 				</plugins>
@@ -237,6 +256,29 @@ class DistributionGenerator implements IGeneratorForMultiInput {
 	
 	def compileRunShell() '''
 		java -jar -Dcom.sun.management.jmxremote.port=3403 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false ./bin/felix.jar
+	'''
+	
+	def compileSliceProperties() '''
+		# =======================================
+		#      RuleLearningScheduler
+		# =======================================
+		core.scanning.logs.interval=3
+		core.minimum.logs.count=20
+		
+		# =======================================
+		#      ActionRuleLearner
+		# =======================================
+		core.minimum.rules.count=1
+		
+		# =======================================
+		#      Agents
+		# =======================================
+		agent.agency.url=tcp://129.254.87.240:1883
+		
+		# =======================================
+		#      Devices (User Defined Properties)
+		# =======================================
+		
 	'''
 	
 	override doGenerate(Resource input, IFileSystemAccess fsa) {

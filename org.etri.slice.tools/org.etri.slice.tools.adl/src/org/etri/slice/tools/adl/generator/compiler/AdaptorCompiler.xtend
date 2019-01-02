@@ -130,7 +130,7 @@ class AdaptorCompiler {
 	}
 
 	def eventBody(JvmTypeReference it, AgentDeclaration agent, ImportManager importManager) '''
-		@Component
+		@Component(managedservice="org.etri.slice.agent")
 		@Instantiate
 		public class «simpleName»Adaptor extends MqttEventSubscriber<«shortName(importManager)»> {
 			
@@ -139,8 +139,9 @@ class AdaptorCompiler {
 			@Property(name="topic", value=«simpleName».TOPIC)
 			private String m_topic;
 			
-			@Property(name="url", value="tcp://«agent.agency.ip»:«agent.agency.port»")
+			@Property(name="agent.agency.url", value="tcp://«agent.agency.ip»:«agent.agency.port»")
 			private String m_url;
+			private String m_prevUrl;
 			
 			@Requires
 			private WorkingMemory m_wm;
@@ -155,7 +156,7 @@ class AdaptorCompiler {
 				return m_topic;
 			}
 			
-			protected String getMqttURL() {
+			protected synchronized String getMqttURL() {
 				return m_url;
 			}
 			
@@ -184,6 +185,16 @@ class AdaptorCompiler {
 			public void stop() {
 				super.stop();
 			}
+			
+		    @Property(name="agent.agency.url")
+		    public synchronized void setAgencyUrl(String url) {
+		    	if ( url.trim().equals(m_prevUrl) ) {
+		    		return;
+		    	}
+		    	
+		        m_prevUrl = url;   
+		        super.restart();
+		    }
 		}
 	'''		
 }
