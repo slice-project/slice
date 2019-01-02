@@ -1,0 +1,13 @@
+package org.etri.slice.rules.room;
+
+import org.etri.slice.commons.room.context.Temperature;
+import org.etri.slice.commons.room.event.TemperatureChanged;
+
+
+rule "Temperature Change Detection"
+	when
+		$e: Temperature(/* */)
+	then
+		channels["temperate_changed"].send(new TemperatureChanged(/* */));
+end
+

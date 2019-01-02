@@ -1,0 +1,7 @@
+package org.etri.slice.rules.room;
+
+import org.etri.slice.commons.room.context.Temperature;
+import org.etri.slice.commons.room.service.ElectronicFan;
+	
+global ElectronicFan electronicFan;
+
