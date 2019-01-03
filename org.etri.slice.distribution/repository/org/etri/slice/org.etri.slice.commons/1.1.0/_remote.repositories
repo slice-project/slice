@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Dec 28 10:22:20 KST 2018
+org.etri.slice.commons-1.1.0.jar>=
+org.etri.slice.commons-1.1.0.pom>=
