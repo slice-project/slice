@@ -17,6 +17,7 @@ org.apache.ant,1.10.1.v20170504-0840,plugins/org.apache.ant_1.10.1.v20170504-084
 org.apache.batik.css,1.8.0.v20170214-1941,plugins/org.apache.batik.css_1.8.0.v20170214-1941.jar,4,false
 org.apache.batik.util,1.8.0.v20170214-1941,plugins/org.apache.batik.util_1.8.0.v20170214-1941.jar,4,false
 org.apache.commons.cli,1.2.0.v201404270220,plugins/org.apache.commons.cli_1.2.0.v201404270220.jar,4,false
+org.apache.commons.io,2.2.0.v201405211200,plugins/org.apache.commons.io_2.2.0.v201405211200.jar,4,false
 org.apache.commons.jxpath,1.3.0.v200911051830,plugins/org.apache.commons.jxpath_1.3.0.v200911051830.jar,4,false
 org.apache.commons.lang,2.6.0.v201404270220,plugins/org.apache.commons.lang_2.6.0.v201404270220.jar,4,false
 org.apache.commons.logging,1.1.1.v201101211721,plugins/org.apache.commons.logging_1.1.1.v201101211721.jar,4,false
@@ -99,6 +100,7 @@ org.eclipse.emf.mwe2.runtime,2.9.1.201705291011,plugins/org.eclipse.emf.mwe2.run
 org.eclipse.equinox.app,1.3.400.v20150715-1528,plugins/org.eclipse.equinox.app_1.3.400.v20150715-1528.jar,4,false
 org.eclipse.equinox.bidi,1.1.0.v20160728-1031,plugins/org.eclipse.equinox.bidi_1.1.0.v20160728-1031.jar,4,false
 org.eclipse.equinox.common,3.9.0.v20170207-1454,plugins/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar,2,true
+org.eclipse.equinox.concurrent,1.1.0.v20130327-1442,plugins/org.eclipse.equinox.concurrent_1.1.0.v20130327-1442.jar,4,false
 org.eclipse.equinox.ds,1.5.0.v20170307-1429,plugins/org.eclipse.equinox.ds_1.5.0.v20170307-1429.jar,2,true
 org.eclipse.equinox.event,1.4.0.v20170105-1446,plugins/org.eclipse.equinox.event_1.4.0.v20170105-1446.jar,2,true
 org.eclipse.equinox.frameworkadmin,2.0.300.v20160504-1450,plugins/org.eclipse.equinox.frameworkadmin_2.0.300.v20160504-1450.jar,4,false
@@ -188,6 +190,7 @@ org.eclipse.osgi,3.12.100.v20180210-1608,plugins/org.eclipse.osgi_3.12.100.v2018
 org.eclipse.osgi.compatibility.state,1.1.0.v20170516-1513,plugins/org.eclipse.osgi.compatibility.state_1.1.0.v20170516-1513.jar,4,false
 org.eclipse.osgi.services,3.6.0.v20170228-1906,plugins/org.eclipse.osgi.services_3.6.0.v20170228-1906.jar,4,false
 org.eclipse.osgi.util,3.4.0.v20170111-1608,plugins/org.eclipse.osgi.util_3.4.0.v20170111-1608.jar,4,false
+org.eclipse.pde.api.tools,1.1.150.v20180328-0710,plugins/org.eclipse.pde.api.tools_1.1.150.v20180328-0710.jar,4,false
 org.eclipse.pde.build,3.9.300.v20170515-0912,plugins/org.eclipse.pde.build_3.9.300.v20170515-0912/,4,false
 org.eclipse.pde.core,3.11.101.v20171228-1230,plugins/org.eclipse.pde.core_3.11.101.v20171228-1230.jar,4,false
 org.eclipse.pde.launching,3.7.52.v20171222-1119,plugins/org.eclipse.pde.launching_3.7.52.v20171222-1119.jar,4,false
@@ -206,6 +209,7 @@ org.eclipse.ui.console,3.7.1.v20170728-0806,plugins/org.eclipse.ui.console_3.7.1
 org.eclipse.ui.editors,3.11.0.v20170202-1823,plugins/org.eclipse.ui.editors_3.11.0.v20170202-1823.jar,4,false
 org.eclipse.ui.externaltools,3.4.0.v20161212-0515,plugins/org.eclipse.ui.externaltools_3.4.0.v20161212-0515.jar,4,false
 org.eclipse.ui.forms,3.7.101.v20170815-1446,plugins/org.eclipse.ui.forms_3.7.101.v20170815-1446.jar,4,false
+org.eclipse.ui.genericeditor,1.0.2.v20180126-0718,plugins/org.eclipse.ui.genericeditor_1.0.2.v20180126-0718.jar,4,false
 org.eclipse.ui.ide,3.13.1.v20170822-1526,plugins/org.eclipse.ui.ide_3.13.1.v20170822-1526.jar,4,false
 org.eclipse.ui.ide.application,1.2.0.v20170512-1452,plugins/org.eclipse.ui.ide.application_1.2.0.v20170512-1452.jar,4,false
 org.eclipse.ui.intro,3.5.100.v20170418-0710,plugins/org.eclipse.ui.intro_3.5.100.v20170418-0710.jar,4,false
@@ -261,16 +265,17 @@ org.eclipse.xtext.xbase.ide,2.13.0.v20171020-0717,plugins/org.eclipse.xtext.xbas
 org.eclipse.xtext.xbase.lib,2.13.0.v20171020-0659,plugins/org.eclipse.xtext.xbase.lib_2.13.0.v20171020-0659.jar,4,false
 org.eclipse.xtext.xbase.ui,2.13.0.v20171020-0732,plugins/org.eclipse.xtext.xbase.ui_2.13.0.v20171020-0732.jar,4,false
 org.eclipse.xtext.xtext.generator,2.13.0.v20171020-0708,plugins/org.eclipse.xtext.xtext.generator_2.13.0.v20171020-0708.jar,4,false
-org.etri.slice.tools.adl,2.13.0.201809181716,plugins/org.etri.slice.tools.adl_2.13.0.201809181716.jar,4,false
-org.etri.slice.tools.adl.ide,2.13.0.201809181716,plugins/org.etri.slice.tools.adl.ide_2.13.0.201809181716.jar,4,false
-org.etri.slice.tools.adl.product,1.0.0.201809181716,plugins/org.etri.slice.tools.adl.product_1.0.0.201809181716.jar,4,false
-org.etri.slice.tools.adl.project,1.0.0.201809181716,plugins/org.etri.slice.tools.adl.project_1.0.0.201809181716.jar,4,false
-org.etri.slice.tools.adl.ui,2.13.0.201809181716,plugins/org.etri.slice.tools.adl.ui_2.13.0.201809181716.jar,4,false
-org.etri.slice.tools.console,1.0.0.201809181716,plugins/org.etri.slice.tools.console_1.0.0.201809181716.jar,4,false
-org.etri.slice.tools.jmxconsole,1.0.0.201809181716,plugins/org.etri.slice.tools.jmxconsole_1.0.0.201809181716.jar,4,false
+org.etri.slice.tools.adl,2.13.0.201901021324,plugins/org.etri.slice.tools.adl_2.13.0.201901021324.jar,4,false
+org.etri.slice.tools.adl.ide,2.13.0.201901021324,plugins/org.etri.slice.tools.adl.ide_2.13.0.201901021324.jar,4,false
+org.etri.slice.tools.adl.product,1.0.0.201901021324,plugins/org.etri.slice.tools.adl.product_1.0.0.201901021324.jar,4,false
+org.etri.slice.tools.adl.project,1.0.0.201901021324,plugins/org.etri.slice.tools.adl.project_1.0.0.201901021324.jar,4,false
+org.etri.slice.tools.adl.ui,2.13.0.201901021324,plugins/org.etri.slice.tools.adl.ui_2.13.0.201901021324.jar,4,false
+org.etri.slice.tools.console,1.0.0.201901021324,plugins/org.etri.slice.tools.console_1.0.0.201901021324.jar,4,false
+org.etri.slice.tools.jmxconsole,1.0.0.201901021324,plugins/org.etri.slice.tools.jmxconsole_1.0.0.201901021324.jar,4,false
 org.hamcrest.core,1.3.0.v201303031735,plugins/org.hamcrest.core_1.3.0.v201303031735.jar,4,false
 org.junit,4.12.0.v201504281640,plugins/org.junit_4.12.0.v201504281640/,4,false
 org.objectweb.asm,6.0.0.v20180116-1719,plugins/org.objectweb.asm_6.0.0.v20180116-1719.jar,4,false
+org.objectweb.asm.tree,6.0.0.v20180116-1719,plugins/org.objectweb.asm.tree_6.0.0.v20180116-1719.jar,4,false
 org.sat4j.core,2.3.5.v201308161310,plugins/org.sat4j.core_2.3.5.v201308161310.jar,4,false
 org.sat4j.pb,2.3.5.v201404071733,plugins/org.sat4j.pb_2.3.5.v201404071733.jar,4,false
 org.slf4j.api,1.7.2.v20121108-1250,plugins/org.slf4j.api_1.7.2.v20121108-1250.jar,4,false

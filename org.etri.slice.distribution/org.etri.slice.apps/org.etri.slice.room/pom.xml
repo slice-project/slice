@@ -1,17 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>org.etri.slice</groupId>
-	<artifactId>org.etri.slice.room</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
+	<artifactId>org.etri.slice.car</artifactId>
+	<version>0.9.1</version>
+	
+	<name>The SLICE Agent</name>
+	<description>org.etri.slice.car :: carseat control applications</description>
+	
 	<properties>
+		<slice.generated.directory>${project.basedir}/org.etri.slice.generated</slice.generated.directory>
 		<slice.home>/Users/yhsuh/development/slice-project/git/slice/org.etri.slice.distribution</slice.home>
-	</properties>
-
+	</properties>	
+	
 	<repositories>
 		<repository>
 			<id>local-repo</id>
@@ -26,45 +29,51 @@
 				<checksumPolicy>ignore</checksumPolicy>
 				<updatePolicy>always</updatePolicy>
 			</snapshots>
-		</repository>
+		</repository>	
 		<repository>
 			<id>central</id>
 			<url>https://repo.maven.apache.org/maven2/</url>
 		</repository>
-	</repositories>
+	</repositories>	
 
 	<dependencies>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
 			<version>0.9.1</version>
-		</dependency>
+		</dependency>	
 		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>2.13.0</version>
-		</dependency>
+		    <groupId>org.eclipse.xtend</groupId>
+		    <artifactId>org.eclipse.xtend.lib</artifactId>
+		    <version>2.13.0</version>
+		</dependency>				
 	</dependencies>
-
+<!-- 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>org.etri.slice.generated</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<phase>deploy</phase>
+						<id>copy-local-repository</id>
+						<configuration>
+							<outputDirectory>${slice.generated.directory}/lib</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/lib</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>					
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
+-->	
 </project>
