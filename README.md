@@ -28,7 +28,7 @@
 
 > [SLICE Video Material :: Example Implmentation 1 - Eng](https://youtu.be/B9qoI7IWeTU)
 
-> [SLICE Video Material :: Example Implmentation 2 - Kor](https://youtu.be/5AvXvftUwOc)
+> [SLICE Video Material :: Example Implmentation 2 - Kor](https://youtu.be/RDXDIaF9c7E)
 
 > [SLICE Presentation Material :: SLICE Concept & Example Implementation 1](https://s3.ap-northeast-2.amazonaws.com/slice-distribution/SLICE+Concept+Presentation+Material.pdf)
 
