@@ -24,11 +24,11 @@
 
 > [SLICE Video Material :: SLICE Concept - Kor](https://youtu.be/jMma32jpf7I)
 
-> [SLICE Video Material :: Example Implmentation 1 - Kor](https://youtu.be/5AvXvftUwOc)
+> [SLICE Video Material :: Example Implmentation 1 (2018) - Kor](https://youtu.be/RDXDIaF9c7E)
 
-> [SLICE Video Material :: Example Implmentation 1 - Eng](https://youtu.be/B9qoI7IWeTU)
+> [SLICE Video Material :: Example Implmentation 2 (2017) - Kor](https://youtu.be/5AvXvftUwOc)
 
-> [SLICE Video Material :: Example Implmentation 2 - Kor](https://youtu.be/RDXDIaF9c7E)
+> [SLICE Video Material :: Example Implmentation 2 (2017) - Eng](https://youtu.be/B9qoI7IWeTU)
 
 > [SLICE Presentation Material :: SLICE Concept & Example Implementation 1](https://s3.ap-northeast-2.amazonaws.com/slice-distribution/SLICE+Concept+Presentation+Material.pdf)
 
