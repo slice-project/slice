@@ -18,9 +18,9 @@
 
 ## SLICE References ##
 
-> [SLICE White Paper](https://drive.google.com/file/d/1klG-sSC9CUARe_iGRZLlavRafgsR03wQ/view?usp=sharing)
+> [SLICE White Paper](https://s3.ap-northeast-2.amazonaws.com/slice-distribution/SLICE_WhitePaper.pdf)
 
-> [SLICE UserGuide 1.0v - Kor](https://drive.google.com/open?id=1CL5cl_RCin-mirDujZK09vdiTCTd0479)
+> [SLICE UserGuide 1.0v - Kor](https://s3.ap-northeast-2.amazonaws.com/slice-distribution/SLICE_UserGuide_1.0v.pdf)
 
 > [SLICE Video Material :: SLICE Concept - Kor](https://youtu.be/jMma32jpf7I)
 
@@ -28,7 +28,9 @@
 
 > [SLICE Video Material :: Example Implmentation 1 - Eng](https://youtu.be/B9qoI7IWeTU)
 
-> [SLICE Presentation Material :: SLICE Concept & Example Implementation 1](https://drive.google.com/file/d/1OMlsQNcGXu4tvnquqarzwyaWQE0bTrR1/view?usp=sharing)
+> [SLICE Video Material :: Example Implmentation 2 - Kor](https://youtu.be/5AvXvftUwOc)
+
+> [SLICE Presentation Material :: SLICE Concept & Example Implementation 1](https://s3.ap-northeast-2.amazonaws.com/slice-distribution/SLICE+Concept+Presentation+Material.pdf)
 
 
 ## Paper Publication ##
