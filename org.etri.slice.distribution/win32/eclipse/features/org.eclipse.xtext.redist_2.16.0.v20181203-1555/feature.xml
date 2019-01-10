@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.xtext.redist"
+      label="%featureName"
+      version="2.16.0.v20181203-1555"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      Copyright (c) 2009, 2018 itemis AG (http://www.itemis.eu) and others.
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0 which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html Description here.
+   </copyright>
+   <license url="%licenseURL">
+      %license
+   </license>
+   <includes
+         id="org.eclipse.xtext.xbase"
+         version="2.16.0.v20181203-1555"/>
+
+   <requires>
+      <import plugin="com.google.guava" version="14.0.0" match="greaterOrEqual"/>
+      <import plugin="com.google.inject" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.objectweb.asm" version="7.0.0" match="compatible"/>
+      <import plugin="javax.inject" version="1.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.xtext"
+         download-size="2433"
+         install-size="5537"
+         version="2.16.0.v20181203-0514"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.source"
+         download-size="1606"
+         install-size="5166"
+         version="2.16.0.v20181203-0514"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.util"
+         download-size="271"
+         install-size="578"
+         version="2.16.0.v20181203-0514"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.util.source"
+         download-size="143"
+         install-size="398"
+         version="2.16.0.v20181203-0514"
+         unpack="false"/>
+
+   <plugin
+         id="org.antlr.runtime"
+         download-size="201"
+         install-size="426"
+         version="3.2.0.v201101311130"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.lang"
+         download-size="291"
+         install-size="618"
+         version="2.6.0.v201404270220"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.log4j"
+         download-size="405"
+         install-size="775"
+         version="1.2.15.v201012070815"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.logging"
+         download-size="6"
+         install-size="8"
+         version="1.2.15.v20181203-1056"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.logging.source"
+         download-size="4"
+         install-size="6"
+         version="1.2.15.v20181203-1056"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types"
+         download-size="447"
+         install-size="1061"
+         version="2.16.0.v20181203-0528"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.source"
+         download-size="333"
+         install-size="1336"
+         version="2.16.0.v20181203-0528"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.builder"
+         download-size="339"
+         install-size="763"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.builder.source"
+         download-size="195"
+         install-size="667"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ecore"
+         download-size="9"
+         install-size="16"
+         version="2.16.0.v20181203-0528"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ecore.source"
+         download-size="6"
+         install-size="12"
+         version="2.16.0.v20181203-0528"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.smap"
+         download-size="12"
+         install-size="22"
+         version="2.16.0.v20181203-0528"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.smap.source"
+         download-size="10"
+         install-size="28"
+         version="2.16.0.v20181203-0528"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui"
+         download-size="1721"
+         install-size="3665"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.source"
+         download-size="1083"
+         install-size="2949"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codemining"
+         download-size="12"
+         install-size="24"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codemining.source"
+         download-size="5"
+         install-size="12"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.ui"
+         download-size="232"
+         install-size="513"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.ui.source"
+         download-size="133"
+         install-size="403"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.shared"
+         download-size="11"
+         install-size="19"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.shared.source"
+         download-size="8"
+         install-size="14"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.shared.jdt38"
+         download-size="12"
+         install-size="22"
+         version="2.16.0.v20181203-1056"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.shared.jdt38.source"
+         download-size="7"
+         install-size="14"
+         version="2.16.0.v20181203-1056"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.shared"
+         download-size="48"
+         install-size="102"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.shared.source"
+         download-size="20"
+         install-size="55"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codetemplates"
+         download-size="174"
+         install-size="407"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codetemplates.source"
+         download-size="113"
+         install-size="622"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codetemplates.ide"
+         download-size="120"
+         install-size="355"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codetemplates.ide.source"
+         download-size="80"
+         install-size="719"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codetemplates.ui"
+         download-size="110"
+         install-size="249"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ui.codetemplates.ui.source"
+         download-size="69"
+         install-size="181"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.edit"
+         download-size="210"
+         install-size="301"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.common.types.edit.source"
+         download-size="86"
+         install-size="293"
+         version="2.16.0.v20181203-1056"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtend.lib"
+         download-size="91"
+         install-size="223"
+         version="2.16.0.v20181203-0507"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtend.lib.source"
+         download-size="97"
+         install-size="288"
+         version="2.16.0.v20181203-0507"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtend.lib.macro"
+         download-size="58"
+         install-size="106"
+         version="2.16.0.v20181203-0507"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtend.lib.macro.source"
+         download-size="74"
+         install-size="185"
+         version="2.16.0.v20181203-0507"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ide"
+         download-size="453"
+         install-size="1065"
+         version="2.16.0.v20181203-0514"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.ide.source"
+         download-size="545"
+         install-size="1355"
+         version="2.16.0.v20181203-0514"
+         unpack="false"/>
+
+</feature>
