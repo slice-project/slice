@@ -14,9 +14,18 @@
    </configIni>
 
    <launcherArgs>
+      <programArgsMac>-perspective org.eclipse.jdt.ui.JavaPerspective
+      </programArgsMac>
       <programArgsWin>-perspective org.eclipse.jdt.ui.JavaPerspective
       </programArgsWin>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+-Dosgi.requiredJavaVersion=1.8
+-Dosgi.instance.area.default=@user.home/eclipse-workspace
+-XX:+UseG1GC
+-XX:+UseStringDeduplication
+-Xms256m
+-Xmx2024m
+-javaagent:lombok.jar
       </vmArgsMac>
       <vmArgsWin>-Dosgi.requiredJavaVersion=1.8
 -Dosgi.instance.area.default=@user.home/eclipse-workspace
@@ -38,7 +47,6 @@
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
