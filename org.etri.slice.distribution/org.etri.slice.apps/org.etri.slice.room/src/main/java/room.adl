@@ -3,7 +3,7 @@ import org.etri.slice.commons.room.^event.TemperatureChanged
 import org.etri.slice.commons.room.service.ElectronicFan
 
 domain room {
-				
+			
 	context Temperature {
 		int value;		
 	}
