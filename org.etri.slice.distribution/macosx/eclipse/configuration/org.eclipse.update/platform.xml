@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config date="1546403111993" transient="false">
-	<site updateable="true" url="platform:/base/" enabled="true" policy="USER-EXCLUDE">
-		<feature id="org.etri.slice.tools.adl.platform.feature" version="1.0.0.201901021324" url="features/org.etri.slice.tools.adl.platform.feature_1.0.0.201901021324/">
-		</feature>
-		<feature id="org.etri.slice.tools.adl.feature" version="1.0.0.201901021324" url="features/org.etri.slice.tools.adl.feature_1.0.0.201901021324/">
-		</feature>
-	</site>
+<config date="1547022569818" transient="false" version="3.0">
+<site enabled="true" policy="USER-EXCLUDE" updateable="true" url="platform:/base/">
+<feature id="org.eclipse.help" plugin-identifier="org.eclipse.help.base" url="features/org.eclipse.help_2.2.300.v20180906-0745/" version="2.2.300.v20180906-0745">
+</feature>
+<feature id="org.eclipse.xtext.redist" url="features/org.eclipse.xtext.redist_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.pde" url="features/org.eclipse.pde_3.13.200.v20180906-0745/" version="3.13.200.v20180906-0745">
+</feature>
+<feature id="org.eclipse.emf.mwe2.language.sdk" url="features/org.eclipse.emf.mwe2.language.sdk_2.9.1.201705291011/" version="2.9.1.201705291011">
+</feature>
+<feature id="org.eclipse.xtext.xtext.ui" url="features/org.eclipse.xtext.xtext.ui_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.xtext.xtext.ui.graph" url="features/org.eclipse.xtext.xtext.ui.graph_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.xtext.xbase.lib" url="features/org.eclipse.xtext.xbase.lib_2.16.0.v20181203-1011/" version="2.16.0.v20181203-1011">
+</feature>
+<feature id="org.eclipse.jdt" url="features/org.eclipse.jdt_3.15.0.v20180906-0745/" version="3.15.0.v20180906-0745">
+</feature>
+<feature id="org.eclipse.emf.common" url="features/org.eclipse.emf.common_2.15.0.v20180723-1316/" version="2.15.0.v20180723-1316">
+</feature>
+<feature id="org.eclipse.equinox.p2.core.feature" url="features/org.eclipse.equinox.p2.core.feature_1.5.100.v20180829-1443/" version="1.5.100.v20180829-1443">
+</feature>
+<feature id="org.eclipse.emf.mwe2.runtime.sdk" url="features/org.eclipse.emf.mwe2.runtime.sdk_2.9.1.201705291011/" version="2.9.1.201705291011">
+</feature>
+<feature id="org.eclipse.wst.xml_core.feature" url="features/org.eclipse.wst.xml_core.feature_3.11.0.v201808220605/" version="3.11.0.v201808220605">
+</feature>
+<feature id="org.eclipse.egit" url="features/org.eclipse.egit_5.1.0.201809111528-r/" version="5.1.0.201809111528-r">
+</feature>
+<feature id="org.eclipse.xtend.sdk" plugin-identifier="org.eclipse.xtend.ide" url="features/org.eclipse.xtend.sdk_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.emf.mwe2.launcher" url="features/org.eclipse.emf.mwe2.launcher_2.9.1.201705291011/" version="2.9.1.201705291011">
+</feature>
+<feature id="org.eclipse.emf.mwe2.launcher.source" url="features/org.eclipse.emf.mwe2.launcher.source_2.9.1.201705291011/" version="2.9.1.201705291011">
+</feature>
+<feature id="org.eclipse.xtext.runtime" url="features/org.eclipse.xtext.runtime_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.emf.ecore" url="features/org.eclipse.emf.ecore_2.15.0.v20180722-1159/" version="2.15.0.v20180722-1159">
+</feature>
+<feature id="org.eclipse.equinox.p2.user.ui" url="features/org.eclipse.equinox.p2.user.ui_2.4.100.v20180829-1443/" version="2.4.100.v20180829-1443">
+</feature>
+<feature id="org.eclipse.xtext.xbase" url="features/org.eclipse.xtext.xbase_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.equinox.p2.extras.feature" url="features/org.eclipse.equinox.p2.extras.feature_1.4.100.v20180829-1443/" version="1.4.100.v20180829-1443">
+</feature>
+<feature id="org.eclipse.xtext.examples" url="features/org.eclipse.xtext.examples_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.m2e.feature" plugin-identifier="org.eclipse.m2e.core" url="features/org.eclipse.m2e.feature_1.9.1.20180912-1601/" version="1.9.1.20180912-1601">
+</feature>
+<feature id="org.eclipse.rcp" url="features/org.eclipse.rcp_4.9.0.v20180906-1121/" version="4.9.0.v20180906-1121">
+</feature>
+<feature id="org.eclipse.jgit" url="features/org.eclipse.jgit_5.1.0.201809111528-r/" version="5.1.0.201809111528-r">
+</feature>
+<feature id="org.etri.slice.tools.adl.platform.feature" url="features/org.etri.slice.tools.adl.platform.feature_1.0.0.201901091725/" version="1.0.0.201901091725">
+</feature>
+<feature id="org.eclipse.equinox.p2.rcp.feature" url="features/org.eclipse.equinox.p2.rcp.feature_1.4.100.v20180829-1443/" version="1.4.100.v20180829-1443">
+</feature>
+<feature id="org.eclipse.equinox.p2.discovery.feature" url="features/org.eclipse.equinox.p2.discovery.feature_1.2.100.v20180822-1357/" version="1.2.100.v20180822-1357">
+</feature>
+<feature id="org.eclipse.xtext.ui" url="features/org.eclipse.xtext.ui_2.16.0.v20181203-1555/" version="2.16.0.v20181203-1555">
+</feature>
+<feature id="org.eclipse.platform" url="features/org.eclipse.platform_4.9.0.v20180906-1121/" version="4.9.0.v20180906-1121">
+</feature>
+<feature id="org.etri.slice.tools.adl.feature" url="features/org.etri.slice.tools.adl.feature_1.0.0.201901091725/" version="1.0.0.201901091725">
+</feature>
+<feature id="org.eclipse.e4.rcp" url="features/org.eclipse.e4.rcp_1.6.200.v20180906-1121/" version="1.6.200.v20180906-1121">
+</feature>
+</site>
 </config>

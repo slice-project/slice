@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.xtext.xtext.ui"
+      label="%featureName"
+      version="2.15.0.v20180916-1232"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      Copyright (c) 2009, 2018 itemis AG (http://www.itemis.eu) and others.
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0 which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html Description here.
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes
+         id="org.eclipse.xtext.ui"
+         version="2.15.0.v20180916-1232"/>
+
+   <includes
+         id="org.eclipse.xtext.xtext.ui.graph"
+         version="2.15.0.v20180916-1232"
+         optional="true"/>
+
+   <requires>
+      <import plugin="org.eclipse.emf.mwe2.runtime" version="2.7.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.xtext.activities"
+         download-size="4"
+         install-size="4"
+         version="2.15.0.v20180916-1016"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.activities.source"
+         download-size="2"
+         install-size="2"
+         version="2.15.0.v20180916-1016"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.xtext.ui"
+         download-size="234"
+         install-size="520"
+         version="2.15.0.v20180916-1016"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.xtext.ui.source"
+         download-size="136"
+         install-size="410"
+         version="2.15.0.v20180916-1016"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.doc"
+         download-size="6674"
+         install-size="7676"
+         version="2.15.0.v20180916-1016"/>
+
+</feature>
